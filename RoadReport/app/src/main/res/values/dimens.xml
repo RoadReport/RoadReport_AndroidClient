@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="all_default_margin">16dp</dimen>
+    <dimen name="cardView_accidentEvent_height">40dp</dimen>
+</resources>
