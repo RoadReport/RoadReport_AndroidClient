@@ -27,79 +27,126 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="459dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_accidentEvent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <!-- Current Road -->
     <TextView
-        android:id="@+id/textView_accidentEvent_currentRoad"
+        android:id="@+id/textView_accidentEvent_currentRoadTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="@dimen/all_default_margin"
         android:text="@string/accidentEvent_currentRoad"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_accidentEvent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView_accidentEvent_currentRoad"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cardView_accidentEvent_height"
+    <TextView
+        android:id="@+id/textView_accidentEvent_currentRoadContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/all_default_margin"
         android:layout_marginStart="@dimen/all_default_margin"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/all_default_margin"
-        app:cardBackgroundColor="#eeeeee"
+        android:background="@drawable/bg_edittext"
+        android:padding="@dimen/all_default_margin"
+        android:text="@string/accidentEvent_currentRoad"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_accidentEvent_currentRoad">
-
-        <TextView
-            android:id="@+id/textView_accidentEvent_currentRoadContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/all_default_margin"
-            android:layout_marginEnd="@dimen/all_default_margin"
-            android:text="@string/roadName_24" />
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintTop_toBottomOf="@id/textView_accidentEvent_currentRoadTitle" />
 
 
     <!-- Situation -->
     <TextView
-        android:id="@+id/textView_accidentEvent_situation"
+        android:id="@+id/textView_accidentEvent_situationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="@dimen/all_default_margin"
         android:text="@string/accidentEvent_situation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardView_accidentEvent_currentRoad" />
+        app:layout_constraintTop_toBottomOf="@id/textView_accidentEvent_currentRoadContent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardView_accidentEvent_situation"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/cardView_accidentEvent_height"
-        android:layout_marginStart="@dimen/all_default_margin"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/all_default_margin"
-        app:cardBackgroundColor="#eeeeee"
+    <EditText
+        android:id="@+id/editText_accidentEvent_situationContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/all_default_margin"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/accidentEvent_situationHint"
+        android:inputType="text"
+        android:padding="@dimen/all_default_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_accidentEvent_situation">
-
-        <EditText
-            android:id="@+id/textView_accidentEvent_situationContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/all_default_margin"
-            android:layout_marginEnd="@dimen/all_default_margin"
-            android:inputType="text"
-            android:textSize="14sp"
-            android:hint="@string/accidentEvent_situation"/>
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintTop_toBottomOf="@+id/textView_accidentEvent_situationTitle" />
 
 
     <!-- Location -->
-    <!-- Time -->
+    <TextView
+        android:id="@+id/textView_accidentEvent_locationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/all_default_margin"
+        android:text="@string/accidentEvent_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_accidentEvent_situationContent" />
 
+    <EditText
+        android:id="@+id/editText_accidentEvent_locationContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/all_default_margin"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/accidentEvent_locationHint"
+        android:inputType="text"
+        android:padding="@dimen/all_default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accidentEvent_locationTitle" />
+
+
+    <!-- Time -->
+    <TextView
+        android:id="@+id/textView_accidentEvent_timeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/all_default_margin"
+        android:text="@string/accidentEvent_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editText_accidentEvent_locationContent" />
+
+    <TextView
+        android:id="@+id/editText_accidentEvent_timeContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/all_default_margin"
+        android:layout_marginStart="@dimen/all_default_margin"
+        android:layout_marginEnd="@dimen/all_default_margin"
+        android:background="@drawable/bg_edittext"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="@dimen/all_default_margin"
+        android:text="@string/accidentEvent_timeHint"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accidentEvent_timeTitle" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

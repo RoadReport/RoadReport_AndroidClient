@@ -23,8 +23,11 @@
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前路段</string>
     <string name="accidentEvent_situation">狀況</string>
+    <string name="accidentEvent_situationHint">例如：釘子、車禍、爆胎、擺攤</string>
     <string name="accidentEvent_location">地點</string>
+    <string name="accidentEvent_locationHint">例如：野店附近、27.5K 前</string>
     <string name="accidentEvent_time">發生時間</string>
+    <string name="accidentEvent_timeHint">09:41</string>
 
     <!-- Common -->
     <string name="unknownError">未知錯誤</string>
