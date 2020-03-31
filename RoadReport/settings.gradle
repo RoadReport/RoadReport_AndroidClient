@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='RoadReport24'
+rootProject.name='RoadReport_AndroidClient'
