@@ -29,6 +29,16 @@
     <string name="accidentEvent_time">發生時間</string>
     <string name="accidentEvent_timeHint">09:41</string>
 
+    <!-- Setting Activity Text -->
+    <string name="settingsActivity_accountTitle">帳號狀態</string>
+    <string name="settingsActivity_accountTypeGoogle">GOOGLE</string>
+    <string name="settingsActivity_accountTypeFb">FACEBOOK</string>
+    <string name="settingsActivity_accountStatusLogin">已登入</string>
+    <string name="settingsActivity_accountStatusLogout">未登入</string>
+    <string name="settingsActivity_generalTitle">一般</string>
+    <string name="settingsActivity_aboutTitle">關於</string>
+
+
     <!-- Common -->
     <string name="unknownError">未知錯誤</string>
     <string name="done">完成</string>
