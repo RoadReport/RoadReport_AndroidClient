@@ -28,13 +28,16 @@ class SettingsActivity : AppCompatActivity() {
         val array = arrayOf("服務條款", "隱私權政策")
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, array)
         listView_settings_general.adapter = arrayAdapter
+
+        cardView_settings_loginStatus.setOnClickListener {
+            loginWithFacebook()
+        }
     }
 
 
     private fun loginWithFacebook() {
         // Choose authentication providers
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.FacebookBuilder().build())
 
         // Create and launch sign-in intent
