@@ -1,8 +1,12 @@
 package com.txwstudio.app.roadreport
 
 import android.app.Activity
+import android.content.Context
+import android.util.Log
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.txwstudio.app.roadreport.activity.SettingsActivity
 
 class FirebaseAuthHelper {
 
@@ -10,12 +14,20 @@ class FirebaseAuthHelper {
         const val RC_SIGN_IN = 0
     }
 
-    fun checkLoginStatus() {
 
+    /** Check sign in status, return true if signed in. */
+    fun checkSignInStatus(): Boolean {
+        val auth = FirebaseAuth.getInstance().currentUser
+        Log.i("TESTTT", auth?.displayName + "")
+        return auth != null
     }
 
 
-    fun login(activity: Activity) {
+    /**
+     * Sign in using FirebaseUI
+     * @link https://firebase.google.com/docs/auth/android/firebaseui
+     * */
+    fun signIn(activity: Activity) {
         // Choose authentication providers
         val providers = arrayListOf(
             AuthUI.IdpConfig.FacebookBuilder().build()
@@ -24,8 +36,23 @@ class FirebaseAuthHelper {
         // Create and launch sign-in intent
         startActivityForResult(
             activity, AuthUI.getInstance().createSignInIntentBuilder()
-                .setAvailableProviders(providers).build(), RC_SIGN_IN, null
+                .setAvailableProviders(providers)
+                .setTosAndPrivacyPolicyUrls(
+                    "https://example.com/terms.html",
+                    "https://example.com/privacy.html")
+                .build(), RC_SIGN_IN, null
         )
     }
+
+    /** Sign out direct called in activity. */
+    fun signOut(context: Context) {
+        AuthUI.getInstance()
+            .signOut(context)
+            .addOnCompleteListener {
+                SettingsActivity().restartActivity()
+            }
+    }
+
+
 
 }

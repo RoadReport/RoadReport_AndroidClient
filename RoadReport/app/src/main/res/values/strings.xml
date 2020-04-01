@@ -35,6 +35,8 @@
     <string name="settingsActivity_accountTypeFb">FACEBOOK</string>
     <string name="settingsActivity_accountStatusLogin">已登入</string>
     <string name="settingsActivity_accountStatusLogout">未登入</string>
+    <string name="settingsActivity_signInSuccess">登入成功 :)</string>
+    <string name="settingsActivity_signInFailed">登入失敗 :(</string>
     <string name="settingsActivity_generalTitle">一般</string>
     <string name="settingsActivity_aboutTitle">關於</string>
 
