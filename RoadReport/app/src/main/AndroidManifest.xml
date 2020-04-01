@@ -18,7 +18,7 @@
         <!-- android:name="com.facebook.sdk.ApplicationId" -->
         <!-- android:value="@string/facebook_app_id" /> -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,25 +30,25 @@
         </activity>
 
         <activity
-            android:name=".RoadActivity"
+            android:name=".activity.RoadActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.MainActivity" />
+                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
 
         <activity
-            android:name=".AccidentEventActivity"
+            android:name=".activity.AccidentEventActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.RoadActivity" />
+                android:value="com.txwstudio.app.roadreport.activity.RoadActivity" />
         </activity>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -58,7 +58,7 @@
             <!-- </intent-filter> -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.MainActivity" />
+                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
     </application>
 

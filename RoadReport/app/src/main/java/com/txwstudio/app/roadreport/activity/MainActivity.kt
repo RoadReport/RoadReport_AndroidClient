@@ -1,12 +1,13 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.RoadCode
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -44,13 +45,22 @@ class MainActivity : AppCompatActivity() {
 
     //TODO: MaterialCard onClick can cause crash, replace with setOnClickListener
     fun setOnClickListener() {
-        card_1.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_24) }
-        card_2.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_182) }
+        card_1.setOnClickListener { RoadCode().startActivityByCode(this,
+            RoadActivity(),
+            RoadCode.ROADCODE_24
+        ) }
+        card_2.setOnClickListener { RoadCode().startActivityByCode(this,
+            RoadActivity(),
+            RoadCode.ROADCODE_182
+        ) }
     }
     fun toRoadActivity(v: View) {
         when(v.id) {
             R.id.card_1 -> {
-                RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_24)
+                RoadCode().startActivityByCode(this,
+                    RoadActivity(),
+                    RoadCode.ROADCODE_24
+                )
             }
         }
     }
