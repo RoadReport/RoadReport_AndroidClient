@@ -39,13 +39,10 @@
 
             <!-- Account Status Section -->
             <TextView
-                android:id="@+id/textView_settings_loginStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/all_default_margin"
-                android:text="@string/settingsActivity_accountTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_settings" />
+                android:text="@string/settingsActivity_accountTitle" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardView_settings_loginStatus"
@@ -56,10 +53,7 @@
                 android:backgroundTint="@color/facebookBlue"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView_settings_loginStatus">
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,6 +65,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textView_settings_loginStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center"
