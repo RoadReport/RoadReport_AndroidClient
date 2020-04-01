@@ -28,8 +28,8 @@ class AccidentEventActivity : AppCompatActivity() {
     private fun setupCurrentRoadContent() {
         var text = ""
         when (ROADCODE) {
-            ROADCODE_24 -> text = getString(R.string.roadName_24)
-            ROADCODE_182 -> text = getString(R.string.roadName_182)
+            RoadCode.ROADCODE_24 -> text = getString(R.string.roadName_24)
+            RoadCode.ROADCODE_182 -> text = getString(R.string.roadName_182)
             else -> text = getString(R.string.unknownError)
         }
 
@@ -44,16 +44,16 @@ class AccidentEventActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-//                NavUtils.navigateUpFromSameTask(this)
+    //                NavUtils.navigateUpFromSameTask(this)
                 finish()
-                return true
+                true
             }
             R.id.action_accidentEventDone -> {
                 Util().toast(this, "Done")
                 finish()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
