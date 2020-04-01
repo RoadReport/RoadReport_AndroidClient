@@ -1,4 +1,4 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.txwstudio.app.roadreport.FirebaseAuthHelper
+import com.txwstudio.app.roadreport.R
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {

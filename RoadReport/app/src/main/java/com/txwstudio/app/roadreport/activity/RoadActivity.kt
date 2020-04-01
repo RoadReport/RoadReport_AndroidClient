@@ -1,11 +1,11 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.activity
 
-import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.RoadCode
 import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
@@ -26,8 +26,12 @@ class RoadActivity : AppCompatActivity() {
 
         var toolbarTitle = ""
         when(ROADCODE) {
-            RoadCode.ROADCODE_24 -> toolbarTitle = getString(R.string.roadName_24)
-            RoadCode.ROADCODE_182 -> toolbarTitle = getString(R.string.roadName_182)
+            RoadCode.ROADCODE_24 -> toolbarTitle = getString(
+                R.string.roadName_24
+            )
+            RoadCode.ROADCODE_182 -> toolbarTitle = getString(
+                R.string.roadName_182
+            )
             else -> toolbarTitle = getString(R.string.unknownError)
         }
 
@@ -46,7 +50,8 @@ class RoadActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_addAccident -> {
-                RoadCode().startActivityByCode(this, AccidentEventActivity(), ROADCODE)
+                RoadCode().startActivityByCode(this,
+                    AccidentEventActivity(), ROADCODE)
 //                startActivity(Intent(this, AccidentEventActivity::class.java))
                 return true
             }
