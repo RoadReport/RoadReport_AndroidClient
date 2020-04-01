@@ -50,7 +50,7 @@ class RoadActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_addAccident -> {
-                RoadCode().startActivityByCode(this,
+                RoadCode().startActivityWithCode(this,
                     AccidentEventActivity(), ROADCODE)
 //                startActivity(Intent(this, AccidentEventActivity::class.java))
                 return true

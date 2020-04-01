@@ -1,8 +1,8 @@
 package com.txwstudio.app.roadreport
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 
 class RoadCode {
 
@@ -22,25 +22,28 @@ class RoadCode {
 
 
     /**
-     * This fun will start activity and send the selected road to "setCurrentRoadCode" below.
-     * @param currentActivity
+     * Invoke startActivity and send current road code to targetActivity and setCurrRoadCodeToSP().
+     * @param currActivity: Current Activity, just passing "this" in.
      * @param targetActivity
-     * @param roadcode: The road user just selected.
+     * @param roadCode: The road user just selected.
      * */
-    fun startActivityByCode(currentActivity: Context, targetActivity: Context, roadcode: Int) {
-        val intent = Intent(currentActivity, targetActivity::class.java)
-        intent.putExtra("ROADCODE", roadcode)
-        setCurrentRoadCode(currentActivity, roadcode)
-        currentActivity.startActivity(intent)
+    fun startActivityWithCode(currActivity: Context, targetActivity: Context, roadCode: Int) {
+        val intent = Intent(currActivity, targetActivity::class.java)
+        intent.putExtra("ROADCODE", roadCode)
+        setCurrRoadCodeToSP(currActivity, roadCode)
+        currActivity.startActivity(intent)
     }
+
 
     /**
      * Create a shared preference value to save current road code.
-     * @param currentRoadCode
+     * @param currRoadCode: Current Road Code.
      * */
-    fun setCurrentRoadCode(context: Context, currentRoadCode: Int) {
-        val currentCode: SharedPreferences = context.getSharedPreferences("currentCode", 0)
-        currentCode.edit().putInt("currentCode", currentRoadCode).commit()
+    @SuppressLint("ApplySharedPref")
+    private fun setCurrRoadCodeToSP(context: Context, currRoadCode: Int) {
+        context.getSharedPreferences("currentCode", 0)
+            .edit().putInt("currentCode", currRoadCode)
+            .commit()
     }
 
 
