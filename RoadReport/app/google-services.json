@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:549621644976:android:ee4eadb6d0f08c6a5c4575",
+        "mobilesdk_app_id": "1:549621644976:android:3d18c3c9e3131c065c4575",
         "android_client_info": {
-          "package_name": "com.txwstudio.app.roadreport24"
+          "package_name": "com.txwstudio.app.roadreport"
         }
       },
       "oauth_client": [
