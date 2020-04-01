@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
 
     //TODO: MaterialCard onClick can cause crash, replace with setOnClickListener
     fun setOnClickListener() {
-        card_1.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), ROADCODE_24) }
-        card_2.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), ROADCODE_182) }
+        card_1.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_24) }
+        card_2.setOnClickListener { RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_182) }
     }
     fun toRoadActivity(v: View) {
         when(v.id) {
             R.id.card_1 -> {
-                RoadCode().startActivityByCode(this, RoadActivity(), ROADCODE_24)
+                RoadCode().startActivityByCode(this, RoadActivity(), RoadCode.ROADCODE_24)
             }
         }
     }

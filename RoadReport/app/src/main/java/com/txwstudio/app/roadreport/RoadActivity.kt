@@ -26,8 +26,8 @@ class RoadActivity : AppCompatActivity() {
 
         var toolbarTitle = ""
         when(ROADCODE) {
-            ROADCODE_24 -> toolbarTitle = getString(R.string.roadName_24)
-            ROADCODE_182 -> toolbarTitle = getString(R.string.roadName_182)
+            RoadCode.ROADCODE_24 -> toolbarTitle = getString(R.string.roadName_24)
+            RoadCode.ROADCODE_182 -> toolbarTitle = getString(R.string.roadName_182)
             else -> toolbarTitle = getString(R.string.unknownError)
         }
 
