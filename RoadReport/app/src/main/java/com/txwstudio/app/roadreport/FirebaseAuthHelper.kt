@@ -15,7 +15,9 @@ class FirebaseAuthHelper {
     }
 
 
-    /** Check sign in status, return true if signed in. */
+    /** Check sign in status.
+     * @return true: Signed in.
+     * @return false: Not Signed in yet. */
     fun checkSignInStatus(): Boolean {
         val auth = FirebaseAuth.getInstance().currentUser
         Log.i("TESTTT", auth?.displayName + "")
@@ -37,9 +39,6 @@ class FirebaseAuthHelper {
         startActivityForResult(
             activity, AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setTosAndPrivacyPolicyUrls(
-                    "https://example.com/terms.html",
-                    "https://example.com/privacy.html")
                 .build(), RC_SIGN_IN, null
         )
     }
