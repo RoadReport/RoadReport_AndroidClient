@@ -46,7 +46,10 @@ class SettingsActivity : AppCompatActivity() {
             if (authStatus!!) {
                 // Signed in
                 AuthUI.getInstance().signOut(this)
-                    .addOnCompleteListener { restartActivity() }
+                    .addOnCompleteListener {
+                        restartActivity()
+                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
+                    }
             } else {
                 // Signed out
                 FirebaseAuthHelper().signIn(this)
