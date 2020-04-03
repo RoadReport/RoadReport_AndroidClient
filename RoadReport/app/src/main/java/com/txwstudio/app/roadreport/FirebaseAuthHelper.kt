@@ -25,6 +25,19 @@ class FirebaseAuthHelper {
     }
 
 
+    fun getCurrUserUid(): String {
+        val auth = FirebaseAuth.getInstance().currentUser
+        if (auth != null) {
+            Log.i("TESTTT", "Current user UID: " + auth.uid)
+            return auth.uid
+        } else {
+            return ""
+        }
+    }
+
+
+
+
     /**
      * Sign in using FirebaseUI
      * @link https://firebase.google.com/docs/auth/android/firebaseui
