@@ -1,4 +1,6 @@
 <resources>
     <dimen name="all_default_margin">16dp</dimen>
+    <dimen name="all_defaultHalf_margin">8dp</dimen>
+    <dimen name="all_defaultDouble_margin">32dp</dimen>
     <dimen name="cardView_accidentEvent_height">40dp</dimen>
 </resources>

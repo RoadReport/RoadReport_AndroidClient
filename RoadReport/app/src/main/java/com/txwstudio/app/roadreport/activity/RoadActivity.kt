@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.txwstudio.app.roadreport.FirebaseAuthHelper
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
+import com.txwstudio.app.roadreport.Util
 import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
@@ -15,7 +17,7 @@ class RoadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road)
-        ROADCODE = intent.extras!!.getInt("ROADCODE")
+        ROADCODE = RoadCode().getCurrentRoadCode(this)
         setupToolBar()
     }
 
@@ -32,7 +34,7 @@ class RoadActivity : AppCompatActivity() {
             RoadCode.ROADCODE_182 -> toolbarTitle = getString(
                 R.string.roadName_182
             )
-            else -> toolbarTitle = getString(R.string.unknownError)
+            else -> toolbarTitle = getString(R.string.all_unknownError)
         }
 
         textView_road_toolbarTitle.text = toolbarTitle
@@ -50,9 +52,13 @@ class RoadActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_addAccident -> {
-                RoadCode().startActivityWithCode(this,
-                    AccidentEventActivity(), ROADCODE)
+                if (FirebaseAuthHelper().checkSignInStatus()) {
+                    RoadCode().startActivityWithCode(this,
+                        AccidentEventActivity(), ROADCODE)
 //                startActivity(Intent(this, AccidentEventActivity::class.java))
+                } else {
+                    Util().toast(this, getString(R.string.roadActivity_SignInFirst))
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

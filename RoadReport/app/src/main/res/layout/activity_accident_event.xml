@@ -63,24 +63,25 @@
                 android:textSize="18sp" />
 
 
-            <!-- Situation -->
+            <!-- Situation Type -->
             <TextView
-                android:id="@+id/textView_accidentEvent_situationTitle"
+                android:id="@+id/textView_accidentEvent_situationTypeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/all_default_margin"
-                android:text="@string/accidentEvent_situation" />
+                android:text="@string/accidentEvent_situationType" />
 
-            <EditText
-                android:id="@+id/editText_accidentEvent_situationContent"
+            <TextView
+                android:id="@+id/editText_accidentEvent_situationTypeContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/all_default_margin"
                 android:layout_marginEnd="@dimen/all_default_margin"
                 android:background="@drawable/bg_edittext"
-                android:hint="@string/accidentEvent_situationHint"
-                android:inputType="text"
-                android:padding="@dimen/all_default_margin" />
+                android:hint="@string/accidentEvent_situationType_2"
+                android:padding="@dimen/all_default_margin"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
 
             <!-- Location -->
@@ -103,30 +104,24 @@
                 android:padding="@dimen/all_default_margin" />
 
 
-            <!-- Time -->
+            <!-- Situation -->
             <TextView
-                android:id="@+id/textView_accidentEvent_timeTitle"
+                android:id="@+id/textView_accidentEvent_situationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/all_default_margin"
-                android:text="@string/accidentEvent_time" />
+                android:text="@string/accidentEvent_situation" />
 
-            <TextView
-                android:id="@+id/editText_accidentEvent_timeContent"
+            <EditText
+                android:id="@+id/editText_accidentEvent_situationContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/all_default_margin"
                 android:layout_marginEnd="@dimen/all_default_margin"
                 android:background="@drawable/bg_edittext"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="@dimen/all_default_margin"
-                android:text="@string/accidentEvent_timeHint"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
+                android:hint="@string/accidentEvent_situationHint"
+                android:inputType="text"
+                android:padding="@dimen/all_default_margin" />
         </LinearLayout>
 
     </ScrollView>
