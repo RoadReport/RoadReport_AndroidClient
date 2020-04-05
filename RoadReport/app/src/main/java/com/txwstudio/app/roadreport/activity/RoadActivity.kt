@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.txwstudio.app.roadreport.FirebaseAuthHelper
-import com.txwstudio.app.roadreport.R
-import com.txwstudio.app.roadreport.RoadCode
-import com.txwstudio.app.roadreport.Util
+import com.txwstudio.app.roadreport.*
 import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
@@ -19,6 +16,8 @@ class RoadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_road)
         ROADCODE = RoadCode().getCurrentRoadCode(this)
         setupToolBar()
+
+        FirestoreManager().getAccident(ROADCODE)
     }
 
     private fun setupToolBar() {
@@ -26,7 +25,7 @@ class RoadActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        var toolbarTitle = ""
+        lateinit var toolbarTitle: String
         when(ROADCODE) {
             RoadCode.ROADCODE_24 -> toolbarTitle = getString(
                 R.string.roadName_24

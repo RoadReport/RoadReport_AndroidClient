@@ -24,14 +24,23 @@ class FirebaseAuthHelper {
         return auth != null
     }
 
+    fun getCurrUserName(): String {
+        val auth = FirebaseAuth.getInstance().currentUser
+        return if (auth != null) {
+            Log.i("TESTTT", "Current user UID: " + auth.displayName)
+            auth.displayName!!
+        } else {
+            ""
+        }
+    }
 
     fun getCurrUserUid(): String {
         val auth = FirebaseAuth.getInstance().currentUser
-        if (auth != null) {
+        return if (auth != null) {
             Log.i("TESTTT", "Current user UID: " + auth.uid)
-            return auth.uid
+            auth.uid
         } else {
-            return ""
+            ""
         }
     }
 

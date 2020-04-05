@@ -28,23 +28,26 @@
     <string name="accidentEvent_currentRoad">目前路段</string>
     <string name="accidentEvent_situationType">種類</string>
     <array name="accidentEvent_situationTypeArray">
+        <item>請選擇事故種類</item>
         <item>注意</item>
         <item>事故</item>
         <item>臨檢</item>
         <item>測速</item>
         <item>其他</item>
     </array>
-    <string name="accidentEvent_situationType_0">注意</string>
-    <string name="accidentEvent_situationType_1">事故</string>
-    <string name="accidentEvent_situationType_2">臨檢</string>
-    <string name="accidentEvent_situationType_3">測速</string>
-    <string name="accidentEvent_situationType_4">其他</string>
+    <string name="accidentEvent_situationType_0">請選擇事故種類</string>
+    <string name="accidentEvent_situationType_1">注意</string>
+    <string name="accidentEvent_situationType_2">事故</string>
+    <string name="accidentEvent_situationType_3">臨檢</string>
+    <string name="accidentEvent_situationType_4">測速</string>
+    <string name="accidentEvent_situationType_5">其他</string>
     <string name="accidentEvent_location">地點</string>
     <string name="accidentEvent_locationHint">例如：野店附近、27.5K 前</string>
     <string name="accidentEvent_situation">狀況</string>
     <string name="accidentEvent_situationHint">例如：釘子、車禍、爆胎、擺攤</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
+    <string name="accidentEvent_NoEntry">沒有輸入東西</string>
 
 
     <!-- Setting Activity Text -->

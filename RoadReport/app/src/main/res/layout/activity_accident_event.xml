@@ -77,8 +77,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/all_default_margin"
                 android:layout_marginEnd="@dimen/all_default_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="selectSituationType"
                 android:background="@drawable/bg_edittext"
-                android:hint="@string/accidentEvent_situationType_2"
+                android:text="@string/accidentEvent_situationType_0"
                 android:padding="@dimen/all_default_margin"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
