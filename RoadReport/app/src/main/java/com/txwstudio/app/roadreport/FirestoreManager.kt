@@ -42,6 +42,7 @@ class FirestoreManager {
      * TODO: Implement
      * */
     fun getAccident(currRoad: Int) {
+        var mutableList = mutableListOf<AccidentData>()
         val db = FirebaseFirestore.getInstance()
 
         db.collection("ReportAccident").document(currRoad.toString())

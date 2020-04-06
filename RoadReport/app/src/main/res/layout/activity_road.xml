@@ -27,6 +27,13 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_road"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/all_default_margin"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_road" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
