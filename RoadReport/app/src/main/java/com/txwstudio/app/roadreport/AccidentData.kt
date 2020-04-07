@@ -6,7 +6,7 @@ data class AccidentData(
     var userName: String,
     var userUid: String,
     var time: Timestamp,
-    var situationType: Int,
+    var situationType: Long,
     var location: String,
     var situation: String
 )
