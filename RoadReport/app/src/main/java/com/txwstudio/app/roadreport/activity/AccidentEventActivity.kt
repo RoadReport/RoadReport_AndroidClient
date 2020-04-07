@@ -84,7 +84,7 @@ class AccidentEventActivity : AppCompatActivity() {
             FirebaseAuthHelper().getCurrUserName(),
             FirebaseAuthHelper().getCurrUserUid(),
             Timestamp(Date()),
-            situationType,
+            situationType.toLong(),
             editText_accidentEvent_locationContent.text.toString(),
             editText_accidentEvent_situationContent.text.toString()
         )
