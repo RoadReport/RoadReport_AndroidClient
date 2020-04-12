@@ -3,8 +3,8 @@ package com.txwstudio.app.roadreport
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-
 
 class FirestoreManager {
 
@@ -42,7 +42,7 @@ class FirestoreManager {
      * TODO: Implement
      * */
     fun getAccident(currRoad: Int) {
-        var mutableList = mutableListOf<AccidentData>()
+        val mutableList = mutableListOf<AccidentData>()
         val db = FirebaseFirestore.getInstance()
 
         db.collection("ReportAccident").document(currRoad.toString())
@@ -51,6 +51,16 @@ class FirestoreManager {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.i("TESTTT", "${document.id} => ${document.data}")
+                    Log.i("TESTTT", document.data["location"].toString())
+                    val dataToList = AccidentData(
+                        document.data["userName"].toString(),
+                        document.data["userUid"].toString(),
+                        document.data["time"] as Timestamp,
+                        document.data["situationType"] as Long,
+                        document.data["location"].toString(),
+                        document.data["situation"].toString()
+                    )
+                    mutableList.add(dataToList)
                 }
             }
             .addOnFailureListener { exception ->
