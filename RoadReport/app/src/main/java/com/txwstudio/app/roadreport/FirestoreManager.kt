@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class FirestoreManager {
 
@@ -46,7 +47,7 @@ class FirestoreManager {
         val db = FirebaseFirestore.getInstance()
 
         db.collection("ReportAccident").document(currRoad.toString())
-            .collection("accidents")
+            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
