@@ -52,4 +52,21 @@ class RoadCode {
             .getInt("currentCode", 0)
     }
 
+    /**
+     * Get current road name using the integer saved in shared preferences.
+     *
+     * @param context Current activity
+     *
+     * @return Current road name
+     * */
+    fun getCurrRoadName(context: Context): String {
+        return when (context.getSharedPreferences("currentCode", 0)
+            .getInt("currentCode", 0)) {
+            ROADCODE_24 -> context.resources.getString(R.string.roadName_24)
+            ROADCODE_182 -> context.resources.getString(R.string.roadName_182)
+            ROADCODE_GRANDMA -> context.resources.getString(R.string.roadName_grandma)
+            ROADCODE_7 -> context.resources.getString(R.string.roadName_7)
+            else -> context.resources.getString(R.string.all_unknownError)
+        }
+    }
 }

@@ -36,14 +36,7 @@ class AccidentEventActivity : AppCompatActivity() {
     }
 
     private fun setupCurrentRoadContent() {
-        var text = ""
-        when (ROADCODE) {
-            RoadCode.ROADCODE_24 -> text = getString(R.string.roadName_24)
-            RoadCode.ROADCODE_182 -> text = getString(R.string.roadName_182)
-            else -> text = getString(R.string.all_unknownError)
-        }
-
-        textView_accidentEvent_currentRoadContent.text = text
+        textView_accidentEvent_currentRoadContent.text = RoadCode().getCurrRoadName(this)
     }
 
 

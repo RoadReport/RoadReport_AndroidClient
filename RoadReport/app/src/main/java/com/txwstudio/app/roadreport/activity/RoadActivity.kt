@@ -52,19 +52,7 @@ class RoadActivity : AppCompatActivity() {
         setSupportActionBar(toolbar_road)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        lateinit var toolbarTitle: String
-        when (ROADCODE) {
-            RoadCode.ROADCODE_24 -> toolbarTitle = getString(
-                R.string.roadName_24
-            )
-            RoadCode.ROADCODE_182 -> toolbarTitle = getString(
-                R.string.roadName_182
-            )
-            else -> toolbarTitle = getString(R.string.all_unknownError)
-        }
-
-        textView_road_toolbarTitle.text = toolbarTitle
+        textView_road_toolbarTitle.text = RoadCode().getCurrRoadName(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
