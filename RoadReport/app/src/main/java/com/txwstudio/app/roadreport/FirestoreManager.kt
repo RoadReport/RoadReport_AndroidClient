@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.txwstudio.app.roadreport.Model.Accident
+import com.txwstudio.app.roadreport.model.Accident
 
 class FirestoreManager {
 
