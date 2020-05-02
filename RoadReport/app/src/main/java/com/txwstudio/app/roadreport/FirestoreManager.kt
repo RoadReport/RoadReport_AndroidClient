@@ -1,11 +1,10 @@
 package com.txwstudio.app.roadreport
 
 import android.util.Log
-import android.widget.Toast
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.txwstudio.app.roadreport.Model.Accident
 
 class FirestoreManager {
 
@@ -18,7 +17,7 @@ class FirestoreManager {
      * @return If successful add data into firestore, return true.
      * TODO: Because of firebase's async, unable to return true.
      * */
-    fun addAccident(currRoad: Int, data: AccidentData): Boolean {
+    fun addAccident(currRoad: Int, data: Accident): Boolean {
         var successOrNot = false
         val db = FirebaseFirestore.getInstance()
 
@@ -43,7 +42,7 @@ class FirestoreManager {
      * TODO: Implement
      * */
     fun getAccident(currRoad: Int) {
-        val mutableList = mutableListOf<AccidentData>()
+        val mutableList = mutableListOf<Accident>()
         val db = FirebaseFirestore.getInstance()
 
         db.collection("ReportAccident").document(currRoad.toString())
@@ -53,7 +52,7 @@ class FirestoreManager {
                 for (document in result) {
                     Log.i("TESTTT", "${document.id} => ${document.data}")
                     Log.i("TESTTT", document.data["location"].toString())
-                    val dataToList = AccidentData(
+                    val dataToList = Accident(
                         document.data["userName"].toString(),
                         document.data["userUid"].toString(),
                         document.data["time"] as Timestamp,

@@ -1,17 +1,15 @@
 package com.txwstudio.app.roadreport.activity
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.component1
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.*
+import com.txwstudio.app.roadreport.Model.Accident
 import kotlinx.android.synthetic.main.activity_accident_event.*
 import java.util.*
 
@@ -72,8 +70,8 @@ class AccidentEventActivity : AppCompatActivity() {
                 situationType == -1
     }
 
-    private fun getUserEntry(): AccidentData {
-        return AccidentData(
+    private fun getUserEntry(): Accident {
+        return Accident(
             FirebaseAuthHelper().getCurrUserName(),
             FirebaseAuthHelper().getCurrUserUid(),
             Timestamp(Date()),

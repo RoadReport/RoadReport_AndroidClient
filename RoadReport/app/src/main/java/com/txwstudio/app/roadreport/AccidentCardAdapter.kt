@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.txwstudio.app.roadreport.Model.Accident
 import kotlinx.android.synthetic.main.road_accident_row.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AccidentCardAdapter(
     val context: Context,
-    private val accidentMutableList: MutableList<AccidentData>
+    private val accidentMutableList: MutableList<Accident>
 ) :
     RecyclerView.Adapter<AccidentCardAdapter.MyViewHolder>() {
 
