@@ -1,8 +1,8 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.Model
 
 import com.google.firebase.Timestamp
 
-data class AccidentData(
+data class Accident(
     var userName: String,
     var userUid: String,
     var time: Timestamp,

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.*
+import com.txwstudio.app.roadreport.Model.Accident
 import kotlinx.android.synthetic.main.activity_road.*
 import java.util.*
 
@@ -30,11 +31,39 @@ class RoadActivity : AppCompatActivity() {
         viewManager = LinearLayoutManager(this)
         viewAdapter = AccidentCardAdapter(
             this,
-            mutableListOf<AccidentData>(
-                AccidentData("果凍", "", Timestamp(Date()), 1, "這有五個字這也五個字", "這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下"),
-                AccidentData("捏捏", "", Timestamp(Date()), 2, "過檢查哨", "有釘子，慢行"),
-                AccidentData("肉肉", "", Timestamp(Date()), 3, "紅門", "正在灑釘子"),
-                AccidentData("軟軟", "", Timestamp(Date()), 4, "野店", "有野雞")
+            mutableListOf<Accident>(
+                Accident(
+                    "果凍",
+                    "",
+                    Timestamp(Date()),
+                    1,
+                    "這有五個字這也五個字",
+                    "這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下這是一條特別特別特別長的訊息，不知道能不能塞的下"
+                ),
+                Accident(
+                    "捏捏",
+                    "",
+                    Timestamp(Date()),
+                    2,
+                    "過檢查哨",
+                    "有釘子，慢行"
+                ),
+                Accident(
+                    "肉肉",
+                    "",
+                    Timestamp(Date()),
+                    3,
+                    "紅門",
+                    "正在灑釘子"
+                ),
+                Accident(
+                    "軟軟",
+                    "",
+                    Timestamp(Date()),
+                    4,
+                    "野店",
+                    "有野雞"
+                )
             )
         )
 
