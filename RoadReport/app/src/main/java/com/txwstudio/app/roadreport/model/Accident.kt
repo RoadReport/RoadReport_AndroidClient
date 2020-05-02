@@ -1,4 +1,4 @@
-package com.txwstudio.app.roadreport.Model
+package com.txwstudio.app.roadreport.model
 
 import com.google.firebase.Timestamp
 
