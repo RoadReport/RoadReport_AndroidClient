@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
-    private var authStatus: Boolean? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -29,9 +27,14 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        authStatus = FirebaseAuthHelper().checkSignInStatus()
-        setOnClickListener()
-        updateSignInStatusUI(authStatus!!)
+        val authStatus = FirebaseAuthHelper().checkSignInStatus()
+
+        // Update sign in status text in card view.
+        textView_settings_loginStatus.text =
+            if (authStatus) getString(R.string.settingsActivity_accountStatusLogin)
+            else getString(R.string.settingsActivity_accountStatusLogout)
+
+        setOnClickListener(authStatus)
     }
 
     private fun setupToolBar() {
@@ -41,9 +44,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
-    private fun setOnClickListener() {
+    private fun setOnClickListener(authStatus: Boolean) {
         cardView_settings_loginStatus.setOnClickListener {
-            if (authStatus!!) {
+            if (authStatus) {
                 // Signed in
                 AuthUI.getInstance().signOut(this)
                     .addOnCompleteListener {
@@ -54,18 +57,6 @@ class SettingsActivity : AppCompatActivity() {
                 // Signed out
                 FirebaseAuthHelper().signIn(this)
             }
-        }
-    }
-
-
-    /** Update sign in status text in card view. */
-    private fun updateSignInStatusUI(result: Boolean) {
-        if (result) {
-            textView_settings_loginStatus.text =
-                getString(R.string.settingsActivity_accountStatusLogin)
-        } else {
-            textView_settings_loginStatus.text =
-                getString(R.string.settingsActivity_accountStatusLogout)
         }
     }
 
