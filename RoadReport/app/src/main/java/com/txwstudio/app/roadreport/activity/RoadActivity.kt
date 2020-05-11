@@ -1,16 +1,28 @@
 package com.txwstudio.app.roadreport.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.txwstudio.app.roadreport.*
 import com.txwstudio.app.roadreport.model.Accident
 import kotlinx.android.synthetic.main.activity_road.*
+import kotlinx.android.synthetic.main.road_accident_row.view.*
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class RoadActivity : AppCompatActivity() {
 
@@ -20,6 +32,7 @@ class RoadActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road)
@@ -27,6 +40,64 @@ class RoadActivity : AppCompatActivity() {
         setupToolBar()
 
         FirestoreManager().getAccident(ROADCODE)
+
+        /**
+         * Testing Area
+         * */
+        val db = FirebaseFirestore.getInstance()
+            .collection("ReportAccident").document(ROADCODE.toString())
+            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
+        val options = FirestoreRecyclerOptions.Builder<Accident>()
+            .setQuery(db, Accident::class.java)
+            .build()
+
+        var viewAdapter2: FirestoreRecyclerAdapter<*, *> =
+            object : FirestoreRecyclerAdapter<Accident?, AccidentHolder?>(options) {
+                override fun onCreateViewHolder(group: ViewGroup, i: Int): AccidentHolder {
+                    val view: View = LayoutInflater.from(group.context)
+                        .inflate(R.layout.road_accident_row, group, false)
+                    return AccidentHolder(view)
+                }
+
+                override fun onBindViewHolder(holder: AccidentHolder,
+                    position: Int, model: Accident) {
+                    val formattedTime = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+                        .format(model.time.toDate())
+
+                    //TODO: Situation Type class
+                    when (model.situationType.toInt()) {
+                        1 -> {
+                            holder.layout.background = getDrawable(R.drawable.bg_accident_type_1)
+                            holder.situationType.text =
+                                getString(R.string.accidentEvent_situationType_1)
+                        }
+                        2 -> {
+                            holder.layout.background = getDrawable(R.drawable.bg_accident_type_2)
+                            holder.situationType.text =
+                                getString(R.string.accidentEvent_situationType_2)
+                        }
+                        3 -> {
+                            holder.layout.background = getDrawable(R.drawable.bg_accident_type_3)
+                            holder.situationType.text =
+                                getString(R.string.accidentEvent_situationType_3)
+                        }
+                        4 -> {
+                            holder.layout.background = getDrawable(R.drawable.bg_accident_type_4)
+                            holder.situationType.text =
+                                getString(R.string.accidentEvent_situationType_4)
+                        }
+                    }
+//        holder.situationType.text = accidentMutableList[position].situationType.toString()
+                    holder.location.text = model.location
+                    holder.situation.text = model.situation
+                    holder.time.text = formattedTime
+                    holder.userName.text = model.userName
+                }
+            }
+
+        /**
+         * Testing Area End Here
+         * */
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = AccidentCardAdapter(
@@ -72,9 +143,11 @@ class RoadActivity : AppCompatActivity() {
             layoutManager = viewManager
 
             // Specify an viewAdapter (see also next example)
-            adapter = viewAdapter
+//            adapter = viewAdapter
+            adapter = viewAdapter2
             adapter?.notifyDataSetChanged()
         }
+        viewAdapter2.startListening()
     }
 
     private fun setupToolBar() {
@@ -110,4 +183,13 @@ class RoadActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+}
+
+class AccidentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var situationType = itemView.textView_accidentCard_situationType as TextView
+    var location = itemView.textView_accidentCard_location as TextView
+    var situation = itemView.textView_accidentCard_situation as TextView
+    var time = itemView.textView_accidentCard_time as TextView
+    var userName = itemView.textView_accidentCard_userName as TextView
+    var layout = itemView.relaLayout_accidentCard as RelativeLayout
 }
