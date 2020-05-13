@@ -1,5 +1,6 @@
 package com.txwstudio.app.roadreport.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
@@ -25,7 +26,6 @@ class AccidentEventActivity : AppCompatActivity() {
         ROADCODE = RoadCode().getCurrentRoadCode(this)
         setupToolBar()
         setupCurrentRoadContent()
-        sendEntryToFirestore()
     }
 
     private fun setupToolBar() {
@@ -96,47 +96,40 @@ class AccidentEventActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
-                if (FirebaseAuthHelper().userIsSignedIn()) {
-                    // Check user is signed in or not.
-                    if (!userEntryIsEmpty()) {
-                        // User did entered something, call FirestoreManager to store that data.
-                        if (FirestoreManager().addAccident(ROADCODE, getUserEntry())) {
-                            // TODO: Because of firebase's async, unable to return true here.
-                            // Add data successfully
-                            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
-                            finish()
-                        } else {
-                            // Add data failed
-                            Util().toast(this, getString(R.string.accidentEvent_addFailed))
-                        }
-                    } else {
-                        // User didn't entered anything.
-                        Util().toast(this, getString(R.string.accidentEvent_NoEntry))
-                    }
-
-                } else {
-                    // User didn't sign in yet
-                    // TODO: Redirect to login.
-                    Util().toast(this, getString(R.string.all_unknownError))
-                }
+                sendEntryToFirestore()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    fun sendEntryToFirestore() {
+    private fun sendEntryToFirestore() {
         // User not sign in
         if (!FirebaseAuthHelper().userIsSignedIn()) {
-            Util().toast(this, getString(R.string.all_unknownError))
+            // TODO: Redirect to login.
+            Util().toast(this, getString(R.string.all_notSignedIn))
+//            startActivity(Intent(this, SettingsActivity::class.java))
             return
         }
-        // Check entry.
+
+        // Check entry
         if (userEntryIsEmpty()) {
             Util().toast(this, getString(R.string.accidentEvent_NoEntry))
             return
         }
 
+        // TODO: Check network connection
+
+        // TODO: Check firebase connection
+
+        // Send to firestore
+        // TODO: Make a callback function here
+        if (FirestoreManager().addAccident(ROADCODE, getUserEntry())) {
+            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+            finish()
+        } else {
+            Util().toast(this, getString(R.string.accidentEvent_addFailed))
+        }
 
     }
 }
