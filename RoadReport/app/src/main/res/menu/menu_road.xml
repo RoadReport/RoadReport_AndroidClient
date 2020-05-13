@@ -6,6 +6,6 @@
         android:id="@+id/action_addAccident"
         android:icon="@drawable/ic_add_black_24dp"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/title_activity_addAccident"
         app:showAsAction="always" />
 </menu>
