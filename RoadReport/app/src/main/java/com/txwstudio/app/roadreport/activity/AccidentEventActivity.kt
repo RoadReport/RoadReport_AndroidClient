@@ -44,10 +44,10 @@ class AccidentEventActivity : AppCompatActivity() {
      * */
     fun selectSituationType(v: View) {
         val builder = AlertDialog.Builder(this)
-        builder.setItems(R.array.accidentEvent_situationTypeArray) {_, which->
+        builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
             situationType = which
             lateinit var text: String
-            when(which) {
+            when (which) {
                 0 -> text = getString(R.string.accidentEvent_situationType_0)
                 1 -> text = getString(R.string.accidentEvent_situationType_1)
                 2 -> text = getString(R.string.accidentEvent_situationType_2)
@@ -96,7 +96,7 @@ class AccidentEventActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
-                if (FirebaseAuthHelper().checkSignInStatus()) {
+                if (FirebaseAuthHelper().userIsSignedIn()) {
                     // Check user is signed in or not.
                     if (!userEntryIsEmpty()) {
                         // User did entered something, call FirestoreManager to store that data.
