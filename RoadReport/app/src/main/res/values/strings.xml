@@ -48,6 +48,7 @@
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
     <string name="accidentEvent_NoEntry">檢查欄位</string>
+    <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
 
 
     <!-- Setting Activity Text -->
@@ -66,6 +67,7 @@
     <!-- Common -->
     <string name="all_unknownError">未知錯誤</string>
     <string name="all_done">完成</string>
+    <string name="all_confirm">確認</string>
     <string name="all_cancel">取消</string>
     <string name="all_success">成功</string>
     <string name="all_failed">失敗</string>
