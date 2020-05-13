@@ -69,4 +69,7 @@
     <string name="all_cancel">取消</string>
     <string name="all_success">成功</string>
     <string name="all_failed">失敗</string>
+    <string name="all_notSignedIn">尚未登入</string>
+    <string name="all_noNetworkConn">網路未連線</string>
+    <string name="all_noFirebaseConn">無法連線到資料庫</string>
 </resources>
