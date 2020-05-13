@@ -169,7 +169,7 @@ class RoadActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_addAccident -> {
-                if (FirebaseAuthHelper().checkSignInStatus()) {
+                if (FirebaseAuthHelper().userIsSignedIn()) {
                     RoadCode().startActivityWithCode(
                         this,
                         AccidentEventActivity(), ROADCODE

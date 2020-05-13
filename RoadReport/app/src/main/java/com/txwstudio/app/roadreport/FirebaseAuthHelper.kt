@@ -18,7 +18,7 @@ class FirebaseAuthHelper {
     /** Check sign in status.
      * @return true: Signed in.
      * @return false: Not Signed in yet. */
-    fun checkSignInStatus(): Boolean {
+    fun userIsSignedIn(): Boolean {
         val auth = FirebaseAuth.getInstance().currentUser
         Log.i("TESTTT", auth?.displayName + "")
         return auth != null

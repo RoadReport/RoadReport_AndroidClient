@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val authStatus = FirebaseAuthHelper().checkSignInStatus()
+        val authStatus = FirebaseAuthHelper().userIsSignedIn()
 
         // Update sign in status text in card view.
         textView_settings_loginStatus.text =

@@ -25,6 +25,7 @@ class AccidentEventActivity : AppCompatActivity() {
         ROADCODE = RoadCode().getCurrentRoadCode(this)
         setupToolBar()
         setupCurrentRoadContent()
+        sendEntryToFirestore()
     }
 
     private fun setupToolBar() {
@@ -122,5 +123,20 @@ class AccidentEventActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun sendEntryToFirestore() {
+        // User not sign in
+        if (!FirebaseAuthHelper().userIsSignedIn()) {
+            Util().toast(this, getString(R.string.all_unknownError))
+            return
+        }
+        // Check entry.
+        if (userEntryIsEmpty()) {
+            Util().toast(this, getString(R.string.accidentEvent_NoEntry))
+            return
+        }
+
+
     }
 }
