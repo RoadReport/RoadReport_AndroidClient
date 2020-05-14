@@ -13,25 +13,21 @@ class FirestoreManager {
      *
      * @param currRoad: Current road code from accidentEventActivity.
      * @param data: The accident detail entered by user.
-     *
-     * @return If successful add data into firestore, return true.
-     * TODO: Because of firebase's async, unable to return true.
      * */
-    fun addAccident(currRoad: Int, data: Accident): Boolean {
-        var successOrNot = false
+    fun addAccident(currRoad: Int, data: Accident, isComplete: (Boolean) -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
         db.collection("ReportAccident").document(currRoad.toString())
             .collection("accidents").add(data)
             .addOnSuccessListener { documentReference ->
                 Log.i("TESTTT", "DocumentSnapshot written with ID: ${documentReference.id}")
-                successOrNot = true
             }
             .addOnFailureListener { e ->
                 Log.i("TESTTT", "Error adding document", e)
-                successOrNot = false
             }
-        return successOrNot
+            .addOnCompleteListener {
+                isComplete(true)
+            }
     }
 
     /**
