@@ -92,7 +92,7 @@ class AccidentEventActivity : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 // NavUtils.navigateUpFromSameTask(this)
-                finish()
+                onBackPressed()
                 true
             }
             R.id.action_accidentEventDone -> {
