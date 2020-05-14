@@ -1,8 +1,8 @@
 package com.txwstudio.app.roadreport.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -118,19 +118,17 @@ class AccidentEventActivity : AppCompatActivity() {
             return
         }
 
-        // TODO: Check network connection
+        // TODO: Handle no connection situation (check firebase connection or something like that)
 
-        // TODO: Check firebase connection
-
-        // Send to firestore
-        // TODO: Make a callback function here
-        if (FirestoreManager().addAccident(ROADCODE, getUserEntry())) {
-            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
-            finish()
-        } else {
-            Util().toast(this, getString(R.string.accidentEvent_addFailed))
+        // Send to firestore, addOnCompleteListener callback implemented.
+        FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
+            if (it) {
+                Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+                finish()
+            } else {
+                Util().toast(this, getString(R.string.accidentEvent_addFailed))
+            }
         }
-
     }
 
     override fun onBackPressed() {
