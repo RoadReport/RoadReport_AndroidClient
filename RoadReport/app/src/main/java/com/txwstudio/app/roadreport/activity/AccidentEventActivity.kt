@@ -28,6 +28,36 @@ class AccidentEventActivity : AppCompatActivity() {
         setupCurrentRoadContent()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_accident_event, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // NavUtils.navigateUpFromSameTask(this)
+                onBackPressed()
+                true
+            }
+            R.id.action_accidentEventDone -> {
+                sendEntryToFirestore()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this, R.style.AlertDialog)
+        builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
+        builder.setPositiveButton(R.string.all_confirm) { _, _ ->
+            finish()
+        }
+        builder.setNegativeButton(R.string.all_cancel) { _, _ -> }
+        builder.show()
+    }
+
     private fun setupToolBar() {
         setSupportActionBar(toolbar_accidentEvent)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -82,27 +112,7 @@ class AccidentEventActivity : AppCompatActivity() {
         )
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_accident_event, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                // NavUtils.navigateUpFromSameTask(this)
-                onBackPressed()
-                true
-            }
-            R.id.action_accidentEventDone -> {
-                sendEntryToFirestore()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
+    /** Validation then send data to firestore */
     private fun sendEntryToFirestore() {
         // User not sign in
         if (!FirebaseAuthHelper().userIsSignedIn()) {
@@ -129,15 +139,5 @@ class AccidentEventActivity : AppCompatActivity() {
                 Util().toast(this, getString(R.string.accidentEvent_addFailed))
             }
         }
-    }
-
-    override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this, R.style.AlertDialog)
-        builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
-        builder.setPositiveButton(R.string.all_confirm) { _, _ ->
-            finish()
-        }
-        builder.setNegativeButton(R.string.all_cancel) { _, _ -> }
-        builder.show()
     }
 }
