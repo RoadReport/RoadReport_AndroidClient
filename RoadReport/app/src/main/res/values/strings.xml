@@ -47,8 +47,10 @@
     <string name="accidentEvent_situationHint">例如：釘子、車禍、爆胎、擺攤</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
+    <string name="accidentEvent_addConfirm">確認要新增事件?</string>
     <string name="accidentEvent_NoEntry">檢查欄位</string>
     <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
+    <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
 
 
     <!-- Setting Activity Text -->
