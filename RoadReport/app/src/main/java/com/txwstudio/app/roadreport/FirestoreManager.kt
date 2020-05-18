@@ -1,6 +1,8 @@
 package com.txwstudio.app.roadreport
 
+import android.content.Context
 import android.util.Log
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -62,5 +64,21 @@ class FirestoreManager {
             .addOnFailureListener { exception ->
                 Log.i("TESTTT", "Error getting documents: ", exception)
             }
+    }
+
+    /**
+     * Get database query for Firestore Recycler View UI.
+     *
+     * @param roadCode Current road code
+     *
+     * @return database query
+     */
+    fun getRealtimeAccidentQuery(roadCode: Int): FirestoreRecyclerOptions<Accident?> {
+        val db = FirebaseFirestore.getInstance()
+            .collection("ReportAccident").document(roadCode.toString())
+            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
+        return FirestoreRecyclerOptions.Builder<Accident>()
+            .setQuery(db, Accident::class.java)
+            .build()
     }
 }
