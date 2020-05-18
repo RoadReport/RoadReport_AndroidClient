@@ -1,6 +1,7 @@
 package com.txwstudio.app.roadreport.activity
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -19,6 +20,7 @@ class AccidentEventActivity : AppCompatActivity() {
 
     private var ROADCODE = -1
     private var situationType = -1
+    private var mLastClickTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,11 @@ class AccidentEventActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2500) {
+                    Util().toast(this, getString(R.string.accidentEvent_dontDoubleClick))
+                    return false
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
                 sendEntryToFirestore()
                 true
             }
@@ -131,13 +138,28 @@ class AccidentEventActivity : AppCompatActivity() {
         // TODO: Handle no connection situation (check firebase connection or something like that)
 
         // Send to firestore, addOnCompleteListener callback implemented.
-        FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
-            if (it) {
-                Util().toast(this, getString(R.string.accidentEvent_addSuccess))
-                finish()
-            } else {
-                Util().toast(this, getString(R.string.accidentEvent_addFailed))
+        AlertDialog.Builder(this, R.style.AlertDialog)
+            .setMessage(getString(R.string.accidentEvent_addConfirm))
+            .setPositiveButton(R.string.all_confirm){_, _ ->
+                FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
+                    if (it) {
+                        Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+                        finish()
+                    } else {
+                        Util().toast(this, getString(R.string.accidentEvent_addFailed))
+                    }
+                }
             }
-        }
+            .setNegativeButton(R.string.all_cancel) {_, _ ->}
+            .show()
+
+//        FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
+//            if (it) {
+//                Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+//                finish()
+//            } else {
+//                Util().toast(this, getString(R.string.accidentEvent_addFailed))
+//            }
+//        }
     }
 }
