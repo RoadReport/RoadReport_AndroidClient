@@ -31,6 +31,7 @@ class RoadActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var viewAdapter2: FirestoreRecyclerAdapter<*, *>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,7 @@ class RoadActivity : AppCompatActivity() {
             .setQuery(db, Accident::class.java)
             .build()
 
-        var viewAdapter2: FirestoreRecyclerAdapter<*, *> =
+        viewAdapter2 =
             object : FirestoreRecyclerAdapter<Accident?, AccidentHolder?>(options) {
                 override fun onCreateViewHolder(group: ViewGroup, i: Int): AccidentHolder {
                     val view: View = LayoutInflater.from(group.context)
@@ -182,6 +183,11 @@ class RoadActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewAdapter2.stopListening()
     }
 }
 
