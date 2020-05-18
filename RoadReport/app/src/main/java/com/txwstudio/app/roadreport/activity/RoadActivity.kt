@@ -146,16 +146,19 @@ class RoadActivity : AppCompatActivity() {
             // Specify an viewAdapter (see also next example)
 //            adapter = viewAdapter
             adapter = viewAdapter2
-            adapter?.notifyDataSetChanged()
+//            adapter?.notifyDataSetChanged()
         }
+//        viewAdapter2.startListening()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewAdapter2.startListening()
     }
 
-    private fun setupToolBar() {
-        setSupportActionBar(toolbar_road)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        textView_road_toolbarTitle.text = RoadCode().getCurrRoadName(this)
+    override fun onPause() {
+        super.onPause()
+        viewAdapter2.stopListening()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -185,10 +188,21 @@ class RoadActivity : AppCompatActivity() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        viewAdapter2.stopListening()
+    private fun setupToolBar() {
+        setSupportActionBar(toolbar_road)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        textView_road_toolbarTitle.text = RoadCode().getCurrRoadName(this)
     }
+
+    private fun accidentStartListening() {
+        viewAdapter2.startListening()
+        // TODO: Accident update interval
+    }
+
+    private fun accidentStopListening() = viewAdapter2.stopListening()
+
+
 }
 
 class AccidentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
