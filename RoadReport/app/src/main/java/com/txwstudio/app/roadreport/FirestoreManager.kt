@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.txwstudio.app.roadreport.model.Accident
@@ -63,6 +64,31 @@ class FirestoreManager {
             }
             .addOnFailureListener { exception ->
                 Log.i("TESTTT", "Error getting documents: ", exception)
+            }
+    }
+
+    /**
+     * Delete accident from firestore using by document id.
+     *
+     * @param road Current road code
+     * @param documentID The document to delete
+     * @return isComplete If successful delete the doc, return true
+     * */
+    fun deleteAccident(roadCode: Int, documentId: String, isComplete: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("ReportAccident").document(roadCode.toString())
+            .collection("accidents").document(documentId)
+            .delete()
+            .addOnSuccessListener {
+                Log.i("TESTTT", "Success delete document $documentId")
+            }
+            .addOnFailureListener {
+                Log.i("TESTTT", "Success fail to delete document $documentId")
+                isComplete(false)
+            }
+            .addOnCompleteListener {
+                Log.i("TESTTT", "Document deletion completed.")
+                isComplete(true)
             }
     }
 
