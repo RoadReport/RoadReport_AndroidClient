@@ -6,20 +6,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.txwstudio.app.roadreport.*
 import com.txwstudio.app.roadreport.model.Accident
 import kotlinx.android.synthetic.main.activity_road.*
-import kotlinx.android.synthetic.main.road_accident_row.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,7 +23,8 @@ class RoadActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapterForTest: RecyclerView.Adapter<*>
-    private lateinit var viewAdapterRealtime: FirestoreRecyclerAdapter<*, *>
+    private lateinit var viewAdapterRealtimeMethod: FirestoreRecyclerAdapter<*, *>
+    private lateinit var viewAdapterRealtimeClass : AccidentCardAdapterTest
     private lateinit var viewManager: RecyclerView.LayoutManager
 
 
@@ -37,6 +32,7 @@ class RoadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road)
         ROADCODE = RoadCode().getCurrentRoadCode(this)
+        viewAdapterRealtimeClass = AccidentCardAdapterTest(this@RoadActivity, ROADCODE)
         setupToolBar()
         setupRecyclerView()
     }
@@ -93,7 +89,7 @@ class RoadActivity : AppCompatActivity() {
         // Version 2 - Use firestore ui handle realtime update
         val options = FirestoreManager().getRealtimeAccidentQuery(ROADCODE)
 
-        viewAdapterRealtime =
+        viewAdapterRealtimeMethod =
             object : FirestoreRecyclerAdapter<Accident?, AccidentCardHolder?>(options) {
                 override fun onCreateViewHolder(group: ViewGroup, i: Int): AccidentCardHolder {
                     val view: View = LayoutInflater.from(group.context)
@@ -187,15 +183,15 @@ class RoadActivity : AppCompatActivity() {
             layoutManager = viewManager
 
             // Specify an viewAdapter (see also next example)
-            adapter = viewAdapterRealtime
+            adapter = viewAdapterRealtimeClass
         }
     }
 
     private fun accidentStartListening() {
-        viewAdapterRealtime.startListening()
+        viewAdapterRealtimeClass.startListening()
         // TODO: Accident update interval
     }
 
-    private fun accidentStopListening() = viewAdapterRealtime.stopListening()
+    private fun accidentStopListening() = viewAdapterRealtimeMethod.stopListening()
 
 }
