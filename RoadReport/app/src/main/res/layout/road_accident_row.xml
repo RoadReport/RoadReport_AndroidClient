@@ -32,10 +32,21 @@
             android:layout_marginStart="@dimen/all_defaultHalf_margin"
             android:layout_marginTop="@dimen/all_default_margin"
             android:layout_toEndOf="@id/textView_accidentCard_situationType"
-            android:text="谷川大橋上山"
             android:maxLength="10"
+            android:text="谷川大橋上山"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/imageButton_accidentCard_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/all_default_margin"
+            android:layout_marginEnd="@dimen/all_default_margin"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="More"
+            android:src="@drawable/ic_more_horiz_black_24dp" />
 
         <TextView
             android:id="@+id/textView_accidentCard_situation"

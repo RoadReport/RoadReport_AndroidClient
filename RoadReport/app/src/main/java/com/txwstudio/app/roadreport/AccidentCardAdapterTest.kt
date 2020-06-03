@@ -71,14 +71,14 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         if (!FirebaseAuthHelper().userIsSignedIn()) {
             // Situation 1
             Log.i("TESTTT", "What user can to the card, Situation 1")
-            Util().toast(context, "Situation 1 ，請先登入")
+            holder.moreButton.visibility = View.INVISIBLE
 
         } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid == uid) {
             // Situation 2, 0 for edit, 1 for delete.
             Log.i("TESTTT", "What user can to the card, Situation 2")
-            holder.itemView.setOnLongClickListener {
+            holder.moreButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setItems(R.array.roadActivity_cardLongClick) { _, which ->
+                builder.setItems(R.array.roadActivity_moreOnClick_situation2) { _, which ->
                     when (which) {
                         0 -> {
                             val accidentModel = getItem(position)
@@ -112,7 +112,14 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid != uid) {
             // Situation 3
             Log.i("TESTTT", "What user can to the card, Situation 3")
-            Util().toast(context, "非你發布")
+            holder.moreButton.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setItems(R.array.roadActivity_moreOnClick_situation3) {_, which ->
+                    when (which) {
+                        0 -> Util().toast(context, "你剛按檢舉")
+                    }
+                }.show()
+            }
         }
 
 
