@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.txwstudio.app.roadreport.activity.AccidentEventActivity
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,6 +17,8 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
 
+    private val uid = FirebaseAuthHelper().getCurrUserUid()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccidentCardHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.road_accident_row, parent, false)
@@ -23,10 +26,10 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
     }
 
     override fun onBindViewHolder(holder: AccidentCardHolder, position: Int, model: Accident) {
-        val formattedTime = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
-            .format(model.time.toDate())
+//        val formattedTime = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+//            .format(model.time.toDate())
 
-        // Setting up each accident card information
+        // Setting up each accident card's background and information.
         when (model.situationType.toInt()) {
             1 -> {
                 holder.layout.background = context.getDrawable(R.drawable.bg_accident_type_1)
@@ -51,37 +54,65 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         }
         holder.location.text = model.location
         holder.situation.text = model.situation
-        holder.time.text = formattedTime
+        holder.time.text = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+            .format(model.time.toDate())
         holder.userName.text = model.userName
 
-        model.userUid
 
+        // What user can to the card. Different onClick behavior for card.
+        // Situation 1: NOT Signed in, no action at all.
+        // Situation 2: Signed in && posted by user, Edit or Delete.
+        // Situation 3: Signed in && NOT posted by user, Report.
+        if (!FirebaseAuthHelper().userIsSignedIn()) {
+            // Situation 1
+            Log.i("TESTTT", "What user can to the card, Situation 1")
 
-        holder.itemView.setOnLongClickListener {
-            val builder = AlertDialog.Builder(context)
-            builder.setItems(R.array.roadActivity_cardLongClick) { _, which ->
-                when (which) {
-                    0 -> Util().toast(context, "沒有功能")
-                    1 -> {
-                        if (FirebaseAuthHelper().userIsSignedIn()
-                            && FirebaseAuthHelper().getCurrUserUid() == getItem(position).userUid
-                        ) {
-                            FirestoreManager()
-                                .deleteAccident(roadCode, snapshots.getSnapshot(position).id) {
-                                    Util().toast(context, if (it) "刪除成功" else "刪除失敗")
+        } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid == uid) {
+            // Situation 2, 0 for edit, 1 for delete.
+            Log.i("TESTTT", "What user can to the card, Situation 2")
+            holder.itemView.setOnLongClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setItems(R.array.roadActivity_cardLongClick) { _, which ->
+                    when (which) {
+                        0 -> {
+                            val accidentModel = getItem(position)
+                            Util().startActivityByMode(
+                                context,
+                                AccidentEventActivity(),
+                                true,
+                                accidentModel,
+                                snapshots.getSnapshot(position).id
+                            )
+                            Util().toast(context, "沒有功能")
+                        }
+                        1 -> {
+                            if (FirebaseAuthHelper().userIsSignedIn()
+                                && FirebaseAuthHelper().getCurrUserUid() == getItem(position).userUid
+                            ) {
+                                FirestoreManager()
+                                    .deleteAccident(roadCode, snapshots.getSnapshot(position).id) {
+                                        Util().toast(context, if (it) "刪除成功" else "刪除失敗")
 
-                                }
-                        } else {
-                            Util().toast(context, "未登入或非你發布")
+                                    }
+                            } else {
+                                Util().toast(context, "未登入或非你發布")
+                            }
                         }
                     }
                 }
+                builder.show()
+
+                Log.i("TESTTT", "onClickEvent Doc ID: " + snapshots.getSnapshot(position).id)
+
+                true
             }
-            builder.show()
 
-            Log.i("TESTTT", "onClickEvent Doc ID: " + snapshots.getSnapshot(position).id)
-
-            true
+        } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid != uid) {
+            // Situation 3
+            Log.i("TESTTT", "What user can to the card, Situation 3")
+            Util().toast(context, "非你發布")
         }
+
+
     }
 }

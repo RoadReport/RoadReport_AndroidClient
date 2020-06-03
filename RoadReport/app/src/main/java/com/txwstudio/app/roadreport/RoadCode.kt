@@ -12,12 +12,14 @@ class RoadCode {
      * @RoadCode 182: 182 縣道
      * @RoadCode GRANDMA: 嘉義阿婆灣
      * @RoadCode 7: 台7乙，摔車聖地
+     * @RoadCode FUCKYOU: 嘉義阿婆灣，幹你娘騎慢一點啦!
      **/
     companion object {
         const val ROADCODE_24 = 0
         const val ROADCODE_182 = 1
         const val ROADCODE_GRANDMA = 2
         const val ROADCODE_7 = 3
+        const val ROADCODE_FUCKYOU = 4
     }
 
 
