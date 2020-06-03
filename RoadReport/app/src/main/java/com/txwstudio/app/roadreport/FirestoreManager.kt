@@ -98,9 +98,15 @@ class FirestoreManager {
      * */
     fun updateAccident(roadCode: Int, documentId: String, data: Accident, isComplete: (Boolean) -> Unit) {
         val db = FirebaseFirestore.getInstance()
+        val dataForUpdate = hashMapOf<String, Any?>(
+            "situationType" to data.situationType,
+            "location" to data.location,
+            "situation" to data.situation
+        )
+
         db.collection("ReportAccident").document(roadCode.toString())
             .collection("accidents").document(documentId)
-            .update(data)
+            .update(dataForUpdate)
             .addOnSuccessListener {
                 Log.i("TESTTT", "Success update document $documentId")
             }

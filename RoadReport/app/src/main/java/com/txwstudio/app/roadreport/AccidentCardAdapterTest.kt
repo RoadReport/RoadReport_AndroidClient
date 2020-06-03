@@ -1,6 +1,7 @@
 package com.txwstudio.app.roadreport
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,7 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         if (!FirebaseAuthHelper().userIsSignedIn()) {
             // Situation 1
             Log.i("TESTTT", "What user can to the card, Situation 1")
+            Util().toast(context, "Situation 1 ，請先登入")
 
         } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid == uid) {
             // Situation 2, 0 for edit, 1 for delete.
@@ -80,14 +82,11 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
                     when (which) {
                         0 -> {
                             val accidentModel = getItem(position)
-                            Util().startActivityByMode(
-                                context,
-                                AccidentEventActivity(),
-                                true,
-                                accidentModel,
-                                snapshots.getSnapshot(position).id
-                            )
-                            Util().toast(context, "沒有功能")
+                            val intent = Intent(context, AccidentEventActivity::class.java)
+                            intent.putExtra("editMode", true)
+                            intent.putExtra("documentId", snapshots.getSnapshot(position).id)
+                            intent.putExtra("accidentModel", accidentModel)
+                            context.startActivity(intent)
                         }
                         1 -> {
                             if (FirebaseAuthHelper().userIsSignedIn()
@@ -103,10 +102,9 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
                             }
                         }
                     }
-                }
-                builder.show()
+                }.show()
 
-                Log.i("TESTTT", "onClickEvent Doc ID: " + snapshots.getSnapshot(position).id)
+                Log.i("TESTTT", "onClick Doc ID: " + snapshots.getSnapshot(position).id)
 
                 true
             }
