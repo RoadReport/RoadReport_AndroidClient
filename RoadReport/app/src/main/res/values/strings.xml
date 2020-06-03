@@ -23,13 +23,6 @@
 
     <!-- RoadActivity -->
     <string name="roadActivity_SignInFirst">請先登入</string>
-    <array name="roadActivity_cardLongClick">
-        <item>編輯</item>
-        <item>刪除</item>
-    </array>
-    <array name="roadActivity_cardLongClick_notSignedIn">
-        <item>檢舉</item>
-    </array>
 
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前路段</string>
