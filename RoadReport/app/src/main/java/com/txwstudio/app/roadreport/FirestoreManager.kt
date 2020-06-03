@@ -93,6 +93,28 @@ class FirestoreManager {
     }
 
     /**
+     * Delete accident from firestore using by document id.
+     *
+     * */
+    fun updateAccident(roadCode: Int, documentId: String, data: Accident, isComplete: (Boolean) -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("ReportAccident").document(roadCode.toString())
+            .collection("accidents").document(documentId)
+            .update(data)
+            .addOnSuccessListener {
+                Log.i("TESTTT", "Success update document $documentId")
+            }
+            .addOnFailureListener {
+                Log.i("TESTTT", "Success fail to update document $documentId")
+                isComplete(false)
+            }
+            .addOnCompleteListener {
+                Log.i("TESTTT", "Document update completed.")
+                isComplete(true)
+            }
+    }
+
+    /**
      * Get database query for Firestore Recycler View UI.
      *
      * @param roadCode Current road code

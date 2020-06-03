@@ -21,13 +21,21 @@ class AccidentEventActivity : AppCompatActivity() {
     private var ROADCODE = -1
     private var situationType = -1
     private var mLastClickTime: Long = 0
+    private var editMode = false
+    private lateinit var accidentForEditing: Accident
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accident_event)
         ROADCODE = RoadCode().getCurrentRoadCode(this)
         setupToolBar()
-        setupCurrentRoadContent()
+        setupCurrentRoadText()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkIsEditMode()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,8 +79,25 @@ class AccidentEventActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun setupCurrentRoadContent() {
+    private fun setupCurrentRoadText() {
         textView_accidentEvent_currentRoadContent.text = RoadCode().getCurrRoadName(this)
+    }
+
+
+    /**
+     * Check it's editing mode or not, if so setup content for later editing.*/
+    private fun checkIsEditMode() {
+        editMode = intent.getBooleanExtra("editMode", false)
+        if (editMode) {
+            accidentForEditing = intent.getParcelableExtra("accidentModel")
+            setupCurrentRoadContent()
+        }
+    }
+
+    private fun setupCurrentRoadContent() {
+        Log.i("TESTTT", "setupCurrentRoadContent with $accidentForEditing")
+        editText_accidentEvent_locationContent.setText(accidentForEditing.location)
+        editText_accidentEvent_situationContent.setText(accidentForEditing.situation)
     }
 
 
@@ -119,6 +144,10 @@ class AccidentEventActivity : AppCompatActivity() {
         )
     }
 
+    private fun getUserEntryAfterUpdate(): Accident {
+        return Accident()
+    }
+
     /** Validation then send data to firestore */
     private fun sendEntryToFirestore() {
         // User not sign in
@@ -137,21 +166,46 @@ class AccidentEventActivity : AppCompatActivity() {
 
         // TODO: Handle no connection situation (check firebase connection or something like that)
 
-        // Send to firestore, addOnCompleteListener callback implemented.
-        AlertDialog.Builder(this, R.style.AlertDialog)
-            .setMessage(getString(R.string.accidentEvent_addConfirm))
-            .setPositiveButton(R.string.all_confirm){_, _ ->
-                FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
-                    if (it) {
-                        Util().toast(this, getString(R.string.accidentEvent_addSuccess))
-                        finish()
-                    } else {
-                        Util().toast(this, getString(R.string.accidentEvent_addFailed))
+
+        // if editMode, update data on the firestore.
+        // if !editMode, add new data to firestore.
+        if (!editMode) {
+            AlertDialog.Builder(this, R.style.AlertDialog)
+                .setMessage(getString(R.string.accidentEvent_addConfirm))
+                .setPositiveButton(R.string.all_confirm) { _, _ ->
+                    FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
+                        if (it) {
+                            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+                            finish()
+                        } else {
+                            Util().toast(this, getString(R.string.accidentEvent_addFailed))
+                        }
                     }
                 }
-            }
-            .setNegativeButton(R.string.all_cancel) {_, _ ->}
-            .show()
+                .setNegativeButton(R.string.all_cancel) { _, _ -> }
+                .show()
+        } else if (editMode) {
+            AlertDialog.Builder(this, R.style.AlertDialog)
+                .setMessage(getString(R.string.accidentEvent_addConfirm))
+                .setPositiveButton(R.string.all_confirm) { _, _ ->
+                    FirestoreManager().updateAccident(
+                        ROADCODE,
+                        intent.getStringExtra("documentId"),
+                        getUserEntryAfterUpdate()) {
+                        if (it) {
+                            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+                            finish()
+                        } else {
+                             Util().toast(this, getString(R.string.accidentEvent_addFailed))
+                        }
+                    }
+                }
+                .setNegativeButton(R.string.all_cancel) { _, _ -> }
+                .show()
+        }
+
+    }
+
 
 //        FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
 //            if (it) {
@@ -161,5 +215,4 @@ class AccidentEventActivity : AppCompatActivity() {
 //                Util().toast(this, getString(R.string.accidentEvent_addFailed))
 //            }
 //        }
-    }
 }
