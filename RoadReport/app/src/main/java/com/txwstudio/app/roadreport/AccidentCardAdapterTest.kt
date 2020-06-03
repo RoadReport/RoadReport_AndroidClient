@@ -30,28 +30,32 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
 //            .format(model.time.toDate())
 
         // Setting up each accident card's background and information.
+        var backgroundType: Int = 0
+        var situationType: Int = 0
         when (model.situationType.toInt()) {
             1 -> {
-                holder.layout.background = context.getDrawable(R.drawable.bg_accident_type_1)
-                holder.situationType.text =
-                    context.getString(R.string.accidentEvent_situationType_1)
+                backgroundType = R.drawable.bg_accident_type_1
+                situationType = R.string.accidentEvent_situationType_1
             }
             2 -> {
-                holder.layout.background = context.getDrawable(R.drawable.bg_accident_type_2)
-                holder.situationType.text =
-                    context.getString(R.string.accidentEvent_situationType_2)
+                backgroundType = R.drawable.bg_accident_type_2
+                situationType = R.string.accidentEvent_situationType_2
             }
             3 -> {
-                holder.layout.background = context.getDrawable(R.drawable.bg_accident_type_3)
-                holder.situationType.text =
-                    context.getString(R.string.accidentEvent_situationType_3)
+                backgroundType = R.drawable.bg_accident_type_3
+                situationType = R.string.accidentEvent_situationType_3
             }
             4 -> {
-                holder.layout.background = context.getDrawable(R.drawable.bg_accident_type_4)
-                holder.situationType.text =
-                    context.getString(R.string.accidentEvent_situationType_4)
+                backgroundType = R.drawable.bg_accident_type_4
+                situationType = R.string.accidentEvent_situationType_4
+            }
+            5 -> {
+                backgroundType = R.drawable.bg_accident_type_4
+                situationType = R.string.accidentEvent_situationType_5
             }
         }
+        holder.layout.background = context.getDrawable(backgroundType)
+        holder.situationType.text = context.getString(situationType)
         holder.location.text = model.location
         holder.situation.text = model.situation
         holder.time.text = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
