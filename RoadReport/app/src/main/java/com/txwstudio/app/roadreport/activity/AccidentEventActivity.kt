@@ -96,6 +96,10 @@ class AccidentEventActivity : AppCompatActivity() {
 
     private fun setupCurrentRoadContent() {
         Log.i("TESTTT", "setupCurrentRoadContent with $accidentForEditing")
+        situationType = accidentForEditing.situationType.toInt()
+        editText_accidentEvent_situationTypeContent.text =
+            Util().getSituationTypeName(this, situationType)
+
         editText_accidentEvent_locationContent.setText(accidentForEditing.location)
         editText_accidentEvent_situationContent.setText(accidentForEditing.situation)
     }
@@ -108,16 +112,8 @@ class AccidentEventActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
             situationType = which
-            lateinit var text: String
-            when (which) {
-                0 -> text = getString(R.string.accidentEvent_situationType_0)
-                1 -> text = getString(R.string.accidentEvent_situationType_1)
-                2 -> text = getString(R.string.accidentEvent_situationType_2)
-                3 -> text = getString(R.string.accidentEvent_situationType_3)
-                4 -> text = getString(R.string.accidentEvent_situationType_4)
-                5 -> text = getString(R.string.accidentEvent_situationType_5)
-            }
-            editText_accidentEvent_situationTypeContent.text = text
+            editText_accidentEvent_situationTypeContent.text =
+                Util().getSituationTypeName(this, which)
         }
         builder.create().show()
     }
@@ -145,7 +141,10 @@ class AccidentEventActivity : AppCompatActivity() {
     }
 
     private fun getUserEntryAfterUpdate(): Accident {
-        return Accident()
+        accidentForEditing.situationType = situationType.toLong()
+        accidentForEditing.location = editText_accidentEvent_locationContent.text.toString()
+        accidentForEditing.situation = editText_accidentEvent_situationContent.text.toString()
+        return accidentForEditing
     }
 
     /** Validation then send data to firestore */
@@ -186,17 +185,17 @@ class AccidentEventActivity : AppCompatActivity() {
                 .show()
         } else if (editMode) {
             AlertDialog.Builder(this, R.style.AlertDialog)
-                .setMessage(getString(R.string.accidentEvent_addConfirm))
+                .setMessage(getString(R.string.accidentEvent_editConfirm))
                 .setPositiveButton(R.string.all_confirm) { _, _ ->
                     FirestoreManager().updateAccident(
                         ROADCODE,
                         intent.getStringExtra("documentId"),
                         getUserEntryAfterUpdate()) {
                         if (it) {
-                            Util().toast(this, getString(R.string.accidentEvent_addSuccess))
+                            Util().toast(this, getString(R.string.accidentEvent_editSuccess))
                             finish()
                         } else {
-                             Util().toast(this, getString(R.string.accidentEvent_addFailed))
+                             Util().toast(this, getString(R.string.accidentEvent_editFailed))
                         }
                     }
                 }
