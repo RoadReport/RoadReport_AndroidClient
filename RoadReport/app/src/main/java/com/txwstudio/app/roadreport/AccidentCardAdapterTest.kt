@@ -124,4 +124,9 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
 
 
     }
+
+    override fun onDataChanged() {
+        super.onDataChanged()
+        notifyDataSetChanged()
+    }
 }
