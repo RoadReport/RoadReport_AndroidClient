@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
+import com.squareup.picasso.Picasso
 import com.txwstudio.app.roadreport.FirebaseAuthHelper
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
@@ -19,22 +20,13 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         setupToolBar()
-
-        val array = arrayOf("服務條款", "隱私權政策")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, array)
-        listView_settings_general.adapter = arrayAdapter
     }
 
     override fun onResume() {
         super.onResume()
-        val authStatus = FirebaseAuthHelper().userIsSignedIn()
+//        val authStatus = FirebaseAuthHelper().userIsSignedIn()
 
-        // Update sign in status text in card view.
-        textView_settings_loginStatus.text =
-            if (authStatus) getString(R.string.settingsActivity_accountStatusLogin)
-            else getString(R.string.settingsActivity_accountStatusLogout)
-
-        setOnClickListener(authStatus)
+        initAccountBlock()
     }
 
     private fun setupToolBar() {
@@ -43,6 +35,44 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+
+    /**
+     * Setting up account block base on authStatus.
+     *
+     * @param authStatus True if user signed in.
+     * */
+    fun initAccountBlock() {
+        val authStatus = FirebaseAuthHelper().userIsSignedIn()
+
+        // User photo
+        Picasso.get()
+            .load(FirebaseAuthHelper().getCurrUserPhoto())
+            .placeholder(R.drawable.ic_square_face_106dp)
+            .error(R.drawable.ic_square_face_106dp)
+            .into(imageView_settings_accountPhoto)
+
+        // User Name
+        textView_settings_accountName.text = FirebaseAuthHelper().getCurrUserName()
+
+        // Setting sign in text
+        textView_settings_loginStatus.text =
+            if (authStatus) getString(R.string.settingsActivity_accountStatusLogin)
+            else getString(R.string.settingsActivity_accountStatusLogout)
+
+        cardView_settings_loginStatus.setOnClickListener {
+            if (authStatus) {
+                // Signed in
+                AuthUI.getInstance().signOut(this)
+                    .addOnCompleteListener {
+                        restartActivity()
+                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
+                    }
+            } else {
+                // Signed out
+                FirebaseAuthHelper().signIn(this)
+            }
+        }
+    }
 
     private fun setOnClickListener(authStatus: Boolean) {
         cardView_settings_loginStatus.setOnClickListener {

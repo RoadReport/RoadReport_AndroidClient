@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/title_activity_setting"
-            android:textSize="20sp"
             android:textColor="?attr/activityTitleTextColor"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="156dp"
             tools:layout_editor_absoluteY="6dp" />
     </androidx.appcompat.widget.Toolbar>
@@ -34,8 +34,9 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar_settings">
 
         <LinearLayout
+            android:id="@+id/linearLayout_Basic"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <!-- Account Status Section -->
@@ -48,64 +49,134 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardView_settings_loginStatus"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/facebookBlue"
+                android:layout_height="80dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_normal"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:layout_marginStart="@dimen/all_default_margin"
-                    android:text="@string/settingsActivity_accountTypeFb"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView_settings_loginStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_marginEnd="@dimen/all_default_margin"
-                    android:text="@string/settingsActivity_accountStatusLogout"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <ImageView
+                        android:id="@+id/imageView_settings_accountPhoto"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/ic_square_face_106dp" />
+
+                    <TextView
+                        android:id="@+id/textView_settings_accountName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_normal"
+                        android:layout_toEndOf="@id/imageView_settings_accountPhoto"
+                        android:text="攻城屍"
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView_settings_loginStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/imageView_settings_nextIcon"
+                        android:text="@string/settingsActivity_accountStatusLogout"
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView_settings_nextIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/all_default_margin"
+                        android:src="@drawable/ic_navigate_next_black_24dp" />
+                </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/cardView_settings_loginStatus"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="64dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:backgroundTint="@color/facebookBlue"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:foreground="?android:attr/selectableItemBackground">-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="start|center"-->
+<!--                    android:scaleType="fitStart"-->
+<!--                    android:src="@drawable/ic_roadreport_logo_512dp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="start|center"-->
+<!--                    android:layout_marginStart="@dimen/all_default_margin"-->
+<!--                    android:text="@string/settingsActivity_accountTypeFb"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="16sp" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_settings_loginStatus"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="end|center"-->
+<!--                    android:layout_marginEnd="@dimen/all_default_margin"-->
+<!--                    android:text="@string/settingsActivity_accountStatusLogout"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="16sp" />-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
 
 
             <!-- General Section -->
             <TextView
                 android:id="@+id/textView_settings_general"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                style="@style/SettingsSectionTitle"
                 android:text="@string/settingsActivity_generalTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardView_settings_loginStatus" />
 
-            <ListView
-                android:id="@+id/listView_settings_general"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                app:layout_constraintTop_toBottomOf="@id/textView_settings_general"
-                tools:ignore="NestedScrolling" />
 
+            <!-- About Section -->
+            <TextView
+                android:id="@+id/textView_settings_about"
+                style="@style/SettingsSectionTitle"
+                android:text="@string/settingsActivity_aboutTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView_settings_loginStatus" />
 
-            <!--    <FrameLayout-->
-            <!--        android:id="@+id/frameLayout_settings_preference"-->
-            <!--        android:layout_width="match_parent"-->
-            <!--        android:layout_height="0dp"-->
-            <!--        android:layout_marginTop="32dp"-->
-            <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--        app:layout_constraintTop_toBottomOf="@id/cardView_settings_loginStatus" />-->
+            <TextView
+                android:id="@+id/textView_settings_termOfServiceLink"
+                style="@style/AboutItem"
+                android:text="服務條款" />
+
+            <TextView
+                android:id="@+id/textView_settings_privacyPolicyLink"
+                style="@style/AboutItem"
+                android:text="隱私權政策" />
+
+            <TextView
+                android:id="@+id/textView_settings_licenseLink"
+                style="@style/AboutItem"
+                android:text="版權聲明" />
+
+            <TextView
+                android:id="@+id/textView_settings_aboutLink"
+                style="@style/AboutItem"
+                android:text="關於" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
