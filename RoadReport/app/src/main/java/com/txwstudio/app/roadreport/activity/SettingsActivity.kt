@@ -44,50 +44,68 @@ class SettingsActivity : AppCompatActivity() {
     fun initAccountBlock() {
         val authStatus = FirebaseAuthHelper().userIsSignedIn()
 
+        val user = FirebaseAuthHelper().getCurrUserModel()
+        if (user != null) {
+
+            Picasso.get()
+                .load(FirebaseAuthHelper().getCurrUserPhoto())
+                .placeholder(R.drawable.ic_square_face_106dp)
+                .error(R.drawable.ic_square_face_106dp)
+                .into(imageView_settings_accountPhoto)
+
+            textView_settings_accountName.text = user.name
+
+            textView_settings_loginStatus.text =
+                getString(R.string.settingsActivity_accountStatusLogin)
+
+            cardView_settings_loginStatus.setOnClickListener {
+                FirebaseAuthHelper().signIn(this)
+
+            }
+
+        } else {
+
+            textView_settings_loginStatus.text =
+                getString(R.string.settingsActivity_accountStatusLogout)
+
+            cardView_settings_loginStatus.setOnClickListener {
+                AuthUI.getInstance().signOut(this)
+                    .addOnCompleteListener {
+                        restartActivity()
+                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
+                    }
+            }
+        }
+
+
         // User photo
-        Picasso.get()
-            .load(FirebaseAuthHelper().getCurrUserPhoto())
-            .placeholder(R.drawable.ic_square_face_106dp)
-            .error(R.drawable.ic_square_face_106dp)
-            .into(imageView_settings_accountPhoto)
+//        Picasso.get()
+//            .load(FirebaseAuthHelper().getCurrUserPhoto())
+//            .placeholder(R.drawable.ic_square_face_106dp)
+//            .error(R.drawable.ic_square_face_106dp)
+//            .into(imageView_settings_accountPhoto)
 
         // User Name
-        textView_settings_accountName.text = FirebaseAuthHelper().getCurrUserName()
+//        textView_settings_accountName.text = FirebaseAuthHelper().getCurrUserName()
 
         // Setting sign in text
-        textView_settings_loginStatus.text =
-            if (authStatus) getString(R.string.settingsActivity_accountStatusLogin)
-            else getString(R.string.settingsActivity_accountStatusLogout)
+//        textView_settings_loginStatus.text =
+//            if (authStatus) getString(R.string.settingsActivity_accountStatusLogin)
+//            else getString(R.string.settingsActivity_accountStatusLogout)
 
-        cardView_settings_loginStatus.setOnClickListener {
-            if (authStatus) {
-                // Signed in
-                AuthUI.getInstance().signOut(this)
-                    .addOnCompleteListener {
-                        restartActivity()
-                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
-                    }
-            } else {
-                // Signed out
-                FirebaseAuthHelper().signIn(this)
-            }
-        }
-    }
-
-    private fun setOnClickListener(authStatus: Boolean) {
-        cardView_settings_loginStatus.setOnClickListener {
-            if (authStatus) {
-                // Signed in
-                AuthUI.getInstance().signOut(this)
-                    .addOnCompleteListener {
-                        restartActivity()
-                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
-                    }
-            } else {
-                // Signed out
-                FirebaseAuthHelper().signIn(this)
-            }
-        }
+//        cardView_settings_loginStatus.setOnClickListener {
+//            if (authStatus) {
+//                // Signed in
+//                AuthUI.getInstance().signOut(this)
+//                    .addOnCompleteListener {
+//                        restartActivity()
+//                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
+//                    }
+//            } else {
+//                // Signed out
+//                FirebaseAuthHelper().signIn(this)
+//            }
+//        }
     }
 
 

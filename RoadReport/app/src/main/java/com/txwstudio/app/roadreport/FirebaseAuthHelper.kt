@@ -6,10 +6,10 @@ import android.net.Uri
 import android.util.Log
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.txwstudio.app.roadreport.activity.SettingsActivity
+import com.txwstudio.app.roadreport.model.CurrUser
 
 class FirebaseAuthHelper {
 
@@ -51,6 +51,15 @@ class FirebaseAuthHelper {
         return if (auth != null) {
             Log.i("TESTTT", "Current user photoUrl: " + auth.photoUrl)
             auth.photoUrl
+        } else {
+            null
+        }
+    }
+
+    fun getCurrUserModel(): CurrUser? {
+        val auth = Firebase.auth.currentUser
+        return if (auth != null) {
+            CurrUser(auth.displayName, auth.uid, auth.photoUrl)
         } else {
             null
         }
