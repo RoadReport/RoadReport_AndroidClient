@@ -14,9 +14,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-<!--        <meta-data-->
-<!--            android:name="com.facebook.sdk.ApplicationId"-->
-<!--            android:value="@string/facebook_app_id" />-->
+        <!--        <meta-data-->
+        <!--            android:name="com.facebook.sdk.ApplicationId"-->
+        <!--            android:value="@string/facebook_app_id" />-->
 
         <activity
             android:name=".activity.MainActivity"
@@ -43,10 +43,10 @@
 
         <activity
             android:name=".activity.AccidentEventActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity"
-            android:exported="true">
+            tools:ignore="LockedOrientationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.txwstudio.app.roadreport.activity.RoadActivity" />
@@ -54,6 +54,7 @@
 
         <activity
             android:name=".activity.SettingsActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity">

@@ -24,4 +24,48 @@
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
+
+    <style name="DivLine">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+
+    <style name="SettingsSectionTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_double</item>
+        <item name="android:layout_marginBottom">@dimen/margin_normal</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+    </style>
+
+
+
+    <!--    <style name="AboutItem" parent="@style/AdguardTextBody2">-->
+    <style name="AboutItem">
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/commonTextSize</item>
+        <item name="android:gravity">start</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingStart">@dimen/indent_normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LayoutFullWidth">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:baselineAligned">false</item>
+    </style>
+
+    <style name="LayoutFullWidth.Vertical" parent="@style/LayoutFullWidth">
+        <item name="android:orientation">vertical</item>
+    </style>
 </resources>

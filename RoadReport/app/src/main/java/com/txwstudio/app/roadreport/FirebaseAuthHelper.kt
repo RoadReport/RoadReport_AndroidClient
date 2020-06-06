@@ -2,10 +2,13 @@ package com.txwstudio.app.roadreport
 
 import android.app.Activity
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.txwstudio.app.roadreport.activity.SettingsActivity
 
 class FirebaseAuthHelper {
@@ -19,15 +22,14 @@ class FirebaseAuthHelper {
      * @return true: Signed in.
      * @return false: Not Signed in yet. */
     fun userIsSignedIn(): Boolean {
-        val auth = FirebaseAuth.getInstance().currentUser
-        Log.i("TESTTT", auth?.displayName + "")
+        val auth = Firebase.auth.currentUser
         return auth != null
     }
 
     fun getCurrUserName(): String {
-        val auth = FirebaseAuth.getInstance().currentUser
+        val auth = Firebase.auth.currentUser
         return if (auth != null) {
-            Log.i("TESTTT", "Current user UID: " + auth.displayName)
+            Log.i("TESTTT", "Current user name: " + auth.displayName)
             auth.displayName!!
         } else {
             ""
@@ -35,7 +37,7 @@ class FirebaseAuthHelper {
     }
 
     fun getCurrUserUid(): String {
-        val auth = FirebaseAuth.getInstance().currentUser
+        val auth = Firebase.auth.currentUser
         return if (auth != null) {
             Log.i("TESTTT", "Current user UID: " + auth.uid)
             auth.uid
@@ -44,8 +46,15 @@ class FirebaseAuthHelper {
         }
     }
 
-
-
+    fun getCurrUserPhoto(): Uri? {
+        val auth = Firebase.auth.currentUser
+        return if (auth != null) {
+            Log.i("TESTTT", "Current user photoUrl: " + auth.photoUrl)
+            auth.photoUrl
+        } else {
+            null
+        }
+    }
 
     /**
      * Sign in using FirebaseUI
@@ -73,7 +82,6 @@ class FirebaseAuthHelper {
                 SettingsActivity().restartActivity()
             }
     }
-
 
 
 }
