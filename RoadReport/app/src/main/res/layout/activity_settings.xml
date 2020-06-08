@@ -39,6 +39,45 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/margin_normal"
+                android:paddingEnd="@dimen/margin_normal"
+                android:paddingTop="@dimen/margin_double_half">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="登入以享有更多功能"
+                    android:textColor="#000"
+                    android:textSize="16sp"/>
+
+<!--                <TextView-->
+<!--                    android:layout_width="128dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:text="@string/settingsActivity_accountStatusLogout"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textColor="#fff"-->
+<!--                    android:background="@color/facebookBlue" />-->
+
+
+                <Button
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:layout_width="128dp"
+                    android:layout_height="48dp"
+                    android:text="@string/settingsActivity_accountStatusLogout"
+                    android:textSize="16sp"
+                    android:textColor="#fff"
+                    android:backgroundTint="@color/facebookBlue"
+                    android:layout_alignParentEnd="true"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </RelativeLayout>
+
+
             <!-- Account Status Section -->
             <TextView
                 android:layout_width="wrap_content"
