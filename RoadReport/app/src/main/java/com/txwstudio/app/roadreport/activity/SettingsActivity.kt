@@ -59,8 +59,11 @@ class SettingsActivity : AppCompatActivity() {
                 getString(R.string.settingsActivity_accountStatusLogin)
 
             cardView_settings_loginStatus.setOnClickListener {
-                FirebaseAuthHelper().signIn(this)
-
+                AuthUI.getInstance().signOut(this)
+                    .addOnCompleteListener {
+                        restartActivity()
+                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
+                    }
             }
 
         } else {
@@ -69,11 +72,7 @@ class SettingsActivity : AppCompatActivity() {
                 getString(R.string.settingsActivity_accountStatusLogout)
 
             cardView_settings_loginStatus.setOnClickListener {
-                AuthUI.getInstance().signOut(this)
-                    .addOnCompleteListener {
-                        restartActivity()
-                        Util().toast(this, getString(R.string.settingsActivity_signOutSuccess))
-                    }
+                FirebaseAuthHelper().signIn(this)
             }
         }
 
