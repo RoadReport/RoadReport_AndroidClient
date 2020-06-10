@@ -107,7 +107,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
                         android:scaleType="fitStart"
-                        android:src="@drawable/ic_square_face_106dp" />
+                        android:src="@drawable/ic_square_face_error_106dp" />
 
                     <TextView
                         android:id="@+id/textView_settings_accountName"
