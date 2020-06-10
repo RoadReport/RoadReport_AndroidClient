@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -48,12 +47,12 @@ class SettingsActivity : AppCompatActivity() {
         if (user != null) {
 
             Picasso.get()
-                .load(FirebaseAuthHelper().getCurrUserPhoto())
-                .placeholder(R.drawable.ic_square_face_106dp)
-                .error(R.drawable.ic_square_face_106dp)
+                .load(user.photoUrl)
+                .placeholder(R.drawable.ic_square_face_smiling_106dp)
+                .error(R.drawable.ic_square_face_error_106dp)
                 .into(imageView_settings_accountPhoto)
 
-            textView_settings_accountName.text = user.name
+            textView_settings_accountName.text = user.displayName
 
             textView_settings_loginStatus.text =
                 getString(R.string.settingsActivity_accountStatusLogin)
@@ -80,8 +79,8 @@ class SettingsActivity : AppCompatActivity() {
         // User photo
 //        Picasso.get()
 //            .load(FirebaseAuthHelper().getCurrUserPhoto())
-//            .placeholder(R.drawable.ic_square_face_106dp)
-//            .error(R.drawable.ic_square_face_106dp)
+//            .placeholder(R.drawable.ic_square_face_error_106dp)
+//            .error(R.drawable.ic_square_face_error_106dp)
 //            .into(imageView_settings_accountPhoto)
 
         // User Name
