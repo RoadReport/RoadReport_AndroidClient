@@ -41,7 +41,39 @@
     </style>
 
 
+    <!--- Home Fragment -->
+    <style name="RoadCard" />
 
+    <style name="RoadCard.Card" parent="RoadCard">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+    </style>
+
+    <style name="RoadCard.Text" parent="RoadCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginStart">@dimen/margin_half</item>
+        <item name="android:layout_marginBottom">@dimen/margin_half</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="RoadCard.Image" parent="RoadCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_gravity">end|center</item>
+        <item name="android:layout_margin">@dimen/margin_normal</item>
+        <item name="android:scaleType">fitEnd</item>
+    </style>
+
+
+    <!--- Account Fragment -->
     <!--    <style name="AboutItem" parent="@style/AdguardTextBody2">-->
     <style name="AboutItem">
         <item name="android:textStyle">normal</item>

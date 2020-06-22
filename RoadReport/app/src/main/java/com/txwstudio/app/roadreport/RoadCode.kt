@@ -15,6 +15,7 @@ class RoadCode {
      * @RoadCode FUCKYOU: 嘉義阿婆灣，幹你娘騎慢一點啦!
      **/
     companion object {
+        const val ROADCODE_EMPTY = -1
         const val ROADCODE_24 = 0
         const val ROADCODE_182 = 1
         const val ROADCODE_GRANDMA = 2
@@ -30,6 +31,7 @@ class RoadCode {
      * @param roadCode: The road user just selected.
      * */
     fun startActivityWithCode(currActivity: Context, targetActivity: Context, roadCode: Int) {
+        if (roadCode == ROADCODE_EMPTY) return
         val intent = Intent(currActivity, targetActivity::class.java)
         intent.putExtra("ROADCODE", roadCode)
         setCurrRoadCodeToSP(currActivity, roadCode)
