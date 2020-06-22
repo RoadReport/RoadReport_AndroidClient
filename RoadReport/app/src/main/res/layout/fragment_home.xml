@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.txwstudio.app.roadreport.ui.home.HomeViewModel" />
+
+        <variable
+            name="handler"
+            type="com.txwstudio.app.roadreport.handler.HomeFragClickHandler" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_0"
+            style="@style/RoadCard.Card"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
+            app:cardBackgroundColor="#F573A0"
+            app:layout_constraintEnd_toStartOf="@id/card_1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/RoadCard.Text"
+                android:text="@string/roadName_24"
+                android:textColor="?attr/roadCard_TextColor" />
+
+            <ImageView
+                style="@style/RoadCard.Image"
+                android:src="@drawable/ic_flower_459dp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_1"
+            style="@style/RoadCard.Card"
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
+            app:cardBackgroundColor="#1E88E5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/card_0"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/RoadCard.Text"
+                android:text="@string/roadName_182"
+                android:textColor="?attr/roadCard_TextColor" />
+
+            <ImageView
+                style="@style/RoadCard.Image"
+                android:src="@drawable/ic_bucket_512dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
