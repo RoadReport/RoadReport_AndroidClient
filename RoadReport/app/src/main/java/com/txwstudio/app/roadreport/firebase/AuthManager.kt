@@ -8,7 +8,6 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.txwstudio.app.roadreport.FirebaseAuthHelper
 import com.txwstudio.app.roadreport.R
 
 class AuthManager {
@@ -43,7 +42,7 @@ class AuthManager {
         ActivityCompat.startActivityForResult(
             activity, AuthUI.getInstance().createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .build(), FirebaseAuthHelper.RC_SIGN_IN, null
+                .build(), RC_SIGN_IN, null
         )
     }
 

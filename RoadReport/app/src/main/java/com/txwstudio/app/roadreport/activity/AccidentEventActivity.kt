@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.*
+import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import kotlinx.android.synthetic.main.activity_accident_event.*
 import java.util.*
@@ -130,9 +131,10 @@ class AccidentEventActivity : AppCompatActivity() {
     }
 
     private fun getUserEntry(): Accident {
+        val userInfo = AuthManager().getCurrUserModel()
         return Accident(
-            FirebaseAuthHelper().getCurrUserName(),
-            FirebaseAuthHelper().getCurrUserUid(),
+            userInfo?.displayName!!,
+            userInfo.uid,
             Timestamp(Date()),
             situationType.toLong(),
             editText_accidentEvent_locationContent.text.toString(),
@@ -150,7 +152,7 @@ class AccidentEventActivity : AppCompatActivity() {
     /** Validation then send data to firestore */
     private fun sendEntryToFirestore() {
         // User not sign in
-        if (!FirebaseAuthHelper().userIsSignedIn()) {
+        if (!AuthManager().userIsSignedIn()) {
             // TODO: Redirect to login.
             Util().toast(this, getString(R.string.all_notSignedIn))
 //            startActivity(Intent(this, SettingsActivity::class.java))
