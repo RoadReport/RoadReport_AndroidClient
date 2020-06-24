@@ -10,6 +10,7 @@
         <item name="roadCard_TextColor">@color/white</item>
         <item name="activityTitleTextColor">@color/white</item>
         <item name="menuIconFillColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
