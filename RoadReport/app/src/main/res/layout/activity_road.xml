@@ -6,37 +6,44 @@
     android:layout_height="match_parent"
     tools:context="com.txwstudio.app.roadreport.activity.RoadActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_road"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_road"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView_road_toolbarTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/title_activity_road"
-            android:textColor="?attr/activityTitleTextColor"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="156dp"
-            tools:layout_editor_absoluteY="6dp" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_road"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:id="@+id/textView_road_toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_activity_road"
+                android:textColor="?attr/activityTitleTextColor"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="156dp"
+                tools:layout_editor_absoluteY="6dp" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_road"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollbars="vertical"
-        android:padding="@dimen/all_default_margin"
         android:clipToPadding="false"
+        android:padding="@dimen/all_default_margin"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_road" />
+        app:layout_constraintTop_toBottomOf="@id/appbar_road" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,32 +6,39 @@
     android:layout_height="match_parent"
     tools:context="com.txwstudio.app.roadreport.activity.AccidentEventActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_accidentEvent"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_accidentEvent"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView_accidentEvent_toolbarTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/title_activity_addAccident"
-            android:textColor="?attr/activityTitleTextColor"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="156dp"
-            tools:layout_editor_absoluteY="6dp" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_accidentEvent"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:id="@+id/textView_accidentEvent_toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_activity_addAccident"
+                android:textColor="?attr/activityTitleTextColor"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="156dp"
+                tools:layout_editor_absoluteY="6dp" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_accidentEvent"
+        app:layout_constraintTop_toBottomOf="@id/appbar_accidentEvent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="459dp">
 
@@ -77,12 +84,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/all_default_margin"
                 android:layout_marginEnd="@dimen/all_default_margin"
+                android:background="@drawable/bg_edittext"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="selectSituationType"
-                android:background="@drawable/bg_edittext"
-                android:text="@string/accidentEvent_situationType_0"
                 android:padding="@dimen/all_default_margin"
+                android:text="@string/accidentEvent_situationType_0"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -125,9 +132,10 @@
                 android:hint="@string/accidentEvent_situationHint"
                 android:inputType="text"
                 android:padding="@dimen/all_default_margin" />
+
             <ProgressBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>
