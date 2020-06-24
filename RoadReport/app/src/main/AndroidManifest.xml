@@ -17,7 +17,7 @@
         <!-- android:name="com.facebook.sdk.ApplicationId" -->
         <!-- android:value="@string/facebook_app_id" /> -->
         <activity
-            android:name=".activity.MainActivity2"
+            android:name=".activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -34,7 +34,7 @@
             tools:ignore="LockedOrientationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.activity.MainActivity2" />
+                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
         <activity
             android:name=".activity.AccidentEventActivity"
@@ -52,7 +52,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.activity.MainActivity2" />
+                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
     </application>
 
