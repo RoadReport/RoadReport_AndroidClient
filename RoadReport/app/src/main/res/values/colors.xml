@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fff</color>
-    <color name="colorPrimaryDark">#e0e0e0</color>
+    <color name="colorPrimary">#249ee4</color>
+    <color name="colorPrimaryDark">#249ee4</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="roadName_24">#F573A0</color>
