@@ -2,4 +2,5 @@
 <resources>
     <attr name="roadCard_TextColor" format="color"/>
     <attr name="activityTitleTextColor" format="color"/>
+    <attr name="menuIconFillColor" format="color"/>
 </resources>

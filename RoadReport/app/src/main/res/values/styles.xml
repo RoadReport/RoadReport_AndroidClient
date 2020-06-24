@@ -8,7 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/jf_openhuninn</item>
         <item name="roadCard_TextColor">@color/white</item>
-        <item name="activityTitleTextColor">@color/black</item>
+        <item name="activityTitleTextColor">@color/white</item>
+        <item name="menuIconFillColor">@color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
