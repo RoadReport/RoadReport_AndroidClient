@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.squareup.picasso.Picasso
-import com.txwstudio.app.roadreport.FirebaseAuthHelper
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
+import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-//        val authStatus = FirebaseAuthHelper().userIsSignedIn()
+//        val authStatus = AuthManager().userIsSignedIn()
 
         initAccountBlock()
     }
@@ -41,9 +41,9 @@ class SettingsActivity : AppCompatActivity() {
      * @param authStatus True if user signed in.
      * */
     fun initAccountBlock() {
-        val authStatus = FirebaseAuthHelper().userIsSignedIn()
+        val authStatus = AuthManager().userIsSignedIn()
 
-        val user = FirebaseAuthHelper().getCurrUserModel()
+        val user = AuthManager().getCurrUserModel()
         if (user != null) {
 
             Picasso.get()
@@ -71,20 +71,20 @@ class SettingsActivity : AppCompatActivity() {
                 getString(R.string.settingsActivity_accountStatusLogout)
 
             cardView_settings_loginStatus.setOnClickListener {
-                FirebaseAuthHelper().signIn(this)
+                AuthManager().signIn(this)
             }
         }
 
 
         // User photo
 //        Picasso.get()
-//            .load(FirebaseAuthHelper().getCurrUserPhoto())
+//            .load(AuthManager().getCurrUserPhoto())
 //            .placeholder(R.drawable.ic_square_face_error_106dp)
 //            .error(R.drawable.ic_square_face_error_106dp)
 //            .into(imageView_settings_accountPhoto)
 
         // User Name
-//        textView_settings_accountName.text = FirebaseAuthHelper().getCurrUserName()
+//        textView_settings_accountName.text = AuthManager().getCurrUserName()
 
         // Setting sign in text
 //        textView_settings_loginStatus.text =
@@ -101,7 +101,7 @@ class SettingsActivity : AppCompatActivity() {
 //                    }
 //            } else {
 //                // Signed out
-//                FirebaseAuthHelper().signIn(this)
+//                AuthManager().signIn(this)
 //            }
 //        }
     }
@@ -111,7 +111,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == FirebaseAuthHelper.RC_SIGN_IN) {
+        if (requestCode == AuthManager.RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {

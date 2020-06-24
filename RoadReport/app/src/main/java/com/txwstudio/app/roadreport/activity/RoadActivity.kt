@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.*
+import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import kotlinx.android.synthetic.main.activity_road.*
 import java.text.SimpleDateFormat
@@ -59,7 +60,7 @@ class RoadActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_addAccident -> {
-                if (FirebaseAuthHelper().userIsSignedIn()) {
+                if (AuthManager().userIsSignedIn()) {
                     RoadCode().startActivityWithCode(
                         this,
                         AccidentEventActivity(), ROADCODE
