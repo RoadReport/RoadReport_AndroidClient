@@ -23,16 +23,16 @@ class AccountFragClickHandler(var context: Context, var activity: Activity) {
     }
 
     fun aboutLink(view: View) {
-        var url = "https://roadreport.page.link/DocsHome"
+        var url = "https://roadreport.gitlab.io/docs"
         when (view.id) {
             R.id.textView_settings_termOfServiceLink -> url =
-                "https://roadreport.page.link/TermsOfService"
+                "https://bit.ly/RoadRTos"
             R.id.textView_settings_privacyPolicyLink -> url =
-                "https://roadreport.page.link/PrivacyPolicy"
+                "https://bit.ly/RoadRPp"
             R.id.textView_settings_licenseLink -> url =
-                "https://roadreport.page.link/License"
+                "https://bit.ly/RoadRLicense"
             R.id.textView_settings_aboutLink -> url =
-                "https://roadreport.page.link/About"
+                "https://bit.ly/RoadRAbout"
         }
         val builder = CustomTabsIntent.Builder()
         val customTabsIntent = builder.build()
