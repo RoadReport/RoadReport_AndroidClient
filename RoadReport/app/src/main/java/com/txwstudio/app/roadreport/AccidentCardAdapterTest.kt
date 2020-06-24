@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.activity.AccidentEventActivity
+import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,7 +19,8 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
 
-    private val uid = FirebaseAuthHelper().getCurrUserUid()
+    private var userIsSignedIn = AuthManager().userIsSignedIn()
+    private val userUid = AuthManager().getCurrUserModel()?.uid
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccidentCardHolder {
         val view: View = LayoutInflater.from(parent.context)
@@ -27,12 +29,9 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
     }
 
     override fun onBindViewHolder(holder: AccidentCardHolder, position: Int, model: Accident) {
-//        val formattedTime = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
-//            .format(model.time.toDate())
-
         // Setting up each accident card's background and information.
-        var backgroundType: Int = 0
-        var situationType: Int = 0
+        var backgroundType = 0
+        var situationType = 0
         when (model.situationType.toInt()) {
             1 -> {
                 backgroundType = R.drawable.bg_accident_type_1
@@ -68,12 +67,12 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
         // Situation 1: NOT Signed in, no action at all.
         // Situation 2: Signed in && posted by user, Edit or Delete.
         // Situation 3: Signed in && NOT posted by user, Report.
-        if (!FirebaseAuthHelper().userIsSignedIn()) {
+        if (!userIsSignedIn) {
             // Situation 1
             Log.i("TESTTT", "What user can to the card, Situation 1")
             holder.moreButton.visibility = View.INVISIBLE
 
-        } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid == uid) {
+        } else if (userIsSignedIn && model.userUid == userUid) {
             // Situation 2, 0 for edit, 1 for delete.
             Log.i("TESTTT", "What user can to the card, Situation 2")
             holder.moreButton.setOnClickListener {
@@ -89,13 +88,10 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
                             context.startActivity(intent)
                         }
                         1 -> {
-                            if (FirebaseAuthHelper().userIsSignedIn()
-                                && FirebaseAuthHelper().getCurrUserUid() == getItem(position).userUid
-                            ) {
+                            if (userIsSignedIn && getItem(position).userUid == userUid) {
                                 FirestoreManager()
                                     .deleteAccident(roadCode, snapshots.getSnapshot(position).id) {
                                         Util().toast(context, if (it) "刪除成功" else "刪除失敗")
-
                                     }
                             } else {
                                 Util().toast(context, "未登入或非你發布")
@@ -103,25 +99,21 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
                         }
                     }
                 }.show()
-
                 Log.i("TESTTT", "onClick Doc ID: " + snapshots.getSnapshot(position).id)
-
-                true
             }
 
-        } else if (FirebaseAuthHelper().userIsSignedIn() && model.userUid != uid) {
+        } else if (userIsSignedIn && model.userUid != userUid) {
             // Situation 3
             Log.i("TESTTT", "What user can to the card, Situation 3")
             holder.moreButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setItems(R.array.roadActivity_moreOnClick_situation3) {_, which ->
+                builder.setItems(R.array.roadActivity_moreOnClick_situation3) { _, which ->
                     when (which) {
                         0 -> Util().toast(context, "你剛按檢舉")
                     }
                 }.show()
             }
         }
-
 
     }
 
