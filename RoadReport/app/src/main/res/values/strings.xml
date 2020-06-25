@@ -21,8 +21,40 @@
     <string name="roadName_7">台 7 乙</string>
 
 
+    <!-- Main Activity -->
+
+    <!-- Main Fragment -->
+    <string name="mainFragment_title">道路</string>
+
+    <!-- Account Fragment -->
+    <string name="accountFragment_title">帳號</string>
+    <string name="accountFragment_userNameHolder">未登入</string>
+    <string name="accountFragment_accountStatusSignIn">登出</string>
+    <string name="accountFragment_accountStatusSignedOut">登入</string>
+    <string name="settingsFrag_titleGeneral">一般</string>
+    <string name="settingsFrag_titleAbout">關於</string>
+    <string name="settingsFrag_titleTermsOfService">服務條款</string>
+    <string name="settingsFrag_titlePrivacyPolicy">隱私權政策</string>
+    <string name="settingsFrag_titleLicense">版權聲明</string>
+
     <!-- RoadActivity -->
+    <string name="roadActivity_back">返回</string>
     <string name="roadActivity_SignInFirst">請先登入</string>
+    <string name="roadActivity_tab_accidentEvent">路況</string>
+    <string name="roadActivity_tab_weather">天氣</string>
+    <string name="roadActivity_tab_liveCam">即時影像</string>
+
+    <!-- Road Fragment -->
+    <string name="roadFrag_SignInFirst">請先登入</string>
+    <string name="roadFrag_addAccidentEvent">新增事件</string>
+
+    <!-- Weather Fragment -->
+    <string name="weatherFrag_currTemp">目前溫度</string>
+    <string name="weatherFrag_currTempHumidity">目前濕度</string>
+
+    <!-- Live Cam Fragment -->
+    <string name="liveCamFrag_">即時影像</string>
+
 
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前路段</string>
@@ -79,23 +111,4 @@
     <string name="all_notSignedIn">尚未登入</string>
     <string name="all_noNetworkConn">網路未連線</string>
     <string name="all_noFirebaseConn">無法連線到資料庫</string>
-
-    <!-- Main Fragment -->
-    <string name="mainFragment_title">道路</string>
-
-    <!-- Account Fragment -->
-    <string name="accountFragment_title">帳號</string>
-    <string name="accountFragment_userNameHolder">未登入</string>
-    <string name="accountFragment_accountStatusSignIn">登出</string>
-    <string name="accountFragment_accountStatusSignedOut">登入</string>
-    <string name="settingsFrag_titleGeneral">一般</string>
-    <string name="settingsFrag_titleAbout">關於</string>
-    <string name="settingsFrag_titleTermsOfService">服務條款</string>
-    <string name="settingsFrag_titlePrivacyPolicy">隱私權政策</string>
-    <string name="settingsFrag_titleLicense">版權聲明</string>
-
-
-    <string name="title_activity_main2">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
 </resources>
