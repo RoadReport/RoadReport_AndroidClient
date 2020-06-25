@@ -1,9 +1,10 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.activity
 
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.ui.road.SectionsPagerAdapter
 
 class RoadActivity2 : AppCompatActivity() {

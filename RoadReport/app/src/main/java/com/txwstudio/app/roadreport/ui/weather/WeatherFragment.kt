@@ -2,7 +2,6 @@ package com.txwstudio.app.roadreport.ui.weather
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,7 @@ class WeatherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.weather_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

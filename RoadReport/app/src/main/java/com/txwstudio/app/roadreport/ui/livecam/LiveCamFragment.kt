@@ -1,9 +1,7 @@
 package com.txwstudio.app.roadreport.ui.livecam
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +24,7 @@ class LiveCamFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.live_cam_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_live_cam, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
