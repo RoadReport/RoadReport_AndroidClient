@@ -2,7 +2,6 @@ package com.txwstudio.app.roadreport.ui.roadevent
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +35,7 @@ class RoadFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.road_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_road, container, false)
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView_roadFrag)
         recyclerView.apply {

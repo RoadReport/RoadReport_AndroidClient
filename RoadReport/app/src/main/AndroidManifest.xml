@@ -39,7 +39,7 @@
                 android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
         <activity
-            android:name=".RoadActivity2"
+            android:name=".activity.RoadActivity2"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
