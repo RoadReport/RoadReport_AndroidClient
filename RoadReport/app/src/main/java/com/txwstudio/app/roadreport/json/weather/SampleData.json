@@ -1,0 +1,81 @@
+{
+  "success": "true",
+  "result": {
+    "resource_id": "O-A0001-001",
+    "fields": [
+      {
+        "id": "lat",
+        "type": "Double"
+      },
+      {
+        "id": "lon",
+        "type": "Double"
+      },
+      {
+        "id": "locationName",
+        "type": "String"
+      },
+      {
+        "id": "stationId",
+        "type": "String"
+      },
+      {
+        "id": "obsTime",
+        "type": "Timestamp"
+      },
+      {
+        "id": "elementName",
+        "type": "String"
+      },
+      {
+        "id": "elementValue",
+        "type": "String"
+      },
+      {
+        "id": "parameterName",
+        "type": "String"
+      },
+      {
+        "id": "parameterValue",
+        "type": "String"
+      }
+    ]
+  },
+  "records": {
+    "location": [
+      {
+        "lat": "22.744444",
+        "lon": "120.735556",
+        "locationName": "阿禮",
+        "stationId": "C0R130",
+        "time": {
+          "obsTime": "2020-06-28 11:00:00"
+        },
+        "weatherElement": [
+          {
+            "elementName": "TEMP",
+            "elementValue": "25.0"
+          }
+        ],
+        "parameter": [
+          {
+            "parameterName": "CITY",
+            "parameterValue": "屏東縣"
+          },
+          {
+            "parameterName": "CITY_SN",
+            "parameterValue": "20"
+          },
+          {
+            "parameterName": "TOWN",
+            "parameterValue": "霧臺鄉"
+          },
+          {
+            "parameterName": "TOWN_SN",
+            "parameterValue": "292"
+          }
+        ]
+      }
+    ]
+  }
+}
