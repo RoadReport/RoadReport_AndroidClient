@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_normal"
+    app:cardElevation="@dimen/all_defaultHalf_margin">
+
+    <TextView
+        android:id="@+id/textView_weatherCard_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
+        tools:text="三地門 C0R150" />
+
+
+    <TextView
+        android:id="@+id/textView_weatherCard_tempTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_double_half"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/textView_weatherCard_humidityTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_location"
+        tools:text="溫度" />
+
+    <TextView
+        android:id="@+id/textView_weatherCard_humidityTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_double_half"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/textView_weatherCard_tempTitle"
+        app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_location"
+        tools:text="10 分鐘雨量" />
+
+
+    <TextView
+        android:id="@+id/textView_weatherCard_temp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@id/textView_weatherCard_humidity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_tempTitle"
+        tools:text="26" />
+
+    <TextView
+        android:id="@+id/textView_weatherCard_humidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/textView_weatherCard_temp"
+        app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_tempTitle"
+        tools:text="-998.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
