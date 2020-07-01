@@ -8,6 +8,10 @@
     <dimen name="indent_normal">16dp</dimen>
     <dimen name="indent_double">32dp</dimen>
 
+    <dimen name="materialCard_min">1dp</dimen>
+    <dimen name="materialCard_half">4dp</dimen>
+    <dimen name="materialCard_max">8dp</dimen>
+
     <dimen name="margin_half">8dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_double_half">24dp</dimen>
