@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_road"
+            android:id="@+id/toolbar_roadAct2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -20,10 +20,9 @@
             app:layout_scrollFlags="scroll">
 
             <TextView
-                android:id="@+id/textView_road_toolbarTitle"
+                android:id="@+id/textView_roadAct2_toolbarTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text="@string/title_activity_road"
                 android:textColor="?attr/activityTitleTextColor"
                 android:textSize="20sp"
