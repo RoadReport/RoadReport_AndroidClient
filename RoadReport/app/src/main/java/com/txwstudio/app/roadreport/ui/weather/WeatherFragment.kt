@@ -57,7 +57,6 @@ class WeatherFragment : Fragment() {
     fun subscribeUI(adapter: WeatherCardAdapter) {
         weatherViewModel.weatherDataList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-
         }
 
         weatherViewModel.isRefreshing.observe(viewLifecycleOwner){
