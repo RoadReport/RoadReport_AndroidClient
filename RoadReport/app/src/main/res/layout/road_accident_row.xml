@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/all_default_margin"
-    app:cardElevation="@dimen/all_defaultHalf_margin">
+    app:cardElevation="@dimen/materialCard_half">
 
     <RelativeLayout
         android:id="@+id/relaLayout_accidentCard"
