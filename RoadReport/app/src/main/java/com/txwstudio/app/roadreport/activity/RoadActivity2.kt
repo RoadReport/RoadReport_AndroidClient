@@ -2,32 +2,25 @@ package com.txwstudio.app.roadreport.activity
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.ui.road.SectionsPagerAdapter
+import kotlinx.android.synthetic.main.activity_road2.*
 
 class RoadActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road2)
+        setupToolBar()
 
-        /** Original */
-//        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-//
-//        val viewPager: ViewPager = findViewById(R.id.viewPager_roadActivity)
-//        viewPager.adapter = sectionsPagerAdapter
-//
-//        val tabs: TabLayout = findViewById(R.id.tabs)
-//        tabs.setupWithViewPager(viewPager)
-
-        /** Testing */
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
 
         val viewPager: ViewPager = findViewById(R.id.viewPager_roadActivity)
@@ -41,11 +34,28 @@ class RoadActivity2 : AppCompatActivity() {
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
 
         findViewById<FloatingActionButton>(R.id.fab_roadActivity).setOnClickListener {
-                if (AuthManager().userIsSignedIn()) {
-                    startActivity(Intent(this, AccidentEventActivity::class.java))
-                } else {
-                    Util().toast(this, getString(R.string.roadFrag_SignInFirst))
-                }
+            if (AuthManager().userIsSignedIn()) {
+                startActivity(Intent(this, AccidentEventActivity::class.java))
+            } else {
+                Util().toast(this, getString(R.string.roadFrag_SignInFirst))
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setupToolBar() {
+        setSupportActionBar(toolbar_roadAct2)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        textView_roadAct2_toolbarTitle.text = RoadCode().getCurrRoadName(this)
     }
 }
