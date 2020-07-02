@@ -78,6 +78,18 @@ class WeatherViewModel : ViewModel() {
                 val temp = apiTemp.execute().body()
                 val hum = apiHum.execute().body()
 
+                if (!temp?.isElementExist()!! || !hum?.isElementExist()!!) {
+                    listToAdd.add(
+                        WeatherData(
+                            "請稍後在試",
+                            "--",
+                            "--",
+                            "--"
+                        )
+                    )
+                    break
+                }
+
                 listToAdd.add(
                     WeatherData(
                         temp?.getLocationName(),
