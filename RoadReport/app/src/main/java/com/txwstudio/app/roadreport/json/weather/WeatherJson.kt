@@ -39,4 +39,14 @@ data class WeatherJson(
         return records?.location?.get(0)?.weatherElement?.get(0)?.elementValue
     }
 
+    /**
+     * Check for weatherElement do exist.
+     * I guess when they update the value, the weatherElement will be empty for a second.
+     *
+     * @return True, WeatherElement DO exist, continue.
+     * @return False, WeatherElement DO NOT exist, break.
+     * */
+    fun isElementExist(): Boolean {
+        return records?.location?.get(0)?.weatherElement?.size!! >= 1
+    }
 }
