@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = homeViewModel
         binding.handler = context?.let { context ->
-            activity?.let { activity -> HomeFragClickHandler(context, activity) }
+            HomeFragClickHandler(context)
         }
         binding.lifecycleOwner = this
 
