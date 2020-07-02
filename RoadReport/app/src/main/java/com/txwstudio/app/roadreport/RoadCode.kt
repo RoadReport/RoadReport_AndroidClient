@@ -73,4 +73,15 @@ class RoadCode {
             else -> context.resources.getString(R.string.all_unknownError)
         }
     }
+
+    fun getCurrRoadNameTitle(context: Context): String {
+        return when (context.getSharedPreferences("currentCode", 0)
+            .getInt("currentCode", 0)) {
+            ROADCODE_24 -> "ROADCODE_24"
+            ROADCODE_182 -> "ROADCODE_182"
+            ROADCODE_GRANDMA -> "ROADCODE_GRANDMA"
+            ROADCODE_7 -> "ROADCODE_7"
+            else -> context.resources.getString(R.string.all_unknownError)
+        }
+    }
 }
