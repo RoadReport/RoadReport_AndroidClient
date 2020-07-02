@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="liveCamSource"
+            type="com.txwstudio.app.roadreport.model.LiveCamSource" />
+
+    </data>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_half"
+            android:textColor="@color/black"
+            android:text="@{liveCamSource.camName}"
+            tools:text="相機名稱1號(W)" />
+
+</layout>

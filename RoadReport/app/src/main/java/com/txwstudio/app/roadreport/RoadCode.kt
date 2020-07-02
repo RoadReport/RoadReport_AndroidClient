@@ -84,4 +84,15 @@ class RoadCode {
             else -> context.resources.getString(R.string.all_unknownError)
         }
     }
+
+    fun getCurrRoadDynamicLiveCamSourceTitle(context: Context): String {
+        return when (context.getSharedPreferences("currentCode", 0)
+            .getInt("currentCode", 0)) {
+            ROADCODE_24 -> "DLCS_24"
+            ROADCODE_182 -> "DLCS_182"
+            ROADCODE_GRANDMA -> "DLCS_GRANDMA"
+            ROADCODE_7 -> "ROADCODE_7"
+            else -> context.resources.getString(R.string.all_unknownError)
+        }
+    }
 }

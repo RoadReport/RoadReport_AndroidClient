@@ -1,14 +1,17 @@
 package com.txwstudio.app.roadreport.ui.livecam
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter
+import com.txwstudio.app.roadreport.databinding.FragmentLiveCamBinding
 
 class LiveCamFragment : Fragment() {
 
@@ -16,37 +19,54 @@ class LiveCamFragment : Fragment() {
         fun newInstance() = LiveCamFragment()
     }
 
-    private lateinit var viewModel: LiveCamViewModel
+    private lateinit var liveCamViewModel: LiveCamViewModel
+    private lateinit var binding: FragmentLiveCamBinding
     private lateinit var mWebView: WebView
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_live_cam, container, false)
+        liveCamViewModel = ViewModelProvider(this).get(LiveCamViewModel::class.java)
 
-        mWebView = root.findViewById<WebView>(R.id.webView_LivaCamFrag)
+        binding = DataBindingUtil.inflate<FragmentLiveCamBinding>(
+            inflater,
+            R.layout.fragment_live_cam,
+            container,
+            false
+        )
+        binding.viewModel = liveCamViewModel
+        binding.lifecycleOwner = this
 
-        return root
-    }
+        val adapter = LiveCamSelectCardAdapter()
+        binding.recyclerViewLiveCamFrag.adapter = adapter
+        subscribeUI(adapter)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LiveCamViewModel::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        mWebView.loadUrl("https://thbcctv11.thb.gov.tw/T24-26K+700")
+        liveCamViewModel.startFetchLiveCam()
+        liveCamViewModel.getLiveCamSourceListAndSetupLiveCamCard()
     }
 
     override fun onStop() {
         super.onStop()
+        binding.webViewLivaCamFrag.loadUrl("about:blank")
+    }
+
+    fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
+        liveCamViewModel.streamUrl.observe(viewLifecycleOwner) {
+            binding.webViewLivaCamFrag.loadUrl(it)
+        }
+
+//        liveCamViewModel.liveCamSourcesList.observe(viewLifecycleOwner) {
+//            adapter.submitList(it)
+//        }
+        liveCamViewModel.sdf.observe(viewLifecycleOwner) {
+            adapter.submitList(it.toMutableList())
+        }
     }
 }
