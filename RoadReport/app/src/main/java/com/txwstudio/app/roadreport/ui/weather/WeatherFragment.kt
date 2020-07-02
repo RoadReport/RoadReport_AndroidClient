@@ -42,7 +42,7 @@ class WeatherFragment : Fragment() {
 
 
         binding.refreshViewWeatherFrag.setOnRefreshListener {
-            weatherViewModel.getWeatherDataUsingCoroutine()
+            weatherViewModel.getWeatherStationListAndSetupWeatherCard()
         }
 
 
@@ -51,7 +51,7 @@ class WeatherFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        weatherViewModel.getWeatherDataUsingCoroutine()
+        weatherViewModel.getWeatherStationListAndSetupWeatherCard()
     }
 
     fun subscribeUI(adapter: WeatherCardAdapter) {
@@ -59,7 +59,7 @@ class WeatherFragment : Fragment() {
             adapter.submitList(it)
         }
 
-        weatherViewModel.isRefreshing.observe(viewLifecycleOwner){
+        weatherViewModel.isRefreshing.observe(viewLifecycleOwner) {
             binding.refreshViewWeatherFrag.isRefreshing = it
         }
     }

@@ -1,11 +1,19 @@
 package com.txwstudio.app.roadreport.ui.weather
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.get
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.gson.GsonBuilder
+import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.json.weather.WeatherJson
 import com.txwstudio.app.roadreport.model.WeatherData
+import com.txwstudio.app.roadreport.model.WeatherStationID
 import com.txwstudio.app.roadreport.service.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,14 +21,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WeatherViewModel : ViewModel() {
+class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
     var locationToShow = MutableLiveData<String>()
     var tempToShow = MutableLiveData<String>()
     var humidityToShow = MutableLiveData<String>()
     var isRefreshing = MutableLiveData<Boolean>()
 
-    private val stationId = arrayListOf("C0R130", "C0R150")
+    private var stationIds = arrayOf<WeatherStationID>()
     var weatherDataList = MutableLiveData<MutableList<WeatherData>>()
 
     /**
@@ -63,17 +71,17 @@ class WeatherViewModel : ViewModel() {
     }
 
     /**
+     * Invoke by putIdToList().
+     * Using the stationIds array to fetch weather data from government's opendata platform.
      * Using retrofit by Sync method in Kotlin coroutine.
-     *
-     * TODO(Error Handling)
      * */
-    fun getWeatherDataUsingCoroutine() {
+    private fun getWeatherDataUsingCoroutine() {
         isRefreshing.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val listToAdd = mutableListOf<WeatherData>()
-            for (stationId in stationId) {
-                val apiTemp = WeatherApi.retrofitService.getWeatherTemp(stationId)
-                val apiHum = WeatherApi.retrofitService.getWeatherHum(stationId)
+            for (stationId in stationIds) {
+                val apiTemp = WeatherApi.retrofitService.getWeatherTemp(stationId.station)
+                val apiHum = WeatherApi.retrofitService.getWeatherHum(stationId.station)
 
                 val temp = apiTemp.execute().body()
                 val hum = apiHum.execute().body()
@@ -108,5 +116,38 @@ class WeatherViewModel : ViewModel() {
         } // .viewModelScope
     }
 
+    /**
+     * Fetch weather station id from Firebase Remote Config,
+     * use to dynamic update the stations we used.
+     * */
+    fun getWeatherStationListAndSetupWeatherCard() {
+        isRefreshing.value = true
+        val currentRoadNameTitle = RoadCode().getCurrRoadNameTitle(getApplication())
 
+        val remoteConfig = Firebase.remoteConfig
+        remoteConfig.setConfigSettingsAsync(remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 3600
+        })
+        remoteConfig.fetchAndActivate().addOnSuccessListener {
+            putIdToList(remoteConfig[currentRoadNameTitle].asString())
+        }.addOnFailureListener {
+            putIdToList("[{\"station\":\"FAILURE\"}]")
+        }
+    }
+
+    /**
+     * Invoke by getWeatherStationListAndSetupWeatherCard().
+     * Turn the normal string into json and save it in the array.
+     *
+     * @param stringFromRemoteConfig The string for convert.
+     * */
+    private fun putIdToList(stringFromRemoteConfig: String) {
+        val magicConverter = GsonBuilder().create()
+            .fromJson(stringFromRemoteConfig, Array<WeatherStationID>::class.java)
+        stationIds = magicConverter
+        getWeatherDataUsingCoroutine()
+        for (item in magicConverter) {
+            Log.i("WeatherLog", "目前從 Remote Config 中取得的數值為: ${item.station}")
+        }
+    }
 }
