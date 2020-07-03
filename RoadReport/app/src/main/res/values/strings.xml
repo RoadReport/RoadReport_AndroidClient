@@ -54,6 +54,7 @@
 
     <!-- Live Cam Fragment -->
     <string name="liveCamFrag_">即時影像</string>
+    <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
 
 
     <!-- Accident Event Activity Text -->

@@ -1,7 +1,6 @@
 package com.txwstudio.app.roadreport.ui.livecam
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter
-import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter.Companion.camName
-import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter.Companion.streamUrl
 import com.txwstudio.app.roadreport.databinding.FragmentLiveCamBinding
 
 class LiveCamFragment : Fragment() {
@@ -23,6 +20,7 @@ class LiveCamFragment : Fragment() {
 
     private lateinit var liveCamViewModel: LiveCamViewModel
     private lateinit var binding: FragmentLiveCamBinding
+    private lateinit var adapter: LiveCamSelectCardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +38,7 @@ class LiveCamFragment : Fragment() {
         binding.viewModel = liveCamViewModel
         binding.lifecycleOwner = this
 
-        val adapter = LiveCamSelectCardAdapter()
+        adapter = LiveCamSelectCardAdapter()
         binding.recyclerViewLiveCamFrag.adapter = adapter
         subscribeUI(adapter)
 
@@ -53,23 +51,21 @@ class LiveCamFragment : Fragment() {
     }
 
     override fun onPause() {
+        adapter.camNames.value = getString(R.string.liveCamFrag_noCamSelectTitleHolder)
+        adapter.streamUrls.value = "about:blank"
         super.onPause()
-        binding.webViewLivaCamFrag.loadUrl("about:blank")
     }
 
     fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
-
         liveCamViewModel.liveCamSourcesList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
-        camName.observe(viewLifecycleOwner){
-            Log.i("LiveCamLog", "The name is fucking changing")
+        adapter.camNames.observe(viewLifecycleOwner) {
             binding.textViewLivaCamFrag.text = it
         }
 
-        streamUrl.observe(viewLifecycleOwner) {
-            Log.i("LiveCamLog", "The url is fucking changing")
+        adapter.streamUrls.observe(viewLifecycleOwner) {
             binding.webViewLivaCamFrag.loadUrl(it)
         }
     }
