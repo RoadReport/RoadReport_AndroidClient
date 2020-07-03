@@ -6,17 +6,23 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="liveCamSource"
             type="com.txwstudio.app.roadreport.model.LiveCamSource" />
 
     </data>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_half"
-            android:textColor="@color/black"
-            android:text="@{liveCamSource.camName}"
-            tools:text="相機名稱1號(W)" />
+    <TextView
+        android:id="@+id/cardod"
+        style="@style/AboutItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}"
+        android:text="@{liveCamSource.camName}"
+        android:textColor="@color/black"
+        tools:text="相機名稱1號(W)" />
 
 </layout>

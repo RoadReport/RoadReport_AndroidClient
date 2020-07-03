@@ -16,27 +16,51 @@
         android:orientation="vertical"
         tools:context=".ui.livecam.LiveCamFragment">
 
-        <WebView
-            android:id="@+id/webView_LivaCamFrag"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_normal"
-            android:padding="@dimen/margin_normal"
+            android:layout_margin="@dimen/margin_normal"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="@dimen/materialCard_min"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <WebView
+                    android:id="@+id/webView_LivaCamFrag"
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp" />
+
+                <TextView
+                    android:id="@+id/textView_LivaCamFrag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_double_half"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:text="請選擇攝影機"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    tools:text="請選擇攝影機" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_liveCamFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
             android:clipToPadding="false"
-            android:padding="@dimen/margin_normal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/webView_LivaCamFrag">
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
         </androidx.recyclerview.widget.RecyclerView>
 
