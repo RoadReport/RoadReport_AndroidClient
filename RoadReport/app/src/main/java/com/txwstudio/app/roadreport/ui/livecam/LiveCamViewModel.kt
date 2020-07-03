@@ -2,6 +2,7 @@ package com.txwstudio.app.roadreport.ui.livecam
 
 import android.app.Application
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.ktx.Firebase
@@ -14,20 +15,18 @@ import com.txwstudio.app.roadreport.model.LiveCamSource
 
 class LiveCamViewModel(application: Application) : AndroidViewModel(application) {
 
+    var camName = MutableLiveData<String>()
     var streamUrl = MutableLiveData<String>()
-    var liveCamSourcesList = arrayOf<LiveCamSource>()
-    var sdf = MutableLiveData<Array<LiveCamSource>>()
-
-    fun startFetchLiveCam() {
-        streamUrl.value = "https://thbcctv11.thb.gov.tw/T24-26K+700"
-    }
+//    var liveCamSourcesList = arrayOf<LiveCamSource>()
+    var liveCamSourcesList = MutableLiveData<MutableList<LiveCamSource>>()
+    var isRefreshing = MutableLiveData<Boolean>()
 
     /**
      * Fetch weather station id from Firebase Remote Config,
      * use to dynamic update the stations we used.
      * */
     fun getLiveCamSourceListAndSetupLiveCamCard() {
-//        isRefreshing.value = true
+        isRefreshing.value = true
         val currentRoadNameTitle = RoadCode().getCurrRoadDynamicLiveCamSourceTitle(getApplication())
 
         val remoteConfig = Firebase.remoteConfig
@@ -50,13 +49,17 @@ class LiveCamViewModel(application: Application) : AndroidViewModel(application)
     private fun putIdToList(stringFromRemoteConfig: String) {
         val magicConverter = GsonBuilder().create()
             .fromJson(stringFromRemoteConfig, Array<LiveCamSource>::class.java)
-        liveCamSourcesList = magicConverter
-        sdf.value = magicConverter
+        liveCamSourcesList.value = magicConverter.toMutableList()
 //        getWeatherDataUsingCoroutine()
-        for (item in liveCamSourcesList) {
-            Log.i("LiveCamLog", "目前從 Remote Config 中取得的數值為: ${item.camName} with ${item.url}")
+        liveCamSourcesList.value?.forEach {
+            Log.i("LiveCamLog", "目前從 Remote Config 中取得的數值為: ${it.camName} with ${it.url}")
         }
     }
 
+    fun seyHello(view: View, liveCamSource: LiveCamSource) {
+
+        Log.i("LiveCamLog", "${liveCamSource.camName} with ${liveCamSource.url}")
+
+    }
 
 }
