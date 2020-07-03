@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,10 @@ class LiveCamSelectCardAdapter :
         var streamUrl = MutableLiveData<String>()
     }
 
-    class LiveCamSelectCardViewHolder(private val binding: RowLiveCamSelectBinding) :
+    var camNames = MutableLiveData<String>()
+    var streamUrls = MutableLiveData<String>()
+
+    inner class LiveCamSelectCardViewHolder(private val binding: RowLiveCamSelectBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -31,9 +33,9 @@ class LiveCamSelectCardAdapter :
         }
 
         private fun changeStreamUrl(it: LiveCamSource) {
-            Log.i("LiveCamLog", "I am going to change the fucking data")
-            camName.value = it.camName
-            streamUrl.value = it.url
+            Log.i("LiveCamLog", "正在更新串流資料 | ${it.camName} | ${it.url}")
+            camNames.value = it.camName
+            streamUrls.value = it.url
         }
 
         fun bind(item: LiveCamSource) {
@@ -57,10 +59,10 @@ class LiveCamSelectCardAdapter :
         (holder as LiveCamSelectCardViewHolder).bind(liveCamSource)
     }
 
-
 }
 
 class LiveCamDiffCallback : DiffUtil.ItemCallback<LiveCamSource>() {
+
     override fun areItemsTheSame(oldItem: LiveCamSource, newItem: LiveCamSource): Boolean {
         return oldItem.camName == newItem.camName
     }
