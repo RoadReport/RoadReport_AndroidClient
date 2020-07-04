@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.txwstudio.app.roadreport.databinding.WeatherDataRowBinding
+import com.txwstudio.app.roadreport.databinding.RowWeatherCardBinding
 import com.txwstudio.app.roadreport.model.WeatherData
 
 /**
@@ -16,7 +16,7 @@ import com.txwstudio.app.roadreport.model.WeatherData
 class WeatherCardAdapter :
     ListAdapter<WeatherData, RecyclerView.ViewHolder>(WeatherDiffCallback()) {
 
-    class WeatherViewHolder(private val binding: WeatherDataRowBinding) :
+    class WeatherViewHolder(private val binding: RowWeatherCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: WeatherData) {
@@ -29,7 +29,7 @@ class WeatherCardAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return WeatherViewHolder(
-            WeatherDataRowBinding.inflate(
+            RowWeatherCardBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
