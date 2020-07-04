@@ -15,56 +15,102 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.home.HomeFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_0"
             style="@style/RoadCard.Card"
-            android:layout_width="0dp"
-            android:layout_height="88dp"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
             android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
             app:cardBackgroundColor="#F573A0"
-            app:layout_constraintEnd_toStartOf="@id/card_1"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:cardElevation="@dimen/materialCard_half"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                style="@style/RoadCard.Text"
-                android:text="@string/roadName_24"
-                android:textColor="?attr/roadCard_TextColor" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                style="@style/RoadCard.Image"
-                android:src="@drawable/ic_flower_459dp" />
+                <TextView
+                    android:id="@+id/textView_card0_title"
+                    style="@style/RoadCard.Title"
+                    android:text="@string/roadName_24"
+                    app:layout_constraintBottom_toTopOf="@id/textView_card0_subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textView_card0_subtitle"
+                    style="@style/RoadCard.Subtitle"
+                    android:text="@string/roadName_24_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView_card0_title" />
+
+                <ImageView
+                    style="@style/RoadCard.Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_double_half"
+                    android:scaleType="fitEnd"
+                    android:src="@drawable/ic_flower_459dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_1"
             style="@style/RoadCard.Card"
-            android:layout_width="0dp"
-            android:layout_height="88dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
             android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
             app:cardBackgroundColor="#1E88E5"
+            app:cardElevation="@dimen/materialCard_half"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/card_0"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_0">
 
-            <TextView
-                style="@style/RoadCard.Text"
-                android:text="@string/roadName_182"
-                android:textColor="?attr/roadCard_TextColor" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                style="@style/RoadCard.Image"
-                android:src="@drawable/ic_bucket_512dp" />
+                <TextView
+                    android:id="@+id/textView_card1_title"
+                    style="@style/RoadCard.Title"
+                    android:text="@string/roadName_182"
+                    app:layout_constraintBottom_toTopOf="@id/textView_card1_subtitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textView_card1_subtitle"
+                    style="@style/RoadCard.Subtitle"
+                    android:text="@string/roadName_182_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView_card1_title" />
+
+                <ImageView
+                    style="@style/RoadCard.Image"
+                    android:src="@drawable/ic_bucket_512dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
