@@ -24,10 +24,10 @@
     <!-- Main Activity -->
 
     <!-- Main Fragment -->
-    <string name="mainFragment_title">道路</string>
+    <string name="mainFragment_title">全部道路</string>
 
     <!-- Account Fragment -->
-    <string name="accountFragment_title">帳號</string>
+    <string name="accountFragment_title">帳號與設定</string>
     <string name="accountFragment_userNameHolder">未登入</string>
     <string name="accountFragment_accountStatusSignIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
@@ -49,11 +49,11 @@
     <string name="roadFrag_addAccidentEvent">新增事件</string>
 
     <!-- Weather Fragment -->
-    <string name="weatherFrag_currTemp">目前溫度</string>
-    <string name="weatherFrag_currTempHumidity">目前濕度</string>
+    <string name="weatherFrag_temp">溫度</string>
+    <string name="weatherFrag_min10">10 分鐘雨量</string>
 
     <!-- Live Cam Fragment -->
-    <string name="liveCamFrag_">即時影像</string>
+    <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
 
 
