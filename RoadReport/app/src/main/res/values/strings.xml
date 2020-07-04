@@ -23,8 +23,10 @@
 
     <!-- Main Activity -->
 
-    <!-- Main Fragment -->
+    <!-- Home Fragment -->
     <string name="mainFragment_title">全部道路</string>
+    <string name="roadName_24_description">位於霧台鄉</string>
+    <string name="roadName_182_description">位於台南高雄交界</string>
 
     <!-- Account Fragment -->
     <string name="accountFragment_title">帳號與設定</string>
