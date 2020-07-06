@@ -31,7 +31,7 @@
     <!-- Account Fragment -->
     <string name="accountFragment_title">帳號與設定</string>
     <string name="accountFragment_userNameHolder">未登入</string>
-    <string name="accountFragment_accountStatusSignIn">登出</string>
+    <string name="accountFragment_accountStatusSignedIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleAbout">關於</string>
