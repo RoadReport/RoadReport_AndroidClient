@@ -12,8 +12,8 @@ import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.gson.GsonBuilder
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.json.weather.WeatherJson
+import com.txwstudio.app.roadreport.model.DynamicWeatherStation
 import com.txwstudio.app.roadreport.model.WeatherData
-import com.txwstudio.app.roadreport.model.WeatherStationID
 import com.txwstudio.app.roadreport.service.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     var humidityToShow = MutableLiveData<String>()
     var isRefreshing = MutableLiveData<Boolean>()
 
-    private var stationIds = arrayOf<WeatherStationID>()
+    private var dynamicStations = arrayOf<DynamicWeatherStation>()
     var weatherDataList = MutableLiveData<MutableList<WeatherData>>()
 
     /**
@@ -79,31 +79,42 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         isRefreshing.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val listToAdd = mutableListOf<WeatherData>()
-            for (stationId in stationIds) {
-                val apiTemp = WeatherApi.retrofitService.getWeatherTemp(stationId.station)
-                val apiHum = WeatherApi.retrofitService.getWeatherHum(stationId.station)
+            for (station in dynamicStations) {
+                val apiTemp = WeatherApi.retrofitService.getWeatherTemp(station.stationId)
+                val apiHum = WeatherApi.retrofitService.getWeatherHum(station.stationId)
 
                 val temp = apiTemp.execute().body()
                 val hum = apiHum.execute().body()
 
-                if (!temp?.isElementExist()!! || !hum?.isElementExist()!!) {
-                    listToAdd.add(
-                        WeatherData(
-                            "請稍後在試",
-                            "--",
-                            "--",
-                            "--"
-                        )
-                    )
-                    break
+                var tempElementValue: String?
+                var humElementValue: String?
+
+                tempElementValue = if (!temp?.isLocationEmpty()!!) {
+                    if (!temp.isElementEmpty()!!) {
+                        temp.getElementValue()
+                    } else {
+                        "--"
+                    }
+                } else {
+                    "--"
+                }
+
+                humElementValue = if (!hum?.isLocationEmpty()!!) {
+                    if (!hum.isElementEmpty()!!) {
+                        hum.getElementValue()
+                    } else {
+                        "--"
+                    }
+                } else {
+                    "--"
                 }
 
                 listToAdd.add(
                     WeatherData(
-                        temp?.getLocationName(),
-                        temp?.getStationId(),
-                        temp?.getElementValue(),
-                        hum?.getElementValue()
+                        station.stationName,
+                        station.stationId,
+                        tempElementValue,
+                        humElementValue
                     )
                 )
 
@@ -143,11 +154,14 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
      * */
     private fun putIdToList(stringFromRemoteConfig: String) {
         val magicConverter = GsonBuilder().create()
-            .fromJson(stringFromRemoteConfig, Array<WeatherStationID>::class.java)
-        stationIds = magicConverter
+            .fromJson(stringFromRemoteConfig, Array<DynamicWeatherStation>::class.java)
+        dynamicStations = magicConverter
         getWeatherDataUsingCoroutine()
         for (item in magicConverter) {
-            Log.i("WeatherLog", "目前從 Remote Config 中取得的數值為: ${item.station}")
+            Log.i(
+                "WeatherLog",
+                "目前從 Remote Config 中取得的數值為: ${item.stationName} - ${item.stationId}"
+            )
         }
     }
 }
