@@ -14,7 +14,7 @@ import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.ui.road.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_road2.*
 
-class RoadActivity2 : AppCompatActivity() {
+class RoadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
