@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.txwstudio.app.roadreport.databinding.RowLiveCamSelectBinding
-import com.txwstudio.app.roadreport.model.LiveCamSource
+import com.txwstudio.app.roadreport.json.DynamicLiveCamSource
 
 class LiveCamSelectCardAdapter :
-    ListAdapter<LiveCamSource, RecyclerView.ViewHolder>(LiveCamDiffCallback()) {
+    ListAdapter<DynamicLiveCamSource, RecyclerView.ViewHolder>(LiveCamDiffCallback()) {
 
     companion object {
         var camName = MutableLiveData<String>()
@@ -32,13 +32,13 @@ class LiveCamSelectCardAdapter :
             }
         }
 
-        private fun changeStreamUrl(it: LiveCamSource) {
+        private fun changeStreamUrl(it: DynamicLiveCamSource) {
             Log.i("LiveCamLog", "正在更新串流資料 | ${it.camName} | ${it.url}")
             camNames.value = it.camName
             streamUrls.value = it.url
         }
 
-        fun bind(item: LiveCamSource) {
+        fun bind(item: DynamicLiveCamSource) {
             binding.apply {
                 liveCamSource = item
                 executePendingBindings()
@@ -61,13 +61,13 @@ class LiveCamSelectCardAdapter :
 
 }
 
-class LiveCamDiffCallback : DiffUtil.ItemCallback<LiveCamSource>() {
+class LiveCamDiffCallback : DiffUtil.ItemCallback<DynamicLiveCamSource>() {
 
-    override fun areItemsTheSame(oldItem: LiveCamSource, newItem: LiveCamSource): Boolean {
+    override fun areItemsTheSame(oldItem: DynamicLiveCamSource, newItem: DynamicLiveCamSource): Boolean {
         return oldItem.camName == newItem.camName
     }
 
-    override fun areContentsTheSame(oldItem: LiveCamSource, newItem: LiveCamSource): Boolean {
+    override fun areContentsTheSame(oldItem: DynamicLiveCamSource, newItem: DynamicLiveCamSource): Boolean {
         return oldItem == newItem
     }
 
