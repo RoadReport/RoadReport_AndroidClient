@@ -10,8 +10,8 @@
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="liveCamSource"
-            type="com.txwstudio.app.roadreport.model.LiveCamSource" />
+            name="dynamicLiveCamSource"
+            type="com.txwstudio.app.roadreport.json.DynamicLiveCamSource" />
 
     </data>
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}"
-        android:text="@{liveCamSource.camName}"
+        android:text="@{dynamicLiveCamSource.camName}"
         android:textColor="@color/black"
         tools:text="相機名稱1號(W)" />
 

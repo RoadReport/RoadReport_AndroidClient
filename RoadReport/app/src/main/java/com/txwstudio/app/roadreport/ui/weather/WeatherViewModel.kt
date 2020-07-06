@@ -12,7 +12,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.gson.GsonBuilder
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.json.weather.WeatherJson
-import com.txwstudio.app.roadreport.model.DynamicWeatherStation
+import com.txwstudio.app.roadreport.json.DynamicWeatherStation
 import com.txwstudio.app.roadreport.model.WeatherData
 import com.txwstudio.app.roadreport.service.WeatherApi
 import kotlinx.coroutines.Dispatchers
