@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -65,15 +67,40 @@ class AccountFragment : Fragment() {
                 binding.cardViewAccountFragAccountPreviewNotSignedIn2.visibility = View.VISIBLE
                 binding.cardViewAccountFragAccountPreview2.visibility = View.GONE
                 binding.cardViewAccountFragAccountDetail.visibility = View.GONE
+                binding.imageViewAccountFragMore.rotation = 90f
                 visible = false
             }
         }
 
+        val rotateFromTopToBottom = RotateAnimation(
+            -180f,
+            0f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        rotateFromTopToBottom.duration = 150
+        rotateFromTopToBottom.fillAfter = true
+
+        val rotateFromBottomToTop = RotateAnimation(
+            0f,
+            -180f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        rotateFromBottomToTop.duration = 150
+        rotateFromBottomToTop.fillAfter = true
+
         binding.cardViewAccountFragAccountPreview2.setOnClickListener {
             binding.cardViewAccountFragAccountDetail.visibility = if (visible) {
+                binding.imageViewAccountFragMore.startAnimation(rotateFromTopToBottom)
                 visible = false
                 View.GONE
             } else {
+                binding.imageViewAccountFragMore.startAnimation(rotateFromBottomToTop)
                 visible = true
                 View.VISIBLE
             }

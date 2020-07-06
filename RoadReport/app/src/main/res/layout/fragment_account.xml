@@ -134,6 +134,7 @@
                         tools:text="wowpapa3232@gmail.com" />
 
                     <ImageView
+                        android:id="@+id/imageView_accountFrag_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:rotation="90"
