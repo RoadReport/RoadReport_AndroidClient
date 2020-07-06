@@ -11,11 +11,11 @@
     </string-array>
 
     <!-- RoadActivity -->
-    <array name="roadActivity_moreOnClick_situation2">
+    <array name="roadFrag_moreOnClick_situation2">
         <item>編輯</item>
         <item>刪除</item>
     </array>
-    <array name="roadActivity_moreOnClick_situation3">
+    <array name="roadFrag_moreOnClick_situation3">
         <item>檢舉</item>
     </array>
 </resources>
