@@ -12,20 +12,20 @@ data class WeatherJson(
     var success: String?
 ) {
 
-    fun getStationId(): String? {
-        Log.i(
-            "WeatherLog",
-            "WeatherJson.getStationId().測站編號：" + records?.location?.get(0)?.stationId
-        )
-        return records?.location?.get(0)?.stationId
-    }
-
     fun getLocationName(): String? {
         Log.i(
             "WeatherLog",
             "WeatherJson.getLocationName().地點：" + records?.location?.get(0)?.locationName
         )
         return records?.location?.get(0)?.locationName
+    }
+
+    fun getStationId(): String? {
+        Log.i(
+            "WeatherLog",
+            "WeatherJson.getStationId().測站編號：" + records?.location?.get(0)?.stationId
+        )
+        return records?.location?.get(0)?.stationId
     }
 
     fun getElementValue(): String? {
@@ -43,10 +43,14 @@ data class WeatherJson(
      * Check for weatherElement do exist.
      * I guess when they update the value, the weatherElement will be empty for a second.
      *
-     * @return True, WeatherElement DO exist, continue.
-     * @return False, WeatherElement DO NOT exist, break.
+     * @return True, WeatherElement IS EMPTY.
+     * @return False, WeatherElement IS NOT EMPTY.
      * */
-    fun isElementExist(): Boolean {
-        return records?.location?.get(0)?.weatherElement?.size!! >= 1
+    fun isLocationEmpty(): Boolean? {
+        return records?.location?.isEmpty()
+    }
+
+    fun isElementEmpty(): Boolean? {
+        return records?.location?.get(0)?.weatherElement?.isEmpty()
     }
 }
