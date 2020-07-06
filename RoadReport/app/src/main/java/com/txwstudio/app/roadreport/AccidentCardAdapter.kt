@@ -14,7 +14,7 @@ import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
+class AccidentCardAdapter(val context: Context, val roadCode: Int) :
     FirestoreRecyclerAdapter<Accident?, AccidentCardHolder?>(
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
