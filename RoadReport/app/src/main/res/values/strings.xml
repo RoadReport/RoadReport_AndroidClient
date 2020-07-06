@@ -40,8 +40,6 @@
     <string name="settingsFrag_titleLicense">版權聲明</string>
 
     <!-- RoadActivity -->
-    <string name="roadActivity_back">返回</string>
-    <string name="roadActivity_SignInFirst">請先登入</string>
     <string name="roadActivity_tab_accidentEvent">路況</string>
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>

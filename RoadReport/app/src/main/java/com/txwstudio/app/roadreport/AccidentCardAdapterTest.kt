@@ -77,7 +77,7 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
             Log.i("TESTTT", "What user can to the card, Situation 2")
             holder.moreButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setItems(R.array.roadActivity_moreOnClick_situation2) { _, which ->
+                builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
                     when (which) {
                         0 -> {
                             val accidentModel = getItem(position)
@@ -107,7 +107,7 @@ class AccidentCardAdapterTest(val context: Context, val roadCode: Int) :
             Log.i("TESTTT", "What user can to the card, Situation 3")
             holder.moreButton.setOnClickListener {
                 val builder = AlertDialog.Builder(context)
-                builder.setItems(R.array.roadActivity_moreOnClick_situation3) { _, which ->
+                builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                     when (which) {
                         0 -> Util().toast(context, "你剛按檢舉")
                     }
