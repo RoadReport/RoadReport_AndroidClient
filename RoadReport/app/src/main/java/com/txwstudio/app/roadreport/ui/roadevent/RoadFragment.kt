@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.txwstudio.app.roadreport.AccidentCardAdapter
+import com.txwstudio.app.roadreport.adapter.AccidentCardAdapter
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 
