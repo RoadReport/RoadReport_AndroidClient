@@ -1,10 +1,8 @@
-package com.txwstudio.app.roadreport
+package com.txwstudio.app.roadreport.firebase
 
-import android.content.Context
 import android.util.Log
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.txwstudio.app.roadreport.model.Accident

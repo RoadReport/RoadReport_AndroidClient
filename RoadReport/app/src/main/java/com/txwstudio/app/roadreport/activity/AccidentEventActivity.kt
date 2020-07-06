@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.*
 import com.txwstudio.app.roadreport.firebase.AuthManager
+import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.model.Accident
 import kotlinx.android.synthetic.main.activity_accident_event.*
 import java.util.*

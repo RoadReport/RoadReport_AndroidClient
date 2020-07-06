@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.txwstudio.app.roadreport.FirestoreManager
+import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.activity.AccidentEventActivity
