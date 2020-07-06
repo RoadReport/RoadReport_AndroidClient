@@ -151,17 +151,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingStart="64dp"
-                android:paddingEnd="0dp"
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <View style="@style/DivLine" />
+                <View
+                    style="@style/DivLine"
+                    android:layout_marginStart="64dp" />
 
                 <TextView
                     android:id="@+id/textView_accountFrag_uid2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
                     android:paddingTop="@dimen/margin_normal"
                     android:paddingBottom="@dimen/margin_normal"
                     android:text="@{viewModel.uid}"
@@ -172,6 +173,7 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
                     android:layout_marginBottom="@dimen/margin_normal"
                     android:onClick="@{(view) -> handler.signInOut(view)}"
                     android:text="@string/accountFragment_accountStatusSignedIn" />
