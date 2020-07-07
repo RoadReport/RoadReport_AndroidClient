@@ -13,87 +13,113 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#4aa285"
         android:layout_marginBottom="@dimen/margin_normal"
-        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        app:cardElevation="@dimen/materialCard_half">
+        android:foreground="?attr/selectableItemBackground"
+        app:cardElevation="@dimen/materialCard_min">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/margin_normal"
-            android:paddingBottom="@dimen/margin_normal">
+            android:layout_height="match_parent"
+            android:background="#4aa285"
+            android:padding="@dimen/margin_normal">
 
-            <TextView
-                android:id="@+id/textView_weatherCard_location"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayout0"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{weather.locationName}"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="三地門 C0R150" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/textView0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weather.locationName}"
+                    tools:text="霧台"
+                    android:textColor="#FFF"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/textView00"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-            <TextView
-                android:id="@+id/textView_weatherCard_tempTitle"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textView00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weather.stationId}"
+                    tools:text="C0R130"
+                    android:textColor="@color/grey200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:gravity="center_horizontal"
-                android:text="@string/weatherFrag_temp"
-                app:layout_constraintEnd_toStartOf="@id/textView_weatherCard_humidityTitle"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_location"
-                tools:text="溫度" />
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/linearLayout2"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView_weatherCard_humidityTitle"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weather.tempValue}"
+                    tools:text="26"
+                    android:textColor="#FFF"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/textView2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="目前溫度"
+                    android:textColor="@color/grey200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:gravity="center"
-                android:text="@string/weatherFrag_min10"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/textView_weatherCard_tempTitle"
-                app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_location"
-                tools:text="10 分鐘雨量" />
+                app:layout_constraintTop_toTopOf="parent">
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{weather.humidityValue}"
+                    tools:text="-998"
+                    android:textColor="#FFF"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/textView4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-            <TextView
-                android:id="@+id/textView_weatherCard_temp"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@{weather.tempValue}"
-                android:textColor="@color/black"
-                android:textSize="34sp"
-                app:layout_constraintEnd_toStartOf="@id/textView_weatherCard_humidity"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_tempTitle"
-                tools:text="26" />
-
-            <TextView
-                android:id="@+id/textView_weatherCard_humidity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{weather.humidityValue}"
-                android:textColor="@color/black"
-                android:textSize="34sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/textView_weatherCard_temp"
-                app:layout_constraintTop_toBottomOf="@id/textView_weatherCard_tempTitle"
-                tools:text="-998.0" />
-
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 分鐘雨量"
+                    android:textColor="@color/grey200"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView3" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
