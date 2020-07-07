@@ -91,7 +91,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
                 tempElementValue = if (!temp?.isLocationEmpty()!!) {
                     if (!temp.isElementEmpty()!!) {
-                        temp.getElementValue()
+                        temp.getElementValue()?.substring(0, 2)
                     } else {
                         "--"
                     }
