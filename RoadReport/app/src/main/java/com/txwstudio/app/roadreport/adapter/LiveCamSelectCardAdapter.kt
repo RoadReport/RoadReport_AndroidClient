@@ -26,7 +26,7 @@ class LiveCamSelectCardAdapter :
 
         init {
             binding.setClickListener {
-                binding.liveCamSource?.let {
+                binding.dynamicLiveCamSource?.let {
                     changeStreamUrl(it)
                 }
             }
@@ -40,7 +40,7 @@ class LiveCamSelectCardAdapter :
 
         fun bind(item: DynamicLiveCamSource) {
             binding.apply {
-                liveCamSource = item
+                dynamicLiveCamSource = item
                 executePendingBindings()
             }
         }
