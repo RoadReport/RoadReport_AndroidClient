@@ -98,12 +98,12 @@
                         android:layout_height="32dp"
                         android:layout_centerVertical="true"
                         android:scaleType="fitStart"
-                        app:error="@{@drawable/ic_square_face_error_106dp}"
-                        app:imageUrl="@{viewModel.photoUrl}"
+                        app:errors="@{@drawable/ic_square_face_error_106dp}"
+                        app:imageUrls="@{viewModel.photoUrl}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:placeHolder="@{@drawable/ic_square_face_smiling_106dp}"
+                        app:placeHolders="@{@drawable/ic_square_face_smiling_106dp}"
                         tools:src="@drawable/ic_square_face_smiling_106dp" />
 
                     <TextView
