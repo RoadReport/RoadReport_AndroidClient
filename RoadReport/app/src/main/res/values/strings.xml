@@ -51,6 +51,9 @@
     <!-- Weather Fragment -->
     <string name="weatherFrag_temp">溫度</string>
     <string name="weatherFrag_min10">10 分鐘雨量</string>
+    <string name="weatherFrag_valueDescription">
+        數值來源為中央氣象局放置於各地的自動氣象站，本頁擷取鄰近於該道路之氣象站資訊。\n\n數值含意：\n-998.00：表示過去六小時內無降雨\n0.00 或以上：過去 10 分鐘內降雨量
+    </string>
 
     <!-- Live Cam Fragment -->
     <string name="liveCamFrag_title">即時影像</string>
