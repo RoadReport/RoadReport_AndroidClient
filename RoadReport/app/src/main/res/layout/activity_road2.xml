@@ -17,18 +17,8 @@
             android:background="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_scrollFlags="scroll">
-
-            <TextView
-                android:id="@+id/textView_roadAct2_toolbarTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_activity_road"
-                android:textColor="?attr/activityTitleTextColor"
-                android:textSize="20sp"
-                tools:layout_editor_absoluteX="156dp"
-                tools:layout_editor_absoluteY="6dp" />
-        </androidx.appcompat.widget.Toolbar>
+            app:layout_scrollFlags="scroll"
+            app:titleTextColor="@color/white" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -53,7 +43,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/margin_normal"
         android:src="@drawable/ic_add_black_24dp"
-        app:tint="?attr/menuIconFillColor"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:tint="?attr/menuIconFillColor" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

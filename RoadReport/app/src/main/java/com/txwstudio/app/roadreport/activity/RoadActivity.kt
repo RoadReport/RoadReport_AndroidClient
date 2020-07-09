@@ -54,8 +54,7 @@ class RoadActivity : AppCompatActivity() {
 
     private fun setupToolBar() {
         setSupportActionBar(toolbar_roadAct2)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        textView_roadAct2_toolbarTitle.text = RoadCode().getCurrRoadName(this)
+        supportActionBar?.title = RoadCode().getCurrRoadName(this)
     }
 }
