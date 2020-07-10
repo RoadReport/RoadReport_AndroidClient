@@ -130,7 +130,10 @@
                 android:layout_marginEnd="@dimen/all_default_margin"
                 android:background="@drawable/bg_edittext"
                 android:hint="@string/accidentEvent_situationHint"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:gravity="top|start"
+                android:scrollbars="vertical"
+                android:lines="6"
                 android:padding="@dimen/all_default_margin" />
 
             <ProgressBar
