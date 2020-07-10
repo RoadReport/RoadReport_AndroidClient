@@ -61,8 +61,8 @@
 
 
     <!-- Accident Event Activity Text -->
-    <string name="accidentEvent_currentRoad">目前路段</string>
-    <string name="accidentEvent_situationType">種類</string>
+    <string name="accidentEvent_currentRoad">目前所在路段</string>
+    <string name="accidentEvent_situationType">事件種類</string>
     <array name="accidentEvent_situationTypeArray">
         <item>請選擇事故種類</item>
         <item>事故</item>
@@ -77,17 +77,17 @@
     <string name="accidentEvent_situationType_3">臨檢</string>
     <string name="accidentEvent_situationType_4">測速</string>
     <string name="accidentEvent_situationType_5">其他</string>
-    <string name="accidentEvent_location">地點</string>
-    <string name="accidentEvent_locationHint">例如：野店附近、27.5K 前</string>
+    <string name="accidentEvent_location">地點 - 10 字內</string>
+    <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
-    <string name="accidentEvent_situationHint">例如：釘子、車禍、爆胎、擺攤</string>
+    <string name="accidentEvent_situationHint">簡短描述你眼前發生之狀況</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
     <string name="accidentEvent_addConfirm">確認要新增事件?</string>
     <string name="accidentEvent_editSuccess">更新成功</string>
     <string name="accidentEvent_editFailed">更新失敗</string>
     <string name="accidentEvent_editConfirm">確認要更新事件?</string>
-    <string name="accidentEvent_NoEntry">檢查欄位</string>
+    <string name="accidentEvent_NoEntry">有欄位未填寫</string>
     <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
 
