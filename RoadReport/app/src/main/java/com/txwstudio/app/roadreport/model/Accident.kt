@@ -12,5 +12,6 @@ data class Accident(
     var time: Timestamp = Timestamp(Date()),
     var situationType: Long = -1,
     var location: String = "",
-    var situation: String = ""
+    var situation: String = "",
+    var imageUrl: String = ""
 ) : Parcelable

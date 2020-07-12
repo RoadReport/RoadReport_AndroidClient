@@ -3,7 +3,6 @@ package com.txwstudio.app.roadreport.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.FileUtils
 import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Log
@@ -30,8 +29,6 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.io.InputStream
-import java.net.URI
 import java.util.*
 
 
@@ -123,6 +120,9 @@ class AccidentEventActivity : AppCompatActivity() {
 
         editText_accidentEvent_locationContent.setText(accidentForEditing.location)
         editText_accidentEvent_situationContent.setText(accidentForEditing.situation)
+
+        imageUrl = accidentForEditing.imageUrl
+        loadAndClearImageWithGlide(true, imageUrl)
     }
 
 
@@ -142,10 +142,17 @@ class AccidentEventActivity : AppCompatActivity() {
 
     fun uploadImage() {
         textView_accidentEvent_uploadImageButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
-            startActivityForResult(intent, 1)
+            if (imageUrl.isBlank()) {
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                startActivityForResult(intent, 1)
+            } else if (!imageUrl.isBlank()) {
+                imageUrl = ""
+                loadAndClearImageWithGlide(false, "")
+                textView_accidentEvent_uploadImageButton.background =
+                    getDrawable(R.drawable.bg_upload_image_button)
+            }
         }
     }
 
@@ -179,7 +186,7 @@ class AccidentEventActivity : AppCompatActivity() {
                 val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
                 val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
-                dfgdfhjk(body)
+                sendImageAndGetLink(body)
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
         } else if (data == null) {
@@ -188,19 +195,30 @@ class AccidentEventActivity : AppCompatActivity() {
     }
 
 
-    fun dfgdfhjk(body: MultipartBody.Part) {
+    private fun sendImageAndGetLink(body: MultipartBody.Part) {
         GlobalScope.launch {
             val wow =
                 ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
-            Log.i("TESTTT", "網址: ${wow?.data?.link}")
-
+            imageUrl = wow?.data?.link.toString()
             withContext(Dispatchers.Main) {
-                Glide.with(this@AccidentEventActivity)
-                    .load(wow?.data?.link)
-                    .into(imageView_accidentEvent_imageViewer)
+                textView_accidentEvent_uploadImageButton.background =
+                    getDrawable(R.drawable.bg_upload_image_remove_button)
+                loadAndClearImageWithGlide(true, wow?.data?.link)
             }
+            Log.i("TESTTT", "網址: ${wow?.data?.link}")
         }
     }
+
+    private fun loadAndClearImageWithGlide(isLoad: Boolean, source: String?) {
+        if (isLoad) {
+            Glide.with(this@AccidentEventActivity)
+                .load(source)
+                .into(imageView_accidentEvent_imageViewer)
+        } else if (!isLoad) {
+            Glide.with(this@AccidentEventActivity).clear(imageView_accidentEvent_imageViewer)
+        }
+    }
+
 
     /** Are the entries empty?
      *
@@ -222,7 +240,7 @@ class AccidentEventActivity : AppCompatActivity() {
             situationType.toLong(),
             editText_accidentEvent_locationContent.text.toString(),
             editText_accidentEvent_situationContent.text.toString(),
-            ""
+            imageUrl
         )
     }
 
