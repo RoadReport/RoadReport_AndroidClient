@@ -109,4 +109,15 @@
     <style name="LayoutFullWidth.Vertical" parent="@style/LayoutFullWidth">
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="StyleRightCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/StyleRightCardViewCorner</item>
+    </style>
+    <style name="StyleRightCardViewCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
 </resources>
