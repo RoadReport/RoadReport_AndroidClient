@@ -129,12 +129,44 @@
                 android:layout_marginStart="@dimen/all_default_margin"
                 android:layout_marginEnd="@dimen/all_default_margin"
                 android:background="@drawable/bg_edittext"
+                android:gravity="top|start"
                 android:hint="@string/accidentEvent_situationHint"
                 android:inputType="textMultiLine"
-                android:gravity="top|start"
-                android:scrollbars="vertical"
                 android:lines="6"
-                android:padding="@dimen/all_default_margin" />
+                android:padding="@dimen/all_default_margin"
+                android:scrollbars="vertical" />
+
+
+            <!-- Situation -->
+            <TextView
+                android:id="@+id/textView_accidentEvent_uploadImageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/all_default_margin"
+                android:text="圖片 - 選擇性" />
+
+            <ImageView
+                android:id="@+id/imageView_accidentEvent_imageViewer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/textView_accidentEvent_uploadImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/all_default_margin"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:background="@drawable/bg_upload_image_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:textColor="@color/white"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/margin_normal"
+                android:text="上傳" />
 
             <ProgressBar
                 android:layout_width="wrap_content"
