@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="accidentModel"
+            type="com.txwstudio.app.roadreport.model.Accident" />
+
+        <variable
+            name="viewModel"
+            type="com.txwstudio.app.roadreport.ui.eventeditor.EventEditorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.txwstudio.app.roadreport.activity.AccidentEventActivity">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/all_default_margin">
+
+                <!-- Current Road -->
+                <TextView
+                    android:id="@+id/textView_eventEditor_currentRoadTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_currentRoad" />
+
+                <TextView
+                    android:id="@+id/textView_eventEditor_currentRoadContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/all_default_margin"
+                    android:layout_marginEnd="@dimen/all_default_margin"
+                    android:background="@drawable/bg_edittext"
+                    android:padding="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_currentRoad"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+                <!-- Situation Type -->
+                <TextView
+                    android:id="@+id/textView_eventEditor_situationTypeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_situationType" />
+
+                <TextView
+                    android:id="@+id/editText_eventEditor_situationTypeContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/all_default_margin"
+                    android:layout_marginEnd="@dimen/all_default_margin"
+                    android:background="@drawable/bg_edittext"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="selectSituationType"
+                    android:padding="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_situationType_0"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+
+                <!-- Location -->
+                <TextView
+                    android:id="@+id/textView_eventEditor_locationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_location" />
+
+                <EditText
+                    android:id="@+id/editText_eventEditor_locationContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/all_default_margin"
+                    android:layout_marginEnd="@dimen/all_default_margin"
+                    android:background="@drawable/bg_edittext"
+                    android:hint="@string/accidentEvent_locationHint"
+                    android:inputType="text"
+                    android:padding="@dimen/all_default_margin" />
+
+
+                <!-- Situation -->
+                <TextView
+                    android:id="@+id/textView_eventEditor_situationTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/all_default_margin"
+                    android:text="@string/accidentEvent_situation" />
+
+                <EditText
+                    android:id="@+id/editText_eventEditor_situationContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/all_default_margin"
+                    android:layout_marginEnd="@dimen/all_default_margin"
+                    android:background="@drawable/bg_edittext"
+                    android:gravity="top|start"
+                    android:hint="@string/accidentEvent_situationHint"
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:padding="@dimen/all_default_margin"
+                    android:scrollbars="vertical" />
+
+                <!-- Image -->
+                <TextView
+                    android:id="@+id/textView_eventEditor_imageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/all_default_margin"
+                    android:text="圖片 - 選擇性" />
+
+                <TextView
+                    android:id="@+id/button_eventEditor_uploadImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/all_default_margin"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:background="@drawable/bg_upload_image_button"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{clickListener}"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_normal"
+                    android:text="上傳"
+                    android:textColor="@color/black" />
+
+<!--                <android.widget.Button-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/all_default_margin"-->
+<!--                    android:layout_marginTop="@dimen/margin_normal"-->
+<!--                    android:layout_marginEnd="@dimen/margin_normal"-->
+<!--                    android:background="@drawable/bg_upload_image_button"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:foreground="?attr/selectableItemBackground"-->
+<!--                    android:text="上傳" />-->
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
