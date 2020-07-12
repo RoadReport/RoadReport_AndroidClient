@@ -1,6 +1,9 @@
 package com.txwstudio.app.roadreport.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.FileUtils
 import android.os.SystemClock
 import android.text.TextUtils
 import android.util.Log
@@ -9,12 +12,26 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.Timestamp
-import com.txwstudio.app.roadreport.*
+import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.RoadCode
+import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.service.ImgurApi
 import kotlinx.android.synthetic.main.activity_accident_event.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import java.io.InputStream
+import java.net.URI
 import java.util.*
 
 
@@ -24,6 +41,7 @@ class AccidentEventActivity : AppCompatActivity() {
     private var situationType = -1
     private var mLastClickTime: Long = 0
     private var editMode = false
+    private var imageUrl = ""
     private lateinit var accidentForEditing: Accident
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +51,7 @@ class AccidentEventActivity : AppCompatActivity() {
         setupToolBar()
         setupCurrentRoadText()
 
+        uploadImage()
     }
 
     override fun onResume() {
@@ -120,6 +139,69 @@ class AccidentEventActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+
+    fun uploadImage() {
+        textView_accidentEvent_uploadImageButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+            startActivityForResult(intent, 1)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            // https://stackoverflow.com/questions/39953457/how-to-upload-image-file-in-retrofit-2
+
+            val fileUri = data.data
+            Log.i("TESTTT", "fileUri: $fileUri")
+
+            val takeFlags = (data.flags
+                    and (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
+            this.grantUriPermission(this.packageName, fileUri, takeFlags)
+            fileUri?.let {
+                this.contentResolver.takePersistableUriPermission(it, takeFlags)
+            }
+
+            val fileUriPath = fileUri?.path
+            Log.i("TESTTT", "fileUriPath：${fileUriPath}")
+
+
+            contentResolver.openInputStream(fileUri!!).use {
+                val itType = it
+
+                val file = File.createTempFile("prefix", ".er")
+                org.apache.commons.io.FileUtils.copyToFile(it, file)
+
+                val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+                dfgdfhjk(body)
+            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+        } else if (data == null) {
+            Util().toast(this, getString(R.string.all_unknownError))
+        }
+    }
+
+
+    fun dfgdfhjk(body: MultipartBody.Part) {
+        GlobalScope.launch {
+            val wow =
+                ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
+            Log.i("TESTTT", "網址: ${wow?.data?.link}")
+
+            withContext(Dispatchers.Main) {
+                Glide.with(this@AccidentEventActivity)
+                    .load(wow?.data?.link)
+                    .into(imageView_accidentEvent_imageViewer)
+            }
+        }
+    }
+
     /** Are the entries empty?
      *
      * @return true: Yes, stop right there.
@@ -139,7 +221,8 @@ class AccidentEventActivity : AppCompatActivity() {
             Timestamp(Date()),
             situationType.toLong(),
             editText_accidentEvent_locationContent.text.toString(),
-            editText_accidentEvent_situationContent.text.toString()
+            editText_accidentEvent_situationContent.text.toString(),
+            ""
         )
     }
 
@@ -193,12 +276,13 @@ class AccidentEventActivity : AppCompatActivity() {
                     FirestoreManager().updateAccident(
                         ROADCODE,
                         intent.getStringExtra("documentId"),
-                        getUserEntryAfterUpdate()) {
+                        getUserEntryAfterUpdate()
+                    ) {
                         if (it) {
                             Util().toast(this, getString(R.string.accidentEvent_editSuccess))
                             finish()
                         } else {
-                             Util().toast(this, getString(R.string.accidentEvent_editFailed))
+                            Util().toast(this, getString(R.string.accidentEvent_editFailed))
                         }
                     }
                 }
