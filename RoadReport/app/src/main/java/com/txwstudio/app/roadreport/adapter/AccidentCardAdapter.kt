@@ -12,6 +12,7 @@ import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.activity.AccidentEventActivity
+import com.txwstudio.app.roadreport.activity.EventEditorActivity
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
@@ -84,7 +85,8 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                     when (which) {
                         0 -> {
                             val accidentModel = getItem(position)
-                            val intent = Intent(context, AccidentEventActivity::class.java)
+//                            val intent = Intent(context, AccidentEventActivity::class.java)
+                            val intent = Intent(context, EventEditorActivity::class.java)
                             intent.putExtra("editMode", true)
                             intent.putExtra("documentId", snapshots.getSnapshot(position).id)
                             intent.putExtra("accidentModel", accidentModel)
