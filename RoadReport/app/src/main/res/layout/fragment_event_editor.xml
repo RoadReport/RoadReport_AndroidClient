@@ -145,7 +145,7 @@
                     android:gravity="center"
                     android:padding="@dimen/margin_normal"
                     android:text="上傳"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/white" />
 
 <!--                <android.widget.Button-->
 <!--                    android:layout_width="match_parent"-->

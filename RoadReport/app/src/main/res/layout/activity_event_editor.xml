@@ -24,8 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentViewer"
-        android:name="com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment"
+        android:id="@+id/fragView_eventEditor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
