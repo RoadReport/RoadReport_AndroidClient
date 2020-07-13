@@ -248,6 +248,7 @@ class AccidentEventActivity : AppCompatActivity() {
         accidentForEditing.situationType = situationType.toLong()
         accidentForEditing.location = editText_accidentEvent_locationContent.text.toString()
         accidentForEditing.situation = editText_accidentEvent_situationContent.text.toString()
+        accidentForEditing.imageUrl = imageUrl
         return accidentForEditing
     }
 

@@ -69,6 +69,9 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         if (!model.imageUrl.isBlank()) {
             holder.image.visibility = View.VISIBLE
             Glide.with(context).load(model.imageUrl).into(holder.image)
+        } else if (model.imageUrl.isBlank()) {
+            holder.image.visibility = View.GONE
+            Glide.with(context).clear(holder.image)
         }
 
 
