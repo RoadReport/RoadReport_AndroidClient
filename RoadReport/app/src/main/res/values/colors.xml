@@ -11,7 +11,18 @@
     <color name="facebookBlue">#1877f2</color>
     <color name="facebookBlueDark">#3b5998</color>
 
-    <color name="bootstrapRed">#dc3545</color>
+    <!--  Color Pattern from firebase console -->
+    <color name="firebaseRedPrimary">#fb3942</color>
+    <color name="firebaseRedPrimaryDark">#c71924</color>
+
+    <!-- Color Pattern from Bootstrap 4 -->
+    <color name="bootstrapPrimary">#007bff</color>
+    <color name="bootstrapSecondary">#6c757d</color>
+    <color name="bootstrapSuccess">#28a745</color>
+    <color name="bootstrapDanger">#dc3545</color>
+    <color name="bootstrapInfo">#17a2b8</color>
+    <color name="bootstrapLight">#f8f9fa</color>
+    <color name="bootstrapDark">#343a40</color>
 
     <color name="white">#fff</color>
     <color name="black">#000</color>
