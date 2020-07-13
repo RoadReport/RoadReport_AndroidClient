@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
+import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
 
@@ -16,10 +17,23 @@ class EventEditorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_event_editor)
         setupToolBar()
 
+        val intent = intent
+        val editMode = intent.getBooleanExtra("editMode", false)
+        val documentId = intent.getStringExtra("documentId")
+        val accidentModel = intent.getParcelableExtra<Accident>("accidentModel")
+
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         val eventEditorFragment = EventEditorFragment()
+
+        val bundle = Bundle()
+        bundle.putBoolean("editMode", editMode)
+        bundle.putString("documentId", documentId)
+        bundle.putParcelable("accidentModel", accidentModel)
+
+        eventEditorFragment.arguments = bundle
+
         fragmentTransaction.add(R.id.fragView_eventEditor, eventEditorFragment)
         fragmentTransaction.commit()
     }
