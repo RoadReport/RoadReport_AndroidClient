@@ -98,7 +98,8 @@
                     android:background="@drawable/bg_edittext"
                     android:hint="@string/accidentEvent_locationHint"
                     android:inputType="text"
-                    android:padding="@dimen/all_default_margin" />
+                    android:padding="@dimen/all_default_margin"
+                    android:text="@={accidentModel.location}" />
 
 
                 <!-- Situation -->
@@ -121,7 +122,8 @@
                     android:inputType="textMultiLine"
                     android:lines="6"
                     android:padding="@dimen/all_default_margin"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:text="@={accidentModel.situation}" />
 
                 <!-- Image -->
                 <TextView
@@ -140,24 +142,24 @@
                     android:background="@drawable/bg_upload_image_button"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="@{clickListener}"
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
+                    android:onClick="@{clickListener}"
                     android:padding="@dimen/margin_normal"
                     android:text="上傳"
                     android:textColor="@color/white" />
 
-<!--                <android.widget.Button-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/all_default_margin"-->
-<!--                    android:layout_marginTop="@dimen/margin_normal"-->
-<!--                    android:layout_marginEnd="@dimen/margin_normal"-->
-<!--                    android:background="@drawable/bg_upload_image_button"-->
-<!--                    android:clickable="true"-->
-<!--                    android:focusable="true"-->
-<!--                    android:foreground="?attr/selectableItemBackground"-->
-<!--                    android:text="上傳" />-->
+                <!--                <android.widget.Button-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/all_default_margin"-->
+                <!--                    android:layout_marginTop="@dimen/margin_normal"-->
+                <!--                    android:layout_marginEnd="@dimen/margin_normal"-->
+                <!--                    android:background="@drawable/bg_upload_image_button"-->
+                <!--                    android:clickable="true"-->
+                <!--                    android:focusable="true"-->
+                <!--                    android:foreground="?attr/selectableItemBackground"-->
+                <!--                    android:text="上傳" />-->
 
                 <ProgressBar
                     android:layout_width="wrap_content"

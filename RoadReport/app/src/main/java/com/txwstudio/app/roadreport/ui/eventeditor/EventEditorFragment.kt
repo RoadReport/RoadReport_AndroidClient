@@ -27,7 +27,19 @@ class EventEditorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        eventEditorViewModel = ViewModelProvider(this).get(EventEditorViewModel::class.java)
+        val bundle = this.arguments
+        val editMode = bundle?.getBoolean("editMode", false)!!
+        val documentId = bundle.getString("documentId", "")
+        val accidentModel = bundle.getParcelable<Accident>("accidentModel")
+        Log.i("TESTTT", "${accidentModel?.location}")
+
+        eventEditorViewModel = ViewModelProvider(
+            this,
+            EventEditorViewModelFactory(
+                editMode,
+                accidentModel
+            )
+        ).get(EventEditorViewModel::class.java)
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -38,11 +50,7 @@ class EventEditorFragment : Fragment() {
         binding.viewModel = eventEditorViewModel
         binding.lifecycleOwner = this
 
-        val bundle = this.arguments
-        val editMode = bundle?.getBoolean("editMode")
-        val documentId = bundle?.getString("documentId")
-        val accidentModel = bundle?.getParcelable<Accident>("accidentModel")
-        Log.i("TESTTT", "${accidentModel?.location}")
+        eventEditorViewModel.init()
 
         return binding.root
     }
