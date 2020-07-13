@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.R
@@ -62,9 +63,13 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         holder.situationType.text = context.getString(situationType)
         holder.location.text = model.location
         holder.situation.text = model.situation
-        holder.time.text = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
+        holder.time.text = SimpleDateFormat("MM/dd HH:mm", Locale.getDefault())
             .format(model.time.toDate())
         holder.userName.text = model.userName
+        if (!model.imageUrl.isBlank()) {
+            holder.image.visibility = View.VISIBLE
+            Glide.with(context).load(model.imageUrl).into(holder.image)
+        }
 
 
         // What user can to the card. Different onClick behavior for card.
@@ -85,8 +90,8 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                     when (which) {
                         0 -> {
                             val accidentModel = getItem(position)
-//                            val intent = Intent(context, AccidentEventActivity::class.java)
-                            val intent = Intent(context, EventEditorActivity::class.java)
+                            val intent = Intent(context, AccidentEventActivity::class.java)
+//                            val intent = Intent(context, EventEditorActivity::class.java)
                             intent.putExtra("editMode", true)
                             intent.putExtra("documentId", snapshots.getSnapshot(position).id)
                             intent.putExtra("accidentModel", accidentModel)
