@@ -17,21 +17,19 @@ class EventEditorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_event_editor)
         setupToolBar()
 
-        val intent = intent
         val editMode = intent.getBooleanExtra("editMode", false)
         val documentId = intent.getStringExtra("documentId")
         val accidentModel = intent.getParcelableExtra<Accident>("accidentModel")
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val eventEditorFragment = EventEditorFragment()
 
         val bundle = Bundle()
         bundle.putBoolean("editMode", editMode)
         bundle.putString("documentId", documentId)
         bundle.putParcelable("accidentModel", accidentModel)
 
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        val eventEditorFragment = EventEditorFragment()
         eventEditorFragment.arguments = bundle
 
         fragmentTransaction.add(R.id.fragView_eventEditor, eventEditorFragment)
