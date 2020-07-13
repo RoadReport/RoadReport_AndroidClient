@@ -93,8 +93,8 @@ class AccidentEventActivity : AppCompatActivity() {
 
     private fun setupToolBar() {
         setSupportActionBar(toolbar_accidentEvent)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.title_activity_eventEditor)
     }
 
     private fun setupCurrentRoadText() {
