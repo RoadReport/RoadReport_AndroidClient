@@ -5,7 +5,7 @@
         android:left="0dp"
         android:right="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/bootstrapRed" />
+            <solid android:color="@color/bootstrapDanger" />
             <corners
                 android:bottomLeftRadius="4dp"
                 android:bottomRightRadius="4dp" />
