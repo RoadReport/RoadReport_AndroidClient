@@ -52,7 +52,14 @@ class EventEditorFragment : Fragment() {
 
         eventEditorViewModel.init()
 
+        subscribeUi()
+
         return binding.root
     }
 
+    fun subscribeUi() {
+        binding.clickMeToTest.setOnClickListener {
+            eventEditorViewModel.letPrintSomeThing()
+        }
+    }
 }
