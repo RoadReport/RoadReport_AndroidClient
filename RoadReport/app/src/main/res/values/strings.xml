@@ -82,6 +82,9 @@
     <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
     <string name="accidentEvent_situationHint">簡短描述你眼前發生之狀況</string>
+    <string name="accidentEvent_imageTitle">圖片 - 選擇性</string>
+    <string name="accidentEvent_uploadImageTitle">上傳圖片</string>
+    <string name="accidentEvent_removeUploadImageTitle">移除圖片</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
     <string name="accidentEvent_addConfirm">確認要新增事件?</string>
