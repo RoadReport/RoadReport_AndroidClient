@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
@@ -23,6 +24,7 @@ class EventEditorActivity : AppCompatActivity() {
 
         val bundle = Bundle()
         bundle.putBoolean("editMode", editMode)
+        bundle.putInt("roadCode", RoadCode().getCurrentRoadCode(this))
         bundle.putString("documentId", documentId)
         bundle.putParcelable("accidentModel", accidentModel)
 

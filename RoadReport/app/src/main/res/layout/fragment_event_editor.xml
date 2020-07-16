@@ -52,9 +52,10 @@
                     android:layout_marginEnd="@dimen/all_default_margin"
                     android:background="@drawable/bg_edittext"
                     android:padding="@dimen/all_default_margin"
-                    android:text="@string/accidentEvent_currentRoad"
+                    android:text="@{viewModel.roadName}"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="台 24" />
 
 
                 <!-- Situation Type -->
@@ -74,7 +75,8 @@
                     android:background="@drawable/bg_edittext"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="selectSituationType"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{clickListener}"
                     android:padding="@dimen/all_default_margin"
                     android:text="@string/accidentEvent_situationType_0"
                     android:textColor="@color/black"
@@ -131,7 +133,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/all_default_margin"
-                    android:text="圖片 - 選擇性" />
+                    android:text="@string/accidentEvent_imageTitle" />
+
+                <ImageView
+                    android:id="@+id/imageView_eventEditor_imageViewer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:scaleType="fitCenter"
+                    app:errors="@{@drawable/ic_square_face_error_106dp}"
+                    app:imageUrls="@{viewModel.imageUrl}"
+                    app:placeHolders="@{@drawable/ic_square_face_smiling_106dp}" />
 
                 <TextView
                     android:id="@+id/button_eventEditor_uploadImage"
@@ -146,20 +159,8 @@
                     android:gravity="center"
                     android:onClick="@{clickListener}"
                     android:padding="@dimen/margin_normal"
-                    android:text="上傳"
+                    android:text="@string/accidentEvent_uploadImageTitle"
                     android:textColor="@color/white" />
-
-                <!--                <android.widget.Button-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginStart="@dimen/all_default_margin"-->
-                <!--                    android:layout_marginTop="@dimen/margin_normal"-->
-                <!--                    android:layout_marginEnd="@dimen/margin_normal"-->
-                <!--                    android:background="@drawable/bg_upload_image_button"-->
-                <!--                    android:clickable="true"-->
-                <!--                    android:focusable="true"-->
-                <!--                    android:foreground="?attr/selectableItemBackground"-->
-                <!--                    android:text="上傳" />-->
 
                 <ProgressBar
                     android:layout_width="wrap_content"
