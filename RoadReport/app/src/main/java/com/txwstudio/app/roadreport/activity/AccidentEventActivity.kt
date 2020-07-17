@@ -160,6 +160,7 @@ class AccidentEventActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && data != null) {
+            progressbar_accidentEvent_imageProgress.visibility = View.VISIBLE
             // https://stackoverflow.com/questions/39953457/how-to-upload-image-file-in-retrofit-2
 
             val fileUri = data.data
@@ -196,7 +197,7 @@ class AccidentEventActivity : AppCompatActivity() {
 
 
     private fun sendImageAndGetLink(body: MultipartBody.Part) {
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.IO) {
             val wow =
                 ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
             imageUrl = wow?.data?.link.toString()
@@ -204,8 +205,8 @@ class AccidentEventActivity : AppCompatActivity() {
                 textView_accidentEvent_uploadImageButton.background =
                     getDrawable(R.drawable.bg_upload_image_remove_button)
                 loadAndClearImageWithGlide(true, wow?.data?.link)
+                progressbar_accidentEvent_imageProgress.visibility = View.GONE
             }
-            Log.i("TESTTT", "網址: ${wow?.data?.link}")
         }
     }
 

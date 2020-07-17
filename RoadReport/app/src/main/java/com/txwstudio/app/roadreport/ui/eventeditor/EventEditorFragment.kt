@@ -75,11 +75,19 @@ class EventEditorFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Handle image callback and upload to imgur inside Fragment for now,
+     * I'am limited by the technology of my time.
+     * TODO(Fix pattern)
+     * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {
             when (requestCode) {
                 UPLOAD_IMAGE_REQUEST_CODE -> {
+                    // Show infinite progress bar, wow much infinite!
+                    binding.progressbarEventEditorImageProgress.visibility = View.VISIBLE
+
                     val fileUri = data.data
                     val takeFlags = (data.flags
                             and (Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -173,6 +181,7 @@ class EventEditorFragment : Fragment() {
                 ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
             withContext(Dispatchers.Main) {
                 eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
+                binding.progressbarEventEditorImageProgress.visibility = View.GONE
             }
         }
     }
