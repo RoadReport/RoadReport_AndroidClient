@@ -60,6 +60,6 @@ class EventEditorActivity : AppCompatActivity() {
     private fun setupToolBar() {
         setSupportActionBar(toolbar_eventEditor)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "事件編輯器"
+        supportActionBar?.title = getString(R.string.title_activity_eventEditor)
     }
 }
