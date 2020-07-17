@@ -1,5 +1,6 @@
 package com.txwstudio.app.roadreport.ui.eventeditor
 
+import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,11 +24,12 @@ class EventEditorViewModel internal constructor(
     var situationType = MutableLiveData<Long>(0L)
     val location = MutableLiveData<String>()
     val situation = MutableLiveData<String>()
-    val imageUrl = MutableLiveData<String?>()
+    val imageUrl = MutableLiveData<String?>("")
+    val isUploadImageClicked = MutableLiveData<Boolean>(false)
+    private var mLastClickTime = 0L
 
     fun init() {
         currentRoadName.value = roadName
-        imageUrl.value = "https://i.imgur.com/lbrHgFy.jpg"
         if (editMode) {
             Log.i("TESTTT", "編輯模式")
             setValueToLiveData()
@@ -37,11 +39,32 @@ class EventEditorViewModel internal constructor(
         }
     }
 
+    /**
+     * Setting values to live data , invoke when editMode == true
+     * */
     private fun setValueToLiveData() {
         situationType.value = accidentModel?.situationType
         location.value = accidentModel?.location
         situation.value = accidentModel?.situation
         imageUrl.value = accidentModel?.imageUrl
+    }
+
+    /**
+     * Change isUploadImageClicked status, invoke by button_eventEditor_uploadImage.
+     * */
+    fun uploadImageClicked() {
+        // Prevent double click.
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+            return
+        }
+        mLastClickTime = SystemClock.elapsedRealtime()
+//        isUploadImageClicked.value = !isUploadImageClicked.value!!
+        if (imageUrl.value.isNullOrBlank()) {
+            isUploadImageClicked.value = true
+        } else if (!imageUrl.value.isNullOrBlank()) {
+            isUploadImageClicked.value = false
+            imageUrl.value = ""
+        }
     }
 
     fun letPrintSomeThing() {
@@ -55,6 +78,7 @@ class EventEditorViewModel internal constructor(
         Log.i("TESTTT", "地點：${w.location}")
         Log.i("TESTTT", "狀況描述：${w.situation}")
         Log.i("TESTTT", "圖片網址：${imageUrl.value}")
+        Log.i("TESTTT", "uploadImageClicked：${isUploadImageClicked.value}")
         Log.i("TESTTT", "isRequiredEntriesEmpty：${isRequiredEntriesEmpty()}")
     }
 
