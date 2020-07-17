@@ -143,9 +143,9 @@
                     android:layout_marginEnd="@dimen/margin_normal"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    app:errors="@{@drawable/ic_square_face_error_106dp}"
+                    app:errors="@{@drawable/bg_image_holder}"
                     app:imageUrls="@{viewModel.imageUrl}"
-                    app:placeHolders="@{@drawable/ic_square_face_smiling_106dp}" />
+                    app:placeHolders="@{@drawable/bg_image_holder}" />
 
                 <TextView
                     android:id="@+id/button_eventEditor_uploadImage"
