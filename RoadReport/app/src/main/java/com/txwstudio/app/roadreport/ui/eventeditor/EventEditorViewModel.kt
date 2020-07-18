@@ -20,6 +20,9 @@ class EventEditorViewModel internal constructor(
 
     var currentRoadName = MutableLiveData<String>()
 
+    var errorNotSignedIn = MutableLiveData<Boolean>(false)
+    var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
+
     // Order by Accident Data Class, skip for userName, userUid and time.
     var situationType = MutableLiveData<Long>(0L)
     val location = MutableLiveData<String>()
@@ -31,11 +34,7 @@ class EventEditorViewModel internal constructor(
     fun init() {
         currentRoadName.value = roadName
         if (editMode) {
-            Log.i("TESTTT", "編輯模式")
             setValueToLiveData()
-        } else if (!editMode) {
-            Log.i("TESTTT", "新增模式")
-
         }
     }
 
@@ -94,27 +93,59 @@ class EventEditorViewModel internal constructor(
                 situation.value.isNullOrBlank()
     }
 
-
+    /**
+     * Get current values.
+     *
+     * @return Accident
+     * */
     fun getUserEntry(): Accident {
         val currUser = AuthManager().getCurrUserModel()
-        return if (currUser != null) {
+        return if (editMode) {
+            // If in edit mode, grab old value.
             Accident(
-                currUser.displayName!!,
-                currUser.uid,
+                accidentModel!!.userName,
+                accidentModel!!.userUid,
+                accidentModel!!.time,
+                situationType.value!!,
+                location.value.toString(),
+                situation.value.toString(),
+                imageUrl.value!!
+            )
+        } else {
+            // If not in edit mode, create brand new value.
+            Accident(
+                currUser?.displayName!!,
+                currUser?.uid,
                 Timestamp(Date()),
                 situationType.value!!,
                 location.value.toString(),
-                situation.value.toString(), ""
-//                imageUrl.value!!
+                situation.value.toString(),
+                imageUrl.value!!
             )
-        } else {
-            Accident()
         }
     }
 
-    private fun sendClicked() {
-        if (isRequiredEntriesEmpty()) {
+    fun sendClicked() {
+        letPrintSomeThing()
+        // User not signed in yet, break.
+        if (!AuthManager().userIsSignedIn()) {
+            errorNotSignedIn.value = !errorNotSignedIn.value!!
             return
+        }
+
+        // Required entries are empty, break.
+        if (isRequiredEntriesEmpty()) {
+            errorRequiredEntriesEmpty.value = !errorRequiredEntriesEmpty.value!!
+            return
+        }
+
+
+        if (editMode) {
+            // Perform update event.
+
+        } else if (!editMode) {
+            // Perform add event.
+
         }
 
     }
