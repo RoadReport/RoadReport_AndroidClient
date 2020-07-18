@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.google.android.material.snackbar.Snackbar
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
@@ -168,6 +169,28 @@ class EventEditorFragment : Fragment() {
                 }
             }
         }
+
+        // If send was clicked, but user didn't sign in, show msg.
+        eventEditorViewModel.errorNotSignedIn.observe(viewLifecycleOwner) {
+            if (it) {
+                Util().snackBarShort(
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.all_notSignedIn
+                )
+                eventEditorViewModel.errorNotSignedIn.value = false
+            }
+        }
+
+        // If send was clicked, but required fields are empty, show msg.
+        eventEditorViewModel.errorRequiredEntriesEmpty.observe(viewLifecycleOwner) {
+            if (it) {
+                Util().snackBarShort(
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.accidentEvent_NoEntry
+                )
+                eventEditorViewModel.errorRequiredEntriesEmpty.value = false
+            }
+        }
     }
 
     private fun sendImageAndGetLink(body: MultipartBody.Part) {
@@ -181,6 +204,6 @@ class EventEditorFragment : Fragment() {
         }
     }
 
-    fun actionSendClicked() = eventEditorViewModel.letPrintSomeThing()
+    fun actionSendClicked() = eventEditorViewModel.sendClicked()
 
 }
