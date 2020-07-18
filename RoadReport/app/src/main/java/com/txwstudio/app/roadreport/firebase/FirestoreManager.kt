@@ -25,6 +25,7 @@ class FirestoreManager {
             }
             .addOnFailureListener { e ->
                 Log.i("TESTTT", "Error adding document", e)
+                isComplete(false)
             }
             .addOnCompleteListener {
                 isComplete(true)
