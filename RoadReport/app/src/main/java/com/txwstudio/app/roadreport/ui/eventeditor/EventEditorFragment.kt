@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
-import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.model.Accident
@@ -44,7 +43,8 @@ class EventEditorFragment : Fragment() {
 
         val bundle = this.arguments
         val editMode = bundle?.getBoolean("editMode", false)!!
-        val roadCode = bundle.getInt("editMode", -1)
+        val roadCode = bundle.getInt("roadCode", -1)
+        val roadName = bundle.getString("roadName", "")
         val documentId = bundle.getString("documentId", "")
         val accidentModel = bundle.getParcelable<Accident>("accidentModel")
         Log.i("TESTTT", "${accidentModel?.location}")
@@ -53,7 +53,7 @@ class EventEditorFragment : Fragment() {
             this, EventEditorViewModelFactory(
                 editMode,
                 roadCode,
-                RoadCode().getCurrRoadName(requireContext()),
+                roadName,
                 documentId,
                 accidentModel
             )
@@ -121,11 +121,6 @@ class EventEditorFragment : Fragment() {
     }
 
     fun subscribeUi() {
-        // For Test, remove soon.
-        binding.clickMeToTest.setOnClickListener {
-            eventEditorViewModel.letPrintSomeThing()
-        }
-
         /**
          * Does this match MVVM Pattern? Not sure about that.
          * Anyway, it works, don't touch it for now.
@@ -185,4 +180,7 @@ class EventEditorFragment : Fragment() {
             }
         }
     }
+
+    fun actionSendClicked() = eventEditorViewModel.letPrintSomeThing()
+
 }

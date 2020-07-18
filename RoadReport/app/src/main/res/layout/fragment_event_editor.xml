@@ -173,13 +173,6 @@
                     android:padding="@dimen/margin_normal"
                     android:text="@string/accidentEvent_uploadImageTitle"
                     android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/clickMeToTest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_normal"
-                    android:text="Click me to test" />
             </LinearLayout>
 
         </ScrollView>

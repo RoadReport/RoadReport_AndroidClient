@@ -7,7 +7,7 @@ import com.txwstudio.app.roadreport.model.Accident
 class EventEditorViewModelFactory(
     private val editMode: Boolean,
     private val roadCode: Int?,
-    private val roadName: String,
+    private val roadName: String?,
     private val documentId: String?,
     private val accidentModel: Accident?
 ) : ViewModelProvider.Factory {
