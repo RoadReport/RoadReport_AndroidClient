@@ -13,7 +13,7 @@ import java.util.*
 class EventEditorViewModel internal constructor(
     var editMode: Boolean,
     val roadCode: Int?,
-    val roadName: String,
+    val roadName: String?,
     val documentId: String?,
     var accidentModel: Accident?
 ) : ViewModel() {

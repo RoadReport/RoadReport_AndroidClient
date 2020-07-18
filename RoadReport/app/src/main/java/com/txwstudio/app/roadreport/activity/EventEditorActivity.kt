@@ -1,23 +1,26 @@
 package com.txwstudio.app.roadreport.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
-import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
 
 class EventEditorActivity : AppCompatActivity() {
 
+    private val eventEditorFragment = EventEditorFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_editor)
         setupToolBar()
 
+        // If start from RoadActivity(Add Event), passing == null.
+        // If start from AccidentCardAdapter(Edit Current Event), passing == below.
         val editMode = intent.getBooleanExtra("editMode", false)
         val documentId = intent.getStringExtra("documentId")
         val accidentModel = intent.getParcelableExtra<Accident>("accidentModel")
@@ -25,15 +28,13 @@ class EventEditorActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putBoolean("editMode", editMode)
         bundle.putInt("roadCode", RoadCode().getCurrentRoadCode(this))
+        bundle.putString("roadName", RoadCode().getCurrRoadName(this))
         bundle.putString("documentId", documentId)
         bundle.putParcelable("accidentModel", accidentModel)
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val eventEditorFragment = EventEditorFragment()
         eventEditorFragment.arguments = bundle
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragView_eventEditor, eventEditorFragment)
         fragmentTransaction.commit()
     }
@@ -50,7 +51,7 @@ class EventEditorActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
-                Util().toast(this, "TODO(完成)")
+                eventEditorFragment.actionSendClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)
