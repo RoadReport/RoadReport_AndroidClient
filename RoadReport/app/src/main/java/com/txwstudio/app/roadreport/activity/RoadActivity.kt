@@ -35,8 +35,8 @@ class RoadActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab_roadActivity).setOnClickListener {
             if (AuthManager().userIsSignedIn()) {
-                startActivity(Intent(this, AccidentEventActivity::class.java))
-//                startActivity(Intent(this, EventEditorActivity::class.java))
+//                startActivity(Intent(this, AccidentEventActivity::class.java))
+                startActivity(Intent(this, EventEditorActivity::class.java))
             } else {
                 Util().toast(this, getString(R.string.roadFrag_SignInFirst))
             }
