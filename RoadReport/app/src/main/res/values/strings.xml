@@ -59,6 +59,8 @@
     <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
 
+    <!-- Event Editor Fragment -->
+    <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
 
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前所在路段</string>
