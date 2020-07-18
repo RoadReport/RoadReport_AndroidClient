@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.firebase.AuthManager
+import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,6 +23,7 @@ class EventEditorViewModel internal constructor(
 
     var errorNotSignedIn = MutableLiveData<Boolean>(false)
     var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
+    var isComplete = MutableLiveData<Boolean>()
 
     // Order by Accident Data Class, skip for userName, userUid and time.
     var situationType = MutableLiveData<Long>(0L)
@@ -98,7 +100,7 @@ class EventEditorViewModel internal constructor(
      *
      * @return Accident
      * */
-    fun getUserEntry(): Accident {
+    private fun getUserEntry(): Accident {
         val currUser = AuthManager().getCurrUserModel()
         return if (editMode) {
             // If in edit mode, grab old value.
@@ -140,13 +142,18 @@ class EventEditorViewModel internal constructor(
         }
 
 
-        if (editMode) {
-            // Perform update event.
-
-        } else if (!editMode) {
+//        areYouSureDialog.value = if (!editMode) 1 else 2
+        if (!editMode) {
             // Perform add event.
+            FirestoreManager().addAccident(roadCode!!, getUserEntry()) {
+                isComplete.value = it
+            }
 
+        } else if (editMode) {
+            // Perform update event.
+            FirestoreManager().updateAccident(roadCode!!, documentId!!, getUserEntry()) {
+                isComplete.value = it
+            }
         }
-
     }
 }

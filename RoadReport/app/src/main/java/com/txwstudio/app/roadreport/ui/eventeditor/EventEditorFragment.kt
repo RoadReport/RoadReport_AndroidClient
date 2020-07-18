@@ -191,6 +191,17 @@ class EventEditorFragment : Fragment() {
                 eventEditorViewModel.errorRequiredEntriesEmpty.value = false
             }
         }
+
+        eventEditorViewModel.isComplete.observe(viewLifecycleOwner) {
+            if (it) {
+                requireActivity().finish()
+            } else {
+                Util().snackBarShort(
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.eventEditor_eventAddUpdateFailure
+                )
+            }
+        }
     }
 
     private fun sendImageAndGetLink(body: MultipartBody.Part) {

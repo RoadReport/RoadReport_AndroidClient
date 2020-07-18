@@ -1,11 +1,14 @@
 package com.txwstudio.app.roadreport.activity
 
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
+import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
@@ -13,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_event_editor.*
 class EventEditorActivity : AppCompatActivity() {
 
     private val eventEditorFragment = EventEditorFragment()
+    private var mLastClickTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,14 @@ class EventEditorActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    Util().snackBarShort(
+                        coordinatorLayout_eventEditor,
+                        R.string.accidentEvent_dontDoubleClick
+                    )
+                    return false
+                }
+                mLastClickTime = SystemClock.elapsedRealtime()
                 eventEditorFragment.actionSendClicked()
                 true
             }
