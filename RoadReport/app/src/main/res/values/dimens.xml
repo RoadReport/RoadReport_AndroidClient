@@ -20,6 +20,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="roadCard_homeFrag_height">88dp</dimen>
-    <dimen name="roadCard_homeFrag_weight">0dp</dimen>
+    <dimen name="roadCard_homeFrag_titleSize">30sp</dimen>
+    <dimen name="roadCard_homeFrag_subtitleSize">14sp</dimen>
 </resources>

@@ -10,13 +10,13 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.gson.GsonBuilder
 import com.txwstudio.app.roadreport.RoadCode
-import com.txwstudio.app.roadreport.model.LiveCamSource
+import com.txwstudio.app.roadreport.json.DynamicLiveCamSource
 
 class LiveCamViewModel(application: Application) : AndroidViewModel(application) {
 
     var camName = MutableLiveData<String>()
     var streamUrl = MutableLiveData<String>()
-    var liveCamSourcesList = MutableLiveData<MutableList<LiveCamSource>>()
+    var liveCamSourcesList = MutableLiveData<MutableList<DynamicLiveCamSource>>()
     var isRefreshing = MutableLiveData<Boolean>()
 
     /**
@@ -46,7 +46,7 @@ class LiveCamViewModel(application: Application) : AndroidViewModel(application)
      * */
     private fun putIdToList(stringFromRemoteConfig: String) {
         val magicConverter = GsonBuilder().create()
-            .fromJson(stringFromRemoteConfig, Array<LiveCamSource>::class.java)
+            .fromJson(stringFromRemoteConfig, Array<DynamicLiveCamSource>::class.java)
         liveCamSourcesList.value = magicConverter.toMutableList()
         liveCamSourcesList.value?.forEach {
             Log.i("LiveCamLog", "目前從 Remote Config 中取得的數值為: ${it.camName} with ${it.url}")

@@ -41,7 +41,10 @@ class AuthManager {
         // Create and launch sign-in intent
         ActivityCompat.startActivityForResult(
             activity, AuthUI.getInstance().createSignInIntentBuilder()
+                .setTosAndPrivacyPolicyUrls("https://bit.ly/RoadRTos", "https://bit.ly/RoadRPp")
                 .setAvailableProviders(providers)
+                .setAlwaysShowSignInMethodScreen(true)
+                .setTheme(R.style.AuthUiLoginTheme)
                 .build(), RC_SIGN_IN, null
         )
     }
@@ -51,7 +54,11 @@ class AuthManager {
         AuthUI.getInstance()
             .signOut(context)
             .addOnCompleteListener {
-                Toast.makeText(context, R.string.settingsActivity_signOutSuccess, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    R.string.settingsActivity_signOutSuccess,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 }

@@ -19,7 +19,6 @@ class RoadCode {
         const val ROADCODE_24 = 0
         const val ROADCODE_182 = 1
         const val ROADCODE_GRANDMA = 2
-        const val ROADCODE_7 = 3
         const val ROADCODE_FUCKYOU = 4
     }
 
@@ -69,7 +68,6 @@ class RoadCode {
             ROADCODE_24 -> context.resources.getString(R.string.roadName_24)
             ROADCODE_182 -> context.resources.getString(R.string.roadName_182)
             ROADCODE_GRANDMA -> context.resources.getString(R.string.roadName_grandma)
-            ROADCODE_7 -> context.resources.getString(R.string.roadName_7)
             else -> context.resources.getString(R.string.all_unknownError)
         }
     }
@@ -80,7 +78,6 @@ class RoadCode {
             ROADCODE_24 -> "ROADCODE_24"
             ROADCODE_182 -> "ROADCODE_182"
             ROADCODE_GRANDMA -> "ROADCODE_GRANDMA"
-            ROADCODE_7 -> "ROADCODE_7"
             else -> context.resources.getString(R.string.all_unknownError)
         }
     }
@@ -91,7 +88,6 @@ class RoadCode {
             ROADCODE_24 -> "DLCS_24"
             ROADCODE_182 -> "DLCS_182"
             ROADCODE_GRANDMA -> "DLCS_GRANDMA"
-            ROADCODE_7 -> "ROADCODE_7"
             else -> context.resources.getString(R.string.all_unknownError)
         }
     }

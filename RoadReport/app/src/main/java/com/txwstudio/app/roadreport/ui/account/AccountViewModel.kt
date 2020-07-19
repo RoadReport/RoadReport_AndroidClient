@@ -9,29 +9,37 @@ import com.txwstudio.app.roadreport.R
 
 class AccountViewModel(application: Application) : AndroidViewModel(application) {
 
-    var displayName = MutableLiveData<String>()
     var photoUrl = MutableLiveData<Uri>()
-    var signInStatus = MutableLiveData<String>()
+    var displayName = MutableLiveData<String>()
+    var email = MutableLiveData<String>()
+    var uid = MutableLiveData<String>()
+    var isSignedIn = MutableLiveData<Boolean>()
 
     init {
         this.photoUrl.value = Uri.EMPTY
+        this.isSignedIn.value = false
     }
 
     /**
      * Listening to auth status, called from fragment when onResume or onPause.
      * */
-    val authStateListener = FirebaseAuth.AuthStateListener {firebaseAuth ->
+    val authStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             // User is signed in.
-            this.displayName.value = firebaseUser.displayName
-            this.photoUrl.value = firebaseUser.photoUrl
-            this.signInStatus.value = getApplication<Application>().getString(R.string.accountFragment_accountStatusSignIn)
+            photoUrl.value = firebaseUser.photoUrl
+            displayName.value = firebaseUser.displayName
+            email.value = firebaseUser.email
+            uid.value = firebaseUser.uid
+            isSignedIn.value = true
         } else {
             // User not sign in yet.
-            this.displayName.value = getApplication<Application>().getString(R.string.accountFragment_userNameHolder)
-            this.photoUrl.value = Uri.EMPTY
-            this.signInStatus.value = getApplication<Application>().getString(R.string.accountFragment_accountStatusSignedOut)
+            photoUrl.value = Uri.EMPTY
+            displayName.value =
+                getApplication<Application>().getString(R.string.accountFragment_userNameHolder)
+            email.value = ""
+            uid.value = ""
+            isSignedIn.value = false
         }
     }
 
