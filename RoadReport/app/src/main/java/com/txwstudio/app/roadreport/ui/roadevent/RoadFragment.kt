@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.txwstudio.app.roadreport.AccidentCardAdapterTest
+import com.txwstudio.app.roadreport.adapter.AccidentCardAdapter
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 
@@ -21,14 +21,14 @@ class RoadFragment : Fragment() {
 
     private lateinit var viewModel: RoadViewModel
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapterRealtimeClass: AccidentCardAdapterTest
+    private lateinit var viewAdapterRealtimeClass: AccidentCardAdapter
     private var ROADCODE = -1
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         ROADCODE = RoadCode().getCurrentRoadCode(context)
         layoutManager = LinearLayoutManager(context)
-        viewAdapterRealtimeClass = AccidentCardAdapterTest(context, ROADCODE)
+        viewAdapterRealtimeClass = AccidentCardAdapter(context, ROADCODE)
     }
 
     override fun onCreateView(

@@ -1,11 +1,13 @@
 package com.txwstudio.app.roadreport.service
 
 import com.txwstudio.app.roadreport.json.weather.WeatherJson
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 /**
 https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0001-001?
@@ -17,7 +19,12 @@ stationId=C0R130
 
 private const val BASE_URL = "https://opendata.cwb.gov.tw/"
 
-private val retrofit = Retrofit.Builder()
+private val okHttpClient = OkHttpClient.Builder()
+    .connectTimeout(10, TimeUnit.SECONDS)
+    .readTimeout(10, TimeUnit.SECONDS)
+    .build()
+
+private val retrofit = Retrofit.Builder().client(okHttpClient)
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()

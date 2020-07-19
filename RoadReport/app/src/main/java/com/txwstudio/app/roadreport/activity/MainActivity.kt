@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupToolBar()
@@ -24,16 +25,7 @@ class MainActivity : AppCompatActivity() {
 //        val navController = findNavController(R.id.nav_host_fragment)
 
         navController.addOnDestinationChangedListener{ controller, destination, arguments ->
-            textView_main2_toolbarTitle.text = when (destination.id) {
-                R.id.navigation_home -> getString(
-                    R.string.mainFragment_title
-                )
-                R.id.navigation_account -> getString(
-                    R.string.accountFragment_title
-                )
-                else -> getString(R.string.mainFragment_title)
-            }
-
+            supportActionBar?.title = navController.currentDestination?.label
         }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -49,6 +41,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolBar() {
         setSupportActionBar(toolbar_main2)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 }

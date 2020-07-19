@@ -5,7 +5,7 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fb178598010098336</string>
     <string name="facebook_app_id" translatable="false">178598010098336</string>
 
-
+    <!-- Titles -->
     <string name="app_name">路況回報</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">路況回報</string>
@@ -13,23 +13,25 @@
     <string name="title_activity_road">68 號道路</string>
     <string name="title_activity_addAccident">新增狀況</string>
     <string name="title_activity_editAccident">編輯狀況</string>
+    <string name="title_activity_eventEditor">事件編輯器</string>
 
     <!-- Roadname -->
     <string name="roadName_24">台 24</string>
     <string name="roadName_182">182 縣道</string>
     <string name="roadName_grandma">阿婆灣</string>
-    <string name="roadName_7">台 7 乙</string>
 
 
     <!-- Main Activity -->
 
-    <!-- Main Fragment -->
-    <string name="mainFragment_title">道路</string>
+    <!-- Home Fragment -->
+    <string name="mainFragment_title">全部道路</string>
+    <string name="roadName_24_description">位於霧台鄉</string>
+    <string name="roadName_182_description">位於台南高雄交界</string>
 
     <!-- Account Fragment -->
-    <string name="accountFragment_title">帳號</string>
+    <string name="accountFragment_title">帳號與設定</string>
     <string name="accountFragment_userNameHolder">未登入</string>
-    <string name="accountFragment_accountStatusSignIn">登出</string>
+    <string name="accountFragment_accountStatusSignedIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleAbout">關於</string>
@@ -38,8 +40,6 @@
     <string name="settingsFrag_titleLicense">版權聲明</string>
 
     <!-- RoadActivity -->
-    <string name="roadActivity_back">返回</string>
-    <string name="roadActivity_SignInFirst">請先登入</string>
     <string name="roadActivity_tab_accidentEvent">路況</string>
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>
@@ -49,17 +49,22 @@
     <string name="roadFrag_addAccidentEvent">新增事件</string>
 
     <!-- Weather Fragment -->
-    <string name="weatherFrag_currTemp">目前溫度</string>
-    <string name="weatherFrag_currTempHumidity">目前濕度</string>
+    <string name="weatherFrag_temp">溫度</string>
+    <string name="weatherFrag_min10">10 分鐘雨量</string>
+    <string name="weatherFrag_valueDescription">
+        數值來源為中央氣象局放置於各地的自動氣象站，本頁擷取鄰近於該道路之氣象站資訊。\n\n數值含意：\n-998.00：表示過去六小時內無降雨\n0.00 或以上：過去 10 分鐘內降雨量
+    </string>
 
     <!-- Live Cam Fragment -->
-    <string name="liveCamFrag_">即時影像</string>
+    <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
 
+    <!-- Event Editor Fragment -->
+    <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
 
     <!-- Accident Event Activity Text -->
-    <string name="accidentEvent_currentRoad">目前路段</string>
-    <string name="accidentEvent_situationType">種類</string>
+    <string name="accidentEvent_currentRoad">目前所在路段</string>
+    <string name="accidentEvent_situationType">事件種類</string>
     <array name="accidentEvent_situationTypeArray">
         <item>請選擇事故種類</item>
         <item>事故</item>
@@ -74,17 +79,20 @@
     <string name="accidentEvent_situationType_3">臨檢</string>
     <string name="accidentEvent_situationType_4">測速</string>
     <string name="accidentEvent_situationType_5">其他</string>
-    <string name="accidentEvent_location">地點</string>
-    <string name="accidentEvent_locationHint">例如：野店附近、27.5K 前</string>
+    <string name="accidentEvent_location">地點 - 10 字內</string>
+    <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
-    <string name="accidentEvent_situationHint">例如：釘子、車禍、爆胎、擺攤</string>
+    <string name="accidentEvent_situationHint">簡短描述你眼前發生之狀況</string>
+    <string name="accidentEvent_imageTitle">圖片 - 選擇性</string>
+    <string name="accidentEvent_uploadImageTitle">上傳圖片</string>
+    <string name="accidentEvent_removeUploadImageTitle">移除圖片</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
     <string name="accidentEvent_addConfirm">確認要新增事件?</string>
     <string name="accidentEvent_editSuccess">更新成功</string>
     <string name="accidentEvent_editFailed">更新失敗</string>
     <string name="accidentEvent_editConfirm">確認要更新事件?</string>
-    <string name="accidentEvent_NoEntry">檢查欄位</string>
+    <string name="accidentEvent_NoEntry">有欄位未填寫</string>
     <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
 

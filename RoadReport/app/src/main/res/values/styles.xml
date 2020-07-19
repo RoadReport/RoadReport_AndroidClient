@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
@@ -7,7 +11,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/jf_openhuninn</item>
-        <item name="roadCard_TextColor">@color/white</item>
         <item name="activityTitleTextColor">@color/white</item>
         <item name="menuIconFillColor">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
@@ -26,9 +29,13 @@
         <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
+    <style name="AuthUiLoginTheme" parent="FirebaseUI">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <style name="DivLine">
-        <item name="android:background">@color/colorAccent</item>
+        <item name="android:background">@color/grey200</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
     </style>
@@ -47,30 +54,34 @@
     <style name="RoadCard" />
 
     <style name="RoadCard.Card" parent="RoadCard">
+        <item name="android:layout_marginStart">@dimen/margin_normal</item>
+        <item name="android:layout_marginTop">@dimen/margin_normal</item>
+        <item name="android:layout_marginEnd">@dimen/margin_normal</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-        <item name="android:layout_marginTop">@dimen/margin_normal</item>
-        <item name="android:layout_marginStart">@dimen/margin_normal</item>
     </style>
 
-    <style name="RoadCard.Text" parent="RoadCard">
+    <style name="RoadCard.Title" parent="RoadCard">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_gravity">bottom</item>
-        <item name="android:layout_marginStart">@dimen/margin_half</item>
-        <item name="android:layout_marginBottom">@dimen/margin_half</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">@dimen/margin_double</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/roadCard_homeFrag_titleSize</item>
+    </style>
+
+    <style name="RoadCard.Subtitle" parent="RoadCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_double</item>
+        <item name="android:textColor">@color/grey200</item>
+        <item name="android:textSize">@dimen/roadCard_homeFrag_subtitleSize</item>
     </style>
 
     <style name="RoadCard.Image" parent="RoadCard">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:layout_gravity">end|center</item>
-        <item name="android:layout_margin">@dimen/margin_normal</item>
+        <item name="android:padding">@dimen/margin_double_half</item>
         <item name="android:scaleType">fitEnd</item>
     </style>
 
@@ -101,5 +112,16 @@
 
     <style name="LayoutFullWidth.Vertical" parent="@style/LayoutFullWidth">
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="StyleRightCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/StyleRightCardViewCorner</item>
+    </style>
+    <style name="StyleRightCardViewCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 </resources>
