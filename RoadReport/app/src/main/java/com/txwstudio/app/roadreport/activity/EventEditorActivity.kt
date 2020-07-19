@@ -56,7 +56,7 @@ class EventEditorActivity : AppCompatActivity() {
                 true
             }
             R.id.action_accidentEventDone -> {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
                     Util().snackBarShort(
                         coordinatorLayout_eventEditor,
                         R.string.accidentEvent_dontDoubleClick
