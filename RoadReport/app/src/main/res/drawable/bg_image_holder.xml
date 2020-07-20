@@ -6,6 +6,6 @@
     <item
         android:width="16dp"
         android:height="16dp"
-        android:drawable="@drawable/ic_add_image_512dp"
+        android:drawable="@drawable/ic_add_image_24dp"
         android:gravity="center" />
 </layer-list>
