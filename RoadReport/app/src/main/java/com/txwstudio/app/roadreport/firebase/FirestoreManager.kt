@@ -100,7 +100,8 @@ class FirestoreManager {
         val dataForUpdate = hashMapOf<String, Any?>(
             "situationType" to data.situationType,
             "location" to data.location,
-            "situation" to data.situation
+            "situation" to data.situation,
+            "imageUrl" to data.imageUrl
         )
 
         db.collection("ReportAccident").document(roadCode.toString())
