@@ -22,6 +22,7 @@
 
 
     <!-- Main Activity -->
+    <string name="mainActivity_needUpdateMsg">為保證您的正常使用，請立即更新 APP。</string>
 
     <!-- Home Fragment -->
     <string name="mainFragment_title">全部道路</string>
@@ -117,6 +118,7 @@
     <string name="all_cancel">取消</string>
     <string name="all_success">成功</string>
     <string name="all_failed">失敗</string>
+    <string name="all_nope">不要</string>
     <string name="all_notSignedIn">尚未登入</string>
     <string name="all_noNetworkConn">網路未連線</string>
     <string name="all_noFirebaseConn">無法連線到資料庫</string>
