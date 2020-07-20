@@ -7,12 +7,15 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_settings.*
 
+/**
+ * Remove Settings Activity Soon.
+ * */
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +49,11 @@ class SettingsActivity : AppCompatActivity() {
         val user = AuthManager().getCurrUserModel()
         if (user != null) {
 
-            Picasso.get()
-                .load(user.photoUrl)
-                .placeholder(R.drawable.ic_square_face_smiling_106dp)
-                .error(R.drawable.ic_square_face_error_106dp)
-                .into(imageView_settings_accountPhoto)
+//            Picasso.get()
+//                .load(user.photoUrl)
+//                .placeholder(R.drawable.ic_square_face_smiling_106dp)
+//                .error(R.drawable.ic_square_face_error_106dp)
+//                .into(imageView_settings_accountPhoto)
 
             textView_settings_accountName.text = user.displayName
 
