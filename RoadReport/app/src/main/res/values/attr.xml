@@ -3,5 +3,6 @@
     <attr name="activityTitleTextColor" format="color"/>
     <attr name="menuIconFillColor" format="color"/>
     <attr name="whiteOrBlack" format="color"/>
+    <attr name="divLineBackground" format="color"/>
     <attr name="tabLayoutBackground" format="color"/>
 </resources>
