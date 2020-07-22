@@ -1,6 +1,7 @@
 <resources>
 
-    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="splashScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent_dark</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
