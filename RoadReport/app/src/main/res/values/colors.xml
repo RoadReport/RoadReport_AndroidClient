@@ -9,6 +9,7 @@
 
     <color name="darkTheme_dark">#121212</color>
     <color name="colorPrimaryDark_dark">#2d2d2d</color>
+    <color name="colorSurface_dark">#1d1d1d</color>
     <color name="colorAccent_dark">#282828</color>
 
     <color name="facebookBlue">#1877f2</color>

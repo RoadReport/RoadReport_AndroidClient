@@ -5,4 +5,5 @@
     <attr name="whiteOrBlack" format="color"/>
     <attr name="divLineBackground" format="color"/>
     <attr name="tabLayoutBackground" format="color"/>
+    <attr name="editTextCardBackground" format="color"/>
 </resources>
