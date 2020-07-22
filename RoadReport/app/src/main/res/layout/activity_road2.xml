@@ -23,7 +23,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/tabLayoutBackground"
             app:tabIndicatorColor="?attr/activityTitleTextColor"
             app:tabSelectedTextColor="?attr/activityTitleTextColor"
             app:tabTextColor="#e0e0e0" />

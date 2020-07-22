@@ -47,7 +47,7 @@
                     android:layout_marginEnd="@dimen/margin_normal"
                     android:layout_marginBottom="@dimen/margin_normal"
                     android:text="@string/liveCamFrag_noCamSelectTitleHolder"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/whiteOrBlack"
                     android:textSize="20sp"
                     tools:text="請選擇攝影機" />
             </LinearLayout>
