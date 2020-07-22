@@ -113,7 +113,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
                         android:text="@{viewModel.displayName}"
-                        android:textColor="#000"
+                        android:textColor="?attr/whiteOrBlack"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@id/textView_accountFrag_email2"
                         app:layout_constraintStart_toEndOf="@id/textView_accountFrag_accountPhoto2"
