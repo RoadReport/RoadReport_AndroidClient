@@ -1,9 +1,11 @@
 package com.txwstudio.app.roadreport.activity
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -23,33 +25,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var currentAppVersion = BuildConfig.VERSION_CODE
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme_NoActionBar)
+        setupTheme()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar_main)
-
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        val navHostFrag =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFrag.navController
-
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            supportActionBar?.title = navController.currentDestination?.label
-        }
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_account
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
-        AuthManager().userIsSignedIn()
 
         checkAppVersion {
             if (it) {
@@ -84,12 +66,42 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
+
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+        val navHostFrag =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFrag.navController
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            supportActionBar?.title = navController.currentDestination?.label
+        }
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_account
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
+        AuthManager().userIsSignedIn()
+    }
+
+    /**
+     * Set theme
+     * */
+    fun setupTheme() {
+        val w = getSharedPreferences("main", Context.MODE_PRIVATE).getString("theme", "0")
+        if (w.equals("0")) setTheme(R.style.AppTheme_NoActionBar)
+        else setTheme(R.style.DarkTheme_NoActionBar)
     }
 
     /**
      * Compare app version with ANDROID_MIN_VER.
      * */
-    var currentAppVersion = BuildConfig.VERSION_CODE
     private fun checkAppVersion(needUpdate: (Boolean) -> Unit) {
         val remoteConfig = Firebase.remoteConfig
         remoteConfig.setConfigSettingsAsync(remoteConfigSettings {

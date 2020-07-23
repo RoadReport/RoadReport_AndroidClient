@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory app:title="關於">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <Preference
-            app:key="feedback"
-            app:title="服務條款" />
-        <Preference
-            app:key="feedback"
-            app:title="隱私權政策" />
-        <Preference
-            app:key="feedback"
-            app:title="版權聲明" />
-        <Preference
-            app:key="feedback"
-            app:title="版本 1.0" />
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="一般">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="選擇主題"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:title="主題"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
 
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="關於">
+
+        <Preference
+            android:key="tos"
+            android:title="服務條款"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="pp"
+            android:title="隱私權政策"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="license"
+            android:title="版權聲明"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="about"
+            android:title="關於"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

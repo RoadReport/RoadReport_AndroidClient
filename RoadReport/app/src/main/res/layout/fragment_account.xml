@@ -182,6 +182,10 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/frameLayoutForPref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <!-- General Section -->
             <TextView
