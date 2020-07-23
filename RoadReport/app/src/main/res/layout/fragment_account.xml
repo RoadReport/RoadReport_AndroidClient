@@ -57,7 +57,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
                         android:text="@string/accountFragment_userNameHolder"
-                        android:textColor="#000"
+                        android:textColor="?attr/whiteOrBlack"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -188,43 +188,43 @@
                 android:layout_height="wrap_content" />
 
             <!-- General Section -->
-            <TextView
-                android:id="@+id/textView_settings_general"
-                style="@style/SettingsSectionTitle"
-                android:text="@string/settingsActivity_generalTitle" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_general"-->
+<!--                style="@style/SettingsSectionTitle"-->
+<!--                android:text="@string/settingsActivity_generalTitle" />-->
 
 
 
 
-            <!-- About Section -->
-            <TextView
-                android:id="@+id/textView_settings_about"
-                style="@style/SettingsSectionTitle"
-                android:text="@string/settingsActivity_aboutTitle" />
+<!--            &lt;!&ndash; About Section &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_about"-->
+<!--                style="@style/SettingsSectionTitle"-->
+<!--                android:text="@string/settingsActivity_aboutTitle" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_termOfServiceLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titleTermsOfService" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_termOfServiceLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titleTermsOfService" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_privacyPolicyLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titlePrivacyPolicy" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_privacyPolicyLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titlePrivacyPolicy" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_licenseLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titleLicense" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_licenseLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titleLicense" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_aboutLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsActivity_aboutTitle" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_aboutLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsActivity_aboutTitle" />-->
 
         </LinearLayout>
     </ScrollView>
