@@ -8,7 +8,7 @@
 
         <ListPreference
             android:defaultValue="0"
-            android:dialogTitle="選擇主題"
+            android:dialogTitle="選擇主題(需重開 APP)"
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"
             android:key="theme"
