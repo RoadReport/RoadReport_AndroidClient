@@ -82,7 +82,7 @@ class AccidentEventActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this, R.style.AlertDialog)
+        val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
         builder.setPositiveButton(R.string.all_confirm) { _, _ ->
             finish()
@@ -274,7 +274,7 @@ class AccidentEventActivity : AppCompatActivity() {
         // if editMode, update data on the firestore.
         // if !editMode, add new data to firestore.
         if (!editMode) {
-            AlertDialog.Builder(this, R.style.AlertDialog)
+            AlertDialog.Builder(this)
                 .setMessage(getString(R.string.accidentEvent_addConfirm))
                 .setPositiveButton(R.string.all_confirm) { _, _ ->
                     FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
@@ -289,7 +289,7 @@ class AccidentEventActivity : AppCompatActivity() {
                 .setNegativeButton(R.string.all_cancel) { _, _ -> }
                 .show()
         } else if (editMode) {
-            AlertDialog.Builder(this, R.style.AlertDialog)
+            AlertDialog.Builder(this)
                 .setMessage(getString(R.string.accidentEvent_editConfirm))
                 .setPositiveButton(R.string.all_confirm) { _, _ ->
                     FirestoreManager().updateAccident(

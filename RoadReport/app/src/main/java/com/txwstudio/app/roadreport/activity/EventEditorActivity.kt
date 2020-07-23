@@ -73,7 +73,7 @@ class EventEditorActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this, R.style.AlertDialog)
+        val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
         builder.setPositiveButton(R.string.all_confirm) { _, _ ->
             super.onBackPressed()
