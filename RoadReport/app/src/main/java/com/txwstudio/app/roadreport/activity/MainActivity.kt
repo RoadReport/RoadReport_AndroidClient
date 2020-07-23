@@ -19,6 +19,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.txwstudio.app.roadreport.BuildConfig
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private var currentAppVersion = BuildConfig.VERSION_CODE
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupTheme()
+        Util().setupTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar_main)
@@ -88,15 +89,6 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         AuthManager().userIsSignedIn()
-    }
-
-    /**
-     * Set theme
-     * */
-    fun setupTheme() {
-        val w = getSharedPreferences("main", Context.MODE_PRIVATE).getString("theme", "0")
-        if (w.equals("0")) setTheme(R.style.AppTheme_NoActionBar)
-        else setTheme(R.style.DarkTheme_NoActionBar)
     }
 
     /**
