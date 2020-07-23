@@ -30,6 +30,7 @@
     <style name="DarkTheme" parent="Theme.MaterialComponents">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/jf_openhuninn</item>
         <item name="whiteOrBlack">@color/white</item>
         <item name="divLineBackground">@color/grey550</item>
         <item name="tabLayoutBackground">@color/colorAccent_dark</item>
