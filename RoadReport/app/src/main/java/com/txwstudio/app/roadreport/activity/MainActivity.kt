@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         checkAppVersion {
             if (it) {
-                AlertDialog.Builder(this, R.style.AlertDialog)
+                AlertDialog.Builder(this)
                     .setMessage(getString(R.string.mainActivity_needUpdateMsg))
                     .setPositiveButton(R.string.all_confirm) { _, _ ->
 
