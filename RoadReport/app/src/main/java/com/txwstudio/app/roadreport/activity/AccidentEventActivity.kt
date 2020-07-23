@@ -259,7 +259,6 @@ class AccidentEventActivity : AppCompatActivity() {
         if (!AuthManager().userIsSignedIn()) {
             // TODO: Redirect to login.
             Util().toast(this, getString(R.string.all_notSignedIn))
-//            startActivity(Intent(this, SettingsActivity::class.java))
             return
         }
 

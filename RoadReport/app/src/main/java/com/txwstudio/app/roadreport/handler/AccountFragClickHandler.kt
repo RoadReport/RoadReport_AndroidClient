@@ -22,16 +22,16 @@ class AccountFragClickHandler(var context: Context, var activity: Activity) {
         }
     }
 
-    fun aboutLink(view: View) {
-        val url = when (view.id) {
-            R.id.textView_settings_termOfServiceLink -> "https://bit.ly/RoadRTos"
-            R.id.textView_settings_privacyPolicyLink -> "https://bit.ly/RoadRPp"
-            R.id.textView_settings_licenseLink -> "https://bit.ly/RoadRLicense"
-            R.id.textView_settings_aboutLink -> "https://bit.ly/RoadRAbout"
-            else -> "https://roadreport.gitlab.io/docs"
-        }
-        val customTabsIntent = CustomTabsIntent.Builder().build()
-        customTabsIntent.launchUrl(context, Uri.parse(url))
-    }
+//    fun aboutLink(view: View) {
+//        val url = when (view.id) {
+//            R.id.textView_settings_termOfServiceLink -> "https://bit.ly/RoadRTos"
+//            R.id.textView_settings_privacyPolicyLink -> "https://bit.ly/RoadRPp"
+//            R.id.textView_settings_licenseLink -> "https://bit.ly/RoadRLicense"
+//            R.id.textView_settings_aboutLink -> "https://bit.ly/RoadRAbout"
+//            else -> "https://roadreport.gitlab.io/docs"
+//        }
+//        val customTabsIntent = CustomTabsIntent.Builder().build()
+//        customTabsIntent.launchUrl(context, Uri.parse(url))
+//    }
 
 }

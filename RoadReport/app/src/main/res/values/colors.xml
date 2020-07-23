@@ -7,6 +7,10 @@
     <color name="roadName_24">#F573A0</color>
     <color name="roadName_182">#1E88E5</color>
 
+    <color name="darkTheme_dark">#121212</color>
+    <color name="colorPrimaryDark_dark">#2d2d2d</color>
+    <color name="colorSurface_dark">#1d1d1d</color>
+    <color name="colorAccent_dark">#282828</color>
 
     <color name="facebookBlue">#1877f2</color>
     <color name="facebookBlueDark">#3b5998</color>
@@ -27,6 +31,7 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="grey200">#eeeeee</color>
+    <color name="grey550">#2f2f2f</color>
     <color name="darkGrey">#707070</color>
 
 </resources>

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.google.firebase.auth.FirebaseAuth
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.SettingsFragment
 import com.txwstudio.app.roadreport.databinding.FragmentAccountBinding
 import com.txwstudio.app.roadreport.handler.AccountFragClickHandler
 
@@ -40,6 +41,10 @@ class AccountFragment : Fragment() {
         binding.lifecycleOwner = this
 
         subscribeUI()
+
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.frameLayoutForPref, SettingsFragment())
+        fragmentTransaction.commit()
 
         return binding.root
     }

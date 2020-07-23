@@ -57,7 +57,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
                         android:text="@string/accountFragment_userNameHolder"
-                        android:textColor="#000"
+                        android:textColor="?attr/whiteOrBlack"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -113,7 +113,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
                         android:text="@{viewModel.displayName}"
-                        android:textColor="#000"
+                        android:textColor="?attr/whiteOrBlack"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@id/textView_accountFrag_email2"
                         app:layout_constraintStart_toEndOf="@id/textView_accountFrag_accountPhoto2"
@@ -182,111 +182,49 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
-            <!--            <com.google.android.material.card.MaterialCardView-->
-            <!--                android:id="@+id/cardView_accountFrag_account"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="80dp"-->
-            <!--                android:layout_marginStart="@dimen/margin_normal"-->
-            <!--                android:layout_marginTop="@dimen/margin_normal"-->
-            <!--                android:layout_marginEnd="@dimen/margin_normal"-->
-            <!--                android:layout_marginBottom="@dimen/margin_normal"-->
-            <!--                android:clickable="true"-->
-            <!--                android:focusable="true"-->
-            <!--                android:foreground="?android:attr/selectableItemBackground"-->
-            <!--                android:onClick="@{(view) -> handler.signInOut(view)}"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent">-->
-
-            <!--                <RelativeLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="match_parent">-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/textView_accountFrag_accountPhoto"-->
-            <!--                        android:layout_width="48dp"-->
-            <!--                        android:layout_height="48dp"-->
-            <!--                        android:layout_centerVertical="true"-->
-            <!--                        android:layout_marginStart="@dimen/margin_normal"-->
-            <!--                        android:scaleType="fitStart"-->
-            <!--                        app:error="@{@drawable/ic_square_face_error_106dp}"-->
-            <!--                        app:imageUrl="@{viewModel.photoUrl}"-->
-            <!--                        app:placeHolder="@{@drawable/ic_square_face_smiling_106dp}"-->
-            <!--                        tools:src="@drawable/ic_square_face_smiling_106dp" />-->
-
-            <!--                    <TextView-->
-            <!--                        android:id="@+id/textView_accountFrag_userName"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:layout_centerVertical="true"-->
-            <!--                        android:layout_marginStart="@dimen/margin_normal"-->
-            <!--                        android:layout_toStartOf="@id/textView_accountFrag_loginStatus"-->
-            <!--                        android:layout_toEndOf="@id/textView_accountFrag_accountPhoto"-->
-            <!--                        android:text="@{viewModel.displayName}"-->
-            <!--                        android:textColor="#000"-->
-            <!--                        android:textSize="16sp"-->
-            <!--                        tools:text="未登入" />-->
-
-            <!--                    <TextView-->
-            <!--                        android:id="@+id/textView_accountFrag_loginStatus"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:layout_centerVertical="true"-->
-            <!--                        android:layout_toStartOf="@id/imageView_accountFrag_nextIcon"-->
-            <!--                        android:text="@{viewModel.signInStatus}"-->
-            <!--                        android:textColor="#000"-->
-            <!--                        android:textSize="16sp"-->
-            <!--                        tools:text="去登入" />-->
-
-            <!--                    <ImageView-->
-            <!--                        android:id="@+id/imageView_accountFrag_nextIcon"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:layout_alignParentEnd="true"-->
-            <!--                        android:layout_centerVertical="true"-->
-            <!--                        android:layout_marginEnd="@dimen/all_default_margin"-->
-            <!--                        android:src="@drawable/ic_navigate_next_black_24dp" />-->
-            <!--                </RelativeLayout>-->
-            <!--            </com.google.android.material.card.MaterialCardView>-->
-
+            <FrameLayout
+                android:id="@+id/frameLayoutForPref"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <!-- General Section -->
-            <TextView
-                android:id="@+id/textView_settings_general"
-                style="@style/SettingsSectionTitle"
-                android:text="@string/settingsActivity_generalTitle" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_general"-->
+<!--                style="@style/SettingsSectionTitle"-->
+<!--                android:text="@string/settingsActivity_generalTitle" />-->
 
 
-            <!-- About Section -->
-            <TextView
-                android:id="@+id/textView_settings_about"
-                style="@style/SettingsSectionTitle"
-                android:text="@string/settingsActivity_aboutTitle" />
 
-            <TextView
-                android:id="@+id/textView_settings_termOfServiceLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titleTermsOfService" />
 
-            <TextView
-                android:id="@+id/textView_settings_privacyPolicyLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titlePrivacyPolicy" />
+<!--            &lt;!&ndash; About Section &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_about"-->
+<!--                style="@style/SettingsSectionTitle"-->
+<!--                android:text="@string/settingsActivity_aboutTitle" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_licenseLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsFrag_titleLicense" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_termOfServiceLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titleTermsOfService" />-->
 
-            <TextView
-                android:id="@+id/textView_settings_aboutLink"
-                style="@style/AboutItem"
-                android:onClick="@{(view) -> handler.aboutLink(view)}"
-                android:text="@string/settingsActivity_aboutTitle" />
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_privacyPolicyLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titlePrivacyPolicy" />-->
 
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_licenseLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsFrag_titleLicense" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView_settings_aboutLink"-->
+<!--                style="@style/AboutItem"-->
+<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
+<!--                android:text="@string/settingsActivity_aboutTitle" />-->
 
         </LinearLayout>
     </ScrollView>

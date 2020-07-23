@@ -22,6 +22,15 @@ class Util {
     }
 
     /**
+     * Set theme
+     * */
+    fun setupTheme(context: Context) {
+        val w = context.getSharedPreferences("main", Context.MODE_PRIVATE).getString("theme", "0")
+        if (w.equals("0")) context.setTheme(R.style.AppTheme_NoActionBar)
+        else context.setTheme(R.style.DarkTheme_NoActionBar)
+    }
+
+    /**
      * Start accidentEventActivity by mode.
      * @param currActivity current activity
      * @param targetActivity target activity

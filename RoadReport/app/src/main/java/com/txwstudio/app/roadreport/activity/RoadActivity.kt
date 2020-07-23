@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_road2.*
 class RoadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Util().setupTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road2)
         setupToolBar()

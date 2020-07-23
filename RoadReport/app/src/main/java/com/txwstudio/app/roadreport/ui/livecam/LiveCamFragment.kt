@@ -62,7 +62,8 @@ class LiveCamFragment : Fragment() {
         }
 
         adapter.camNames.observe(viewLifecycleOwner) {
-            binding.textViewLivaCamFrag.text = it
+            // Remove cam name display after commit a812bc5
+//            binding.textViewLivaCamFrag.text = it
         }
 
         adapter.streamUrls.observe(viewLifecycleOwner) {

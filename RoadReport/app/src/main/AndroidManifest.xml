@@ -17,9 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <!-- <meta-data -->
-        <!-- android:name="com.facebook.sdk.ApplicationId" -->
-        <!-- android:value="@string/facebook_app_id" /> -->
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
@@ -48,15 +45,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.txwstudio.app.roadreport.activity.RoadActivity" />
-        </activity>
-        <activity
-            android:name=".activity.SettingsActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
         <activity
             android:name=".activity.EventEditorActivity"
