@@ -182,7 +182,7 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
-            <FrameLayout
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/frameLayoutForPref"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
