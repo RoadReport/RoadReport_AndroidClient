@@ -8,39 +8,42 @@
 
         <ListPreference
             android:defaultValue="0"
-            android:dialogTitle="選擇主題(需重開 APP)"
+            android:dialogTitle="@string/settingsFrag_titleDialogTheme"
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"
             android:key="theme"
-            android:title="主題"
+            android:title="@string/settingsFrag_titleTheme"
             app:iconSpaceReserved="false"
             app:useSimpleSummaryProvider="true" />
-
     </PreferenceCategory>
-
 
     <PreferenceCategory
         app:iconSpaceReserved="false"
         app:title="關於">
 
         <Preference
+            android:key="ads"
+            android:title="@string/settingsFrag_titleAds"
+            app:iconSpaceReserved="false" />
+
+        <Preference
             android:key="tos"
-            android:title="服務條款"
+            android:title="@string/settingsFrag_titleTermsOfService"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:key="pp"
-            android:title="隱私權政策"
+            android:title="@string/settingsFrag_titlePrivacyPolicy"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:key="license"
-            android:title="版權聲明"
+            android:title="@string/settingsFrag_titleLicense"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:key="about"
-            android:title="關於"
+            android:title="@string/settingsFrag_titleAbout"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

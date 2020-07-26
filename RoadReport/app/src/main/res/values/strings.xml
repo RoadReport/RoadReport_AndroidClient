@@ -36,7 +36,10 @@
     <string name="accountFragment_accountStatusSignedIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
     <string name="settingsFrag_titleGeneral">一般</string>
+    <string name="settingsFrag_titleTheme">主題</string>
+    <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
     <string name="settingsFrag_titleAbout">關於</string>
+    <string name="settingsFrag_titleAds">廣告</string>
     <string name="settingsFrag_titleTermsOfService">服務條款</string>
     <string name="settingsFrag_titlePrivacyPolicy">隱私權政策</string>
     <string name="settingsFrag_titleLicense">版權聲明</string>
