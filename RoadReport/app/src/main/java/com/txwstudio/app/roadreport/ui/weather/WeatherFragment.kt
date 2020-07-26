@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.google.android.gms.ads.AdRequest
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.adapter.WeatherCardAdapter
 import com.txwstudio.app.roadreport.databinding.FragmentWeatherBinding
@@ -45,6 +46,8 @@ class WeatherFragment : Fragment() {
             weatherViewModel.getWeatherStationListAndSetupWeatherCard()
         }
 
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewWeatherFrag.loadAd(adRequest)
 
         return binding.root
     }

@@ -22,14 +22,18 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "EVENT_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
-            buildConfigField "String", "WEATHER_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
+//            buildConfigField "String", "EVENT_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
+//            buildConfigField "String", "WEATHER_BANNER_ID", "\"ca-app-pub-3940256099942544/6300978111\""
+            resValue "string", "EVENT_BANNER_ID", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "WEATHER_BANNER_ID", "ca-app-pub-3940256099942544/6300978111"
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "EVENT_BANNER_ID", apikeyProperties['EVENT_BANNER_ID']
-            buildConfigField "String", "WEATHER_BANNER_ID", apikeyProperties['WEATHER_BANNER_ID']
+//            buildConfigField "String", "EVENT_BANNER_ID", apikeyProperties['EVENT_BANNER_ID']
+//            buildConfigField "String", "WEATHER_BANNER_ID", apikeyProperties['WEATHER_BANNER_ID']
+            resValue "string", "EVENT_BANNER_ID", apikeyProperties['EVENT_BANNER_ID']
+            resValue "string", "WEATHER_BANNER_ID", apikeyProperties['WEATHER_BANNER_ID']
         }
     }
     compileOptions {
