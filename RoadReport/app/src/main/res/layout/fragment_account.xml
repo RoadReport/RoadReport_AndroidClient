@@ -182,50 +182,10 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
-            <FrameLayout
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/frameLayoutForPref"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <!-- General Section -->
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_general"-->
-<!--                style="@style/SettingsSectionTitle"-->
-<!--                android:text="@string/settingsActivity_generalTitle" />-->
-
-
-
-
-<!--            &lt;!&ndash; About Section &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_about"-->
-<!--                style="@style/SettingsSectionTitle"-->
-<!--                android:text="@string/settingsActivity_aboutTitle" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_termOfServiceLink"-->
-<!--                style="@style/AboutItem"-->
-<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
-<!--                android:text="@string/settingsFrag_titleTermsOfService" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_privacyPolicyLink"-->
-<!--                style="@style/AboutItem"-->
-<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
-<!--                android:text="@string/settingsFrag_titlePrivacyPolicy" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_licenseLink"-->
-<!--                style="@style/AboutItem"-->
-<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
-<!--                android:text="@string/settingsFrag_titleLicense" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/textView_settings_aboutLink"-->
-<!--                style="@style/AboutItem"-->
-<!--                android:onClick="@{(view) -> handler.aboutLink(view)}"-->
-<!--                android:text="@string/settingsActivity_aboutTitle" />-->
-
         </LinearLayout>
     </ScrollView>
 </layout>

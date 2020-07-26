@@ -56,7 +56,7 @@ class AuthManager {
             .addOnCompleteListener {
                 Toast.makeText(
                     context,
-                    R.string.settingsActivity_signOutSuccess,
+                    R.string.accountFrag_signOutSuccess,
                     Toast.LENGTH_SHORT
                 ).show()
             }

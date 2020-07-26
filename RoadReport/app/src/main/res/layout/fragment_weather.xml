@@ -30,6 +30,14 @@
                 android:padding="@dimen/margin_normal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView_weatherFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/WEATHER_BANNER_ID" />
+
             <View style="@style/DivLine" />
 
             <TextView

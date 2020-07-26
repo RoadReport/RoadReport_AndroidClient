@@ -32,6 +32,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         val target = when (preference?.key) {
+            "ads" -> "https://bit.ly/RoadRAds"
             "pp" -> "https://bit.ly/RoadRTos"
             "tos" -> "https://bit.ly/RoadRPp"
             "license" -> "https://bit.ly/RoadRLicense"

@@ -1,12 +1,6 @@
 <resources>
 
-    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
-    <string name="facebook_application_id" translatable="false">178598010098336</string>
-    <string name="facebook_login_protocol_scheme" translatable="false">fb178598010098336</string>
-    <string name="facebook_app_id" translatable="false">178598010098336</string>
-
     <!-- Titles -->
-<!--    <string name="app_name">路況回報</string>-->
     <string name="app_name">看路</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">路況回報</string>
@@ -30,13 +24,17 @@
     <string name="roadName_24_description">位於霧台鄉</string>
     <string name="roadName_182_description">位於台南高雄交界</string>
 
-    <!-- Account Fragment -->
+    <!-- Account and Setting Fragment -->
     <string name="accountFragment_title">帳號與設定</string>
     <string name="accountFragment_userNameHolder">未登入</string>
     <string name="accountFragment_accountStatusSignedIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
+    <string name="accountFrag_signOutSuccess">登出成功</string>
     <string name="settingsFrag_titleGeneral">一般</string>
+    <string name="settingsFrag_titleTheme">主題</string>
+    <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
     <string name="settingsFrag_titleAbout">關於</string>
+    <string name="settingsFrag_titleAds">廣告</string>
     <string name="settingsFrag_titleTermsOfService">服務條款</string>
     <string name="settingsFrag_titlePrivacyPolicy">隱私權政策</string>
     <string name="settingsFrag_titleLicense">版權聲明</string>
@@ -60,6 +58,9 @@
     <!-- Live Cam Fragment -->
     <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
+    <string name="liveCamFrag_valueDescription">
+        影像來源為公路總局及各地方政府提供，本頁擷取該道路可用之監視器畫面，這些攝影機不是我們架設的。\n\n畫面全黑：通常代表攝影機維修中。\n畫面卡住：因影像格式問題，30 秒即會卡住，選擇其他攝影機再回來即可解決。
+    </string>
 
     <!-- Event Editor Fragment -->
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
@@ -97,19 +98,6 @@
     <string name="accidentEvent_NoEntry">有欄位未填寫</string>
     <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
-
-
-    <!-- Setting Activity Text -->
-    <string name="settingsActivity_accountTitle">帳號狀態</string>
-    <string name="settingsActivity_accountTypeGoogle">GOOGLE</string>
-    <string name="settingsActivity_accountTypeFb">FACEBOOK</string>
-    <string name="settingsActivity_accountStatusLogin">登出</string>
-    <string name="settingsActivity_accountStatusLogout">登入去</string>
-    <string name="settingsActivity_signInSuccess">登入成功 :)</string>
-    <string name="settingsActivity_signInFailed">登入失敗 :(</string>
-    <string name="settingsActivity_signOutSuccess">登出成功</string>
-    <string name="settingsActivity_generalTitle">一般</string>
-    <string name="settingsActivity_aboutTitle">關於</string>
 
 
     <!-- Common -->

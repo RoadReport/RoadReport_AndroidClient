@@ -48,9 +48,6 @@ class LiveCamViewModel(application: Application) : AndroidViewModel(application)
         val magicConverter = GsonBuilder().create()
             .fromJson(stringFromRemoteConfig, Array<DynamicLiveCamSource>::class.java)
         liveCamSourcesList.value = magicConverter.toMutableList()
-        liveCamSourcesList.value?.forEach {
-            Log.i("LiveCamLog", "目前從 Remote Config 中取得的數值為: ${it.camName} with ${it.url}")
-        }
     }
 
 }
