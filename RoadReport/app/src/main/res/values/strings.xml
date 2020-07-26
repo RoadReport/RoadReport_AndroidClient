@@ -30,11 +30,12 @@
     <string name="roadName_24_description">位於霧台鄉</string>
     <string name="roadName_182_description">位於台南高雄交界</string>
 
-    <!-- Account Fragment -->
+    <!-- Account and Setting Fragment -->
     <string name="accountFragment_title">帳號與設定</string>
     <string name="accountFragment_userNameHolder">未登入</string>
     <string name="accountFragment_accountStatusSignedIn">登出</string>
     <string name="accountFragment_accountStatusSignedOut">登入</string>
+    <string name="accountFrag_signOutSuccess">登出成功</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleTheme">主題</string>
     <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
@@ -103,19 +104,6 @@
     <string name="accidentEvent_NoEntry">有欄位未填寫</string>
     <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
-
-
-    <!-- Setting Activity Text -->
-    <string name="settingsActivity_accountTitle">帳號狀態</string>
-    <string name="settingsActivity_accountTypeGoogle">GOOGLE</string>
-    <string name="settingsActivity_accountTypeFb">FACEBOOK</string>
-    <string name="settingsActivity_accountStatusLogin">登出</string>
-    <string name="settingsActivity_accountStatusLogout">登入去</string>
-    <string name="settingsActivity_signInSuccess">登入成功 :)</string>
-    <string name="settingsActivity_signInFailed">登入失敗 :(</string>
-    <string name="settingsActivity_signOutSuccess">登出成功</string>
-    <string name="settingsActivity_generalTitle">一般</string>
-    <string name="settingsActivity_aboutTitle">關於</string>
 
 
     <!-- Common -->
