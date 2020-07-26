@@ -1,12 +1,6 @@
 <resources>
 
-    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
-    <string name="facebook_application_id" translatable="false">178598010098336</string>
-    <string name="facebook_login_protocol_scheme" translatable="false">fb178598010098336</string>
-    <string name="facebook_app_id" translatable="false">178598010098336</string>
-
     <!-- Titles -->
-<!--    <string name="app_name">路況回報</string>-->
     <string name="app_name">看路</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">路況回報</string>
