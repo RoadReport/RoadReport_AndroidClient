@@ -13,29 +13,14 @@ data class WeatherJson(
 ) {
 
     fun getLocationName(): String? {
-        Log.i(
-            "WeatherLog",
-            "WeatherJson.getLocationName().地點：" + records?.location?.get(0)?.locationName
-        )
         return records?.location?.get(0)?.locationName
     }
 
     fun getStationId(): String? {
-        Log.i(
-            "WeatherLog",
-            "WeatherJson.getStationId().測站編號：" + records?.location?.get(0)?.stationId
-        )
         return records?.location?.get(0)?.stationId
     }
 
     fun getElementValue(): String? {
-        Log.i(
-            "WeatherLog",
-            "WeatherJson.getElementValue().數值，" +
-                    records?.location?.get(0)?.weatherElement?.get(0)?.elementName +
-                    " 為：" +
-                    records?.location?.get(0)?.weatherElement?.get(0)?.elementValue
-        )
         return records?.location?.get(0)?.weatherElement?.get(0)?.elementValue
     }
 
