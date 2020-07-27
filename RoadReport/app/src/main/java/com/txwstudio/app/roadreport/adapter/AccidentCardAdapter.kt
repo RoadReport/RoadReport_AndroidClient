@@ -122,7 +122,7 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                 val builder = AlertDialog.Builder(context)
                 builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                     when (which) {
-                        0 -> Util().toast(context, "你剛按檢舉")
+                        0 -> Util().toast(context, "此功能尚未開發")
                     }
                 }.show()
             }
