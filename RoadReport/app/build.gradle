@@ -16,8 +16,8 @@ android {
         applicationId 'com.txwstudio.app.roadreport'
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 14
-        versionName "Alpha 1.6.0"
+        versionCode 15
+        versionName "Beta 1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,8 +34,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            buildConfigField "String", "EVENT_BANNER_ID", apikeyProperties['EVENT_BANNER_ID']
-//            buildConfigField "String", "WEATHER_BANNER_ID", apikeyProperties['WEATHER_BANNER_ID']
             resValue "string", "EVENT_BANNER_ID", apikeyProperties['EVENT_BANNER_ID']
             resValue "string", "WEATHER_BANNER_ID", apikeyProperties['WEATHER_BANNER_ID']
             resValue "string", "LIVECAM_BANNER_ID", apikeyProperties['LIVECAM_BANNER_ID']

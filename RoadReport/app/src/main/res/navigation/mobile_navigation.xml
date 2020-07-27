@@ -14,6 +14,6 @@
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.txwstudio.app.roadreport.ui.account.AccountFragment"
-        android:label="@string/accountFragment_title"
+        android:label="@string/accountFrag_title"
         tools:layout="@layout/fragment_account" />
 </navigation>
