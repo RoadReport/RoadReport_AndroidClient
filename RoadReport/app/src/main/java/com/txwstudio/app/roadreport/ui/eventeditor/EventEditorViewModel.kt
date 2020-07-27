@@ -21,6 +21,7 @@ class EventEditorViewModel internal constructor(
 
     var currentRoadName = MutableLiveData<String>()
 
+    var sendingData = MutableLiveData<Boolean>(false)
     var errorNotSignedIn = MutableLiveData<Boolean>(false)
     var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
     var isComplete = MutableLiveData<Boolean>()
@@ -129,6 +130,8 @@ class EventEditorViewModel internal constructor(
 
     fun sendClicked() {
         letPrintSomeThing()
+        sendingData.value = true
+
         // User not signed in yet, break.
         if (!AuthManager().userIsSignedIn()) {
             errorNotSignedIn.value = !errorNotSignedIn.value!!
@@ -147,12 +150,14 @@ class EventEditorViewModel internal constructor(
             // Perform add event.
             FirestoreManager().addAccident(roadCode!!, getUserEntry()) {
                 isComplete.value = it
+                if (!it) sendingData.value = false
             }
 
         } else if (editMode) {
             // Perform update event.
             FirestoreManager().updateAccident(roadCode!!, documentId!!, getUserEntry()) {
                 isComplete.value = it
+                if (!it) sendingData.value = false
             }
         }
     }

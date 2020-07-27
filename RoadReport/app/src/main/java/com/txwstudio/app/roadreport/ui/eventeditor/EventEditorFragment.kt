@@ -139,6 +139,15 @@ class EventEditorFragment : Fragment() {
             }
         }
 
+        // When sending data to firestore, show progressBar.
+        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
+            } else {
+                binding.progressbarEventEditorSendProgress.visibility = View.GONE
+            }
+        }
+
         /**
          * When isUploadImageClicked is true start an intent to pick an image.
          * */
