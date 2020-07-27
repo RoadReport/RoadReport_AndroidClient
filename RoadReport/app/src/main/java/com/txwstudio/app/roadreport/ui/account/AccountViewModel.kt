@@ -36,7 +36,7 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
             // User not sign in yet.
             photoUrl.value = Uri.EMPTY
             displayName.value =
-                getApplication<Application>().getString(R.string.accountFragment_userNameHolder)
+                getApplication<Application>().getString(R.string.accountFrag_userNameHolder)
             email.value = ""
             uid.value = ""
             isSignedIn.value = false

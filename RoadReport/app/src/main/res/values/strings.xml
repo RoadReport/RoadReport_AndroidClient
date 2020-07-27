@@ -25,10 +25,10 @@
     <string name="roadName_182_description">位於台南高雄交界</string>
 
     <!-- Account and Setting Fragment -->
-    <string name="accountFragment_title">帳號與設定</string>
-    <string name="accountFragment_userNameHolder">未登入</string>
-    <string name="accountFragment_accountStatusSignedIn">登出</string>
-    <string name="accountFragment_accountStatusSignedOut">登入</string>
+    <string name="accountFrag_title">帳號與設定</string>
+    <string name="accountFrag_userNameHolder">未登入</string>
+    <string name="accountFrag_accountStatusSignedIn">登出</string>
+    <string name="accountFrag_accountStatusSignedOut">登入</string>
     <string name="accountFrag_signOutSuccess">登出成功</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleTheme">主題</string>
@@ -44,7 +44,7 @@
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>
 
-    <!-- Road Fragment -->
+    <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
 

@@ -10,6 +10,6 @@
     <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_person_outline_24dp"
-        android:title="@string/accountFragment_title" />
+        android:title="@string/accountFrag_title" />
 
 </menu>

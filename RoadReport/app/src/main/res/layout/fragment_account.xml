@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/margin_normal"
-                        android:text="@string/accountFragment_userNameHolder"
+                        android:text="@string/accountFrag_userNameHolder"
                         android:textColor="?attr/whiteOrBlack"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +70,7 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="@dimen/margin_normal"
                     android:onClick="@{(view) -> handler.signInOut(view)}"
-                    android:text="@string/accountFragment_accountStatusSignedOut"
+                    android:text="@string/accountFrag_accountStatusSignedOut"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -177,7 +177,7 @@
                     android:layout_marginStart="64dp"
                     android:layout_marginBottom="@dimen/margin_normal"
                     android:onClick="@{(view) -> handler.signInOut(view)}"
-                    android:text="@string/accountFragment_accountStatusSignedIn" />
+                    android:text="@string/accountFrag_accountStatusSignedIn" />
 
                 <View style="@style/DivLine" />
             </LinearLayout>
