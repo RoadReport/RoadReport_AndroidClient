@@ -23,7 +23,7 @@
             android:background="@drawable/outline_accident_type"
             android:paddingHorizontal="4dp"
             android:textColor="?attr/whiteOrBlack"
-            android:textSize="20sp"
+            android:textSize="@dimen/eventCard_mainTextSize"
             tools:text="事故" />
 
         <TextView
@@ -37,8 +37,8 @@
             android:layout_toEndOf="@id/textView_accidentCard_situationType"
             android:maxLength="10"
             android:textColor="?attr/whiteOrBlack"
-            android:textSize="20sp"
-            tools:text="北上方向87K處" />
+            android:textSize="@dimen/eventCard_mainTextSize"
+            tools:text="地點地點地點地點地點" />
 
         <ImageButton
             android:id="@+id/imageButton_accidentCard_more"
@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/all_defaultHalf_margin"
             android:layout_marginEnd="@dimen/margin_normal"
             android:textColor="?attr/whiteOrBlack"
-            android:textSize="20sp"
+            android:textSize="@dimen/eventCard_mainTextSize"
             tools:text="下橋有國產豐田自撞，國產鋁罐導致電線桿沒事但車毀人亡，但死者為大我們比個讚。" />
 
         <ImageView
@@ -87,8 +87,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="@dimen/all_defaultHalf_margin"
             android:textColor="?attr/whiteOrBlack"
-            android:textSize="14sp"
-            tools:text="2020/04/05 11:55" />
+            tools:text="09/13 09:41" />
 
         <TextView
             android:id="@+id/textView_accidentCard_userName"
@@ -102,7 +101,6 @@
             android:layout_toEndOf="@id/textView_accidentCard_time"
             android:textAlignment="textEnd"
             android:textColor="?attr/whiteOrBlack"
-            android:textSize="14sp"
             tools:text="王大明" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
