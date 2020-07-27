@@ -12,14 +12,6 @@ data class WeatherJson(
     var success: String?
 ) {
 
-    fun getLocationName(): String? {
-        return records?.location?.get(0)?.locationName
-    }
-
-    fun getStationId(): String? {
-        return records?.location?.get(0)?.stationId
-    }
-
     fun getElementValue(): String? {
         return records?.location?.get(0)?.weatherElement?.get(0)?.elementValue
     }

@@ -24,6 +24,7 @@ import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_main.*
 
+// (っ･ω･)っ
 
 class MainActivity : AppCompatActivity() {
 

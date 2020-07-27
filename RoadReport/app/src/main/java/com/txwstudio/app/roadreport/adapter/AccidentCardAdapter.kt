@@ -81,7 +81,6 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         // Situation 3: Signed in && NOT posted by user, Report.
         if (!userIsSignedIn) {
             // Situation 1
-            Log.i("TESTTT", "What user can to the card, Situation 1")
             holder.moreButton.visibility = View.INVISIBLE
 
         } else if (userIsSignedIn && model.userUid == userUid) {
