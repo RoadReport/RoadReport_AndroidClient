@@ -1,7 +1,7 @@
 <resources>
 
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/colorAccent_dark</item>
+        <item name="colorPrimary">@color/materialDarkBackground</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
@@ -35,8 +35,8 @@
         <item name="whiteOrBlack">@color/white</item>
         <item name="divLineBackground">@color/grey550</item>
         <item name="tabLayoutBackground">@color/colorAccent_dark</item>
-        <item name="eventCardBackground">@color/colorSurface_dark</item>
-        <item name="editTextCardBackground">@color/colorSurface_dark</item>
+        <item name="eventCardBackground">@color/materialDarkSurface</item>
+        <item name="editTextCardBackground">@color/materialDarkSurface</item>
     </style>
 
     <style name="DarkTheme.NoActionBar">
