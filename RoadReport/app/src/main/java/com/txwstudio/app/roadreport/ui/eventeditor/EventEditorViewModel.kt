@@ -129,8 +129,7 @@ class EventEditorViewModel internal constructor(
     }
 
     fun sendClicked() {
-        letPrintSomeThing()
-        sendingData.value = true
+//        letPrintSomeThing()
 
         // User not signed in yet, break.
         if (!AuthManager().userIsSignedIn()) {
@@ -144,7 +143,7 @@ class EventEditorViewModel internal constructor(
             return
         }
 
-
+        sendingData.value = true
 //        areYouSureDialog.value = if (!editMode) 1 else 2
         if (!editMode) {
             // Perform add event.
