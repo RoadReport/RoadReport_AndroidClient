@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.google.android.material.snackbar.Snackbar
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
@@ -133,10 +132,14 @@ class EventEditorFragment : Fragment() {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
                     eventEditorViewModel.situationType.value = which.toLong()
-                    it.text = Util().getSituationTypeName(requireContext(), which)
                 }
                 builder.create().show()
             }
+        }
+
+        eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
+            binding.editTextEventEditorSituationTypeContent.text =
+                Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
         // When sending data to firestore, show progressBar.
