@@ -144,10 +144,16 @@ class EventEditorFragment : Fragment() {
 
         // When sending data to firestore, show progressBar.
         eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+            val builder: AlertDialog = AlertDialog.Builder(requireActivity())
+                .setView(R.layout.dialog_sending_data)
+                .setCancelable(false)
+                .create()
             if (it) {
-                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
+                builder.show()
+//                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
             } else {
-                binding.progressbarEventEditorSendProgress.visibility = View.GONE
+                builder.dismiss()
+//                binding.progressbarEventEditorSendProgress.visibility = View.GONE
             }
         }
 
