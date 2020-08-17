@@ -24,7 +24,7 @@ import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-// (っ･ω･)っ
+// 抱抱 (っ･ω･)っ
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setMessage(getString(R.string.mainActivity_needUpdateMsg))
                     .setPositiveButton(R.string.all_confirm) { _, _ ->
-
                         val appPackageName = packageName
                         try {
                             startActivity(
@@ -58,7 +57,6 @@ class MainActivity : AppCompatActivity() {
                                 )
                             )
                         }
-
                     }
                     .setNegativeButton(R.string.all_nope) { _, _ ->
                         finish()
