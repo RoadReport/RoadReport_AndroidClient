@@ -2,10 +2,7 @@ package com.txwstudio.app.roadreport.handler
 
 import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.view.View
-import androidx.browser.customtabs.CustomTabsIntent
-import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.firebase.AuthManager
 
 class AccountFragClickHandler(var context: Context, var activity: Activity) {

@@ -9,14 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-/**
-https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0001-001?
-Authorization=CWB-5E768A58-42AC-42E6-AE2F-078BE496737A&
-format=JSON&
-elementName=TEMP&
-stationId=C0R130
- */
-
 private const val BASE_URL = "https://opendata.cwb.gov.tw/"
 
 private val okHttpClient = OkHttpClient.Builder()

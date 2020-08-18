@@ -22,4 +22,6 @@
 
     <dimen name="roadCard_homeFrag_titleSize">30sp</dimen>
     <dimen name="roadCard_homeFrag_subtitleSize">14sp</dimen>
+
+    <dimen name="eventCard_mainTextSize">18sp</dimen>
 </resources>

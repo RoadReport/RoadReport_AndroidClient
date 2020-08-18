@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:padding="@dimen/margin_normal"
+        android:paddingTop="@dimen/margin_normal"
+        android:paddingStart="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_normal"
+        android:paddingBottom="64dp"
         android:scrollbars="none" />
 
 </FrameLayout>

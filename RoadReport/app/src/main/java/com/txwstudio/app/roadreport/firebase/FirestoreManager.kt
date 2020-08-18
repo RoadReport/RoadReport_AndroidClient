@@ -93,7 +93,6 @@ class FirestoreManager {
 
     /**
      * Delete accident from firestore using by document id.
-     *
      * */
     fun updateAccident(roadCode: Int, documentId: String, data: Accident, isComplete: (Boolean) -> Unit) {
         val db = FirebaseFirestore.getInstance()
