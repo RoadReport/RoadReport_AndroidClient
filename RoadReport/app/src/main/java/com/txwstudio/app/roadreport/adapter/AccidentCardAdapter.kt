@@ -14,6 +14,7 @@ import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.activity.AccidentEventActivity
 import com.txwstudio.app.roadreport.activity.EventEditorActivity
+import com.txwstudio.app.roadreport.activity.ImageViewerActivity
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
@@ -74,6 +75,12 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
             Glide.with(context).clear(holder.image)
         }
 
+        holder.image.setOnClickListener {
+            context.startActivity(
+                Intent(context, ImageViewerActivity::class.java)
+                    .putExtra("imageUrl", model.imageUrl)
+            )
+        }
 
         // What user can to the card. Different onClick behavior for card.
         // Situation 1: NOT Signed in, no action at all.
