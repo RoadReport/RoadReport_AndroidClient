@@ -1,8 +1,9 @@
 package com.txwstudio.app.roadreport.activity
 
-import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import com.bumptech.glide.Glide
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
@@ -19,8 +20,14 @@ class ImageViewerActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.title_activity_imageViewer)
 
         Glide.with(baseContext)
-            .load(intent.getStringExtra("imageUrl"))
-            .into(touchImageView_imageViewer)
+                .load(intent.getStringExtra("imageUrl"))
+                .into(touchImageView_imageViewer)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
