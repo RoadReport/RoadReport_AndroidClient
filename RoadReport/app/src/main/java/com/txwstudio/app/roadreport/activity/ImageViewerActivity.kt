@@ -3,7 +3,6 @@ package com.txwstudio.app.roadreport.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NavUtils
 import com.bumptech.glide.Glide
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
