@@ -10,14 +10,14 @@ def apikeyProperties = new Properties()
 apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId 'com.txwstudio.app.roadreport'
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 18
-        versionName "Beta 1.0.3"
+        targetSdkVersion 30
+        versionCode 19
+        versionName "Beta 1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
