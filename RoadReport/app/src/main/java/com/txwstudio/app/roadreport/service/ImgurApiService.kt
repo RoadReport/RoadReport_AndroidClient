@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit
 private const val BASE_URL = "https://api.imgur.com"
 
 private val okHttpClient = OkHttpClient.Builder()
-    .connectTimeout(10, TimeUnit.SECONDS)
-    .writeTimeout(30, TimeUnit.SECONDS)
-    .readTimeout(10, TimeUnit.SECONDS)
+    .connectTimeout(15, TimeUnit.SECONDS)
+    .writeTimeout(45, TimeUnit.SECONDS)
+    .readTimeout(15, TimeUnit.SECONDS)
     .build()
 
 private val retrofit = Retrofit.Builder().client(okHttpClient)
