@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.model.Accident
@@ -42,11 +43,11 @@ class EventEditorFragment : Fragment() {
     ): View? {
 
         val bundle = this.arguments
-        val editMode = bundle?.getBoolean("editMode", false)!!
-        val roadCode = bundle.getInt("roadCode", -1)
-        val roadName = bundle.getString("roadName", "")
-        val documentId = bundle.getString("documentId", "")
-        val accidentModel = bundle.getParcelable<Accident>("accidentModel")
+        val editMode = bundle?.getBoolean(StringCode.EXTRA_NAME_EDIT_MODE, false)!!
+        val roadCode = bundle.getInt(StringCode.EXTRA_NAME_ROAD_CODE, -1)
+        val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
+        val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
+        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
         Log.i("TESTTT", "${accidentModel?.location}")
 
         eventEditorViewModel = ViewModelProvider(

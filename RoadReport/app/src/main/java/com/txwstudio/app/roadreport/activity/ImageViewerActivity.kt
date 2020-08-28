@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import kotlinx.android.synthetic.main.activity_image_viewer.*
 
@@ -19,7 +20,7 @@ class ImageViewerActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.title_activity_imageViewer)
 
         Glide.with(baseContext)
-                .load(intent.getStringExtra("imageUrl"))
+                .load(intent.getStringExtra(StringCode.EXTRA_NAME_IMAGE_URL))
                 .into(touchImageView_imageViewer)
     }
 
