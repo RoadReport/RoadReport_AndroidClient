@@ -1,7 +1,5 @@
 package com.txwstudio.app.roadreport
 
-val wow = "df"
-
 object StringCode {
 
     /**
