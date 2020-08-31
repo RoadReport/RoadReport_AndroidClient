@@ -38,8 +38,8 @@ class EventEditorFragment : Fragment() {
     private val UPLOAD_IMAGE_REQUEST_CODE = 1
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         val bundle = this.arguments
@@ -51,20 +51,20 @@ class EventEditorFragment : Fragment() {
         Log.i("TESTTT", "${accidentModel?.location}")
 
         eventEditorViewModel = ViewModelProvider(
-            this, EventEditorViewModelFactory(
+                this, EventEditorViewModelFactory(
                 editMode,
                 roadCode,
                 roadName,
                 documentId,
                 accidentModel
-            )
+        )
         ).get(EventEditorViewModel::class.java)
 
         binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_event_editor,
-            container,
-            false
+                inflater,
+                R.layout.fragment_event_editor,
+                container,
+                false
         )
         binding.viewModel = eventEditorViewModel
         binding.lifecycleOwner = this
@@ -77,6 +77,8 @@ class EventEditorFragment : Fragment() {
     }
 
     /**
+     * Invoke by this:171
+     *
      * Handle image callback and upload to imgur inside Fragment for now,
      * I'am limited by the technology of my time.
      * TODO(Fix pattern)
@@ -94,9 +96,9 @@ class EventEditorFragment : Fragment() {
                             and (Intent.FLAG_GRANT_READ_URI_PERMISSION
                             or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
                     requireContext().grantUriPermission(
-                        requireContext().packageName,
-                        fileUri,
-                        takeFlags
+                            requireContext().packageName,
+                            fileUri,
+                            takeFlags
                     )
                     fileUri?.let {
                         requireContext().contentResolver.takePersistableUriPermission(it, takeFlags)
@@ -107,9 +109,9 @@ class EventEditorFragment : Fragment() {
                         org.apache.commons.io.FileUtils.copyToFile(it, file)
 
                         val requestFile =
-                            RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                                RequestBody.create(MediaType.parse("multipart/form-data"), file)
                         val body =
-                            MultipartBody.Part.createFormData("image", file.name, requestFile)
+                                MultipartBody.Part.createFormData("image", file.name, requestFile)
 
                         sendImageAndGetLink(body)
                     }
@@ -140,15 +142,15 @@ class EventEditorFragment : Fragment() {
 
         eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
             binding.editTextEventEditorSituationTypeContent.text =
-                Util().getSituationTypeName(requireContext(), it.toInt())
+                    Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
         // When sending data to firestore, show progressBar.
         eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
             val builder: AlertDialog = AlertDialog.Builder(requireActivity())
-                .setView(R.layout.dialog_sending_data)
-                .setCancelable(false)
-                .create()
+                    .setView(R.layout.dialog_sending_data)
+                    .setCancelable(false)
+                    .create()
             if (it) {
                 builder.show()
 //                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
@@ -177,14 +179,14 @@ class EventEditorFragment : Fragment() {
             binding.buttonEventEditorUploadImage.let { its ->
                 if (it.isNullOrBlank()) {
                     its.text =
-                        requireContext().getString(R.string.accidentEvent_uploadImageTitle)
+                            requireContext().getString(R.string.accidentEvent_uploadImageTitle)
                     its.background =
-                        requireContext().getDrawable(R.drawable.bg_upload_image_button)
+                            requireContext().getDrawable(R.drawable.bg_upload_image_button)
                 } else if (!it.isNullOrBlank()) {
                     its.text =
-                        requireContext().getString(R.string.accidentEvent_removeUploadImageTitle)
+                            requireContext().getString(R.string.accidentEvent_removeUploadImageTitle)
                     its.background =
-                        requireContext().getDrawable(R.drawable.bg_upload_image_remove_button)
+                            requireContext().getDrawable(R.drawable.bg_upload_image_remove_button)
                 }
             }
         }
@@ -193,8 +195,8 @@ class EventEditorFragment : Fragment() {
         eventEditorViewModel.errorNotSignedIn.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
-                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                    R.string.all_notSignedIn
+                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                        R.string.all_notSignedIn
                 )
                 eventEditorViewModel.errorNotSignedIn.value = false
             }
@@ -204,8 +206,8 @@ class EventEditorFragment : Fragment() {
         eventEditorViewModel.errorRequiredEntriesEmpty.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
-                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                    R.string.accidentEvent_NoEntry
+                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                        R.string.accidentEvent_NoEntry
                 )
                 eventEditorViewModel.errorRequiredEntriesEmpty.value = false
             }
@@ -216,8 +218,8 @@ class EventEditorFragment : Fragment() {
                 requireActivity().finish()
             } else {
                 Util().snackBarShort(
-                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                    R.string.eventEditor_eventAddUpdateFailure
+                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                        R.string.eventEditor_eventAddUpdateFailure
                 )
             }
         }
@@ -226,7 +228,7 @@ class EventEditorFragment : Fragment() {
     private fun sendImageAndGetLink(body: MultipartBody.Part) {
         GlobalScope.launch(Dispatchers.IO) {
             val wow =
-                ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
+                    ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
             withContext(Dispatchers.Main) {
                 eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
                 binding.progressbarEventEditorImageProgress.visibility = View.GONE
