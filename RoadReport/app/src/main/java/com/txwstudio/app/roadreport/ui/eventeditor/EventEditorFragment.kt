@@ -16,6 +16,7 @@ import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
+import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.service.ImgurApi
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,12 @@ import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
+import java.io.IOException
+import java.net.SocketTimeoutException
 
 class EventEditorFragment : Fragment() {
 
@@ -226,14 +232,58 @@ class EventEditorFragment : Fragment() {
     }
 
     private fun sendImageAndGetLink(body: MultipartBody.Part) {
-        GlobalScope.launch(Dispatchers.IO) {
-            val wow =
-                    ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
-            withContext(Dispatchers.Main) {
-                eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
+        val imgurApi = ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body)
+        imgurApi.enqueue(object : Callback<ImgurUploadJson> {
+            override fun onResponse(call: Call<ImgurUploadJson>, response: Response<ImgurUploadJson>) {
                 binding.progressbarEventEditorImageProgress.visibility = View.GONE
+                if (response.isSuccessful) {
+                    // Prevent "Error 429 Too many requests", when run into it, the link will be null.
+                    if (response.body()?.getImageLink() == null || response.body()?.getImageLink() == "null") {
+                        eventEditorViewModel.imageUrl.value = ""
+                        Util().snackBarShort(
+                                requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                                getString(R.string.accidentEvent_imageUploadFail_server)
+                        )
+                    } else {
+                        Log.i("TESTTT", "圖片連結為 " + response.body()?.getImageLink())
+                        eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
+                    }
+                } else {
+                    Util().snackBarShort(
+                            requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                            "Imgur Error ${response.code().toString()}"
+                    )
+                }
             }
-        }
+
+            override fun onFailure(call: Call<ImgurUploadJson>, t: Throwable) {
+                binding.progressbarEventEditorImageProgress.visibility = View.GONE
+
+                val errMsg: String = when (t) {
+                    is SocketTimeoutException -> {
+                        getString(R.string.accidentEvent_imageUploadFail_timeout)
+                    }
+                    is IOException -> {
+                        getString(R.string.accidentEvent_imageUploadFail_IO)
+                    }
+                    else -> getString(R.string.accidentEvent_imageUploadFail_unknown)
+                }
+                Util().snackBarShort(
+                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                        errMsg
+                )
+            }
+        })
+
+//        TODO(Testing new method, comment these out.)
+//        GlobalScope.launch(Dispatchers.IO) {
+//            val wow =
+//                    ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
+//            withContext(Dispatchers.Main) {
+//                eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
+//                binding.progressbarEventEditorImageProgress.visibility = View.GONE
+//            }
+//        }
     }
 
     fun actionSendClicked() = eventEditorViewModel.sendClicked()
