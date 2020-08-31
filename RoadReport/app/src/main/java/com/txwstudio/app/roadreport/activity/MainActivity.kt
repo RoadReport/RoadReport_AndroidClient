@@ -1,11 +1,9 @@
 package com.txwstudio.app.roadreport.activity
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -36,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar_main)
 
-        checkAppVersion {
+        isNeedUpdate {
             if (it) {
                 AlertDialog.Builder(this)
                     .setMessage(getString(R.string.mainActivity_needUpdateMsg))
@@ -93,9 +91,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Compare app version with ANDROID_MIN_VER.
+     * Compare app version with the ANDROID_MIN_VER on the Firebase.
      * */
-    private fun checkAppVersion(needUpdate: (Boolean) -> Unit) {
+    private fun isNeedUpdate(needUpdate: (Boolean) -> Unit) {
         val remoteConfig = Firebase.remoteConfig
         remoteConfig.setConfigSettingsAsync(remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600

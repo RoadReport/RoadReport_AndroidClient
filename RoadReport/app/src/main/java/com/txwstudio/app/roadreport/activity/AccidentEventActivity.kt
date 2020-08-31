@@ -107,7 +107,7 @@ class AccidentEventActivity : AppCompatActivity() {
     private fun checkIsEditMode() {
         editMode = intent.getBooleanExtra("editMode", false)
         if (editMode) {
-            accidentForEditing = intent.getParcelableExtra("accidentModel")
+            accidentForEditing = intent.getParcelableExtra("accidentModel")!!
             setupCurrentRoadContent()
         }
     }
@@ -294,7 +294,7 @@ class AccidentEventActivity : AppCompatActivity() {
                 .setPositiveButton(R.string.all_confirm) { _, _ ->
                     FirestoreManager().updateAccident(
                         ROADCODE,
-                        intent.getStringExtra("documentId"),
+                        intent.getStringExtra("documentId")!!,
                         getUserEntryAfterUpdate()
                     ) {
                         if (it) {
@@ -308,16 +308,5 @@ class AccidentEventActivity : AppCompatActivity() {
                 .setNegativeButton(R.string.all_cancel) { _, _ -> }
                 .show()
         }
-
     }
-
-
-//        FirestoreManager().addAccident(ROADCODE, getUserEntry()) {
-//            if (it) {
-//                Util().toast(this, getString(R.string.accidentEvent_addSuccess))
-//                finish()
-//            } else {
-//                Util().toast(this, getString(R.string.accidentEvent_addFailed))
-//            }
-//        }
 }

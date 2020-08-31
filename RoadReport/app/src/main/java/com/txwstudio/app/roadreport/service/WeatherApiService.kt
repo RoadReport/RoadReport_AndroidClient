@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit
 private const val BASE_URL = "https://opendata.cwb.gov.tw/"
 
 private val okHttpClient = OkHttpClient.Builder()
-    .connectTimeout(10, TimeUnit.SECONDS)
-    .readTimeout(10, TimeUnit.SECONDS)
+    .connectTimeout(15, TimeUnit.SECONDS)
+    .readTimeout(15, TimeUnit.SECONDS)
     .build()
 
 private val retrofit = Retrofit.Builder().client(okHttpClient)

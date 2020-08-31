@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
+import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
@@ -27,16 +28,16 @@ class EventEditorActivity : AppCompatActivity() {
 
         // If start from RoadActivity(Add Event), passing == null.
         // If start from AccidentCardAdapter(Edit Current Event), passing == below.
-        val editMode = intent.getBooleanExtra("editMode", false)
-        val documentId = intent.getStringExtra("documentId")
-        val accidentModel = intent.getParcelableExtra<Accident>("accidentModel")
+        val editMode = intent.getBooleanExtra(StringCode.EXTRA_NAME_EDIT_MODE, false)
+        val documentId = intent.getStringExtra(StringCode.EXTRA_NAME_DOCUMENT_ID)
+        val accidentModel = intent.getParcelableExtra<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
 
         val bundle = Bundle()
-        bundle.putBoolean("editMode", editMode)
-        bundle.putInt("roadCode", RoadCode().getCurrentRoadCode(this))
-        bundle.putString("roadName", RoadCode().getCurrRoadName(this))
-        bundle.putString("documentId", documentId)
-        bundle.putParcelable("accidentModel", accidentModel)
+        bundle.putBoolean(StringCode.EXTRA_NAME_EDIT_MODE, editMode)
+        bundle.putInt(StringCode.EXTRA_NAME_ROAD_CODE, RoadCode().getCurrentRoadCode(this))
+        bundle.putString(StringCode.EXTRA_NAME_ROAD_NAME, RoadCode().getCurrRoadName(this))
+        bundle.putString(StringCode.EXTRA_NAME_DOCUMENT_ID, documentId)
+        bundle.putParcelable(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
 
         eventEditorFragment.arguments = bundle
 

@@ -9,6 +9,7 @@
     <string name="title_activity_addAccident">新增狀況</string>
     <string name="title_activity_editAccident">編輯狀況</string>
     <string name="title_activity_eventEditor">事件編輯器</string>
+    <string name="title_activity_imageViewer">圖片檢視器</string>
 
     <!-- Roadname -->
     <string name="roadName_24">台 24</string>
@@ -90,6 +91,10 @@
     <string name="accidentEvent_imageTitle">圖片 - 選擇性</string>
     <string name="accidentEvent_uploadImageTitle">上傳圖片</string>
     <string name="accidentEvent_removeUploadImageTitle">移除圖片</string>
+    <string name="accidentEvent_imageUploadFail_timeout">上傳逾時，請在網路良好的狀況下上傳</string>
+    <string name="accidentEvent_imageUploadFail_IO">上傳失敗，偵測不到網路</string>
+    <string name="accidentEvent_imageUploadFail_server">上傳失敗，伺服器錯誤</string>
+    <string name="accidentEvent_imageUploadFail_unknown">未知錯誤</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
     <string name="accidentEvent_addConfirm">確認要新增事件?</string>

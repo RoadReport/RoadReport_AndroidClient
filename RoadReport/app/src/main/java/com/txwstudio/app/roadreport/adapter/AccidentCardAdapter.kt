@@ -11,9 +11,10 @@ import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
-import com.txwstudio.app.roadreport.activity.AccidentEventActivity
 import com.txwstudio.app.roadreport.activity.EventEditorActivity
+import com.txwstudio.app.roadreport.activity.ImageViewerActivity
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
 import java.text.SimpleDateFormat
@@ -74,6 +75,12 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
             Glide.with(context).clear(holder.image)
         }
 
+        holder.image.setOnClickListener {
+            context.startActivity(
+                Intent(context, ImageViewerActivity::class.java)
+                    .putExtra(StringCode.EXTRA_NAME_IMAGE_URL, model.imageUrl)
+            )
+        }
 
         // What user can to the card. Different onClick behavior for card.
         // Situation 1: NOT Signed in, no action at all.
@@ -94,9 +101,9 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                             val accidentModel = getItem(position)
 //                            val intent = Intent(context, AccidentEventActivity::class.java)
                             val intent = Intent(context, EventEditorActivity::class.java)
-                            intent.putExtra("editMode", true)
-                            intent.putExtra("documentId", snapshots.getSnapshot(position).id)
-                            intent.putExtra("accidentModel", accidentModel)
+                            intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
+                            intent.putExtra(StringCode.EXTRA_NAME_DOCUMENT_ID, snapshots.getSnapshot(position).id)
+                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
                             context.startActivity(intent)
                         }
                         1 -> {

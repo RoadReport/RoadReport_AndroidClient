@@ -17,6 +17,10 @@ class Util {
         Snackbar.make(view, resId, Snackbar.LENGTH_SHORT).show()
     }
 
+    fun snackBarShort(view: View, text: String) {
+        Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
+    }
+
     fun snackBarLong(view: View, resId: Int) {
         Snackbar.make(view, resId, Snackbar.LENGTH_LONG).show()
     }
