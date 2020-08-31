@@ -1,6 +1,5 @@
 package com.txwstudio.app.roadreport.json.weather
 
-import android.util.Log
 import com.google.gson.annotations.SerializedName
 
 data class WeatherJson(
