@@ -16,7 +16,7 @@ private const val BASE_URL = "https://api.imgur.com"
 
 private val okHttpClient = OkHttpClient.Builder()
     .connectTimeout(15, TimeUnit.SECONDS)
-    .writeTimeout(45, TimeUnit.SECONDS)
+    .writeTimeout(30, TimeUnit.SECONDS)
     .readTimeout(15, TimeUnit.SECONDS)
     .build()
 
