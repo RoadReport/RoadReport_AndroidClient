@@ -19,10 +19,6 @@ import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.service.ImgurApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -236,23 +232,16 @@ class EventEditorFragment : Fragment() {
         imgurApi.enqueue(object : Callback<ImgurUploadJson> {
             override fun onResponse(call: Call<ImgurUploadJson>, response: Response<ImgurUploadJson>) {
                 binding.progressbarEventEditorImageProgress.visibility = View.GONE
-                if (response.isSuccessful) {
-                    // Prevent "Error 429 Too many requests", when run into it, the link will be null.
-                    if (response.body()?.getImageLink() == null || response.body()?.getImageLink() == "null") {
-                        eventEditorViewModel.imageUrl.value = ""
-                        Util().snackBarShort(
-                                requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                                getString(R.string.accidentEvent_imageUploadFail_server)
-                        )
-                    } else {
-                        Log.i("TESTTT", "圖片連結為 " + response.body()?.getImageLink())
-                        eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
-                    }
-                } else {
+
+                if (!response.isSuccessful) {
                     Util().snackBarShort(
                             requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                            "Imgur Error ${response.code().toString()}"
+                            getString(R.string.accidentEvent_imageUploadFail_errorCode)
+                                    + " ${response.code()}"
                     )
+                } else if (response.isSuccessful) {
+                    Log.i("TESTTT", "圖片連結為 " + response.body()?.getImageLink())
+                    eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
                 }
             }
 
