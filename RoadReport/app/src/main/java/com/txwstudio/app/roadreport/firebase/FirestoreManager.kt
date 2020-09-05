@@ -5,6 +5,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.txwstudio.app.roadreport.model.Accident
 
 class FirestoreManager {
@@ -12,11 +14,11 @@ class FirestoreManager {
     /**
      * Add accident into firestore.
      *
-     * @param currRoad: Current road code from accidentEventActivity.
+     * @param currRoad: Current road code from EventEditor.
      * @param data: The accident detail entered by user.
      * */
     fun addAccident(currRoad: Int, data: Accident, isComplete: (Boolean) -> Unit) {
-        val db = FirebaseFirestore.getInstance()
+        val db = Firebase.firestore
 
         db.collection("ReportAccident").document(currRoad.toString())
             .collection("accidents").add(data)
@@ -41,7 +43,7 @@ class FirestoreManager {
      * */
     fun getAccident(currRoad: Int) {
         val mutableList = mutableListOf<Accident>()
-        val db = FirebaseFirestore.getInstance()
+        val db = Firebase.firestore
 
         db.collection("ReportAccident").document(currRoad.toString())
             .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
@@ -69,12 +71,13 @@ class FirestoreManager {
     /**
      * Delete accident from firestore using by document id.
      *
-     * @param road Current road code
-     * @param documentID The document to delete
+     * @param roadCode Current road code
+     * @param documentId The document need to delete
      * @return isComplete If successful delete the doc, return true
      * */
     fun deleteAccident(roadCode: Int, documentId: String, isComplete: (Boolean) -> Unit) {
-        val db = FirebaseFirestore.getInstance()
+        val db = Firebase.firestore
+
         db.collection("ReportAccident").document(roadCode.toString())
             .collection("accidents").document(documentId)
             .delete()
@@ -93,9 +96,18 @@ class FirestoreManager {
 
     /**
      * Delete accident from firestore using by document id.
+     *
+     * @param roadCode Current road code
+     * @param documentId The document need to update
+     * @param data New entry goes into firebase firestore
      * */
-    fun updateAccident(roadCode: Int, documentId: String, data: Accident, isComplete: (Boolean) -> Unit) {
-        val db = FirebaseFirestore.getInstance()
+    fun updateAccident(
+        roadCode: Int,
+        documentId: String,
+        data: Accident,
+        isComplete: (Boolean) -> Unit
+    ) {
+        val db = Firebase.firestore
         val dataForUpdate = hashMapOf<String, Any?>(
             "situationType" to data.situationType,
             "location" to data.location,
@@ -123,11 +135,10 @@ class FirestoreManager {
      * Get database query for Firestore Recycler View UI.
      *
      * @param roadCode Current road code
-     *
      * @return database query
      */
     fun getRealtimeAccidentQuery(roadCode: Int): FirestoreRecyclerOptions<Accident?> {
-        val db = FirebaseFirestore.getInstance()
+        val db = Firebase.firestore
             .collection("ReportAccident").document(roadCode.toString())
             .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
         return FirestoreRecyclerOptions.Builder<Accident>()
