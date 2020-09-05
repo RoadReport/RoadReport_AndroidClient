@@ -30,7 +30,10 @@
 - 深色主題
 
 ## Develop
+- Android Studio 4.0.1 and above
 - Gradle 6.1.1
+- google-services.json
+- apikey.properties
 
 ## License
 ```
