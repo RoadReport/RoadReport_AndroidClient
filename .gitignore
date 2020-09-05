@@ -328,7 +328,7 @@ hs_err_pid*
 
 ### AndroidStudio Patch ###
 
-!/gradle/wrapper/gradle-wrapper.jar
+RoadReport/app/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/macos,android,windows,intellij,androidstudio
 RoadReport/apikey.properties
