@@ -50,7 +50,6 @@ class EventEditorFragment : Fragment() {
         val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
         val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
         val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
-        Log.i("TESTTT", "${accidentModel?.location}")
 
         eventEditorViewModel = ViewModelProvider(
                 this, EventEditorViewModelFactory(
@@ -240,7 +239,6 @@ class EventEditorFragment : Fragment() {
                                     + " ${response.code()}"
                     )
                 } else if (response.isSuccessful) {
-                    Log.i("TESTTT", "圖片連結為 " + response.body()?.getImageLink())
                     eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
                 }
             }
@@ -263,16 +261,6 @@ class EventEditorFragment : Fragment() {
                 )
             }
         })
-
-//        TODO(Testing new method, comment these out.)
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val wow =
-//                    ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
-//            withContext(Dispatchers.Main) {
-//                eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
-//                binding.progressbarEventEditorImageProgress.visibility = View.GONE
-//            }
-//        }
     }
 
     fun actionSendClicked() = eventEditorViewModel.sendClicked()
