@@ -56,7 +56,6 @@ class RoadActivity : AppCompatActivity() {
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
         fabAdd.setOnClickListener {
             if (AuthManager().userIsSignedIn()) {
-//                startActivity(Intent(this, AccidentEventActivity::class.java))
                 startActivity(Intent(this, EventEditorActivity::class.java))
             } else {
                 Util().toast(this, getString(R.string.roadFrag_SignInFirst))

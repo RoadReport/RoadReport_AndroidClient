@@ -21,9 +21,9 @@ class EventEditorViewModel internal constructor(
 
     var currentRoadName = MutableLiveData<String>()
 
-    var sendingData = MutableLiveData<Boolean>(false)
     var errorNotSignedIn = MutableLiveData<Boolean>(false)
     var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
+    var sendingData = MutableLiveData<Boolean>(false)
     var isComplete = MutableLiveData<Boolean>()
 
     // Order by Accident Data Class, skip for userName, userUid and time.

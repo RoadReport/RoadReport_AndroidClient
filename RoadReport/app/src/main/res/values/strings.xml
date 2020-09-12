@@ -48,6 +48,9 @@
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
+    <string name="roadFrag_deleteSuccess">刪除成功</string>
+    <string name="roadFrag_deleteFailed">刪除失敗</string>
+    <string name="roadFrag_notSignInOrNotPostByYou">未登入或非你發布</string>
 
     <!-- Weather Fragment -->
     <string name="weatherFrag_temp">溫度</string>
@@ -64,7 +67,7 @@
     </string>
 
     <!-- Event Editor Fragment -->
-    <string name="eventEditor_sendingData">請稍後...</string>
+    <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
 
     <!-- Accident Event Activity Text -->
@@ -94,6 +97,7 @@
     <string name="accidentEvent_imageUploadFail_timeout">上傳逾時，請在網路良好的狀況下上傳</string>
     <string name="accidentEvent_imageUploadFail_IO">上傳失敗，偵測不到網路</string>
     <string name="accidentEvent_imageUploadFail_server">上傳失敗，伺服器錯誤</string>
+    <string name="accidentEvent_imageUploadFail_errorCode">錯誤代碼</string>
     <string name="accidentEvent_imageUploadFail_unknown">未知錯誤</string>
     <string name="accidentEvent_addSuccess">新增成功</string>
     <string name="accidentEvent_addFailed">新增失敗</string>
@@ -117,4 +121,6 @@
     <string name="all_notSignedIn">尚未登入</string>
     <string name="all_noNetworkConn">網路未連線</string>
     <string name="all_noFirebaseConn">無法連線到資料庫</string>
+    <string name="roadFrag_notDevelopYet">此功能尚未開發</string>
+
 </resources>

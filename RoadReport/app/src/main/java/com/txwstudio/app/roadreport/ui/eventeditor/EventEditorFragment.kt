@@ -19,10 +19,6 @@ import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.service.ImgurApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -54,7 +50,6 @@ class EventEditorFragment : Fragment() {
         val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
         val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
         val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
-        Log.i("TESTTT", "${accidentModel?.location}")
 
         eventEditorViewModel = ViewModelProvider(
                 this, EventEditorViewModelFactory(
@@ -151,21 +146,6 @@ class EventEditorFragment : Fragment() {
                     Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
-        // When sending data to firestore, show progressBar.
-        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
-            val builder: AlertDialog = AlertDialog.Builder(requireActivity())
-                    .setView(R.layout.dialog_sending_data)
-                    .setCancelable(false)
-                    .create()
-            if (it) {
-                builder.show()
-//                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
-            } else {
-                builder.dismiss()
-//                binding.progressbarEventEditorSendProgress.visibility = View.GONE
-            }
-        }
-
         /**
          * When isUploadImageClicked is true start an intent to pick an image.
          * */
@@ -219,6 +199,19 @@ class EventEditorFragment : Fragment() {
             }
         }
 
+        // When sending data to firestore, show dialog.
+        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+            val builder: AlertDialog = AlertDialog.Builder(requireActivity())
+                .setView(R.layout.dialog_sending_data)
+                .setCancelable(false)
+                .create()
+            if (it) {
+                builder.show()
+            } else {
+                builder.dismiss()
+            }
+        }
+
         eventEditorViewModel.isComplete.observe(viewLifecycleOwner) {
             if (it) {
                 requireActivity().finish()
@@ -236,23 +229,15 @@ class EventEditorFragment : Fragment() {
         imgurApi.enqueue(object : Callback<ImgurUploadJson> {
             override fun onResponse(call: Call<ImgurUploadJson>, response: Response<ImgurUploadJson>) {
                 binding.progressbarEventEditorImageProgress.visibility = View.GONE
-                if (response.isSuccessful) {
-                    // Prevent "Error 429 Too many requests", when run into it, the link will be null.
-                    if (response.body()?.getImageLink() == null || response.body()?.getImageLink() == "null") {
-                        eventEditorViewModel.imageUrl.value = ""
-                        Util().snackBarShort(
-                                requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                                getString(R.string.accidentEvent_imageUploadFail_server)
-                        )
-                    } else {
-                        Log.i("TESTTT", "圖片連結為 " + response.body()?.getImageLink())
-                        eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
-                    }
-                } else {
+
+                if (!response.isSuccessful) {
                     Util().snackBarShort(
                             requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                            "Imgur Error ${response.code().toString()}"
+                            getString(R.string.accidentEvent_imageUploadFail_errorCode)
+                                    + " ${response.code()}"
                     )
+                } else if (response.isSuccessful) {
+                    eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
                 }
             }
 
@@ -274,16 +259,6 @@ class EventEditorFragment : Fragment() {
                 )
             }
         })
-
-//        TODO(Testing new method, comment these out.)
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val wow =
-//                    ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body).execute().body()
-//            withContext(Dispatchers.Main) {
-//                eventEditorViewModel.imageUrl.value = wow?.data?.link.toString()
-//                binding.progressbarEventEditorImageProgress.visibility = View.GONE
-//            }
-//        }
     }
 
     fun actionSendClicked() = eventEditorViewModel.sendClicked()
