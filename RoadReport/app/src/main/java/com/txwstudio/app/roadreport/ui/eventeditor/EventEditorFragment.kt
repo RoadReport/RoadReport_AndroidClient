@@ -146,21 +146,6 @@ class EventEditorFragment : Fragment() {
                     Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
-        // When sending data to firestore, show progressBar.
-        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
-            val builder: AlertDialog = AlertDialog.Builder(requireActivity())
-                    .setView(R.layout.dialog_sending_data)
-                    .setCancelable(false)
-                    .create()
-            if (it) {
-                builder.show()
-//                binding.progressbarEventEditorSendProgress.visibility = View.VISIBLE
-            } else {
-                builder.dismiss()
-//                binding.progressbarEventEditorSendProgress.visibility = View.GONE
-            }
-        }
-
         /**
          * When isUploadImageClicked is true start an intent to pick an image.
          * */
@@ -211,6 +196,19 @@ class EventEditorFragment : Fragment() {
                         R.string.accidentEvent_NoEntry
                 )
                 eventEditorViewModel.errorRequiredEntriesEmpty.value = false
+            }
+        }
+
+        // When sending data to firestore, show dialog.
+        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+            val builder: AlertDialog = AlertDialog.Builder(requireActivity())
+                .setView(R.layout.dialog_sending_data)
+                .setCancelable(false)
+                .create()
+            if (it) {
+                builder.show()
+            } else {
+                builder.dismiss()
             }
         }
 
