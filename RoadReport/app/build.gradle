@@ -16,8 +16,8 @@ android {
         applicationId 'com.txwstudio.app.roadreport'
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 20
-        versionName "Beta 1.1.1"
+        versionCode 21
+        versionName "Beta 1.2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
