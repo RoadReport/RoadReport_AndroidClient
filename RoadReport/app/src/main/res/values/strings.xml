@@ -48,6 +48,9 @@
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
+    <string name="roadFrag_deleteSuccess">刪除成功</string>
+    <string name="roadFrag_deleteFailed">刪除失敗</string>
+    <string name="roadFrag_notSignInOrNotPostByYou">未登入或非你發布</string>
 
     <!-- Weather Fragment -->
     <string name="weatherFrag_temp">溫度</string>
@@ -118,4 +121,6 @@
     <string name="all_notSignedIn">尚未登入</string>
     <string name="all_noNetworkConn">網路未連線</string>
     <string name="all_noFirebaseConn">無法連線到資料庫</string>
+    <string name="roadFrag_notDevelopYet">此功能尚未開發</string>
+
 </resources>

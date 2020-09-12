@@ -115,7 +115,7 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                                         Util().toast(context, if (it) "刪除成功" else "刪除失敗")
                                     }
                             } else {
-                                Util().toast(context, "未登入或非你發布")
+                                Util().toast(context, context.getString(R.string.roadFrag_notSignInOrNotPostByYou))
                             }
                         }
                     }
@@ -130,7 +130,7 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                 val builder = AlertDialog.Builder(context)
                 builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                     when (which) {
-                        0 -> Util().toast(context, "此功能尚未開發")
+                        0 -> Util().toast(context, context.getString(R.string.roadFrag_notDevelopYet))
                     }
                 }.show()
             }
