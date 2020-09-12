@@ -64,7 +64,7 @@
     </string>
 
     <!-- Event Editor Fragment -->
-    <string name="eventEditor_sendingData">請稍後...</string>
+    <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
 
     <!-- Accident Event Activity Text -->
