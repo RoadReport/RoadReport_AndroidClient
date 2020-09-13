@@ -63,6 +63,7 @@ class Util {
             3 -> context.getString(R.string.accidentEvent_situationType_3)
             4 -> context.getString(R.string.accidentEvent_situationType_4)
             5 -> context.getString(R.string.accidentEvent_situationType_5)
+            6 -> context.getString(R.string.accidentEvent_situationType_6)
             else -> "errNameUnknown"
         }
     }

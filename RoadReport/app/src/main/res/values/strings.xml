@@ -79,6 +79,7 @@
         <item>注意</item>
         <item>臨檢</item>
         <item>測速</item>
+        <item>天氣</item>
         <item>其他</item>
     </array>
     <string name="accidentEvent_situationType_0">按我選擇種類</string>
@@ -86,7 +87,8 @@
     <string name="accidentEvent_situationType_2">注意</string>
     <string name="accidentEvent_situationType_3">臨檢</string>
     <string name="accidentEvent_situationType_4">測速</string>
-    <string name="accidentEvent_situationType_5">其他</string>
+    <string name="accidentEvent_situationType_5">天氣</string>
+    <string name="accidentEvent_situationType_6">其他</string>
     <string name="accidentEvent_location">地點 - 10 字內</string>
     <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
