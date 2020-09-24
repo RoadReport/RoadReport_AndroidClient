@@ -32,7 +32,6 @@ class RoadCode {
     fun startActivityWithCode(currActivity: Context, targetActivity: Context, roadCode: Int) {
         if (roadCode == ROADCODE_EMPTY) return
         val intent = Intent(currActivity, targetActivity::class.java)
-        intent.putExtra("ROADCODE", roadCode)
         setCurrRoadCodeToSP(currActivity, roadCode)
         currActivity.startActivity(intent)
     }

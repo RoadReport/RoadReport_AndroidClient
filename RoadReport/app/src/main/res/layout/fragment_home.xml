@@ -8,10 +8,6 @@
         <variable
             name="viewModel"
             type="com.txwstudio.app.roadreport.ui.home.HomeViewModel" />
-
-        <variable
-            name="handler"
-            type="com.txwstudio.app.roadreport.handler.HomeFragClickHandler" />
     </data>
 
 
@@ -26,7 +22,6 @@
             style="@style/RoadCard.Card"
             android:layout_width="match_parent"
             android:layout_height="128dp"
-            android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
             app:cardBackgroundColor="#F573A0"
             app:cardElevation="@dimen/materialCard_half"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +69,6 @@
             style="@style/RoadCard.Card"
             android:layout_width="match_parent"
             android:layout_height="128dp"
-            android:onClick="@{(view) -> handler.gotoRoadActivity(view)}"
             app:cardBackgroundColor="#1E88E5"
             app:cardElevation="@dimen/materialCard_half"
             app:layout_constraintEnd_toEndOf="parent"

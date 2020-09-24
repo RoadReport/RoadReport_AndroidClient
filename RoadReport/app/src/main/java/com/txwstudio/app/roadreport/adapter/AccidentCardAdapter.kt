@@ -59,6 +59,10 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                 backgroundType = R.drawable.bg_accident_type_4
                 situationType = R.string.accidentEvent_situationType_5
             }
+            6 -> {
+                backgroundType = R.drawable.bg_accident_type_5
+                situationType = R.string.accidentEvent_situationType_6
+            }
         }
         holder.layout.background = context.getDrawable(backgroundType)
         holder.situationType.text = context.getString(situationType)
