@@ -104,13 +104,13 @@
                 android:inputType="text"
                 android:padding="@dimen/margin_normal"
                 android:text="@={viewModel.location}"
-                app:layout_constraintEnd_toStartOf="@id/editText_eventEditor_locationContent2"
+                app:layout_constraintEnd_toStartOf="@id/editText_eventEditor_locationMapButton"
                 app:layout_constraintHorizontal_weight="8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView_eventEditor_locationTitle" />
 
             <ImageView
-                android:id="@+id/editText_eventEditor_locationContent2"
+                android:id="@+id/editText_eventEditor_locationMapButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/margin_normal"
