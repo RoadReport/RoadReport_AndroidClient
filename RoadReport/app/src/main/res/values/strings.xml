@@ -9,6 +9,8 @@
     <string name="title_activity_addAccident">新增狀況</string>
     <string name="title_activity_editAccident">編輯狀況</string>
     <string name="title_activity_eventEditor">事件編輯器</string>
+    <string name="title_activity_eventEditor_addEvent">新增事件</string>
+    <string name="title_activity_eventEditor_editEvent">編輯事件</string>
     <string name="title_activity_imageViewer">圖片檢視器</string>
 
     <!-- Roadname -->
