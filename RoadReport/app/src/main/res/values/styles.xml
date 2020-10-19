@@ -28,11 +28,17 @@
         <item name="eventCardBackground">@color/white</item>
         <item name="editTextCardBackground">@color/grey200</item>
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Transition</item>
+        <item name="bottomSheetDialogTheme">@style/LightBottomSheetDialog</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+    
+    <style name="LightBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="behavior_draggable">false</item>
+        <item name="bottomSheetStyle">@style/CommonBottomSheetDialogStyle</item>
     </style>
 
     <!-- Dark Theme -->
@@ -46,6 +52,7 @@
         <item name="eventCardBackground">@color/materialDarkSurface</item>
         <item name="editTextCardBackground">@color/materialDarkSurface</item>
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Transition</item>
+        <item name="bottomSheetDialogTheme">@style/DarkBottomSheetDialog</item>
     </style>
 
     <style name="DarkTheme.NoActionBar">
@@ -53,6 +60,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DarkBottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="behavior_draggable">false</item>
+        <item name="bottomSheetStyle">@style/CommonBottomSheetDialogStyle</item>
+    </style>
+
+    <style name="CommonBottomSheetDialogStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
