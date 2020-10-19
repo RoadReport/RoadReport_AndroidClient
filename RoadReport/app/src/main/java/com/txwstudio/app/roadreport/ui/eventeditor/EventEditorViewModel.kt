@@ -4,7 +4,9 @@ import android.os.SystemClock
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.GeoPoint
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.model.Accident
@@ -29,6 +31,7 @@ class EventEditorViewModel internal constructor(
     // Order by Accident Data Class, skip for userName, userUid and time.
     var situationType = MutableLiveData<Long>(0L)
     val location = MutableLiveData<String>()
+    val latLng = MutableLiveData<LatLng>()
     val situation = MutableLiveData<String>()
     val imageUrl = MutableLiveData<String?>("")
     val isUploadImageClicked = MutableLiveData<Boolean>(false)
@@ -111,6 +114,7 @@ class EventEditorViewModel internal constructor(
                 accidentModel!!.time,
                 situationType.value!!,
                 location.value.toString(),
+                GeoPoint(latLng.value!!.latitude, latLng.value!!.longitude),
                 situation.value.toString(),
                 imageUrl.value!!
             )
@@ -122,6 +126,7 @@ class EventEditorViewModel internal constructor(
                 Timestamp(Date()),
                 situationType.value!!,
                 location.value.toString(),
+                GeoPoint(latLng.value!!.latitude, latLng.value!!.longitude),
                 situation.value.toString(),
                 imageUrl.value!!
             )

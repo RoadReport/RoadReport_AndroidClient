@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
@@ -18,6 +20,7 @@ import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.service.ImgurApi
+import com.txwstudio.app.roadreport.ui.maps.AddGeoPointViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -32,11 +35,13 @@ class EventEditorFragment : Fragment() {
 
     companion object {
         fun newInstance() = EventEditorFragment()
+        private val UPLOAD_IMAGE_REQUEST_CODE = 1
     }
+
+    private val addGeoPointViewModel: AddGeoPointViewModel by activityViewModels()
 
     private lateinit var eventEditorViewModel: EventEditorViewModel
     private lateinit var binding: FragmentEventEditorBinding
-    private val UPLOAD_IMAGE_REQUEST_CODE = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,41 +90,52 @@ class EventEditorFragment : Fragment() {
      * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            when (requestCode) {
-                UPLOAD_IMAGE_REQUEST_CODE -> {
-                    // Show infinite progress bar, wow much infinite!
-                    binding.progressbarEventEditorImageProgress.visibility = View.VISIBLE
+        when (requestCode) {
+            UPLOAD_IMAGE_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    when (requestCode) {
+                        UPLOAD_IMAGE_REQUEST_CODE -> {
+                            // Show infinite progress bar, wow much infinite!
+                            binding.progressbarEventEditorImageProgress.visibility = View.VISIBLE
 
-                    val fileUri = data.data
-                    val takeFlags = (data.flags
-                            and (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
-                    requireContext().grantUriPermission(
-                        requireContext().packageName,
-                        fileUri,
-                        takeFlags
-                    )
-                    fileUri?.let {
-                        requireContext().contentResolver.takePersistableUriPermission(it, takeFlags)
+                            val fileUri = data.data
+                            val takeFlags = (data.flags
+                                    and (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
+                            requireContext().grantUriPermission(
+                                requireContext().packageName,
+                                fileUri,
+                                takeFlags
+                            )
+                            fileUri?.let {
+                                requireContext().contentResolver.takePersistableUriPermission(
+                                    it,
+                                    takeFlags
+                                )
+                            }
+
+                            requireContext().contentResolver.openInputStream(fileUri!!).use {
+                                val file = File.createTempFile("prefix", ".er")
+                                org.apache.commons.io.FileUtils.copyToFile(it, file)
+
+                                val requestFile =
+                                    RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                                val body =
+                                    MultipartBody.Part.createFormData(
+                                        "image",
+                                        file.name,
+                                        requestFile
+                                    )
+
+                                sendImageAndGetLink(body)
+                            }
+                        }
                     }
-
-                    requireContext().contentResolver.openInputStream(fileUri!!).use {
-                        val file = File.createTempFile("prefix", ".er")
-                        org.apache.commons.io.FileUtils.copyToFile(it, file)
-
-                        val requestFile =
-                            RequestBody.create(MediaType.parse("multipart/form-data"), file)
-                        val body =
-                            MultipartBody.Part.createFormData("image", file.name, requestFile)
-
-                        sendImageAndGetLink(body)
-                    }
+                } else if (resultCode == Activity.RESULT_CANCELED) {
+                } else if (data == null) {
+                    Util().toast(requireContext(), getString(R.string.all_unknownError))
                 }
             }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-        } else if (data == null) {
-            Util().toast(requireContext(), getString(R.string.all_unknownError))
         }
     }
 
@@ -141,7 +157,16 @@ class EventEditorFragment : Fragment() {
 
         // Map button
         binding.imageViewEventEditorLocationMapButton.setOnClickListener {
-            Util().snackBarShort(requireView(), "df")
+            MapsFragment().show(
+                requireActivity().supportFragmentManager,
+                MapsFragment::class.java.simpleName
+            )
+        }
+
+        // Observe sharedViewModel for latitude and longitude
+        addGeoPointViewModel.latlng.observe(viewLifecycleOwner) {
+            Util().snackBarLong(requireView(), "${it.latitude} ${it.longitude}")
+            eventEditorViewModel.latLng.value = it
         }
 
         // Set text for situation type
