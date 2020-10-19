@@ -41,32 +41,32 @@ class FirestoreManager {
      *
      * TODO: Implement
      * */
-    fun getAccident(currRoad: Int) {
-        val mutableList = mutableListOf<Accident>()
-        val db = Firebase.firestore
-
-        db.collection("ReportAccident").document(currRoad.toString())
-            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.i("TESTTT", "${document.id} => ${document.data}")
-                    Log.i("TESTTT", document.data["location"].toString())
-                    val dataToList = Accident(
-                        document.data["userName"].toString(),
-                        document.data["userUid"].toString(),
-                        document.data["time"] as Timestamp,
-                        document.data["situationType"] as Long,
-                        document.data["location"].toString(),
-                        document.data["situation"].toString()
-                    )
-                    mutableList.add(dataToList)
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.i("TESTTT", "Error getting documents: ", exception)
-            }
-    }
+//    fun getAccident(currRoad: Int) {
+//        val mutableList = mutableListOf<Accident>()
+//        val db = Firebase.firestore
+//
+//        db.collection("ReportAccident").document(currRoad.toString())
+//            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
+//            .get()
+//            .addOnSuccessListener { result ->
+//                for (document in result) {
+//                    Log.i("TESTTT", "${document.id} => ${document.data}")
+//                    Log.i("TESTTT", document.data["location"].toString())
+//                    val dataToList = Accident(
+//                        document.data["userName"].toString(),
+//                        document.data["userUid"].toString(),
+//                        document.data["time"] as Timestamp,
+//                        document.data["situationType"] as Long,
+//                        document.data["location"].toString(),
+//                        document.data["situation"].toString()
+//                    )
+//                    mutableList.add(dataToList)
+//                }
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.i("TESTTT", "Error getting documents: ", exception)
+//            }
+//    }
 
     /**
      * Delete accident from firestore using by document id.
