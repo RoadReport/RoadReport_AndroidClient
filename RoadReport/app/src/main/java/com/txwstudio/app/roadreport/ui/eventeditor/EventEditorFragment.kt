@@ -38,10 +38,12 @@ class EventEditorFragment : Fragment() {
         private val UPLOAD_IMAGE_REQUEST_CODE = 1
     }
 
-    private val addGeoPointViewModel: AddGeoPointViewModel by activityViewModels()
-
+    // Base ViewModel and DataBinding
     private lateinit var eventEditorViewModel: EventEditorViewModel
     private lateinit var binding: FragmentEventEditorBinding
+
+    // Shared view model between EventEditorFragment and MapsFragment.
+    private val addGeoPointViewModel: AddGeoPointViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,8 +84,6 @@ class EventEditorFragment : Fragment() {
     }
 
     /**
-     * Invoke by this:171
-     *
      * Handle image callback and upload to imgur inside Fragment for now,
      * I'am limited by the technology of my time.
      * TODO(Fix pattern)
@@ -146,6 +146,9 @@ class EventEditorFragment : Fragment() {
      * @link https://stackoverflow.com/questions/46727276/mvvm-pattern-and-startactivity
      * */
     fun subscribeUi() {
+        /**
+         * Binding
+         * */
         // Open situation type dialog
         binding.editTextEventEditorSituationTypeContent.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
@@ -163,6 +166,9 @@ class EventEditorFragment : Fragment() {
             )
         }
 
+        /**
+         * Observing LiveData inside view model.
+         * */
         // Observe sharedViewModel for latitude and longitude
         addGeoPointViewModel.latlng.observe(viewLifecycleOwner) {
             Util().snackBarLong(requireView(), "${it.latitude} ${it.longitude}")
@@ -175,9 +181,7 @@ class EventEditorFragment : Fragment() {
                 Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
-        /**
-         * When isUploadImageClicked is true start an intent to pick an image.
-         * */
+        // A clickListener for picking image, if it value == true.
         eventEditorViewModel.isUploadImageClicked.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -187,9 +191,8 @@ class EventEditorFragment : Fragment() {
             }
         }
 
-        /**
-         * Observing imageUrl isNullorBlank in order to set background.
-         * */
+
+        // Observing imageUrl isNullOrBlank in order to set image to ImageView.
         eventEditorViewModel.imageUrl.observe(viewLifecycleOwner) {
             binding.buttonEventEditorUploadImage.let { its ->
                 if (it.isNullOrBlank()) {
@@ -206,7 +209,7 @@ class EventEditorFragment : Fragment() {
             }
         }
 
-        // If send was clicked, but user didn't sign in, show msg.
+        // A snack bar for not signed in message.
         eventEditorViewModel.errorNotSignedIn.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
@@ -217,7 +220,7 @@ class EventEditorFragment : Fragment() {
             }
         }
 
-        // If send was clicked, but required fields are empty, show msg.
+        // A snack bar for empty entries message.
         eventEditorViewModel.errorRequiredEntriesEmpty.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
@@ -228,8 +231,8 @@ class EventEditorFragment : Fragment() {
             }
         }
 
-        // When sending data to firestore, show dialog.
-        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+        // A dialog for sending operation.
+        eventEditorViewModel.isSendingData.observe(viewLifecycleOwner) {
             val builder: AlertDialog = AlertDialog.Builder(requireActivity())
                 .setView(R.layout.dialog_sending_data)
                 .setCancelable(false)
@@ -241,6 +244,7 @@ class EventEditorFragment : Fragment() {
             }
         }
 
+        // Close EventEditor if the process is complete.
         eventEditorViewModel.isComplete.observe(viewLifecycleOwner) {
             if (it) {
                 requireActivity().finish()

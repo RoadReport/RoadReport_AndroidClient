@@ -23,9 +23,11 @@ class EventEditorViewModel internal constructor(
 
     var currentRoadName = MutableLiveData<String>()
 
+    // Detect user operation.
+    val isUploadImageClicked = MutableLiveData<Boolean>(false)
     var errorNotSignedIn = MutableLiveData<Boolean>(false)
     var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
-    var sendingData = MutableLiveData<Boolean>(false)
+    var isSendingData = MutableLiveData<Boolean>(false)
     var isComplete = MutableLiveData<Boolean>()
 
     // Order by Accident Data Class, skip for userName, userUid and time.
@@ -34,7 +36,8 @@ class EventEditorViewModel internal constructor(
     val latLng = MutableLiveData<LatLng>()
     val situation = MutableLiveData<String>()
     val imageUrl = MutableLiveData<String?>("")
-    val isUploadImageClicked = MutableLiveData<Boolean>(false)
+
+    // Use to detect is double clicked or not.
     private var mLastClickTime = 0L
 
     fun init() {
@@ -133,8 +136,12 @@ class EventEditorViewModel internal constructor(
         }
     }
 
+    /**
+     * Start sending data to firebase firestore.
+     * */
     fun sendClicked() {
-//        letPrintSomeThing()
+        // Debug
+        // letPrintSomeThing()
 
         // User not signed in yet, break.
         if (!AuthManager().userIsSignedIn()) {
@@ -148,20 +155,20 @@ class EventEditorViewModel internal constructor(
             return
         }
 
-        sendingData.value = true
-//        areYouSureDialog.value = if (!editMode) 1 else 2
+        // Everything looks great, start sending process.
+        isSendingData.value = true
         if (!editMode) {
             // Perform add event.
             FirestoreManager().addAccident(roadCode!!, getUserEntry()) {
                 isComplete.value = it
-                if (!it) sendingData.value = false
+                if (!it) isSendingData.value = false
             }
 
         } else if (editMode) {
             // Perform update event.
             FirestoreManager().updateAccident(roadCode!!, documentId!!, getUserEntry()) {
                 isComplete.value = it
-                if (!it) sendingData.value = false
+                if (!it) isSendingData.value = false
             }
         }
     }

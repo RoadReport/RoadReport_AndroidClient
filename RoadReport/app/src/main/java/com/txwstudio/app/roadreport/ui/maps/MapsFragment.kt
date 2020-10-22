@@ -36,6 +36,7 @@ class MapsFragment : BottomSheetDialogFragment() {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
     }
 
+    // Shared view model between EventEditorFragment and MapsFragment.
     private val addGeoPointViewModel: AddGeoPointViewModel by activityViewModels()
 
     private var map: GoogleMap? = null
