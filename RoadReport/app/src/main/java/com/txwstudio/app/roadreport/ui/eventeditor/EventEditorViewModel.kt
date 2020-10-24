@@ -32,8 +32,8 @@ class EventEditorViewModel internal constructor(
 
     // Order by Accident Data Class, skip for userName, userUid and time.
     var situationType = MutableLiveData<Long>(0L)
-    val location = MutableLiveData<String>()
-    val latLng = MutableLiveData<LatLng>()
+    val locationText = MutableLiveData<String>()
+    val locationGeoPoint = MutableLiveData<LatLng>()
     val situation = MutableLiveData<String>()
     val imageUrl = MutableLiveData<String?>("")
 
@@ -52,7 +52,7 @@ class EventEditorViewModel internal constructor(
      * */
     private fun setValueToLiveData() {
         situationType.value = accidentModel?.situationType
-        location.value = accidentModel?.location
+        locationText.value = accidentModel?.locationText
         situation.value = accidentModel?.situation
         imageUrl.value = accidentModel?.imageUrl
     }
@@ -83,7 +83,7 @@ class EventEditorViewModel internal constructor(
             .format(w.time.toDate())
         Log.i("TESTTT", "時間：${time}")
         Log.i("TESTTT", "狀況代碼：${w.situationType}")
-        Log.i("TESTTT", "地點：${w.location}")
+        Log.i("TESTTT", "地點：${w.locationText}")
         Log.i("TESTTT", "狀況描述：${w.situation}")
         Log.i("TESTTT", "圖片網址：${imageUrl.value}")
         Log.i("TESTTT", "uploadImageClicked：${isUploadImageClicked.value}")
@@ -98,7 +98,7 @@ class EventEditorViewModel internal constructor(
      * */
     private fun isRequiredEntriesEmpty(): Boolean {
         return situationType.value == 0L ||
-                location.value.isNullOrBlank() ||
+                locationText.value.isNullOrBlank() ||
                 situation.value.isNullOrBlank()
     }
 
@@ -116,8 +116,8 @@ class EventEditorViewModel internal constructor(
                 accidentModel!!.userUid,
                 accidentModel!!.time,
                 situationType.value!!,
-                location.value.toString(),
-                GeoPoint(latLng.value!!.latitude, latLng.value!!.longitude),
+                locationText.value.toString(),
+                GeoPoint(locationGeoPoint.value!!.latitude, locationGeoPoint.value!!.longitude),
                 situation.value.toString(),
                 imageUrl.value!!
             )
@@ -128,8 +128,8 @@ class EventEditorViewModel internal constructor(
                 currUser?.uid,
                 Timestamp(Date()),
                 situationType.value!!,
-                location.value.toString(),
-                GeoPoint(latLng.value!!.latitude, latLng.value!!.longitude),
+                locationText.value.toString(),
+                GeoPoint(locationGeoPoint.value!!.latitude, locationGeoPoint.value!!.longitude),
                 situation.value.toString(),
                 imageUrl.value!!
             )

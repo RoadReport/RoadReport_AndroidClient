@@ -66,7 +66,9 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         }
         holder.layout.background = context.getDrawable(backgroundType)
         holder.situationType.text = context.getString(situationType)
-        holder.location.text = model.location
+
+        // TODO(Show locationText or clickable locationGeoPoint)
+        holder.location.text = model.locationText
         holder.situation.text = model.situation
 
         if (!model.imageUrl.isBlank()) {

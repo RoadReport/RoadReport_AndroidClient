@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
@@ -21,6 +21,7 @@ import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.service.ImgurApi
 import com.txwstudio.app.roadreport.ui.maps.AddGeoPointViewModel
+import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -158,30 +159,56 @@ class EventEditorFragment : Fragment() {
             builder.create().show()
         }
 
-        // Map button
+        // Map button, picking geo point or clean it.
         binding.imageViewEventEditorLocationMapButton.setOnClickListener {
-            MapsFragment().show(
-                requireActivity().supportFragmentManager,
-                MapsFragment::class.java.simpleName
-            )
+            if (eventEditorViewModel.locationGeoPoint.value == null) {
+                MapsFragment().show(
+                    requireActivity().supportFragmentManager,
+                    MapsFragment::class.java.simpleName
+                )
+            } else if (eventEditorViewModel.locationGeoPoint.value != null) {
+                eventEditorViewModel.locationGeoPoint.value = null
+            }
         }
 
         /**
          * Observing LiveData inside view model.
          * */
-        // Observe sharedViewModel for latitude and longitude
-        addGeoPointViewModel.latlng.observe(viewLifecycleOwner) {
-            Util().snackBarLong(requireView(), "${it.latitude} ${it.longitude}")
-            eventEditorViewModel.latLng.value = it
-        }
-
         // Set text for situation type
         eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
             binding.editTextEventEditorSituationTypeContent.text =
                 Util().getSituationTypeName(requireContext(), it.toInt())
         }
 
+        // Observe sharedViewModel for new LatLng
+        addGeoPointViewModel.sharedLocationGeoPoint.observe(viewLifecycleOwner) {
+            Util().snackBarLong(requireView(), "${it.latitude} ${it.longitude}")
+            eventEditorViewModel.locationGeoPoint.value = it
+        }
+
+        // Set icon for map button
+        eventEditorViewModel.locationGeoPoint.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.imageViewEventEditorLocationMapButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_clear_24
+                    )
+                )
+                // set icon to cancel
+            } else {
+                binding.imageViewEventEditorLocationMapButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_outline_map_24
+                    )
+                )
+                // set icon to map
+            }
+        }
+
         // A clickListener for picking image, if it value == true.
+        // TODO(Set onClickListener direct, not from observe)
         eventEditorViewModel.isUploadImageClicked.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)

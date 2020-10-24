@@ -114,7 +114,8 @@ class FirestoreManager {
         val db = Firebase.firestore
         val dataForUpdate = hashMapOf<String, Any?>(
             "situationType" to data.situationType,
-            "location" to data.location,
+            "locationText" to data.locationText,
+            "locationGeoPoint" to data.locationGeoPoint,
             "situation" to data.situation,
             "imageUrl" to data.imageUrl
         )

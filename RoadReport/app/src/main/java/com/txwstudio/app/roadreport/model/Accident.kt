@@ -13,8 +13,8 @@ data class Accident(
     var userUid: String = "",
     var time: Timestamp = Timestamp(Date()),
     var situationType: Long = -1,
-    var location: String = "",
-    var geoPoint: @RawValue GeoPoint = GeoPoint(0.0, 0.0),
+    var locationText: String = "",
+    var locationGeoPoint: @RawValue GeoPoint = GeoPoint(0.0, 0.0),
     var situation: String = "",
     var imageUrl: String = ""
 ) : Parcelable

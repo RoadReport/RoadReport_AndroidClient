@@ -104,7 +104,7 @@
                 android:hint="@string/accidentEvent_locationHint"
                 android:inputType="text"
                 android:padding="@dimen/margin_normal"
-                android:text="@={viewModel.location}"
+                android:text="@={viewModel.locationText}"
                 app:layout_constraintEnd_toStartOf="@id/imageView_eventEditor_locationMapButton"
                 app:layout_constraintHorizontal_weight="8"
                 app:layout_constraintStart_toStartOf="parent"

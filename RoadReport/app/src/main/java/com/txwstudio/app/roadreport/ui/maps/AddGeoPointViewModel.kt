@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.model.LatLng
 
 class AddGeoPointViewModel : ViewModel() {
-    val latlng = MutableLiveData<LatLng>()
+    val sharedLocationGeoPoint = MutableLiveData<LatLng>()
 
     fun setLatLng(newLatLng: LatLng) {
-        latlng.value = newLatLng
+        sharedLocationGeoPoint.value = newLatLng
     }
 }
