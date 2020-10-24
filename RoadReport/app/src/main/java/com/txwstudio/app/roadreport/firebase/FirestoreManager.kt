@@ -2,14 +2,18 @@ package com.txwstudio.app.roadreport.firebase
 
 import android.util.Log
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.txwstudio.app.roadreport.model.Accident
 
 class FirestoreManager {
+
+    // Parent Collection of accident event
+    private val ReportAccident = "ReportAccident"
+
+    // SubCollection of accident events
+    private val accidents = "accidents"
 
     /**
      * Add accident into firestore.
@@ -20,8 +24,8 @@ class FirestoreManager {
     fun addAccident(currRoad: Int, data: Accident, isComplete: (Boolean) -> Unit) {
         val db = Firebase.firestore
 
-        db.collection("ReportAccident").document(currRoad.toString())
-            .collection("accidents").add(data)
+        db.collection(ReportAccident).document(currRoad.toString())
+            .collection(accidents).add(data)
             .addOnSuccessListener { documentReference ->
                 Log.i("TESTTT", "DocumentSnapshot written with ID: ${documentReference.id}")
             }
@@ -78,8 +82,8 @@ class FirestoreManager {
     fun deleteAccident(roadCode: Int, documentId: String, isComplete: (Boolean) -> Unit) {
         val db = Firebase.firestore
 
-        db.collection("ReportAccident").document(roadCode.toString())
-            .collection("accidents").document(documentId)
+        db.collection(ReportAccident).document(roadCode.toString())
+            .collection(accidents).document(documentId)
             .delete()
             .addOnSuccessListener {
                 Log.i("TESTTT", "Success delete document $documentId")
@@ -115,8 +119,8 @@ class FirestoreManager {
             "imageUrl" to data.imageUrl
         )
 
-        db.collection("ReportAccident").document(roadCode.toString())
-            .collection("accidents").document(documentId)
+        db.collection(ReportAccident).document(roadCode.toString())
+            .collection(accidents).document(documentId)
             .update(dataForUpdate)
             .addOnSuccessListener {
                 Log.i("TESTTT", "Success update document $documentId")
@@ -139,8 +143,8 @@ class FirestoreManager {
      */
     fun getRealtimeAccidentQuery(roadCode: Int): FirestoreRecyclerOptions<Accident?> {
         val db = Firebase.firestore
-            .collection("ReportAccident").document(roadCode.toString())
-            .collection("accidents").orderBy("time", Query.Direction.DESCENDING)
+            .collection(ReportAccident).document(roadCode.toString())
+            .collection(accidents).orderBy("time", Query.Direction.DESCENDING)
         return FirestoreRecyclerOptions.Builder<Accident>()
             .setQuery(db, Accident::class.java)
             .build()
