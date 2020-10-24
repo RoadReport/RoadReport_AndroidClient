@@ -109,31 +109,28 @@ class EventEditorViewModel internal constructor(
      * */
     private fun getUserEntry(): Accident {
         val currUser = AuthManager().getCurrUserModel()
-        return if (editMode) {
-            // If in edit mode, grab old value.
-            Accident(
-                accidentModel!!.userName,
-                accidentModel!!.userUid,
-                accidentModel!!.time,
-                situationType.value!!,
-                locationText.value.toString(),
-                GeoPoint(locationGeoPoint.value!!.latitude, locationGeoPoint.value!!.longitude),
-                situation.value.toString(),
-                imageUrl.value!!
-            )
-        } else {
-            // If not in edit mode, create brand new value.
-            Accident(
-                currUser?.displayName!!,
-                currUser?.uid,
-                Timestamp(Date()),
-                situationType.value!!,
-                locationText.value.toString(),
-                GeoPoint(locationGeoPoint.value!!.latitude, locationGeoPoint.value!!.longitude),
-                situation.value.toString(),
-                imageUrl.value!!
-            )
+        val event = Accident()
+        if (!editMode) {
+            // New event
+            event.userName = currUser?.displayName!!
+            event.userUid = currUser?.uid
+            event.time = Timestamp(Date())
+        } else if (editMode) {
+            // Edit event
+            event.userName = accidentModel!!.userName
+            event.userUid = accidentModel!!.userUid
+            event.time = accidentModel!!.time
         }
+
+        event.situationType = situationType.value!!
+        event.locationText = locationText.value.toString()
+        locationGeoPoint.value?.let {
+            event.locationGeoPoint = GeoPoint(it.latitude, it.longitude)
+        }
+        event.situation = situation.value.toString()
+        event.imageUrl = imageUrl.value!!
+
+        return event
     }
 
     /**
