@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util

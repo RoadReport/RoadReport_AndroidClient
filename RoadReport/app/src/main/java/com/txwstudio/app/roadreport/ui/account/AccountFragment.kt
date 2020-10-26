@@ -9,7 +9,6 @@ import android.view.animation.RotateAnimation
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.google.firebase.auth.FirebaseAuth
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.SettingsFragment

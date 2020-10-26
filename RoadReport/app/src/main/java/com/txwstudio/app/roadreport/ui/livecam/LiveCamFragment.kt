@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.google.android.gms.ads.AdRequest
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter
