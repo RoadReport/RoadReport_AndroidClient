@@ -10,6 +10,7 @@ import com.google.firebase.firestore.GeoPoint
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,7 +19,8 @@ class EventEditorViewModel internal constructor(
     val roadCode: Int?,
     val roadName: String?,
     val documentId: String?,
-    var accidentModel: Accident?
+//    var accidentModel: Accident?
+    var accidentModel: AccidentEventParcelize?
 ) : ViewModel() {
 
     var currentRoadName = MutableLiveData<String>()
@@ -53,6 +55,9 @@ class EventEditorViewModel internal constructor(
     private fun setValueToLiveData() {
         situationType.value = accidentModel?.situationType
         locationText.value = accidentModel?.locationText
+        if (accidentModel?.locationGeoPointLatitude != 0.0 && accidentModel?.locationGeoPointLongitude != 0.0) {
+            locationGeoPoint.value = LatLng(accidentModel!!.locationGeoPointLatitude, accidentModel!!.locationGeoPointLongitude)
+        }
         situation.value = accidentModel?.situation
         imageUrl.value = accidentModel?.imageUrl
     }

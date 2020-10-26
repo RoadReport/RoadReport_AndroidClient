@@ -11,6 +11,7 @@ import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
 
@@ -29,7 +30,9 @@ class EventEditorActivity : AppCompatActivity() {
         val editMode = intent.getBooleanExtra(StringCode.EXTRA_NAME_EDIT_MODE, false)
         val documentId = intent.getStringExtra(StringCode.EXTRA_NAME_DOCUMENT_ID)
         val accidentModel =
-            intent.getParcelableExtra<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+            intent.getParcelableExtra<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+//        val accidentModel =
+//            intent.getParcelableExtra<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
 
         setupToolBar(editMode)
 

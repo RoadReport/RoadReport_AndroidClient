@@ -19,6 +19,7 @@ import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.service.ImgurApi
 import com.txwstudio.app.roadreport.ui.maps.AddGeoPointViewModel
 import com.txwstudio.app.roadreport.ui.maps.MapsFragment
@@ -56,7 +57,8 @@ class EventEditorFragment : Fragment() {
         val roadCode = bundle.getInt(StringCode.EXTRA_NAME_ROAD_CODE, -1)
         val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
         val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
-        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+//        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+        val accidentModel = bundle.getParcelable<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
 
         eventEditorViewModel = ViewModelProvider(
             this, EventEditorViewModelFactory(

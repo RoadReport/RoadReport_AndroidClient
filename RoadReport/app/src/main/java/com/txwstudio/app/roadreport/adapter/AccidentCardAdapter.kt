@@ -111,7 +111,9 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                             val intent = Intent(context, EventEditorActivity::class.java)
                             intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
                             intent.putExtra(StringCode.EXTRA_NAME_DOCUMENT_ID, snapshots.getSnapshot(position).id)
-                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
+                            val temp = Util().convertAccidentModel2Parcelable(accidentModel)
+                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, temp)
+//                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
                             context.startActivity(intent)
                         }
                         1 -> {
