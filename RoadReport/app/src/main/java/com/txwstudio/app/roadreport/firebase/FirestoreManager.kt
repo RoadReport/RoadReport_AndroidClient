@@ -42,8 +42,6 @@ class FirestoreManager {
      * Get accident from firestore.
      *
      * @param currRoad: Current road code from accidentEventActivity.
-     *
-     * TODO: Implement
      * */
 //    fun getAccident(currRoad: Int) {
 //        val mutableList = mutableListOf<Accident>()

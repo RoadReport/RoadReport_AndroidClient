@@ -53,11 +53,8 @@ class AuthManager {
 
     /**
      * Sign out using AuthUI, invoke by AccountFragment.
-     *
-     * TODO(Sign out with Firebase.auth not AuthUI)
      * */
     fun signOut(context: Context) {
-//        Firebase.auth.signOut()
         AuthUI.getInstance()
             .signOut(context)
             .addOnCompleteListener {
