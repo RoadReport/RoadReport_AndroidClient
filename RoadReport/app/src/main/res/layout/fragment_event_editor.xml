@@ -122,14 +122,12 @@
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:scaleType="center"
-                app:errors="@{@drawable/ic_outline_map_24}"
-                app:imageUrls="@{viewModel.imageUrl}"
+                android:src="@drawable/ic_outline_map_24"
                 app:layout_constraintBottom_toBottomOf="@+id/editText_eventEditor_locationContent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="2"
                 app:layout_constraintStart_toEndOf="@id/editText_eventEditor_locationContent"
                 app:layout_constraintTop_toBottomOf="@id/textView_eventEditor_locationTitle"
-                app:placeHolders="@{@drawable/ic_outline_map_24}"
                 tools:src="@drawable/ic_outline_map_24" />
 
 

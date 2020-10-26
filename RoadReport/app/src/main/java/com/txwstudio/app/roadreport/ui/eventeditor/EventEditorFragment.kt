@@ -18,7 +18,6 @@ import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
-import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.service.ImgurApi
 import com.txwstudio.app.roadreport.ui.maps.AddGeoPointViewModel
@@ -58,7 +57,8 @@ class EventEditorFragment : Fragment() {
         val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
         val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
 //        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
-        val accidentModel = bundle.getParcelable<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+        val accidentModel =
+            bundle.getParcelable<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
 
         eventEditorViewModel = ViewModelProvider(
             this, EventEditorViewModelFactory(
@@ -190,22 +190,24 @@ class EventEditorFragment : Fragment() {
 
         // Set icon for map button
         eventEditorViewModel.locationGeoPoint.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.imageViewEventEditorLocationMapButton.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_clear_24
+            binding.imageViewEventEditorLocationMapButton.let { its ->
+                if (it == null) {
+                    // Set icon to map
+                    its.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_outline_map_24
+                        )
                     )
-                )
-                // set icon to cancel
-            } else {
-                binding.imageViewEventEditorLocationMapButton.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_outline_map_24
+                } else {
+                    // Set icon to clear
+                    its.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_clear_24
+                        )
                     )
-                )
-                // set icon to map
+                }
             }
         }
 
@@ -219,7 +221,6 @@ class EventEditorFragment : Fragment() {
                 startActivityForResult(intent, UPLOAD_IMAGE_REQUEST_CODE)
             }
         }
-
 
         // Observing imageUrl isNullOrBlank in order to set image to ImageView.
         eventEditorViewModel.imageUrl.observe(viewLifecycleOwner) {
