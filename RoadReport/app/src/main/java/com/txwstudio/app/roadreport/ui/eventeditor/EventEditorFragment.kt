@@ -147,7 +147,7 @@ class EventEditorFragment : Fragment() {
      * TODO(I'am limited by the technology of my time.)
      * @link https://stackoverflow.com/questions/46727276/mvvm-pattern-and-startactivity
      * */
-    fun subscribeUi() {
+    private fun subscribeUi() {
         /**
          * Binding
          * */
