@@ -71,14 +71,10 @@ class MapsFragment : BottomSheetDialogFragment() {
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
          * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
          * If Google Play services is not installed on the device, the user will be prompted to
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-//        val sydney = LatLng(-34.0, 151.0)
-//        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
 
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI()
@@ -86,10 +82,6 @@ class MapsFragment : BottomSheetDialogFragment() {
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
 
-        // Set map ui
-        map!!.uiSettings.isMyLocationButtonEnabled = true
-        map!!.uiSettings.isZoomControlsEnabled = true
-        map!!.uiSettings.isCompassEnabled = true
         map?.setOnMapLongClickListener {
             Log.i(TAG, "${it.latitude} ${it.longitude}")
             userSelectLocation = it
@@ -147,50 +139,30 @@ class MapsFragment : BottomSheetDialogFragment() {
 
 
     /**
-     * Gets the current location of the device, and positions the map's camera.
+     * Handles the result of the request for location permissions.
      */
-    // [START maps_current_place_get_device_location]
-    private fun getDeviceLocation() {
-        /*
-         * Get the best and most recent location of the device, which may be null in rare
-         * cases when a location is not available.
-         */
-        try {
-            if (locationPermissionGranted) {
-                val locationResult = fusedLocationProviderClient.lastLocation
-                locationResult.addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Set the map's camera position to the current location of the device.
-                        lastKnownLocation = task.result
-                        if (lastKnownLocation != null) {
-                            map?.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(
-                                    LatLng(
-                                        lastKnownLocation!!.latitude,
-                                        lastKnownLocation!!.longitude
-                                    ), DEFAULT_ZOOM.toFloat()
-                                )
-                            )
-                        }
-                    } else {
-                        Log.d(TAG, "Current location is null. Using defaults.")
-                        Log.e(TAG, "Exception: %s", task.exception)
-                        map?.moveCamera(
-                            CameraUpdateFactory
-                                .newLatLngZoom(
-                                    defaultLocation,
-                                    DEFAULT_ZOOM.toFloat()
-                                )
-                        )
-                        map?.uiSettings?.isMyLocationButtonEnabled = false
-                    }
+    // [START maps_current_place_on_request_permissions_result]
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        locationPermissionGranted = false
+        when (requestCode) {
+            PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    locationPermissionGranted = true
                 }
             }
-        } catch (e: SecurityException) {
-            Log.e("Exception: %s", e.message, e)
         }
+//        Comment out, it can cause get permission loop.
+//        updateLocationUI()
     }
-    // [END maps_current_place_get_device_location]
+    // [END maps_current_place_on_request_permissions_result]
 
 
     /**
@@ -221,32 +193,6 @@ class MapsFragment : BottomSheetDialogFragment() {
 
 
     /**
-     * Handles the result of the request for location permissions.
-     */
-    // [START maps_current_place_on_request_permissions_result]
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        locationPermissionGranted = false
-        when (requestCode) {
-            PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
-
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.isNotEmpty() &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED
-                ) {
-                    locationPermissionGranted = true
-                }
-            }
-        }
-//        Can cause get permission loop
-//        updateLocationUI()
-    }
-    // [END maps_current_place_on_request_permissions_result]
-
-    /**
      * Updates the map's UI settings based on whether the user has granted location permission.
      */
     // [START maps_current_place_update_location_ui]
@@ -255,6 +201,9 @@ class MapsFragment : BottomSheetDialogFragment() {
             return
         }
         try {
+            map?.isMyLocationEnabled = true
+            map?.uiSettings?.isZoomControlsEnabled = false
+            map?.uiSettings?.isCompassEnabled = false
             if (locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
@@ -263,11 +212,57 @@ class MapsFragment : BottomSheetDialogFragment() {
                 map?.uiSettings?.isMyLocationButtonEnabled = false
                 lastKnownLocation = null
                 getLocationPermission()
-                map!!.isMyLocationEnabled = true
+                map?.isMyLocationEnabled = true
             }
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message, e)
         }
     }
     // [END maps_current_place_update_location_ui]
+
+
+    /**
+     * Gets the current location of the device, and positions the map's camera.
+     */
+    // [START maps_current_place_get_device_location]
+    private fun getDeviceLocation() {
+        /*
+         * Get the best and most recent location of the device, which may be null in rare
+         * cases when a location is not available.
+         */
+        try {
+            if (locationPermissionGranted) {
+                val locationResult = fusedLocationProviderClient.lastLocation
+                locationResult.addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        // Set the map's camera position to the current location of the device.
+                        lastKnownLocation = task.result
+                        if (lastKnownLocation != null) {
+                            map?.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(
+                                        lastKnownLocation!!.latitude,
+                                        lastKnownLocation!!.longitude
+                                    ), DEFAULT_ZOOM.toFloat()
+                                )
+                            )
+                        }
+                    } else {
+                        Log.d(TAG, "Current location is null. Using defaults.")
+                        Log.e(TAG, "Exception: %s", task.exception)
+                        map?.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                defaultLocation,
+                                DEFAULT_ZOOM.toFloat()
+                            )
+                        )
+                        map?.uiSettings?.isMyLocationButtonEnabled = false
+                    }
+                }
+            }
+        } catch (e: SecurityException) {
+            Log.e("Exception: %s", e.message, e)
+        }
+    }
+    // [END maps_current_place_get_device_location]
 }
