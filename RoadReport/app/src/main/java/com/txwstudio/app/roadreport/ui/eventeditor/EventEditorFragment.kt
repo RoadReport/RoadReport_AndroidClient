@@ -148,11 +148,8 @@ class EventEditorFragment : Fragment() {
      * @link https://stackoverflow.com/questions/46727276/mvvm-pattern-and-startactivity
      * */
     private fun subscribeUi() {
-        /**
-         * Binding
-         * */
-        // Open situation type dialog
-        binding.editTextEventEditorSituationTypeContent.setOnClickListener {
+        // A clickListener for picking situation type.
+        eventEditorViewModel.isSituationTypeButtonClicked.observe(viewLifecycleOwner) {
             val builder = AlertDialog.Builder(requireContext())
             builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
                 eventEditorViewModel.situationType.value = which.toLong()
@@ -160,25 +157,20 @@ class EventEditorFragment : Fragment() {
             builder.create().show()
         }
 
-        // Map button, picking geo point or clean it.
-        binding.imageViewEventEditorLocationMapButton.setOnClickListener {
-            if (eventEditorViewModel.locationGeoPoint.value == null) {
-                MapsFragment().show(
-                    requireActivity().supportFragmentManager,
-                    MapsFragment::class.java.simpleName
-                )
-            } else if (eventEditorViewModel.locationGeoPoint.value != null) {
-                eventEditorViewModel.locationGeoPoint.value = null
-            }
-        }
-
-        /**
-         * Observing LiveData inside view model.
-         * */
         // Set text for situation type
         eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
             binding.editTextEventEditorSituationTypeContent.text =
                 Util().getSituationTypeName(requireContext(), it.toInt())
+        }
+
+        // A clickListener for picking location, if it value == true.
+        eventEditorViewModel.isMapButtonClicked.observe(viewLifecycleOwner) {
+            if (it) {
+                MapsFragment().show(
+                    requireActivity().supportFragmentManager,
+                    MapsFragment::class.java.simpleName
+                )
+            }
         }
 
         // Observe sharedViewModel for new LatLng
@@ -211,7 +203,6 @@ class EventEditorFragment : Fragment() {
         }
 
         // A clickListener for picking image, if it value == true.
-        // TODO(Set onClickListener direct, not from observe)
         eventEditorViewModel.isUploadImageClicked.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)

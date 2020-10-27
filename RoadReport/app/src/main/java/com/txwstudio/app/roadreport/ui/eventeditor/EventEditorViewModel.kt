@@ -26,6 +26,8 @@ class EventEditorViewModel internal constructor(
     var currentRoadName = MutableLiveData<String>()
 
     // Detect user operation.
+    val isSituationTypeButtonClicked = MutableLiveData<Boolean>()
+    val isMapButtonClicked = MutableLiveData<Boolean>(false)
     val isUploadImageClicked = MutableLiveData<Boolean>(false)
     var errorNotSignedIn = MutableLiveData<Boolean>(false)
     var errorRequiredEntriesEmpty = MutableLiveData<Boolean>(false)
@@ -63,6 +65,29 @@ class EventEditorViewModel internal constructor(
     }
 
     /**
+     * Fire situation type dialog.
+     * */
+    fun situationTypeClicked() {
+        if (isSituationTypeButtonClicked.value == null) {
+            isSituationTypeButtonClicked.value = false
+        } else {
+            isSituationTypeButtonClicked.value = !isSituationTypeButtonClicked.value!!
+        }
+    }
+
+    /**
+     * Change isMapButtonClicked status.
+     * */
+    fun mapButtonClicked() {
+        if (locationGeoPoint.value == null) {
+            isMapButtonClicked.value = true
+        } else if (locationGeoPoint.value != null) {
+            isMapButtonClicked.value = false
+            locationGeoPoint.value = null
+        }
+    }
+
+    /**
      * Change isUploadImageClicked status, invoke by button_eventEditor_uploadImage.
      * */
     fun uploadImageClicked() {
@@ -71,7 +96,6 @@ class EventEditorViewModel internal constructor(
             return
         }
         mLastClickTime = SystemClock.elapsedRealtime()
-//        isUploadImageClicked.value = !isUploadImageClicked.value!!
         if (imageUrl.value.isNullOrBlank()) {
             isUploadImageClicked.value = true
         } else if (!imageUrl.value.isNullOrBlank()) {
