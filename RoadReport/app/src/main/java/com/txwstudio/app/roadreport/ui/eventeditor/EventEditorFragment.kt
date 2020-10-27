@@ -133,7 +133,6 @@ class EventEditorFragment : Fragment() {
                             }
                         }
                     }
-                } else if (resultCode == Activity.RESULT_CANCELED) {
                 } else if (data == null) {
                     Util().toast(requireContext(), getString(R.string.all_unknownError))
                 }
