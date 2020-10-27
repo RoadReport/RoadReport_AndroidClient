@@ -45,10 +45,15 @@ class MapsFragment : BottomSheetDialogFragment() {
     // The entry point to the Fused Location Provider.
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-    // A default location (Sydney, Australia) and default zoom to use when location permission is
-    // not granted.
-    private val defaultLocation = LatLng(-33.8523341, 151.2106085)
+    // A default location (Yushan, Taiwan) to use when location permission is not granted.
     private var locationPermissionGranted = false
+    private val defaultLocation = LatLng(23.470024, 120.957339)
+    private val defaultLocation24 by lazy {
+        LatLng(22.747690, 120.700548)
+    }
+    private val defaultLocation182 by lazy {
+        LatLng(22.936062, 120.421799)
+    }
 
     // The geographical location where the device is currently located. That is, the last-known
     // location retrieved by the Fused Location Provider.
@@ -131,6 +136,7 @@ class MapsFragment : BottomSheetDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
 
+        // Set state to expanded at start.
         dialog.setOnShowListener {
             val bottomSheet =
                 dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
