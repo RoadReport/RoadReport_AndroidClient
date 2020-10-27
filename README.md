@@ -7,8 +7,10 @@
 這個 Repo 存放「看路！」的 Android 端原始碼<br>請好好愛護它，別讓他嚇到了
 </h4>
 
-<a target="_blank" href="https://play.google.com/store/apps/details?id=com.txwstudio.app.roadreport"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-tw_badge_web_generic.png" width="128"></a>
-![](https://img.shields.io/badge/Android-6-blue.svg?style=flat-square)
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.txwstudio.app.roadreport"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-tw_badge_web_generic.png" width="160"></a><br>
+![](https://img.shields.io/badge/build-failed,%20just%20like%20everything%20else%20in%20your%20life-red.svg?style=flat-square)
+![](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)
+![](https://img.shields.io/badge/Min%20Android-6-blue.svg?style=flat-square)
 
 <p align="center">
   <a href="#preview">Preview</a> •
@@ -30,8 +32,9 @@
 - 深色主題
 
 ## Develop
-- Android Studio 4.0.1 and above
-- Gradle 6.1.1
+- Android Studio 4.1 and above
+- Gradle 6.5
+- Gradle Plugin 4.1.0
 - google-services.json
 - apikey.properties
 
