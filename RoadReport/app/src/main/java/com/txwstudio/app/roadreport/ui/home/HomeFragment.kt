@@ -23,12 +23,8 @@ class HomeFragment : Fragment() {
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentHomeBinding>(
-            inflater,
-            R.layout.fragment_home,
-            container,
-            false
-        )
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         binding.viewModel = homeViewModel
         binding.lifecycleOwner = this
 

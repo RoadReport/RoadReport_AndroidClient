@@ -29,12 +29,8 @@ class LiveCamFragment : Fragment() {
 
         liveCamViewModel = ViewModelProvider(this).get(LiveCamViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentLiveCamBinding>(
-            inflater,
-            R.layout.fragment_live_cam,
-            container,
-            false
-        )
+        binding = FragmentLiveCamBinding.inflate(inflater, container, false)
+
         binding.viewModel = liveCamViewModel
         binding.lifecycleOwner = this
 

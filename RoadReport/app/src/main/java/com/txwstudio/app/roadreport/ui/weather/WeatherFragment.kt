@@ -27,12 +27,8 @@ class WeatherFragment : Fragment() {
     ): View? {
         weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentWeatherBinding>(
-            inflater,
-            R.layout.fragment_weather,
-            container,
-            false
-        )
+        binding = FragmentWeatherBinding.inflate(inflater, container, false)
+
         binding.viewModel = weatherViewModel
         binding.lifecycleOwner = this
 
