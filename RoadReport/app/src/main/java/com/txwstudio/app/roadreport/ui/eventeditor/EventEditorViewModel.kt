@@ -170,7 +170,7 @@ class EventEditorViewModel internal constructor(
         // letPrintSomeThing()
 
         // User not signed in yet, break.
-        if (!AuthManager().userIsSignedIn()) {
+        if (!AuthManager().isUserSignedIn()) {
             errorNotSignedIn.value = !errorNotSignedIn.value!!
             return
         }

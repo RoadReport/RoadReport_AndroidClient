@@ -20,7 +20,7 @@ class AuthManager {
      *
      * @return true: Signed in.
      * @return false: Not Signed in yet. */
-    fun userIsSignedIn(): Boolean {
+    fun isUserSignedIn(): Boolean {
         val auth = Firebase.auth.currentUser
         return auth != null
     }

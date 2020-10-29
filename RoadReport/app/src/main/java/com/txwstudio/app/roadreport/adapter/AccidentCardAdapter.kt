@@ -25,7 +25,7 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
 
-    private var userIsSignedIn = AuthManager().userIsSignedIn()
+    private var userIsSignedIn = AuthManager().isUserSignedIn()
     private val userUid = AuthManager().getCurrUserModel()?.uid
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccidentCardHolder {

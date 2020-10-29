@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        AuthManager().userIsSignedIn()
+        AuthManager().isUserSignedIn()
         MobileAds.initialize(this)
     }
 
