@@ -165,7 +165,7 @@ class EventEditorFragment : Fragment() {
         // A clickListener for picking location, if it value == true.
         eventEditorViewModel.isMapButtonClicked.observe(viewLifecycleOwner) {
             if (it) {
-                MapsFragment().show(
+                MapsFragment(true).show(
                     requireActivity().supportFragmentManager,
                     MapsFragment::class.java.simpleName
                 )

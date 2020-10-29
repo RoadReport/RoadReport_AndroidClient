@@ -28,7 +28,8 @@ class RoadFragment : Fragment() {
         super.onAttach(context)
         ROADCODE = RoadCode().getCurrentRoadCode(context)
         layoutManager = LinearLayoutManager(context)
-        viewAdapterRealtimeClass = AccidentCardAdapter(context, ROADCODE)
+        viewAdapterRealtimeClass =
+            AccidentCardAdapter(context, requireActivity().supportFragmentManager, ROADCODE)
     }
 
     override fun onCreateView(

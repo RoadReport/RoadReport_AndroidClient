@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.firestore.GeoPoint
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
@@ -17,10 +20,11 @@ import com.txwstudio.app.roadreport.activity.EventEditorActivity
 import com.txwstudio.app.roadreport.activity.ImageViewerActivity
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AccidentCardAdapter(val context: Context, val roadCode: Int) :
+class AccidentCardAdapter(val context: Context, val fm: FragmentManager, val roadCode: Int) :
     FirestoreRecyclerAdapter<Accident?, AccidentCardHolder?>(
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
@@ -67,8 +71,16 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
         holder.layout.background = context.getDrawable(backgroundType)
         holder.situationType.text = context.getString(situationType)
 
-        // TODO(Show locationText or clickable locationGeoPoint)
         holder.location.text = model.locationText
+        if (model.locationGeoPoint != GeoPoint(0.0, 0.0)) {
+            holder.location.setOnClickListener {
+                MapsFragment(
+                    false,
+                    LatLng(model.locationGeoPoint.latitude, model.locationGeoPoint.longitude)
+                ).show(fm, MapsFragment::class.java.simpleName)
+            }
+        }
+
         holder.situation.text = model.situation
 
         if (!model.imageUrl.isBlank()) {
@@ -110,7 +122,10 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                             val accidentModel = getItem(position)
                             val intent = Intent(context, EventEditorActivity::class.java)
                             intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
-                            intent.putExtra(StringCode.EXTRA_NAME_DOCUMENT_ID, snapshots.getSnapshot(position).id)
+                            intent.putExtra(
+                                StringCode.EXTRA_NAME_DOCUMENT_ID,
+                                snapshots.getSnapshot(position).id
+                            )
                             val temp = Util().convertAccidentModel2Parcelable(accidentModel)
                             intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, temp)
 //                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
@@ -123,7 +138,10 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                                         Util().toast(context, if (it) "刪除成功" else "刪除失敗")
                                     }
                             } else {
-                                Util().toast(context, context.getString(R.string.roadFrag_notSignInOrNotPostByYou))
+                                Util().toast(
+                                    context,
+                                    context.getString(R.string.roadFrag_notSignInOrNotPostByYou)
+                                )
                             }
                         }
                     }
@@ -138,7 +156,10 @@ class AccidentCardAdapter(val context: Context, val roadCode: Int) :
                 val builder = AlertDialog.Builder(context)
                 builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                     when (which) {
-                        0 -> Util().toast(context, context.getString(R.string.roadFrag_notDevelopYet))
+                        0 -> Util().toast(
+                            context,
+                            context.getString(R.string.roadFrag_notDevelopYet)
+                        )
                     }
                 }.show()
             }
