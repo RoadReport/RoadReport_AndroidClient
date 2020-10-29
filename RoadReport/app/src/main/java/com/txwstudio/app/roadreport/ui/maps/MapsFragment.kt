@@ -128,6 +128,12 @@ class MapsFragment(
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
+        toolbar_mapsFrag.title = if (isSelectMode) {
+            getString(R.string.mapsFrag_titleSelectLocation)
+        } else {
+            getString(R.string.mapsFrag_titleShowLocation)
+        }
+
         button_mapsFrag_select.setOnClickListener {
             if (isSelectMode) {
                 addGeoPointViewModel.setLatLng(userSelectLocation)
