@@ -71,6 +71,7 @@
     <!-- Event Editor Fragment -->
     <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
+    <string name="eventEditor_locationGeoPointSelected">座標點已選擇，按 X 可移除</string>
 
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前所在路段</string>

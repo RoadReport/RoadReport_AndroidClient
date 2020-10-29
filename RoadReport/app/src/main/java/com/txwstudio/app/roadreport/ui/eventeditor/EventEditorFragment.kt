@@ -174,7 +174,7 @@ class EventEditorFragment : Fragment() {
 
         // Observe sharedViewModel for new LatLng
         addGeoPointViewModel.sharedLocationGeoPoint.observe(viewLifecycleOwner) {
-            Util().snackBarLong(requireView(), "${it.latitude} ${it.longitude}")
+            Util().snackBarLong(requireView(), R.string.eventEditor_locationGeoPointSelected)
             eventEditorViewModel.locationGeoPoint.value = it
         }
 
