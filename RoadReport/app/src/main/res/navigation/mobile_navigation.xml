@@ -15,5 +15,18 @@
         android:id="@+id/navigation_account"
         android:name="com.txwstudio.app.roadreport.ui.account.AccountFragment"
         android:label="@string/accountFrag_title"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_navigation_account_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.txwstudio.app.roadreport.SettingsFragment"
+        android:label="@string/settingsFrag_title" />
 </navigation>

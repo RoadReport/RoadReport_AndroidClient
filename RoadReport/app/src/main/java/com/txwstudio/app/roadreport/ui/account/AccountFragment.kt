@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.SettingsFragment
@@ -19,6 +22,8 @@ class AccountFragment : Fragment() {
 
     private lateinit var accountViewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
+
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,11 +41,12 @@ class AccountFragment : Fragment() {
 
         subscribeUI()
 
-        val fragmentTransaction = childFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.frameLayoutForPref, SettingsFragment())
-        fragmentTransaction.commit()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = findNavController()
     }
 
     override fun onResume() {
@@ -59,12 +65,12 @@ class AccountFragment : Fragment() {
         accountViewModel.isSignedIn.observe(viewLifecycleOwner) {
             if (it) {
                 // User is signed in.
-                binding.cardViewAccountFragAccountPreviewNotSignedIn2.visibility = View.GONE
-                binding.cardViewAccountFragAccountPreview2.visibility = View.VISIBLE
+                binding.cardViewAccountFragAccountPreviewNotSignedIn.visibility = View.GONE
+                binding.cardViewAccountFragAccountPreview.visibility = View.VISIBLE
             } else {
                 // User isn't signed in.
-                binding.cardViewAccountFragAccountPreviewNotSignedIn2.visibility = View.VISIBLE
-                binding.cardViewAccountFragAccountPreview2.visibility = View.GONE
+                binding.cardViewAccountFragAccountPreviewNotSignedIn.visibility = View.VISIBLE
+                binding.cardViewAccountFragAccountPreview.visibility = View.GONE
                 binding.cardViewAccountFragAccountDetail.visibility = View.GONE
                 binding.imageViewAccountFragMore.rotation = 90f
                 visible = false
@@ -93,7 +99,7 @@ class AccountFragment : Fragment() {
         rotateFromBottomToTop.duration = 150
         rotateFromBottomToTop.fillAfter = true
 
-        binding.cardViewAccountFragAccountPreview2.setOnClickListener {
+        binding.cardViewAccountFragAccountPreview.setOnClickListener {
             binding.cardViewAccountFragAccountDetail.visibility = if (visible) {
                 binding.imageViewAccountFragMore.startAnimation(rotateFromTopToBottom)
                 visible = false
@@ -104,5 +110,11 @@ class AccountFragment : Fragment() {
                 View.VISIBLE
             }
         }
+
+        // Open settings fragment
+        binding.textViewAccountFragOpenPreferences.setOnClickListener {
+            navController.navigate(R.id.action_navigation_account_to_settingsFragment)
+        }
+
     }
 }

@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.account.AccountFragment">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout_Basic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,11 +27,14 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardView_accountFrag_accountPreviewNotSignedIn2"
+                android:id="@+id/cardView_accountFrag_accountPreviewNotSignedIn"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="gone">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,7 +81,7 @@
 
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardView_accountFrag_accountPreview2"
+                android:id="@+id/cardView_accountFrag_accountPreview"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:clickable="true"
@@ -86,7 +89,10 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="0dp"
-                app:contentPadding="@dimen/margin_normal">
+                app:contentPadding="@dimen/margin_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView_accountFrag_accountPreviewNotSignedIn">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -153,6 +159,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView_accountFrag_accountPreview"
                 tools:visibility="visible">
 
                 <View
@@ -182,10 +191,34 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/frameLayoutForPref"
+
+            <LinearLayout
+                android:id="@+id/button_accountFrag_openPreferences"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/margin_normal"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_accountFrag_accountDetail"
+                tools:ignore="RtlSymmetry">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_outline_settings_24">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/textView_accountFrag_openPreferences"
+                    style="@style/AboutItem"
+                    android:text="@string/settingsFrag_title" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
