@@ -28,7 +28,11 @@ import com.txwstudio.app.roadreport.Util
 import kotlinx.android.synthetic.main.fragment_maps.*
 
 
-class MapsFragment : BottomSheetDialogFragment() {
+class MapsFragment(
+    private val isSelectMode: Boolean,
+    private val latLngToShow: LatLng = LatLng(0.0, 0.0)
+) :
+    BottomSheetDialogFragment() {
 
     companion object {
         private val TAG = MapsFragment::class.java.simpleName
@@ -63,7 +67,7 @@ class MapsFragment : BottomSheetDialogFragment() {
     private var likelyPlaceAttributions: Array<List<*>?> = arrayOfNulls(0)
     private var likelyPlaceLatLngs: Array<LatLng?> = arrayOfNulls(0)
 
-    private lateinit var userSelectLocation: LatLng
+    private var userSelectLocation: LatLng = LatLng(0.0, 0.0)
 
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
@@ -82,20 +86,25 @@ class MapsFragment : BottomSheetDialogFragment() {
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
 
-        map?.setOnMapLongClickListener {
-            Log.i(TAG, "${it.latitude} ${it.longitude}")
-            userSelectLocation = it
-            val newPick = LatLng(it.latitude, it.longitude)
-            map?.clear()
-            map?.addMarker(
-                MarkerOptions()
-                    .position(newPick)
-                    .title("Select")
-            )
-            map?.animateCamera(CameraUpdateFactory.newLatLng(newPick))
-            Util().toast(requireActivity(), "${it.latitude} ${it.longitude}")
-            addGeoPointViewModel.setLatLng(it)
+        if (isSelectMode) {
+            map?.setOnMapLongClickListener {
+                Log.i(TAG, "${it.latitude} ${it.longitude}")
+                Util().toast(requireActivity(), "${it.latitude} ${it.longitude}")
+                userSelectLocation = it
+                val newPick = LatLng(it.latitude, it.longitude)
+                map?.clear()
+                map?.addMarker(
+                    MarkerOptions()
+                        .position(newPick)
+                        .title("Select")
+                )
+                map?.animateCamera(CameraUpdateFactory.newLatLng(newPick))
+//                addGeoPointViewModel.setLatLng(it)
+            }
+        } else {
+            setAndMoveToEventLocation(latLngToShow)
         }
+
     }
 
 
@@ -119,7 +128,16 @@ class MapsFragment : BottomSheetDialogFragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
+        toolbar_mapsFrag.title = if (isSelectMode) {
+            getString(R.string.mapsFrag_titleSelectLocation)
+        } else {
+            getString(R.string.mapsFrag_titleShowLocation)
+        }
+
         button_mapsFrag_select.setOnClickListener {
+            if (isSelectMode) {
+                addGeoPointViewModel.setLatLng(userSelectLocation)
+            }
             dismiss()
         }
     }
@@ -265,4 +283,25 @@ class MapsFragment : BottomSheetDialogFragment() {
         }
     }
     // [END maps_current_place_get_device_location]
+
+
+    /**
+     * Set the event location, and positions the map's camera.
+     */
+    private fun setAndMoveToEventLocation(eventLatLng: LatLng) {
+//        val eventLocation = LatLng(-34.0, 151.0)
+        val eventLocation: LatLng =
+            if (eventLatLng != LatLng(0.0, 0.0))
+                eventLatLng
+            else
+                defaultLocation
+
+        map?.addMarker(MarkerOptions().position(eventLocation).title("wow much doge"))
+        map?.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                eventLocation,
+                DEFAULT_ZOOM.toFloat()
+            )
+        )
+    }
 }

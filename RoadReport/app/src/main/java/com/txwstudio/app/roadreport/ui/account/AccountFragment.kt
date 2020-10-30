@@ -26,12 +26,7 @@ class AccountFragment : Fragment() {
 
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentAccountBinding>(
-            inflater,
-            R.layout.fragment_account,
-            container,
-            false
-        )
+        binding = FragmentAccountBinding.inflate(inflater, container, false)
 
         binding.viewModel = accountViewModel
         binding.handler = context?.let { context ->
