@@ -10,7 +10,6 @@ import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
-import com.txwstudio.app.roadreport.model.Accident
 import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
@@ -38,7 +37,7 @@ class EventEditorActivity : AppCompatActivity() {
 
         val bundle = Bundle()
         bundle.putBoolean(StringCode.EXTRA_NAME_EDIT_MODE, editMode)
-        bundle.putInt(StringCode.EXTRA_NAME_ROAD_CODE, RoadCode().getCurrentRoadCode(this))
+        bundle.putInt(StringCode.EXTRA_NAME_ROAD_CODE, RoadCode().getCurrentRoadCodeFromSP(this))
         bundle.putString(StringCode.EXTRA_NAME_ROAD_NAME, RoadCode().getCurrRoadName(this))
         bundle.putString(StringCode.EXTRA_NAME_DOCUMENT_ID, documentId)
         bundle.putParcelable(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)

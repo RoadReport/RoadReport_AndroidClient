@@ -26,7 +26,7 @@ class RoadFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ROADCODE = RoadCode().getCurrentRoadCode(context)
+        ROADCODE = RoadCode().getCurrentRoadCodeFromSP(context)
         layoutManager = LinearLayoutManager(context)
         viewAdapterRealtimeClass =
             AccidentCardAdapter(context, requireActivity().supportFragmentManager, ROADCODE)

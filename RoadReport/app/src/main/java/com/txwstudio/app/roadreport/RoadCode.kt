@@ -42,14 +42,14 @@ class RoadCode {
      * @param currRoadCode: Current Road Code.
      * */
     @SuppressLint("ApplySharedPref")
-    private fun setCurrRoadCodeToSP(context: Context, currRoadCode: Int) {
+    fun setCurrRoadCodeToSP(context: Context, currRoadCode: Int) {
         context.getSharedPreferences("currentCode", 0)
             .edit().putInt("currentCode", currRoadCode)
             .commit()
     }
 
 
-    fun getCurrentRoadCode(context: Context): Int {
+    fun getCurrentRoadCodeFromSP(context: Context): Int {
         return context.getSharedPreferences("currentCode", 0)
             .getInt("currentCode", 0)
     }
