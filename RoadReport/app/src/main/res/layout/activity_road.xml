@@ -29,7 +29,7 @@
             app:tabTextColor="#e0e0e0" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_roadActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

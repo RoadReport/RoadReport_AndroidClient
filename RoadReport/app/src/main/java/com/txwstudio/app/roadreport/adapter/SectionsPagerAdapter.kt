@@ -1,47 +1,42 @@
 package com.txwstudio.app.roadreport.adapter
 
-import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
-import com.txwstudio.app.roadreport.R
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.txwstudio.app.roadreport.ui.livecam.LiveCamFragment
-import com.txwstudio.app.roadreport.ui.road.PlaceHolderFragment
 import com.txwstudio.app.roadreport.ui.roadevent.RoadFragment
 import com.txwstudio.app.roadreport.ui.weather.WeatherFragment
 
-private val TAB_TITLES = arrayOf(
-    R.string.roadActivity_tab_accidentEvent,
-    R.string.roadActivity_tab_weather,
-    R.string.roadActivity_tab_liveCam
-)
+const val ROAD_EVENT_INDEX = 0
+const val WEATHER_INDEX = 1
+const val LIVE_CAM_INDEX = 2
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapter(fragment: FragmentActivity) :
+    FragmentStateAdapter(fragment) {
 
-    override fun getItem(position: Int): Fragment {
+    /**
+     * Mapping of the ViewPager page indexes to their respective Fragments
+     */
+    private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
+        ROAD_EVENT_INDEX to { RoadFragment() },
+        WEATHER_INDEX to { WeatherFragment() },
+        LIVE_CAM_INDEX to { LiveCamFragment() }
+    )
+
+    override fun createFragment(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceHolderFragment (defined as a static inner class below).
 //        return PlaceHolderFragment.newInstance(position + 1)
 
-        return when (position) {
-            0 -> RoadFragment()
-//            0 -> RoadEventFragment()
-            1 -> WeatherFragment()
-            2 -> LiveCamFragment()
-            else -> PlaceHolderFragment()
-        }
+        return tabFragmentsCreators[position]?.invoke() ?: throw IndexOutOfBoundsException()
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
-    }
-
-    override fun getCount(): Int {
-        return 3
+    override fun getItemCount(): Int {
+        return tabFragmentsCreators.size
     }
 }
