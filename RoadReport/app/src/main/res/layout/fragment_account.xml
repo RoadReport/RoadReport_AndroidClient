@@ -191,33 +191,15 @@
                 <View style="@style/DivLine" />
             </LinearLayout>
 
-
-            <LinearLayout
-                android:id="@+id/button_accountFrag_openPreferences"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/margin_normal"
-                app:layout_constraintTop_toBottomOf="@+id/cardView_accountFrag_accountDetail"
-                tools:ignore="RtlSymmetry">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_outline_settings_24">
-
-                </ImageView>
-
-                <TextView
-                    android:id="@+id/textView_accountFrag_openPreferences"
-                    style="@style/AboutItem"
-                    android:text="@string/settingsFrag_title" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView_accountFrag_openPreferences"
+                style="@style/AboutItem"
+                android:drawablePadding="24dp"
+                android:text="@string/settingsFrag_title"
+                app:drawableStartCompat="@drawable/ic_outline_settings_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_accountFrag_accountDetail" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
