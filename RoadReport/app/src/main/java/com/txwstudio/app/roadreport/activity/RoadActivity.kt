@@ -12,7 +12,7 @@ import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
-import com.txwstudio.app.roadreport.ui.road.SectionsPagerAdapter
+import com.txwstudio.app.roadreport.adapter.SectionsPagerAdapter
 import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {

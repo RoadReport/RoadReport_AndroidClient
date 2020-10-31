@@ -1,4 +1,4 @@
-package com.txwstudio.app.roadreport.ui.road
+package com.txwstudio.app.roadreport.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.ui.livecam.LiveCamFragment
+import com.txwstudio.app.roadreport.ui.road.PlaceHolderFragment
 import com.txwstudio.app.roadreport.ui.roadevent.RoadFragment
 import com.txwstudio.app.roadreport.ui.weather.WeatherFragment
 
@@ -29,6 +30,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
         return when (position) {
             0 -> RoadFragment()
+//            0 -> RoadEventFragment()
             1 -> WeatherFragment()
             2 -> LiveCamFragment()
             else -> PlaceHolderFragment()
