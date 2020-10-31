@@ -29,7 +29,7 @@ class RoadActivity : AppCompatActivity() {
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.viewPager_roadActivity)
-        val tabs: TabLayout = findViewById(R.id.tabs)
+        val tabs: TabLayout = findViewById(R.id.tabLayout_roadActivity)
 
         viewPager.adapter = sectionsPagerAdapter
         viewPager.offscreenPageLimit = 2
@@ -74,7 +74,7 @@ class RoadActivity : AppCompatActivity() {
     }
 
     private fun setupToolBar() {
-        setSupportActionBar(toolbar_roadAct2)
+        setSupportActionBar(toolbar_roadActivity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = RoadCode().getCurrRoadName(this)
     }
