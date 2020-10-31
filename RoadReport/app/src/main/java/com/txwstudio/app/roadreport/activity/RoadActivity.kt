@@ -13,7 +13,7 @@ import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.ui.road.SectionsPagerAdapter
-import kotlinx.android.synthetic.main.activity_road2.*
+import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class RoadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_road2)
+        setContentView(R.layout.activity_road)
         setupToolBar()
 
         fabAdd = findViewById(R.id.fab_roadActivity)
