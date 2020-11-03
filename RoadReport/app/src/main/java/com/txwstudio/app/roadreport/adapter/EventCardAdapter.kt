@@ -1,7 +1,6 @@
 package com.txwstudio.app.roadreport.adapter
 
 import android.app.AlertDialog
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -52,59 +51,57 @@ class EventCardAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.setClickListener {
-                binding.textViewAccidentCardLocation.setOnClickListener {
-                    binding.eventCardViewModel?.locationGeoPoint?.let { LatLng ->
-                        MapsFragment(false, LatLng).show(fm, MapsFragment::class.java.simpleName)
-                    }
+            binding.textViewAccidentCardLocation.setOnClickListener {
+                binding.eventCardViewModel?.locationGeoPoint?.let { LatLng ->
+                    MapsFragment(false, LatLng).show(fm, MapsFragment::class.java.simpleName)
                 }
+            }
 
-                binding.imageButtonAccidentCardMore.setOnClickListener {
-                    // TODO(Fix event card pattern to match MVVM)
-                    // What user can to the card. Different onClick behavior for card.
-                    // Situation 1: NOT Signed in, no action at all.
-                    // Situation 2: Signed in && posted by user, Edit or Delete.
-                    // Situation 3: Signed in && NOT posted by user, Report.
-                    if (!isUserSignedIn) {
-                        // Situation 1
-                        binding.imageButtonAccidentCardMore.visibility = View.INVISIBLE
+            binding.imageButtonAccidentCardMore.setOnClickListener {
+                // TODO(Fix event card pattern to match MVVM)
+                // What user can to the card. Different onClick behavior for card.
+                // Situation 1: NOT Signed in, no action at all.
+                // Situation 2: Signed in && posted by user, Edit or Delete.
+                // Situation 3: Signed in && NOT posted by user, Report.
+                if (!isUserSignedIn) {
+                    // Situation 1
+                    binding.imageButtonAccidentCardMore.visibility = View.INVISIBLE
 
-                    } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
-                        // Situation 2, 0 for edit, 1 for delete.
-                        val builder = AlertDialog.Builder(binding.root.context)
-                        builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
-                            when (which) {
-                                0 -> {
-                                    Log.i("TESTTT", "編輯")
-                                }
-                                1 -> {
-                                    Log.i("TESTTT", "刪除")
-                                    FirestoreManager()
-                                        .deleteAccident(
-                                            roadCode,
-                                            snapshots.getSnapshot(adapterPosition).id
-                                        ) {
-                                            Util().snackBarShort(
-                                                requireView,
-                                                if (it) "刪除成功" else "刪除失敗"
-                                            )
-                                        }
-                                }
+                } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
+                    // Situation 2, 0 for edit, 1 for delete.
+                    val builder = AlertDialog.Builder(binding.root.context)
+                    builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
+                        when (which) {
+                            0 -> {
+                                Log.i("TESTTT", "編輯")
                             }
-                        }.show()
-
-                    } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
-                        // Situation 3
-                        val builder = AlertDialog.Builder(binding.root.context)
-                        builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
-                            when (which) {
-                                0 -> {
-                                    Util().snackBarShort(requireView, "欸嘿 還沒開發")
-                                }
+                            1 -> {
+                                Log.i("TESTTT", "刪除")
+                                FirestoreManager()
+                                    .deleteAccident(
+                                        roadCode,
+                                        snapshots.getSnapshot(adapterPosition).id
+                                    ) {
+                                        Util().snackBarShort(
+                                            requireView,
+                                            if (it) "刪除成功" else "刪除失敗"
+                                        )
+                                    }
                             }
-                        }.show()
+                        }
+                    }.show()
 
-                    }
+                } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
+                    // Situation 3
+                    val builder = AlertDialog.Builder(binding.root.context)
+                    builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
+                        when (which) {
+                            0 -> {
+                                Util().snackBarShort(requireView, "欸嘿 還沒開發")
+                            }
+                        }
+                    }.show()
+
                 }
             }
         }

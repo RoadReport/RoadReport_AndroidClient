@@ -55,7 +55,6 @@
                 android:layout_toStartOf="@id/imageButton_accidentCard_more"
                 android:layout_toEndOf="@id/textView_accidentCard_situationType"
                 android:maxLength="10"
-                android:onClick="@{clickListener}"
                 android:text="@{eventCardViewModel.locationText}"
                 android:textColor="?attr/whiteOrBlack"
                 android:textSize="@dimen/eventCard_mainTextSize"
@@ -71,7 +70,6 @@
                 android:layout_marginEnd="@dimen/margin_half"
                 android:background="?android:selectableItemBackground"
                 android:contentDescription="More"
-                android:onClick="@{clickListener}"
                 android:padding="@dimen/margin_half"
                 android:src="@drawable/ic_more_horiz_black_24dp" />
 
