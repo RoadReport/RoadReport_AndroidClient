@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.content.Context" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="eventCardViewModel"
+            type="com.txwstudio.app.roadreport.model.EventCardVewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/all_default_margin"
+        app:cardElevation="@dimen/materialCard_half">
+
+        <RelativeLayout
+            android:id="@+id/relaLayout_accidentCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:situationType="@{eventCardViewModel.situationType}"
+            tools:background="@drawable/bg_accident_type_5">
+
+            <TextView
+                android:id="@+id/textView_accidentCard_situationType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/all_default_margin"
+                android:layout_marginTop="@dimen/all_default_margin"
+                android:background="@drawable/outline_accident_type"
+                android:paddingHorizontal="4dp"
+                android:textColor="?attr/whiteOrBlack"
+                android:textSize="@dimen/eventCard_mainTextSize"
+                app:situationType="@{eventCardViewModel.situationType}"
+                tools:text="其他" />
+
+            <TextView
+                android:id="@+id/textView_accidentCard_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/all_defaultHalf_margin"
+                android:layout_marginTop="@dimen/all_default_margin"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/imageButton_accidentCard_more"
+                android:layout_toEndOf="@id/textView_accidentCard_situationType"
+                android:maxLength="10"
+                android:onClick="@{clickListener}"
+                android:text="@{eventCardViewModel.locationText}"
+                android:textColor="?attr/whiteOrBlack"
+                android:textSize="@dimen/eventCard_mainTextSize"
+                app:isLocationGeoSet="@{eventCardViewModel.isLocationGeoSet}"
+                tools:text="Apple Park" />
+
+            <ImageButton
+                android:id="@+id/imageButton_accidentCard_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_half"
+                android:layout_marginEnd="@dimen/margin_half"
+                android:background="?android:selectableItemBackground"
+                android:contentDescription="More"
+                android:onClick="@{clickListener}"
+                android:padding="@dimen/margin_half"
+                android:src="@drawable/ic_more_horiz_black_24dp" />
+
+            <TextView
+                android:id="@+id/textView_accidentCard_situation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_accidentCard_situationType"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/all_default_margin"
+                android:layout_marginTop="@dimen/all_defaultHalf_margin"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:text="@{eventCardViewModel.situation}"
+                android:textColor="?attr/whiteOrBlack"
+                android:textSize="@dimen/eventCard_mainTextSize"
+                tools:text="One more thing...\nAn iPod, A Phone and Internet\nAre you getting it?" />
+
+            <ImageView
+                android:id="@+id/imageView_accidentCard_image"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_below="@id/textView_accidentCard_situation"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:scaleType="fitCenter"
+                android:visibility="@{eventCardViewModel.isImageSet ? View.VISIBLE : View.GONE}"
+                app:imageUrl="@{eventCardViewModel.imageUrl}" />
+
+            <TextView
+                android:id="@+id/textView_accidentCard_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_accidentCard_image"
+                android:layout_marginStart="@dimen/all_default_margin"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="@dimen/all_defaultHalf_margin"
+                android:text="@{eventCardViewModel.time}"
+                android:textColor="?attr/whiteOrBlack"
+                tools:text="09/13 09:41" />
+
+            <TextView
+                android:id="@+id/textView_accidentCard_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_accidentCard_image"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/all_default_margin"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="@dimen/all_default_margin"
+                android:layout_toEndOf="@id/textView_accidentCard_time"
+                android:text="@{eventCardViewModel.userName}"
+                android:textAlignment="textEnd"
+                android:textColor="?attr/whiteOrBlack"
+                tools:text="Steve Jobs" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
