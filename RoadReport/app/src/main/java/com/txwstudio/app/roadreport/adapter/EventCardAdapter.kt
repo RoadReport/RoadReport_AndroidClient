@@ -108,7 +108,7 @@ class EventCardAdapter(
 
 
         fun bind(events: Accident) {
-            binding.apply {
+            with(binding) {
                 eventCardViewModel = EventCardVewModel(events)
                 executePendingBindings()
             }

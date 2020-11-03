@@ -44,6 +44,8 @@ object EventCardBindingAdapter {
     fun setEventCardLocationTextUnderLine(view: TextView, isLocationGeoSet: Boolean) {
         if (isLocationGeoSet) {
             view.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        } else {
+            view.paintFlags = 0
         }
     }
 
