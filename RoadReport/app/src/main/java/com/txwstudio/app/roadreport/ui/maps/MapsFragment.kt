@@ -178,7 +178,7 @@ class MapsFragment(
             }
         }
 //        Comment out, it can cause get permission loop.
-//        updateLocationUI()
+        updateLocationUI()
     }
     // [END maps_current_place_on_request_permissions_result]
 
@@ -255,7 +255,7 @@ class MapsFragment(
                     if (task.isSuccessful) {
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.result
-                        if (lastKnownLocation != null) {
+                        if (lastKnownLocation != null && isSelectMode) {
                             map?.moveCamera(
                                 CameraUpdateFactory.newLatLngZoom(
                                     LatLng(
