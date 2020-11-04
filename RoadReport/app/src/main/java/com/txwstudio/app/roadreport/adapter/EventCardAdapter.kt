@@ -68,20 +68,10 @@ class EventCardAdapter(
                     builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
                         when (which) {
                             0 -> {
-                                Log.i("TESTTT", "編輯")
+                                alertDialogActionEdit()
                             }
                             1 -> {
-                                Log.i("TESTTT", "刪除")
-                                FirestoreManager()
-                                    .deleteAccident(
-                                        roadCode,
-                                        snapshots.getSnapshot(adapterPosition).id
-                                    ) {
-                                        Util().snackBarShort(
-                                            requireView,
-                                            if (it) "刪除成功" else "刪除失敗"
-                                        )
-                                    }
+                                alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
                             }
                         }
                     }.show()
@@ -91,22 +81,39 @@ class EventCardAdapter(
                     val builder = AlertDialog.Builder(binding.root.context)
                     builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                         when (which) {
-                            0 -> {
-                                Util().snackBarShort(requireView, "欸嘿 還沒開發")
-                            }
+                            0 -> alertDialogActionReport()
                         }
                     }.show()
 
                 }
             }
-        }
 
+            binding.imageViewEventCardImage
+        }
 
         fun bind(events: Accident) {
             with(binding) {
                 eventCardViewModel = EventCardVewModel(events)
                 executePendingBindings()
             }
+        }
+
+        private fun alertDialogActionEdit() {
+            Util().snackBarShort(requireView, "在新視窗中開啟")
+        }
+
+        private fun alertDialogActionDelete(docId: String) {
+            FirestoreManager()
+                .deleteAccident(roadCode, docId) {
+                    Util().snackBarShort(
+                        requireView,
+                        if (it) "刪除成功" else "刪除失敗"
+                    )
+                }
+        }
+
+        private fun alertDialogActionReport() {
+            Util().snackBarShort(requireView, "欸嘿 還沒開發")
         }
 
     }
