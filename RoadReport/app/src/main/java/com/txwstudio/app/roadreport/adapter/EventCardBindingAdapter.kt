@@ -52,28 +52,6 @@ object EventCardBindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("isGone")
-    fun setEventCardMoreButtonVisibility(view: ImageButton, isGone: Boolean) {
-        if (isGone) {
-            view.visibility = View.GONE
-        } else {
-            view.visibility = View.VISIBLE
-        }
-    }
-
-
-    @JvmStatic
-    @BindingAdapter("isGone")
-    fun setEventCardMoreButtonVisibility(view: ImageView, isGone: Boolean) {
-        if (isGone) {
-            view.visibility = View.GONE
-        } else {
-            view.visibility = View.VISIBLE
-        }
-    }
-
-
-    @JvmStatic
     @BindingAdapter("imageUrl")
     fun setEventCardImage(view: ImageView, imageUrl: String) {
         if (!imageUrl.isBlank()) {
