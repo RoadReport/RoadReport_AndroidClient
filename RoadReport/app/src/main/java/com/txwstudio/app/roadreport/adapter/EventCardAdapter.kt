@@ -11,6 +11,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
+import com.txwstudio.app.roadreport.activity.EventEditorActivity
 import com.txwstudio.app.roadreport.activity.ImageViewerActivity
 import com.txwstudio.app.roadreport.databinding.RowEventCardBinding
 import com.txwstudio.app.roadreport.firebase.AuthManager
@@ -113,17 +114,16 @@ class EventCardAdapter(
 
         private fun alertDialogActionEdit() {
             Util().snackBarShort(requireView, "在新視窗中開啟")
-//            val accidentModel = getItem(position)
-//            val intent = Intent(context, EventEditorActivity::class.java)
-//            intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
-//            intent.putExtra(
-//                StringCode.EXTRA_NAME_DOCUMENT_ID,
-//                snapshots.getSnapshot(position).id
-//            )
-//            val temp = Util().convertAccidentModel2Parcelable(accidentModel)
-//            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, temp)
-////                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
-//            context.startActivity(intent)
+            val accidentModel = getItem(adapterPosition)
+            val intent = Intent(requireView.context, EventEditorActivity::class.java)
+            intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
+            intent.putExtra(
+                StringCode.EXTRA_NAME_DOCUMENT_ID,
+                snapshots.getSnapshot(adapterPosition).id
+            )
+            val temp = Util().convertAccidentModel2Parcelable(accidentModel)
+            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, temp)
+            requireView.context.startActivity(intent)
         }
 
         private fun alertDialogActionDelete(docId: String) {
