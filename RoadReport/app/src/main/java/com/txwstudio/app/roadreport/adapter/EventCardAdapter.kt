@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.R
@@ -29,6 +30,8 @@ class EventCardAdapter(
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
     ) {
 
+    val isEventEmpty = MutableLiveData<Boolean>(true)
+
     private var isUserSignedIn = AuthManager().isUserSignedIn()
     private val currentUserUid = AuthManager().getCurrUserModel()?.uid
 
@@ -47,6 +50,7 @@ class EventCardAdapter(
     override fun onDataChanged() {
         super.onDataChanged()
         notifyDataSetChanged()
+        isEventEmpty.value = snapshots.size == 0
     }
 
     inner class ViewHolder(
