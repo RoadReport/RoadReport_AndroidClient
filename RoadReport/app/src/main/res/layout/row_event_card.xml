@@ -100,7 +100,7 @@
                 android:layout_marginTop="@dimen/margin_normal"
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:scaleType="fitCenter"
-                android:visibility="@{eventCardViewModel.isImageSet ? View.VISIBLE : View.GONE}"
+                app:isGone="@{!eventCardViewModel.isImageSet}"
                 app:imageUrl="@{eventCardViewModel.imageUrl}" />
 
             <TextView

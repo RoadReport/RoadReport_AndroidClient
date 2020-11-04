@@ -1,7 +1,7 @@
 package com.txwstudio.app.roadreport.adapter
 
 import android.app.AlertDialog
-import android.util.Log
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.txwstudio.app.roadreport.R
+import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
+import com.txwstudio.app.roadreport.activity.ImageViewerActivity
 import com.txwstudio.app.roadreport.databinding.RowEventCardBinding
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import com.txwstudio.app.roadreport.firebase.FirestoreManager
@@ -88,7 +90,11 @@ class EventCardAdapter(
                 }
             }
 
-            binding.imageViewEventCardImage
+            binding.imageViewEventCardImage.setOnClickListener {
+                binding.eventCardViewModel?.imageUrl?.let { url ->
+                    actionShowImage(url)
+                }
+            }
         }
 
         fun bind(events: Accident) {
@@ -98,8 +104,26 @@ class EventCardAdapter(
             }
         }
 
+        private fun actionShowImage(imageUrl: String) {
+            requireView.context.startActivity(
+                Intent(requireView.context, ImageViewerActivity::class.java)
+                    .putExtra(StringCode.EXTRA_NAME_IMAGE_URL, imageUrl)
+            )
+        }
+
         private fun alertDialogActionEdit() {
             Util().snackBarShort(requireView, "在新視窗中開啟")
+//            val accidentModel = getItem(position)
+//            val intent = Intent(context, EventEditorActivity::class.java)
+//            intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
+//            intent.putExtra(
+//                StringCode.EXTRA_NAME_DOCUMENT_ID,
+//                snapshots.getSnapshot(position).id
+//            )
+//            val temp = Util().convertAccidentModel2Parcelable(accidentModel)
+//            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, temp)
+////                            intent.putExtra(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
+//            context.startActivity(intent)
         }
 
         private fun alertDialogActionDelete(docId: String) {
