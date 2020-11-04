@@ -1,6 +1,8 @@
 package com.txwstudio.app.roadreport.adapter
 
 import android.graphics.Paint
+import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -50,13 +52,27 @@ object EventCardBindingAdapter {
     }
 
     @JvmStatic
+    @BindingAdapter("isGone")
+    fun setEventCardMoreButtonVisibility(view: ImageButton, isGone: Boolean) {
+        if (isGone) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter("imageUrl")
     fun setEventCardImage(view: ImageView, imageUrl: String) {
         if (!imageUrl.isBlank()) {
+            view.visibility = View.VISIBLE
             Glide.with(view.context)
                 .load(imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(view)
+        } else {
+            view.visibility = View.GONE
+            Glide.with(view.context).clear(view)
         }
     }
 }

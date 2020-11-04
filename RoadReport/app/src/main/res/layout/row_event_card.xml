@@ -70,6 +70,7 @@
                 android:layout_marginEnd="@dimen/margin_half"
                 android:background="?android:selectableItemBackground"
                 android:contentDescription="More"
+                app:isGone="@{!eventCardViewModel.isUserSignedIn}"
                 android:padding="@dimen/margin_half"
                 android:src="@drawable/ic_more_horiz_black_24dp" />
 

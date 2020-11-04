@@ -20,6 +20,8 @@ class EventCardVewModel(events: Accident) {
         if (events.locationGeoPoint == GeoPoint(0.0, 0.0)) null
         else LatLng(event.locationGeoPoint.latitude, event.locationGeoPoint.longitude)
 
+    var isUserSignedIn = AuthManager().isUserSignedIn()
+
     var situation = event.situation
 
     var imageUrl = event.imageUrl

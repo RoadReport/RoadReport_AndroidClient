@@ -60,15 +60,10 @@ class EventCardAdapter(
             binding.imageButtonAccidentCardMore.setOnClickListener {
                 // TODO(Fix event card pattern to match MVVM)
                 // What user can to the card. Different onClick behavior for card.
-                // Situation 1: NOT Signed in, no action at all.
-                // Situation 2: Signed in && posted by user, Edit or Delete.
-                // Situation 3: Signed in && NOT posted by user, Report.
-                if (!isUserSignedIn) {
-                    // Situation 1
-                    binding.imageButtonAccidentCardMore.visibility = View.INVISIBLE
-
-                } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
-                    // Situation 2, 0 for edit, 1 for delete.
+                // Situation 1: Signed in && posted by user, Edit or Delete.
+                // Situation 2: Signed in && NOT posted by user, Report.
+                if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
+                    // Situation 1, 0 for edit, 1 for delete.
                     val builder = AlertDialog.Builder(binding.root.context)
                     builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
                         when (which) {
@@ -92,7 +87,7 @@ class EventCardAdapter(
                     }.show()
 
                 } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
-                    // Situation 3
+                    // Situation 2
                     val builder = AlertDialog.Builder(binding.root.context)
                     builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
                         when (which) {
