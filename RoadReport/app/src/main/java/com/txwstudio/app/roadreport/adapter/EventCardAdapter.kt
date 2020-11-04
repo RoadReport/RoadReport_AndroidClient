@@ -51,13 +51,13 @@ class EventCardAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.textViewAccidentCardLocation.setOnClickListener {
+            binding.textViewEventCardLocation.setOnClickListener {
                 binding.eventCardViewModel?.locationGeoPoint?.let { LatLng ->
                     MapsFragment(false, LatLng).show(fm, MapsFragment::class.java.simpleName)
                 }
             }
 
-            binding.imageButtonAccidentCardMore.setOnClickListener {
+            binding.imageButtonEventCardMore.setOnClickListener {
                 // TODO(Fix event card pattern to match MVVM)
                 // What user can to the card. Different onClick behavior for card.
                 // Situation 1: Signed in && posted by user, Edit or Delete.
