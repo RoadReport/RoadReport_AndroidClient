@@ -23,7 +23,7 @@ import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 class EventCardAdapter(
     private val requireView: View,
     private val fm: FragmentManager,
-    val roadCode: Int
+    private val roadCode: Int
 ) :
     FirestoreRecyclerAdapter<Accident?, EventCardAdapter.ViewHolder>(
         FirestoreManager().getRealtimeAccidentQuery(roadCode)
