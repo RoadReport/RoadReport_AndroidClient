@@ -9,7 +9,7 @@
 
         <variable
             name="roadEventViewModel"
-            type="com.txwstudio.app.roadreport.ui.roadevent2.RoadEventViewModel" />
+            type="com.txwstudio.app.roadreport.ui.roadevent.RoadEventViewModel" />
     </data>
 
     <FrameLayout

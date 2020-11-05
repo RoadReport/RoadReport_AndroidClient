@@ -5,8 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.txwstudio.app.roadreport.ui.livecam.LiveCamFragment
-import com.txwstudio.app.roadreport.ui.roadevent.RoadFragment
-import com.txwstudio.app.roadreport.ui.roadevent2.RoadEventFragment
+import com.txwstudio.app.roadreport.ui.roadevent.RoadEventFragment
 import com.txwstudio.app.roadreport.ui.weather.WeatherFragment
 
 const val ROAD_EVENT_INDEX = 0
@@ -24,7 +23,6 @@ class SectionsPagerAdapter(fragment: FragmentActivity) :
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
-//        ROAD_EVENT_INDEX to { RoadFragment() },
         ROAD_EVENT_INDEX to { RoadEventFragment() },
         WEATHER_INDEX to { WeatherFragment() },
         LIVE_CAM_INDEX to { LiveCamFragment() }

@@ -1,4 +1,4 @@
-package com.txwstudio.app.roadreport.ui.roadevent2
+package com.txwstudio.app.roadreport.ui.roadevent
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.txwstudio.app.roadreport.ui.roadevent2
+package com.txwstudio.app.roadreport.ui.roadevent
 
 import android.content.Context
 import android.os.Bundle
