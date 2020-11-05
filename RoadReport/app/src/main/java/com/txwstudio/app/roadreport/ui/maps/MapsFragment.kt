@@ -90,7 +90,6 @@ class MapsFragment(
 
         if (isSelectMode) {
             map?.setOnMapLongClickListener {
-                Log.i(TAG, "${it.latitude} ${it.longitude}")
                 Util().toast(requireActivity(), "${it.latitude} ${it.longitude}")
                 userSelectLocation = it
                 val newPick = LatLng(it.latitude, it.longitude)
@@ -98,10 +97,9 @@ class MapsFragment(
                 map?.addMarker(
                     MarkerOptions()
                         .position(newPick)
-                        .title("Select")
+                        .title("你剛選的地點")
                 )
                 map?.animateCamera(CameraUpdateFactory.newLatLng(newPick))
-//                addGeoPointViewModel.setLatLng(it)
             }
         } else {
             setAndMoveToEventLocation(latLngToShow)
@@ -137,10 +135,12 @@ class MapsFragment(
         }
 
         button_mapsFrag_select.setOnClickListener {
-            if (isSelectMode) {
+            if (isSelectMode && userSelectLocation != LatLng(0.0, 0.0)) {
                 addGeoPointViewModel.setLatLng(userSelectLocation)
+                Util().toast(requireActivity(), "地點未選")
+            } else {
+                dismiss()
             }
-            dismiss()
         }
     }
 
