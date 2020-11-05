@@ -80,6 +80,8 @@ class MapsFragment(
          * user has installed Google Play services and returned to the app.
          */
 
+        getLocationPermission()
+
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI()
 
@@ -219,9 +221,9 @@ class MapsFragment(
             return
         }
         try {
-            map?.isMyLocationEnabled = true
-            map?.uiSettings?.isZoomControlsEnabled = false
-            map?.uiSettings?.isCompassEnabled = false
+//            map?.isMyLocationEnabled = true
+//            map?.uiSettings?.isZoomControlsEnabled = false
+//            map?.uiSettings?.isCompassEnabled = false
             if (locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
@@ -230,7 +232,6 @@ class MapsFragment(
                 map?.uiSettings?.isMyLocationButtonEnabled = false
                 lastKnownLocation = null
                 getLocationPermission()
-                map?.isMyLocationEnabled = true
             }
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message, e)
