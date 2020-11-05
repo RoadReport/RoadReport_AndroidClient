@@ -35,10 +35,17 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sun"
+                android:layout_marginBottom="@dimen/margin_half"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="風和日麗 :D" />
+                android:textSize="@dimen/commonTextSize"
+                android:text="@string/roadFrag_noEventAtAll" />
         </LinearLayout>
 
     </FrameLayout>
