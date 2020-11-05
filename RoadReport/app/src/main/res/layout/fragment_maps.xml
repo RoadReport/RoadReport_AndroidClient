@@ -29,9 +29,22 @@
             android:id="@+id/toolbar_mapsFrag"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="選擇位置">
-        </androidx.appcompat.widget.Toolbar>
+            tools:title="選擇位置" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_mapFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_double_half"
+        android:layout_marginBottom="@dimen/margin_normal"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/mapsFrag_toMyLocation"
+        android:src="@drawable/ic_compass"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_mapsFrag_select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/facebookBlue" />
 
     <Button
         android:id="@+id/button_mapsFrag_select"
@@ -43,7 +56,7 @@
         android:layout_marginBottom="@dimen/margin_double_half"
         android:backgroundTint="@color/facebookBlue"
         android:padding="@dimen/margin_normal"
-        android:text="確定"
+        android:text="@string/all_confirm"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

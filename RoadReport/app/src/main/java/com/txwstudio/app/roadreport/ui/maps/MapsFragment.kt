@@ -86,9 +86,13 @@ class MapsFragment(
         updateLocationUI()
 
         // Get the current location of the device and set the position of the map.
-        getDeviceLocation()
+        getDeviceLocation(false)
 
         if (isSelectMode) {
+            Util().toast(
+                requireActivity(),
+                requireActivity().getString(R.string.mapsFrag_howToSelect)
+            )
             map?.setOnMapLongClickListener {
                 Util().toast(requireActivity(), "${it.latitude} ${it.longitude}")
                 userSelectLocation = it
@@ -97,7 +101,7 @@ class MapsFragment(
                 map?.addMarker(
                     MarkerOptions()
                         .position(newPick)
-                        .title("你剛選的地點")
+                        .title(requireActivity().getString(R.string.mapsFrag_justSelect))
                 )
                 map?.animateCamera(CameraUpdateFactory.newLatLng(newPick))
             }
@@ -135,12 +139,21 @@ class MapsFragment(
         }
 
         button_mapsFrag_select.setOnClickListener {
-            if (isSelectMode && userSelectLocation != LatLng(0.0, 0.0)) {
+            if (isSelectMode && userSelectLocation == LatLng(0.0, 0.0)) {
+                Util().toast(
+                    requireActivity(),
+                    requireActivity().getString(R.string.mapsFrag_notSelect)
+                )
+            } else if (isSelectMode && userSelectLocation != LatLng(0.0, 0.0)) {
                 addGeoPointViewModel.setLatLng(userSelectLocation)
-                Util().toast(requireActivity(), "地點未選")
+                dismiss()
             } else {
                 dismiss()
             }
+        }
+
+        fab_mapFrag.setOnClickListener {
+            getDeviceLocation(true)
         }
     }
 
@@ -221,9 +234,6 @@ class MapsFragment(
             return
         }
         try {
-//            map?.isMyLocationEnabled = true
-//            map?.uiSettings?.isZoomControlsEnabled = false
-//            map?.uiSettings?.isCompassEnabled = false
             if (locationPermissionGranted) {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true
@@ -244,7 +254,7 @@ class MapsFragment(
      * Gets the current location of the device, and positions the map's camera.
      */
     // [START maps_current_place_get_device_location]
-    private fun getDeviceLocation() {
+    private fun getDeviceLocation(byClick: Boolean) {
         /*
          * Get the best and most recent location of the device, which may be null in rare
          * cases when a location is not available.
@@ -256,8 +266,8 @@ class MapsFragment(
                     if (task.isSuccessful) {
                         // Set the map's camera position to the current location of the device.
                         lastKnownLocation = task.result
-                        if (lastKnownLocation != null && isSelectMode) {
-                            map?.moveCamera(
+                        if (lastKnownLocation != null && isSelectMode || byClick) {
+                            map?.animateCamera(
                                 CameraUpdateFactory.newLatLngZoom(
                                     LatLng(
                                         lastKnownLocation!!.latitude,
@@ -269,7 +279,7 @@ class MapsFragment(
                     } else {
                         Log.d(TAG, "Current location is null. Using defaults.")
                         Log.e(TAG, "Exception: %s", task.exception)
-                        map?.moveCamera(
+                        map?.animateCamera(
                             CameraUpdateFactory.newLatLngZoom(
                                 defaultLocation,
                                 DEFAULT_ZOOM.toFloat()
@@ -290,15 +300,18 @@ class MapsFragment(
      * Set the event location, and positions the map's camera.
      */
     private fun setAndMoveToEventLocation(eventLatLng: LatLng) {
-//        val eventLocation = LatLng(-34.0, 151.0)
         val eventLocation: LatLng =
             if (eventLatLng != LatLng(0.0, 0.0))
                 eventLatLng
             else
                 defaultLocation
 
-        map?.addMarker(MarkerOptions().position(eventLocation).title("wow much doge"))
-        map?.moveCamera(
+        map?.addMarker(
+            MarkerOptions().position(eventLocation)
+                .title(requireActivity().getString(R.string.mapsFrag_titleShowLocation))
+        )
+
+        map?.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
                 eventLocation,
                 DEFAULT_ZOOM.toFloat()

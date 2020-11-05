@@ -79,6 +79,10 @@
     <!-- Maps Fragment-->
     <string name="mapsFrag_titleSelectLocation">選擇座標</string>
     <string name="mapsFrag_titleShowLocation">事件地點</string>
+    <string name="mapsFrag_toMyLocation">我的位置</string>
+    <string name="mapsFrag_howToSelect">在地圖上長按以選擇位置</string>
+    <string name="mapsFrag_notSelect">地點未選</string>
+    <string name="mapsFrag_justSelect">剛選的地點</string>
 
 
     <!-- Accident Event Activity Text -->
