@@ -25,7 +25,7 @@ class EventEditorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_event_editor)
 
         // If start from RoadActivity(Add Event), passing == null.
-        // If start from AccidentCardAdapter(Edit Current Event), passing == below.
+        // If start from EventCardAdapter(Edit Current Event), passing == below.
         val editMode = intent.getBooleanExtra(StringCode.EXTRA_NAME_EDIT_MODE, false)
         val documentId = intent.getStringExtra(StringCode.EXTRA_NAME_DOCUMENT_ID)
         val accidentModel =
