@@ -2,7 +2,6 @@ package com.txwstudio.app.roadreport.activity
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
@@ -11,7 +10,7 @@ import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
-import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.ui.eventeditor.EventEditorFragment
 import kotlinx.android.synthetic.main.activity_event_editor.*
 
@@ -24,17 +23,21 @@ class EventEditorActivity : AppCompatActivity() {
         Util().setupTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_editor)
-        setupToolBar()
 
         // If start from RoadActivity(Add Event), passing == null.
-        // If start from AccidentCardAdapter(Edit Current Event), passing == below.
+        // If start from EventCardAdapter(Edit Current Event), passing == below.
         val editMode = intent.getBooleanExtra(StringCode.EXTRA_NAME_EDIT_MODE, false)
         val documentId = intent.getStringExtra(StringCode.EXTRA_NAME_DOCUMENT_ID)
-        val accidentModel = intent.getParcelableExtra<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+        val accidentModel =
+            intent.getParcelableExtra<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+//        val accidentModel =
+//            intent.getParcelableExtra<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+
+        setupToolBar(editMode)
 
         val bundle = Bundle()
         bundle.putBoolean(StringCode.EXTRA_NAME_EDIT_MODE, editMode)
-        bundle.putInt(StringCode.EXTRA_NAME_ROAD_CODE, RoadCode().getCurrentRoadCode(this))
+        bundle.putInt(StringCode.EXTRA_NAME_ROAD_CODE, RoadCode().getCurrentRoadCodeFromSP(this))
         bundle.putString(StringCode.EXTRA_NAME_ROAD_NAME, RoadCode().getCurrRoadName(this))
         bundle.putString(StringCode.EXTRA_NAME_DOCUMENT_ID, documentId)
         bundle.putParcelable(StringCode.EXTRA_NAME_ACCIDENT_MODEL, accidentModel)
@@ -83,9 +86,13 @@ class EventEditorActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun setupToolBar() {
+    private fun setupToolBar(isEditMode: Boolean) {
         setSupportActionBar(toolbar_eventEditor)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.title_activity_eventEditor)
+        supportActionBar?.title = if (isEditMode) {
+            getString(R.string.title_activity_eventEditor_editEvent)
+        } else {
+            getString(R.string.title_activity_eventEditor_addEvent)
+        }
     }
 }

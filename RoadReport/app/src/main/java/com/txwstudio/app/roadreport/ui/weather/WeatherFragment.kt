@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.google.android.gms.ads.AdRequest
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.adapter.WeatherCardAdapter
@@ -28,12 +27,8 @@ class WeatherFragment : Fragment() {
     ): View? {
         weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentWeatherBinding>(
-            inflater,
-            R.layout.fragment_weather,
-            container,
-            false
-        )
+        binding = FragmentWeatherBinding.inflate(inflater, container, false)
+
         binding.viewModel = weatherViewModel
         binding.lifecycleOwner = this
 

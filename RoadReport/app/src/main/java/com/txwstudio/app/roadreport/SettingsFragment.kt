@@ -52,6 +52,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
             val stringWow = findPreference<ListPreference>("theme")?.value
             val wow = context?.getSharedPreferences("main", MODE_PRIVATE)
             wow?.edit()?.putString("theme", stringWow)?.apply()
+            requireActivity().recreate()
         }
     }
 

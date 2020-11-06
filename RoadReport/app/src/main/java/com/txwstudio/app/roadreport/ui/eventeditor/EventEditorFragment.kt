@@ -3,22 +3,24 @@ package com.txwstudio.app.roadreport.ui.eventeditor
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
 import com.txwstudio.app.roadreport.databinding.FragmentEventEditorBinding
 import com.txwstudio.app.roadreport.json.imgurupload.ImgurUploadJson
-import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
 import com.txwstudio.app.roadreport.service.ImgurApi
+import com.txwstudio.app.roadreport.ui.maps.AddGeoPointViewModel
+import com.txwstudio.app.roadreport.ui.maps.MapsFragment
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,15 +35,19 @@ class EventEditorFragment : Fragment() {
 
     companion object {
         fun newInstance() = EventEditorFragment()
+        private val UPLOAD_IMAGE_REQUEST_CODE = 1
     }
 
+    // Base ViewModel and DataBinding
     private lateinit var eventEditorViewModel: EventEditorViewModel
     private lateinit var binding: FragmentEventEditorBinding
-    private val UPLOAD_IMAGE_REQUEST_CODE = 1
+
+    // Shared view model between EventEditorFragment and MapsFragment.
+    private val addGeoPointViewModel: AddGeoPointViewModel by activityViewModels()
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         val bundle = this.arguments
@@ -49,23 +55,25 @@ class EventEditorFragment : Fragment() {
         val roadCode = bundle.getInt(StringCode.EXTRA_NAME_ROAD_CODE, -1)
         val roadName = bundle.getString(StringCode.EXTRA_NAME_ROAD_NAME, "")
         val documentId = bundle.getString(StringCode.EXTRA_NAME_DOCUMENT_ID, "")
-        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+//        val accidentModel = bundle.getParcelable<Accident>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
+        val accidentModel =
+            bundle.getParcelable<AccidentEventParcelize>(StringCode.EXTRA_NAME_ACCIDENT_MODEL)
 
         eventEditorViewModel = ViewModelProvider(
-                this, EventEditorViewModelFactory(
+            this, EventEditorViewModelFactory(
                 editMode,
                 roadCode,
                 roadName,
                 documentId,
                 accidentModel
-        )
+            )
         ).get(EventEditorViewModel::class.java)
 
         binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_event_editor,
-                container,
-                false
+            inflater,
+            R.layout.fragment_event_editor,
+            container,
+            false
         )
         binding.viewModel = eventEditorViewModel
         binding.lifecycleOwner = this
@@ -78,77 +86,122 @@ class EventEditorFragment : Fragment() {
     }
 
     /**
-     * Invoke by this:171
-     *
      * Handle image callback and upload to imgur inside Fragment for now,
      * I'am limited by the technology of my time.
      * TODO(Fix pattern)
      * */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            when (requestCode) {
-                UPLOAD_IMAGE_REQUEST_CODE -> {
-                    // Show infinite progress bar, wow much infinite!
-                    binding.progressbarEventEditorImageProgress.visibility = View.VISIBLE
+        when (requestCode) {
+            UPLOAD_IMAGE_REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    when (requestCode) {
+                        UPLOAD_IMAGE_REQUEST_CODE -> {
+                            // Show infinite progress bar, wow much infinite!
+                            binding.progressbarEventEditorImageProgress.visibility = View.VISIBLE
 
-                    val fileUri = data.data
-                    val takeFlags = (data.flags
-                            and (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
-                    requireContext().grantUriPermission(
-                            requireContext().packageName,
-                            fileUri,
-                            takeFlags
-                    )
-                    fileUri?.let {
-                        requireContext().contentResolver.takePersistableUriPermission(it, takeFlags)
+                            val fileUri = data.data
+                            val takeFlags = (data.flags
+                                    and (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION))
+                            requireContext().grantUriPermission(
+                                requireContext().packageName,
+                                fileUri,
+                                takeFlags
+                            )
+                            fileUri?.let {
+                                requireContext().contentResolver.takePersistableUriPermission(
+                                    it,
+                                    takeFlags
+                                )
+                            }
+
+                            requireContext().contentResolver.openInputStream(fileUri!!).use {
+                                val file = File.createTempFile("prefix", ".er")
+                                org.apache.commons.io.FileUtils.copyToFile(it, file)
+
+                                val requestFile =
+                                    RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                                val body =
+                                    MultipartBody.Part.createFormData(
+                                        "image",
+                                        file.name,
+                                        requestFile
+                                    )
+
+                                sendImageAndGetLink(body)
+                            }
+                        }
                     }
-
-                    requireContext().contentResolver.openInputStream(fileUri!!).use {
-                        val file = File.createTempFile("prefix", ".er")
-                        org.apache.commons.io.FileUtils.copyToFile(it, file)
-
-                        val requestFile =
-                                RequestBody.create(MediaType.parse("multipart/form-data"), file)
-                        val body =
-                                MultipartBody.Part.createFormData("image", file.name, requestFile)
-
-                        sendImageAndGetLink(body)
-                    }
+                } else if (data == null) {
+                    Util().toast(requireContext(), getString(R.string.all_unknownError))
                 }
             }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-        } else if (data == null) {
-            Util().toast(requireContext(), getString(R.string.all_unknownError))
         }
     }
 
-    fun subscribeUi() {
-        /**
-         * Does this match MVVM Pattern? Not sure about that.
-         * Anyway, it works, don't touch it for now.
-         * TODO(I'am limited by the technology of my time.)
-         * @link https://stackoverflow.com/questions/46727276/mvvm-pattern-and-startactivity
-         * */
-        binding.setClickListener {
-            binding.editTextEventEditorSituationTypeContent.let {
-                val builder = AlertDialog.Builder(requireContext())
-                builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
-                    eventEditorViewModel.situationType.value = which.toLong()
-                }
-                builder.create().show()
+    /**
+     * Does this match MVVM Pattern? Not sure about that.
+     * Anyway, it works, don't touch it for now.
+     * TODO(I'am limited by the technology of my time.)
+     * @link https://stackoverflow.com/questions/46727276/mvvm-pattern-and-startactivity
+     * */
+    private fun subscribeUi() {
+        // A clickListener for picking situation type.
+        eventEditorViewModel.isSituationTypeButtonClicked.observe(viewLifecycleOwner) {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
+                eventEditorViewModel.situationType.value = which.toLong()
+            }
+            builder.create().show()
+        }
+
+        // Set text for situation type
+        eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
+            binding.editTextEventEditorSituationTypeContent.text =
+                Util().getSituationTypeName(requireContext(), it.toInt())
+        }
+
+        // A clickListener for picking location, if it value == true.
+        eventEditorViewModel.isMapButtonClicked.observe(viewLifecycleOwner) {
+            if (it) {
+                MapsFragment(true).show(
+                    requireActivity().supportFragmentManager,
+                    MapsFragment::class.java.simpleName
+                )
             }
         }
 
-        eventEditorViewModel.situationType.observe(viewLifecycleOwner) {
-            binding.editTextEventEditorSituationTypeContent.text =
-                    Util().getSituationTypeName(requireContext(), it.toInt())
+        // Observe sharedViewModel for new LatLng
+        addGeoPointViewModel.sharedLocationGeoPoint.observe(viewLifecycleOwner) {
+            Util().snackBarLong(requireView(), R.string.eventEditor_locationGeoPointSelected)
+            eventEditorViewModel.locationGeoPoint.value = it
         }
 
-        /**
-         * When isUploadImageClicked is true start an intent to pick an image.
-         * */
+        // Set icon for map button
+        eventEditorViewModel.locationGeoPoint.observe(viewLifecycleOwner) {
+            binding.imageViewEventEditorLocationMapButton.let { its ->
+                if (it == null) {
+                    // Set icon to map
+                    its.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_outline_map_24
+                        )
+                    )
+                } else {
+                    // Set icon to clear
+                    its.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_clear_24
+                        )
+                    )
+                }
+            }
+        }
+
+        // A clickListener for picking image, if it value == true.
         eventEditorViewModel.isUploadImageClicked.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -158,49 +211,47 @@ class EventEditorFragment : Fragment() {
             }
         }
 
-        /**
-         * Observing imageUrl isNullorBlank in order to set background.
-         * */
+        // Observing imageUrl isNullOrBlank in order to set image to ImageView.
         eventEditorViewModel.imageUrl.observe(viewLifecycleOwner) {
             binding.buttonEventEditorUploadImage.let { its ->
                 if (it.isNullOrBlank()) {
                     its.text =
-                            requireContext().getString(R.string.accidentEvent_uploadImageTitle)
+                        requireContext().getString(R.string.accidentEvent_uploadImageTitle)
                     its.background =
-                            requireContext().getDrawable(R.drawable.bg_upload_image_button)
+                        requireContext().getDrawable(R.drawable.bg_upload_image_button)
                 } else if (!it.isNullOrBlank()) {
                     its.text =
-                            requireContext().getString(R.string.accidentEvent_removeUploadImageTitle)
+                        requireContext().getString(R.string.accidentEvent_removeUploadImageTitle)
                     its.background =
-                            requireContext().getDrawable(R.drawable.bg_upload_image_remove_button)
+                        requireContext().getDrawable(R.drawable.bg_upload_image_remove_button)
                 }
             }
         }
 
-        // If send was clicked, but user didn't sign in, show msg.
+        // A snack bar for not signed in message.
         eventEditorViewModel.errorNotSignedIn.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
-                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                        R.string.all_notSignedIn
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.all_notSignedIn
                 )
                 eventEditorViewModel.errorNotSignedIn.value = false
             }
         }
 
-        // If send was clicked, but required fields are empty, show msg.
+        // A snack bar for empty entries message.
         eventEditorViewModel.errorRequiredEntriesEmpty.observe(viewLifecycleOwner) {
             if (it) {
                 Util().snackBarShort(
-                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                        R.string.accidentEvent_NoEntry
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.accidentEvent_NoEntry
                 )
                 eventEditorViewModel.errorRequiredEntriesEmpty.value = false
             }
         }
 
-        // When sending data to firestore, show dialog.
-        eventEditorViewModel.sendingData.observe(viewLifecycleOwner) {
+        // A dialog for sending operation.
+        eventEditorViewModel.isSendingData.observe(viewLifecycleOwner) {
             val builder: AlertDialog = AlertDialog.Builder(requireActivity())
                 .setView(R.layout.dialog_sending_data)
                 .setCancelable(false)
@@ -212,13 +263,14 @@ class EventEditorFragment : Fragment() {
             }
         }
 
+        // Close EventEditor if the process is complete.
         eventEditorViewModel.isComplete.observe(viewLifecycleOwner) {
             if (it) {
                 requireActivity().finish()
             } else {
                 Util().snackBarShort(
-                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                        R.string.eventEditor_eventAddUpdateFailure
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    R.string.eventEditor_eventAddUpdateFailure
                 )
             }
         }
@@ -227,14 +279,17 @@ class EventEditorFragment : Fragment() {
     private fun sendImageAndGetLink(body: MultipartBody.Part) {
         val imgurApi = ImgurApi.retrofitService.postImage("788cbd7c7cba9c1", body)
         imgurApi.enqueue(object : Callback<ImgurUploadJson> {
-            override fun onResponse(call: Call<ImgurUploadJson>, response: Response<ImgurUploadJson>) {
+            override fun onResponse(
+                call: Call<ImgurUploadJson>,
+                response: Response<ImgurUploadJson>
+            ) {
                 binding.progressbarEventEditorImageProgress.visibility = View.GONE
 
                 if (!response.isSuccessful) {
                     Util().snackBarShort(
-                            requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                            getString(R.string.accidentEvent_imageUploadFail_errorCode)
-                                    + " ${response.code()}"
+                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                        getString(R.string.accidentEvent_imageUploadFail_errorCode)
+                                + " ${response.code()}"
                     )
                 } else if (response.isSuccessful) {
                     eventEditorViewModel.imageUrl.value = response.body()?.getImageLink()
@@ -254,8 +309,8 @@ class EventEditorFragment : Fragment() {
                     else -> getString(R.string.accidentEvent_imageUploadFail_unknown)
                 }
                 Util().snackBarShort(
-                        requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
-                        errMsg
+                    requireActivity().findViewById(R.id.coordinatorLayout_eventEditor),
+                    errMsg
                 )
             }
         })

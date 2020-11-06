@@ -8,7 +8,7 @@ import com.txwstudio.app.roadreport.firebase.AuthManager
 class AccountFragClickHandler(var context: Context, var activity: Activity) {
 
     fun signInOut(view: View) {
-        val status = AuthManager().userIsSignedIn()
+        val status = AuthManager().isUserSignedIn()
         if (status) {
             // SIGNED IN, GOTO sign out.
             AuthManager().signOut(context)

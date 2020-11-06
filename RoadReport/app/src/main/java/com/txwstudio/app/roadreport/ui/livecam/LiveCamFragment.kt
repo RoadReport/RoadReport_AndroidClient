@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.google.android.gms.ads.AdRequest
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.adapter.LiveCamSelectCardAdapter
@@ -30,12 +29,8 @@ class LiveCamFragment : Fragment() {
 
         liveCamViewModel = ViewModelProvider(this).get(LiveCamViewModel::class.java)
 
-        binding = DataBindingUtil.inflate<FragmentLiveCamBinding>(
-            inflater,
-            R.layout.fragment_live_cam,
-            container,
-            false
-        )
+        binding = FragmentLiveCamBinding.inflate(inflater, container, false)
+
         binding.viewModel = liveCamViewModel
         binding.lifecycleOwner = this
 

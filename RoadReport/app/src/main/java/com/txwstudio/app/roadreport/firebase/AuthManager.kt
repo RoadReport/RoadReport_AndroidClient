@@ -20,7 +20,7 @@ class AuthManager {
      *
      * @return true: Signed in.
      * @return false: Not Signed in yet. */
-    fun userIsSignedIn(): Boolean {
+    fun isUserSignedIn(): Boolean {
         val auth = Firebase.auth.currentUser
         return auth != null
     }
@@ -53,11 +53,8 @@ class AuthManager {
 
     /**
      * Sign out using AuthUI, invoke by AccountFragment.
-     *
-     * TODO(Sign out with Firebase.auth not AuthUI)
      * */
     fun signOut(context: Context) {
-//        Firebase.auth.signOut()
         AuthUI.getInstance()
             .signOut(context)
             .addOnCompleteListener {

@@ -29,4 +29,15 @@ object ImageBindingAdapter {
             .error(error)
             .into(view)
     }
+
+    @JvmStatic
+    @BindingAdapter("imageUrls", "placeHolders", "errors")
+    fun setImageUrlWithGlide(view: ImageView, url: Drawable, placeHolder: Drawable, error: Drawable) {
+        Glide.with(view.context)
+            .load(url)
+            .transition(withCrossFade())
+            .placeholder(placeHolder)
+            .error(error)
+            .into(view)
+    }
 }

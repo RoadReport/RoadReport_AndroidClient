@@ -5,7 +5,10 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
 import com.txwstudio.app.roadreport.model.Accident
+import com.txwstudio.app.roadreport.model.AccidentEventParcelize
+import java.util.*
 
 class Util {
 
@@ -19,6 +22,10 @@ class Util {
 
     fun snackBarShort(view: View, text: String) {
         Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
+    }
+
+    fun snackBarLong(view: View, text: String) {
+        Snackbar.make(view, text, Snackbar.LENGTH_LONG).show()
     }
 
     fun snackBarLong(view: View, resId: Int) {
@@ -66,6 +73,21 @@ class Util {
             6 -> context.getString(R.string.accidentEvent_situationType_6)
             else -> "errNameUnknown"
         }
+    }
+
+    fun convertAccidentModel2Parcelable(accidentModel: Accident): AccidentEventParcelize {
+        return AccidentEventParcelize(
+            accidentModel.userName,
+            accidentModel.userUid,
+            accidentModel.time,
+            accidentModel.situationType,
+            accidentModel.locationText,
+            accidentModel.locationGeoPoint.latitude,
+            accidentModel.locationGeoPoint.longitude,
+            accidentModel.situation,
+            accidentModel.imageUrl
+        )
+
     }
 
 }

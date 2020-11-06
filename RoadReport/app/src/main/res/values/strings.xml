@@ -4,11 +4,12 @@
     <string name="app_name">看路</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">路況回報</string>
-    <string name="title_activity_setting">設定</string>
     <string name="title_activity_road">68 號道路</string>
     <string name="title_activity_addAccident">新增狀況</string>
     <string name="title_activity_editAccident">編輯狀況</string>
     <string name="title_activity_eventEditor">事件編輯器</string>
+    <string name="title_activity_eventEditor_addEvent">新增事件</string>
+    <string name="title_activity_eventEditor_editEvent">編輯事件</string>
     <string name="title_activity_imageViewer">圖片檢視器</string>
 
     <!-- Roadname -->
@@ -25,12 +26,15 @@
     <string name="roadName_24_description">位於霧台鄉</string>
     <string name="roadName_182_description">位於台南高雄交界</string>
 
-    <!-- Account and Setting Fragment -->
-    <string name="accountFrag_title">帳號與設定</string>
+    <!-- Account Fragment -->
+    <string name="accountFrag_title">帳號</string>
     <string name="accountFrag_userNameHolder">未登入</string>
     <string name="accountFrag_accountStatusSignedIn">登出</string>
     <string name="accountFrag_accountStatusSignedOut">登入</string>
     <string name="accountFrag_signOutSuccess">登出成功</string>
+
+    <!-- Settings Fragment -->
+    <string name="settingsFrag_title">設定</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleTheme">主題</string>
     <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
@@ -47,6 +51,7 @@
 
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
+    <string name="roadFrag_noEventAtAll">風和日麗 : )</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
     <string name="roadFrag_deleteSuccess">刪除成功</string>
     <string name="roadFrag_deleteFailed">刪除失敗</string>
@@ -69,6 +74,16 @@
     <!-- Event Editor Fragment -->
     <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
+    <string name="eventEditor_locationGeoPointSelected">座標點已選擇，按 X 可移除</string>
+
+    <!-- Maps Fragment-->
+    <string name="mapsFrag_titleSelectLocation">選擇座標</string>
+    <string name="mapsFrag_titleShowLocation">事件地點</string>
+    <string name="mapsFrag_toMyLocation">我的位置</string>
+    <string name="mapsFrag_howToSelect">在地圖上長按以選擇位置</string>
+    <string name="mapsFrag_notSelect">地點未選</string>
+    <string name="mapsFrag_justSelect">剛選的地點</string>
+
 
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前所在路段</string>
