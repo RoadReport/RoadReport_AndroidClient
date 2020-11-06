@@ -26,10 +26,12 @@
 <img src="https://lh3.googleusercontent.com/eNfFu2T_6mBwMb_RBgSe9uuC04nW1dILA76sLd0NjVF1G4kJeDzxoP6OBWfln8NC_Us=w2560-h1428" width="240">
 
 ## Features
-- 即時回報與接收路況資訊，類型包含事故、測速、臨檢、天氣等
+- 即時回報與接收路況資訊<br>
+類型包含`事故`、`注意`、`測速`、`臨檢`、`天氣`、`其他`
+- 回報事件支援`圖片上傳`與`地圖選位`
 - 查看道路附近天氣資訊，包含氣溫和 10 分鐘降雨量
 - 查看道路附近監視器影像
-- 深色主題
+- 支援淺色/深色主題（手動切換）
 
 ## Develop
 - Android Studio 4.1 and above
