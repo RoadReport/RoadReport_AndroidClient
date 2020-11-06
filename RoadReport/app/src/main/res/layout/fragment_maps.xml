@@ -21,6 +21,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="?attr/tabLayoutBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/map">
@@ -29,6 +30,7 @@
             android:id="@+id/toolbar_mapsFrag"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white"
             tools:title="選擇位置" />
     </com.google.android.material.appbar.AppBarLayout>
 
