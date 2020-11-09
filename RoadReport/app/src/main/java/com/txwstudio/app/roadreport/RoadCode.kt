@@ -19,7 +19,6 @@ class RoadCode {
         const val ROADCODE_24 = 0
         const val ROADCODE_182 = 1
         const val ROADCODE_GRANDMA = 2
-        const val ROADCODE_FUCKYOU = 4
     }
 
 
