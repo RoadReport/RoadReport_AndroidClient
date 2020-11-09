@@ -16,15 +16,16 @@
     <string name="roadName_24">台 24</string>
     <string name="roadName_182">182 縣道</string>
     <string name="roadName_grandma">阿婆灣</string>
-
+    <string name="roadName_24_description">位於屏東霧台鄉</string>
+    <string name="roadName_182_description">位於台南高雄交界</string>
+    <string name="roadName_grandma_description">位於嘉義中埔鄉</string>
 
     <!-- Main Activity -->
     <string name="mainActivity_needUpdateMsg">為保證您的正常使用，請立即更新 APP。</string>
 
     <!-- Home Fragment -->
     <string name="mainFragment_title">全部道路</string>
-    <string name="roadName_24_description">位於霧台鄉</string>
-    <string name="roadName_182_description">位於台南高雄交界</string>
+
 
     <!-- Account Fragment -->
     <string name="accountFrag_title">帳號</string>
