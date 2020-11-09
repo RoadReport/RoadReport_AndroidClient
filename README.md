@@ -9,6 +9,7 @@
 
 <a target="_blank" href="https://play.google.com/store/apps/details?id=com.txwstudio.app.roadreport"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-tw_badge_web_generic.png" width="160"></a><br>
 ![](https://img.shields.io/badge/build-failed,%20just%20like%20everything%20else%20in%20your%20life-red.svg?style=flat-square)
+[![Maintainability](https://api.codeclimate.com/v1/badges/92ec04d4691d704b0fce/maintainability)](https://codeclimate.com/github/MrNegativeTW/RoadReport_AndroidClient/maintainability)
 ![](https://img.shields.io/badge/Version-Beta%201.4.0-green.svg?style=flat-square)
 ![](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)
 ![](https://img.shields.io/badge/Min%20Android-6-blue.svg?style=flat-square)
