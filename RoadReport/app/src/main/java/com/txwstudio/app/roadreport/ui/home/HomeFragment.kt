@@ -41,14 +41,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        binding.card0.setOnClickListener {
-            RoadCode().setCurrRoadCodeToSP(requireContext(), RoadCode.ROADCODE_24)
-            navController.navigate(R.id.action_navigation_home_to_roadActivity)
-        }
-
-        binding.card1.setOnClickListener {
-            RoadCode().setCurrRoadCodeToSP(requireContext(), RoadCode.ROADCODE_182)
-            navController.navigate(R.id.action_navigation_home_to_roadActivity)
+        homeViewModel.selectedRoad.observe(viewLifecycleOwner) {
+            val temp = when (it) {
+                0 -> RoadCode.ROADCODE_24
+                1 -> RoadCode.ROADCODE_182
+                2 -> RoadCode.ROADCODE_GRANDMA
+                else -> -1
+            }
+            if (temp >= 0) {
+                RoadCode().setCurrRoadCodeToSP(requireContext(), temp)
+                navController.navigate(R.id.action_navigation_home_to_roadActivity)
+            }
         }
     }
 }
