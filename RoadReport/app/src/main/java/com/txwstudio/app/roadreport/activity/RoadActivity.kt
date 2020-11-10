@@ -20,13 +20,14 @@ import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
 
+    lateinit var fabAdd: FloatingActionButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road)
         setupToolBar()
 
-        val fabAdd: FloatingActionButton = findViewById(R.id.fab_roadActivity)
         val tabLayout: TabLayout = findViewById(R.id.tabLayout_roadActivity)
         val viewPager: ViewPager2 = findViewById(R.id.viewPager_roadActivity)
 
@@ -44,13 +45,7 @@ class RoadActivity : AppCompatActivity() {
             tab.text = getTabTitle(position)
         }.attach()
 
-        fabAdd.setOnClickListener {
-            if (AuthManager().isUserSignedIn()) {
-                startActivity(Intent(this, EventEditorActivity::class.java))
-            } else {
-                Util().toast(this, getString(R.string.roadFrag_SignInFirst))
-            }
-        }
+        subscribeUi()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -67,6 +62,17 @@ class RoadActivity : AppCompatActivity() {
         setSupportActionBar(toolbar_roadActivity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = RoadCode().getCurrRoadName(this)
+    }
+
+    private fun subscribeUi() {
+        fabAdd = findViewById(R.id.fab_roadActivity)
+        fabAdd.setOnClickListener {
+            if (AuthManager().isUserSignedIn()) {
+                startActivity(Intent(this, EventEditorActivity::class.java))
+            } else {
+                Util().toast(this, getString(R.string.roadFrag_SignInFirst))
+            }
+        }
     }
 
     private fun getTabTitle(position: Int): String? {
