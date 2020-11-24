@@ -19,6 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_outline_navigate_before_24"
             app:titleTextColor="@color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 

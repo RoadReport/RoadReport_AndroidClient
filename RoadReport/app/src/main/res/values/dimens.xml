@@ -27,4 +27,6 @@
     <dimen name="roadCard_homeFrag_subtitleSize">14sp</dimen>
 
     <dimen name="eventCard_mainTextSize">18sp</dimen>
+    <dimen name="eventCardElevation_lightTheme">4dp</dimen>
+    <dimen name="eventCardElevation_darkTheme">1dp</dimen>
 </resources>

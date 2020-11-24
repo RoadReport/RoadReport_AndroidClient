@@ -1,7 +1,7 @@
 <resources>
 
     <style name="splashScreenTheme" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/materialDarkBackground</item>
+        <item name="colorPrimary">@color/darkTheme_colorBackground</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
     
@@ -21,11 +21,12 @@
 <!--        <item name="android:fontFamily">@font/jf_openhuninn</item>-->
         <item name="activityTitleTextColor">@color/white</item>
         <item name="menuIconFillColor">@color/white</item>
-        <item name="colorControlNormal">@color/white</item>
+<!--        <item name="colorControlNormal">@color/white</item>-->
         <item name="whiteOrBlack">@color/black</item>
-        <item name="divLineBackground">@color/grey200</item>
+        <item name="divLineBackground">@color/googleAppLightTheme_colorDivLine</item>
         <item name="tabLayoutBackground">@color/colorPrimary</item>
         <item name="eventCardBackground">@color/white</item>
+        <item name="eventCardElevation">@dimen/eventCardElevation_lightTheme</item>
         <item name="editTextCardBackground">@color/grey200</item>
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Transition</item>
         <item name="bottomSheetDialogTheme">@style/LightBottomSheetDialog</item>
@@ -47,10 +48,11 @@
         <item name="colorAccent">@color/colorAccent</item>
 <!--        <item name="android:fontFamily">@font/jf_openhuninn</item>-->
         <item name="whiteOrBlack">@color/white</item>
-        <item name="divLineBackground">@color/grey550</item>
+        <item name="divLineBackground">@color/googleAppDarkTheme_colorDivLine</item>
         <item name="tabLayoutBackground">@color/colorAccent_dark</item>
-        <item name="eventCardBackground">@color/materialDarkSurface</item>
-        <item name="editTextCardBackground">@color/materialDarkSurface</item>
+        <item name="eventCardBackground">@color/darkTheme_colorSurface</item>
+        <item name="eventCardElevation">@dimen/eventCardElevation_darkTheme</item>
+        <item name="editTextCardBackground">@color/darkTheme_colorSurface</item>
         <item name="android:windowAnimationStyle">@style/Animation.Activity.Transition</item>
         <item name="bottomSheetDialogTheme">@style/DarkBottomSheetDialog</item>
     </style>

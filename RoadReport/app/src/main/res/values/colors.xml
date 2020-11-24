@@ -8,10 +8,16 @@
     <color name="roadName_182">#1E88E5</color>
 
     <!-- Material Design Dark Theme -->
-    <color name="materialDarkBackground">#121212</color>
+    <color name="darkTheme_colorBackground">#121212</color>
+    <color name="darkTheme_colorSurface">#1d1d1d</color>
     <color name="colorPrimaryDark_dark">#2d2d2d</color>
-    <color name="materialDarkSurface">#1d1d1d</color>
     <color name="colorAccent_dark">#282828</color>
+
+    <!-- Google App Dark Theme -->
+    <color name="googleAppDarkTheme_colorBackground">#202124</color>
+    <color name="googleAppDarkTheme_colorBackgroundsw">#202124</color>
+    <color name="googleAppLightTheme_colorDivLine">#DADCE0</color>
+    <color name="googleAppDarkTheme_colorDivLine">#5F6368</color>
 
     <color name="facebookBlue">#1877f2</color>
     <color name="facebookBlueDark">#3b5998</color>
