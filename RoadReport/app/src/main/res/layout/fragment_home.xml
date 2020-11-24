@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             tools:context=".ui.home.HomeFragment">
 
             <com.google.android.material.card.MaterialCardView
@@ -27,7 +28,7 @@
                 android:layout_height="120dp"
                 android:onClick="@{() -> viewModel.setRoadCode(0)}"
                 app:cardBackgroundColor="#F573A0"
-                app:cardElevation="@dimen/materialCard_half"
+                app:cardElevation="@dimen/materialCardCornerRadius_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -73,7 +74,7 @@
                 android:layout_height="120dp"
                 android:onClick="@{() -> viewModel.setRoadCode(1)}"
                 app:cardBackgroundColor="#1E88E5"
-                app:cardElevation="@dimen/materialCard_half"
+                app:cardElevation="@dimen/materialCardCornerRadius_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_0">
@@ -115,7 +116,7 @@
                 android:layout_height="120dp"
                 android:onClick="@{() -> viewModel.setRoadCode(2)}"
                 app:cardBackgroundColor="#43a047"
-                app:cardElevation="@dimen/materialCard_half"
+                app:cardElevation="@dimen/materialCardCornerRadius_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_0">
