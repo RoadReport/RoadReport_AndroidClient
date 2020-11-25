@@ -20,6 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View style="@style/DivLine" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
