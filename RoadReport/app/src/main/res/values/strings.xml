@@ -107,7 +107,7 @@
     <string name="accidentEvent_situationType_4">測速</string>
     <string name="accidentEvent_situationType_5">天氣</string>
     <string name="accidentEvent_situationType_6">其他</string>
-    <string name="accidentEvent_location">地點 - 10 字內</string>
+    <string name="accidentEvent_location">地點</string>
     <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
     <string name="accidentEvent_situationHint">簡短描述你眼前發生之狀況</string>
