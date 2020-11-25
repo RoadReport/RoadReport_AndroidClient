@@ -8,7 +8,9 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:liftOnScroll="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_roadActivity"
@@ -16,17 +18,12 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_scrollFlags="scroll"
-            app:titleTextColor="@color/white" />
+            app:layout_scrollFlags="scroll" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout_roadActivity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/tabLayoutBackground"
-            app:tabIndicatorColor="?attr/activityTitleTextColor"
-            app:tabSelectedTextColor="?attr/activityTitleTextColor"
-            app:tabTextColor="#e0e0e0" />
+            android:layout_height="wrap_content" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager2.widget.ViewPager2
