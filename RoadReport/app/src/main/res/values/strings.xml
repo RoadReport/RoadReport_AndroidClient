@@ -38,7 +38,9 @@
     <string name="settingsFrag_title">設定</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleTheme">主題</string>
-    <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
+    <string name="settingsFrag_titleDialogTheme">選擇主題</string>
+    <string name="settingsFrag_titleDefaultFragmentInRoadActivity">預設頁面</string>
+    <string name="settingsFrag_titleDialogDefaultFragmentInRoadActivity">預設進入的頁面</string>
     <string name="settingsFrag_titleAbout">關於</string>
     <string name="settingsFrag_titleAds">廣告</string>
     <string name="settingsFrag_titleTermsOfService">服務條款</string>
