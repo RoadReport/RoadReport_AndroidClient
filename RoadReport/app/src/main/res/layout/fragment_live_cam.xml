@@ -57,18 +57,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
-<!--            <View-->
-<!--                android:id="@+id/divLive_liveCamFrag"-->
-<!--                style="@style/DivLine"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/recyclerView_liveCamFrag" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="@dimen/margin_normal"-->
-<!--                android:text="@string/liveCamFrag_valueDescription"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/divLive_liveCamFrag" />-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
