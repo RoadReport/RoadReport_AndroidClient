@@ -2,6 +2,7 @@ package com.txwstudio.app.roadreport.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -33,6 +34,13 @@ class RoadActivity : AppCompatActivity() {
 
         viewPager.adapter = SectionsPagerAdapter(this)
         viewPager.offscreenPageLimit = 2
+
+        // Open wanted default fragment by user.
+        val default =
+            getSharedPreferences("main", MODE_PRIVATE).getString("defaultFragmentInRoadActivity", "0")
+        if (default != null) {
+            viewPager.currentItem = default.toInt()
+        }
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
