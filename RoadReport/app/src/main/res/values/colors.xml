@@ -15,7 +15,6 @@
 
     <!-- Google App Dark Theme -->
     <color name="googleAppDarkTheme_colorBackground">#202124</color>
-    <color name="googleAppDarkTheme_colorBackgroundsw">#202124</color>
     <color name="googleAppLightTheme_colorDivLine">#DADCE0</color>
     <color name="googleAppDarkTheme_colorDivLine">#5F6368</color>
 
