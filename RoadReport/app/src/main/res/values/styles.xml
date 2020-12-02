@@ -47,6 +47,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
 <!--        <item name="android:fontFamily">@font/jf_openhuninn</item>-->
+<!--        <item name="android:colorBackground">@color/googleAppDarkTheme_colorBackground</item>-->
+<!--        <item name="colorSurface">@color/googleAppDarkTheme_colorBackground</item>-->
         <item name="whiteOrBlack">@color/white</item>
         <item name="divLineBackground">@color/googleAppDarkTheme_colorDivLine</item>
         <item name="tabLayoutBackground">@color/colorAccent_dark</item>
