@@ -38,7 +38,9 @@
                 ads:adSize="BANNER"
                 ads:adUnitId="@string/WEATHER_BANNER_ID" />
 
-            <View style="@style/DivLine" />
+            <View
+                style="@style/DivLine"
+                android:layout_marginHorizontal="@dimen/margin_normal" />
 
             <TextView
                 android:layout_width="match_parent"
