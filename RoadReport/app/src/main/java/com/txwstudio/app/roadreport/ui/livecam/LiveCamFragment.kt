@@ -55,18 +55,9 @@ class LiveCamFragment : Fragment() {
         super.onPause()
     }
 
-    fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
+    private fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
         liveCamViewModel.liveCamSourcesList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        }
-
-        adapter.camNames.observe(viewLifecycleOwner) {
-            // Remove cam name display after commit a812bc5
-//            binding.textViewLivaCamFrag.text = it
-        }
-
-        adapter.streamUrls.observe(viewLifecycleOwner) {
-            binding.webViewLivaCamFrag.loadUrl(it)
         }
     }
 }
