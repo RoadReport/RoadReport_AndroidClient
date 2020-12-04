@@ -41,11 +41,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun subscribeUI() {
-        homeViewModel.selectedRoad.observe(viewLifecycleOwner) {
+        binding.setClickListener {
             val temp = when (it) {
-                0 -> RoadCode.ROADCODE_24
-                1 -> RoadCode.ROADCODE_182
-                2 -> RoadCode.ROADCODE_GRANDMA
+                binding.card0 -> 0
+                binding.card1 -> 1
+                binding.card2 -> 2
                 else -> -1
             }
             if (temp >= 0) {
