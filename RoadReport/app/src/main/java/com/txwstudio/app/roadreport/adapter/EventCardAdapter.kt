@@ -117,7 +117,6 @@ class EventCardAdapter(
         }
 
         private fun alertDialogActionEdit() {
-            Util().snackBarShort(requireView, "在新視窗中開啟")
             val accidentModel = getItem(adapterPosition)
             val intent = Intent(requireView.context, EventEditorActivity::class.java)
             intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)
