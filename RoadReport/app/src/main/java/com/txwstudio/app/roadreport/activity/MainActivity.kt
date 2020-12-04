@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navHostFrag =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        bottomNavigationView.setupWithNavController(navController)
 
         AuthManager().isUserSignedIn()
         MobileAds.initialize(this)
