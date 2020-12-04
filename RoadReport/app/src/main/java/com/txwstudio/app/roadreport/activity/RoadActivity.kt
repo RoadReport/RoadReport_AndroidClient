@@ -1,14 +1,16 @@
 package com.txwstudio.app.roadreport.activity
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
@@ -25,6 +27,8 @@ class RoadActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
+        setupMaterialTransition()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road)
         setupToolBar()
@@ -37,7 +41,10 @@ class RoadActivity : AppCompatActivity() {
 
         // Open wanted default fragment by user.
         val default =
-            getSharedPreferences("main", MODE_PRIVATE).getString("defaultFragmentInRoadActivity", "0")
+            getSharedPreferences("main", MODE_PRIVATE).getString(
+                "defaultFragmentInRoadActivity",
+                "0"
+            )
         if (default != null) {
             viewPager.currentItem = default.toInt()
         }
@@ -66,6 +73,14 @@ class RoadActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupMaterialTransition() {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // Set up shared element transition and disable overlay so views don't show above system bars
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window.sharedElementsUseOverlay = false
+    }
+
     private fun setupToolBar() {
         setSupportActionBar(toolbar_roadActivity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -76,7 +91,13 @@ class RoadActivity : AppCompatActivity() {
         fabAdd = findViewById(R.id.fab_roadActivity)
         fabAdd.setOnClickListener {
             if (AuthManager().isUserSignedIn()) {
-                startActivity(Intent(this, EventEditorActivity::class.java))
+                val intent = Intent(this, EventEditorActivity::class.java)
+                val options = ActivityOptions.makeSceneTransitionAnimation(
+                    this,
+                    it,
+                    "shared_element_end_root"
+                )
+                startActivity(intent, options.toBundle())
             } else {
                 Util().toast(this, getString(R.string.roadFrag_SignInFirst))
             }
