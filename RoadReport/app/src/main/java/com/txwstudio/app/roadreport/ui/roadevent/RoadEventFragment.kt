@@ -18,10 +18,9 @@ class RoadEventFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentRoadEventBinding
+    private val roadEventViewModel: RoadEventViewModel by viewModels()
 
     private lateinit var adapter: EventCardAdapter
-
-    private val roadEventViewModel: RoadEventViewModel by viewModels()
 
     private var ROADCODE = -1
 
