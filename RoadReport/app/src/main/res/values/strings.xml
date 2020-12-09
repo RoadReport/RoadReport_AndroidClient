@@ -51,6 +51,7 @@
     <string name="roadActivity_tab_accidentEvent">路況</string>
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>
+    <string name="roadActivity_tab_localStore">店家資訊</string>
 
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
@@ -68,11 +69,13 @@
     </string>
 
     <!-- Live Cam Fragment -->
-    <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
     <string name="liveCamFrag_valueDescription">
         影像來源為公路總局及各地方政府提供，本頁擷取該道路可用之監視器畫面，這些攝影機不是我們架設的。\n\n畫面全黑：通常代表攝影機維修中。\n畫面卡住：因影像格式問題，30 秒即會卡住，選擇其他攝影機再回來即可解決。
     </string>
+
+    <!-- Local Store Fragment -->
+    <string name="localStoreFrag_placeHolder">開發中，以後這一頁會有當地店家資訊</string>
 
     <!-- Event Editor Fragment -->
     <string name="eventEditor_sendingData">請稍後&#8230;</string>
