@@ -164,4 +164,21 @@
         <item name="cornerSizeBottomRight">8dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
+
+    <!-- Maps Fragment -->
+    <style name="MapsFragmentBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/MapsFragmentBottomSheet</item>
+    </style>
+
+    <style name="MapsFragmentBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/MapsFragmentShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+    <style name="MapsFragmentShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
 </resources>
