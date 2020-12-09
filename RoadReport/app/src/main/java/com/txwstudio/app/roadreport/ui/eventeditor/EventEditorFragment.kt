@@ -150,8 +150,8 @@ class EventEditorFragment : Fragment() {
         // A clickListener for picking situation type.
         eventEditorViewModel.isSituationTypeButtonClicked.observe(viewLifecycleOwner) {
             val builder = AlertDialog.Builder(requireContext())
-            builder.setItems(R.array.accidentEvent_situationTypeArray) { _, which ->
-                eventEditorViewModel.situationType.value = which.toLong()
+            builder.setItems(R.array.eventEditor_eventTypeArray) { _, which ->
+                eventEditorViewModel.situationType.value = which.toLong() + 1
             }
             builder.create().show()
         }

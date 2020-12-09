@@ -94,15 +94,6 @@
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前所在路段</string>
     <string name="accidentEvent_situationType">事件種類</string>
-    <array name="accidentEvent_situationTypeArray">
-        <item>請選擇事故種類</item>
-        <item>事故</item>
-        <item>注意</item>
-        <item>臨檢</item>
-        <item>測速</item>
-        <item>天氣</item>
-        <item>其他</item>
-    </array>
     <string name="accidentEvent_situationType_0">按我選擇種類</string>
     <string name="accidentEvent_situationType_1">事故</string>
     <string name="accidentEvent_situationType_2">注意</string>
