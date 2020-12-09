@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/navigation_roadEventFragment"
         android:name="com.txwstudio.app.roadreport.ui.roadevent.RoadEventFragment"
-        android:label="RoadEventFragment">
+        android:label="RoadEventFragment"
+        tools:layout="@layout/fragment_road_event">
         <action
             android:id="@+id/action_roadEventFragment_to_imageViewerFragment"
             app:destination="@id/navigation_imageViewerFragment" />
@@ -16,11 +17,13 @@
     <fragment
         android:id="@+id/navigation_weatherFragment"
         android:name="com.txwstudio.app.roadreport.ui.weather.WeatherFragment"
-        android:label="WeatherFragment" />
+        android:label="WeatherFragment"
+        tools:layout="@layout/fragment_weather"/>
     <fragment
         android:id="@+id/navigation_liveCamFragment"
         android:name="com.txwstudio.app.roadreport.ui.livecam.LiveCamFragment"
-        android:label="LiveCamFragment" />
+        android:label="LiveCamFragment"
+        tools:layout="@layout/fragment_live_cam"/>
     <fragment
         android:id="@+id/navigation_localStoreFragment"
         android:name="com.txwstudio.app.roadreport.ui.LocalStoreFragment"
@@ -29,5 +32,6 @@
     <fragment
         android:id="@+id/navigation_imageViewerFragment"
         android:name="com.txwstudio.app.roadreport.ui.imageviewer.ImageViewerFragment"
-        android:label="ImageViewerFragment" />
+        android:label="ImageViewerFragment"
+        tools:layout="@layout/fragment_image_viewer"/>
 </navigation>
