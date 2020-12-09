@@ -312,17 +312,19 @@ class MapsFragment(
             else
                 defaultLocation
 
-        map?.addMarker(
-            MarkerOptions().position(eventLocation)
-                .title(requireActivity().getString(R.string.mapsFrag_titleShowLocation))
-        )
-
-        map?.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                eventLocation,
-                DEFAULT_ZOOM.toFloat()
+        map?.apply {
+            addMarker(
+                MarkerOptions().position(eventLocation)
+                    .title(requireActivity().getString(R.string.mapsFrag_titleShowLocation))
             )
-        )
+
+            animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    eventLocation,
+                    DEFAULT_ZOOM.toFloat()
+                )
+            )
+        }
     }
 
 
