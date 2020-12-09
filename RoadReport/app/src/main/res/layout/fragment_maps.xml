@@ -35,7 +35,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_mapFrag"
+        android:id="@+id/fab_mapFrag_toMyLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_double_half"
@@ -44,12 +44,12 @@
         android:contentDescription="@string/mapsFrag_toMyLocation"
         android:src="@drawable/ic_compass"
         app:borderWidth="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_mapsFrag_select"
+        app:layout_constraintBottom_toTopOf="@+id/button_mapsFrag_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/facebookBlue" />
 
     <Button
-        android:id="@+id/button_mapsFrag_select"
+        android:id="@+id/button_mapsFrag_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

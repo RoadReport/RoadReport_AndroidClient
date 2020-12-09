@@ -123,6 +123,7 @@ class MapsFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolBar()
 
         // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient =
@@ -132,29 +133,7 @@ class MapsFragment(
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        toolbar_mapsFrag.title = if (isSelectMode) {
-            getString(R.string.mapsFrag_titleSelectLocation)
-        } else {
-            getString(R.string.mapsFrag_titleShowLocation)
-        }
-
-        button_mapsFrag_select.setOnClickListener {
-            if (isSelectMode && userSelectLocation == LatLng(0.0, 0.0)) {
-                Util().toast(
-                    requireActivity(),
-                    requireActivity().getString(R.string.mapsFrag_notSelect)
-                )
-            } else if (isSelectMode && userSelectLocation != LatLng(0.0, 0.0)) {
-                addGeoPointViewModel.setLatLng(userSelectLocation)
-                dismiss()
-            } else {
-                dismiss()
-            }
-        }
-
-        fab_mapFrag.setOnClickListener {
-            getDeviceLocation(true)
-        }
+        subscribeUi()
     }
 
 
@@ -170,6 +149,36 @@ class MapsFragment(
         return dialog
     }
 
+    private fun setupToolBar() {
+        // MapsFragment title.
+        toolbar_mapsFrag.title = if (isSelectMode) {
+            getString(R.string.mapsFrag_titleSelectLocation)
+        } else {
+            getString(R.string.mapsFrag_titleShowLocation)
+        }
+    }
+
+    private fun subscribeUi() {
+        // Confirm button behavior.
+        button_mapsFrag_confirm.setOnClickListener {
+            if (isSelectMode && userSelectLocation == LatLng(0.0, 0.0)) {
+                Util().toast(
+                    requireActivity(),
+                    getString(R.string.mapsFrag_notSelect)
+                )
+            } else if (isSelectMode && userSelectLocation != LatLng(0.0, 0.0)) {
+                addGeoPointViewModel.setLatLng(userSelectLocation)
+                dismiss()
+            } else {
+                dismiss()
+            }
+        }
+
+        // To my location button
+        fab_mapFrag_toMyLocation.setOnClickListener {
+            getDeviceLocation(true)
+        }
+    }
 
     /**
      * Handles the result of the request for location permissions.
@@ -317,5 +326,10 @@ class MapsFragment(
                 DEFAULT_ZOOM.toFloat()
             )
         )
+    }
+
+
+    private fun showDistanceBetween() {
+
     }
 }
