@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@id/navigation_roadEventFragment"
+        android:icon="@drawable/ic_outline_rss_feed_24"
+        android:title="@string/roadActivity_tab_accidentEvent" />
+
+    <item
+        android:id="@id/navigation_weatherFragment"
+        android:icon="@drawable/ic_outline_cloud_24"
+        android:title="@string/roadActivity_tab_weather" />
+
+    <item
+        android:id="@id/navigation_liveCamFragment"
+        android:icon="@drawable/ic_outline_videocam_24"
+        android:title="@string/roadActivity_tab_liveCam" />
+
+    <item
+        android:id="@id/navigation_localStoreFragment"
+        android:icon="@drawable/ic_outline_storefront_24"
+        android:title="@string/roadActivity_tab_localStore" />
+
+</menu>

@@ -53,6 +53,15 @@
                 android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
         </activity>
         <activity
+            android:name=".activity.RoadActivity2"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.txwstudio.app.roadreport.activity.MainActivity" />
+        </activity>
+        <activity
             android:name=".activity.EventEditorActivity"
             android:exported="true"
             android:screenOrientation="portrait"
