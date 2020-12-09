@@ -174,6 +174,15 @@ class MapsFragment(
             }
         }
 
+        if (!isSelectMode) {
+            fab_mapFrag_calcDistance.visibility = View.GONE
+        }
+
+        // Calc distance button
+        fab_mapFrag_calcDistance.setOnClickListener {
+            showDistanceBetween()
+        }
+
         // To my location button
         fab_mapFrag_toMyLocation.setOnClickListener {
             getDeviceLocation(true)

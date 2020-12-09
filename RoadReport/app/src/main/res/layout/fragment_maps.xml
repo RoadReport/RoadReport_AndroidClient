@@ -40,11 +40,25 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_double_half"
         android:layout_marginBottom="@dimen/margin_normal"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="?attr/colorSurface"
         android:contentDescription="@string/mapsFrag_toMyLocation"
         android:src="@drawable/ic_compass"
         app:borderWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/button_mapsFrag_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/facebookBlue" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_mapFrag_calcDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_double_half"
+        android:layout_marginBottom="@dimen/margin_normal"
+        android:backgroundTint="?attr/colorSurface"
+        android:contentDescription="@string/mapsFrag_toMyLocation"
+        android:src="@drawable/ic_baseline_straighten_24"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/fab_mapFrag_toMyLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/facebookBlue" />
 
