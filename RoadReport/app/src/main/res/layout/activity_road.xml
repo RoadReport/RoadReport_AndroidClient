@@ -23,7 +23,9 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout_roadActivity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable" />
 
         <View style="@style/DivLine" />
     </com.google.android.material.appbar.AppBarLayout>
