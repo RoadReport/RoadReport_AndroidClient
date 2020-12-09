@@ -260,14 +260,11 @@ class MapsFragment(
 
 
     /**
-     * Gets the current location of the device, and positions the map's camera.
+     * Get the best and most recent location of the device, and positions the map's camera.
+     * May be null in rare cases when a location is not available.
      */
     // [START maps_current_place_get_device_location]
     private fun getDeviceLocation(byClick: Boolean) {
-        /*
-         * Get the best and most recent location of the device, which may be null in rare
-         * cases when a location is not available.
-         */
         try {
             if (locationPermissionGranted) {
                 val locationResult = fusedLocationProviderClient.lastLocation
