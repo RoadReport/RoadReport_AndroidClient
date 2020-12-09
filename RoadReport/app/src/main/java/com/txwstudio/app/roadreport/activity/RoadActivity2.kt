@@ -4,21 +4,48 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
-import kotlinx.android.synthetic.main.activity_road.*
+import kotlinx.android.synthetic.main.activity_road2.*
 
 class RoadActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
-        setupMaterialTransition()
+//        setupMaterialTransition()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road2)
         setupToolBar()
+
+        val bottomNavigationView: BottomNavigationView =
+            findViewById(R.id.bottomNavView_roadActivity2)
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer_roadActivity2) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            supportActionBar?.title = navController.currentDestination?.label
+        }
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_roadEventFragment,
+                R.id.navigation_weatherFragment,
+                R.id.navigation_liveCamFragment,
+                R.id.navigation_localStoreFragment
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -40,7 +67,7 @@ class RoadActivity2 : AppCompatActivity() {
     }
 
     private fun setupToolBar() {
-        setSupportActionBar(toolbar_roadActivity)
+        setSupportActionBar(toolbar_roadActivity2)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = RoadCode().getCurrRoadName(this)
     }
