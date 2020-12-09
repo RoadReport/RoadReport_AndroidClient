@@ -14,10 +14,7 @@ import com.google.android.material.transition.platform.MaterialContainerTransfor
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.Util
-import com.txwstudio.app.roadreport.adapter.LIVE_CAM_INDEX
-import com.txwstudio.app.roadreport.adapter.ROAD_EVENT_INDEX
-import com.txwstudio.app.roadreport.adapter.SectionsPagerAdapter
-import com.txwstudio.app.roadreport.adapter.WEATHER_INDEX
+import com.txwstudio.app.roadreport.adapter.*
 import com.txwstudio.app.roadreport.firebase.AuthManager
 import kotlinx.android.synthetic.main.activity_road.*
 
@@ -109,6 +106,7 @@ class RoadActivity : AppCompatActivity() {
             ROAD_EVENT_INDEX -> getString(R.string.roadActivity_tab_accidentEvent)
             WEATHER_INDEX -> getString(R.string.roadActivity_tab_weather)
             LIVE_CAM_INDEX -> getString(R.string.roadActivity_tab_liveCam)
+            LOCAL_STORE_INDEX -> getString(R.string.roadActivity_tab_localStore)
             else -> "null"
         }
     }
