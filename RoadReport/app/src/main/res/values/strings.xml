@@ -88,6 +88,8 @@
     <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
     <string name="eventEditor_locationGeoPointSelected">座標點已選擇，按 X 可移除</string>
+    <string name="eventEditor_exitConfirmDialogTitle">確定離開此頁面?</string>
+    <string name="eventEditor_exitConfirmDialogMsg">您所輸入的資訊將「不會」被儲存</string>
 
     <!-- Maps Fragment-->
     <string name="mapsFrag_titleSelectLocation">選擇座標</string>
@@ -127,7 +129,6 @@
     <string name="accidentEvent_editFailed">更新失敗</string>
     <string name="accidentEvent_editConfirm">確認要更新事件?</string>
     <string name="accidentEvent_NoEntry">有欄位未填寫</string>
-    <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
 
 

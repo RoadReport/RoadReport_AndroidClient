@@ -5,11 +5,11 @@ import android.os.SystemClock
 import android.view.Menu
 import android.view.MenuItem
 import android.view.Window
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ContentFrameLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.platform.MaterialArcMotion
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -86,13 +86,18 @@ class EventEditorActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
-        builder.setPositiveButton(R.string.all_confirm) { _, _ ->
-            super.onBackPressed()
+        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
+        materialAlertDialogBuilder.apply {
+            setTitle(R.string.eventEditor_exitConfirmDialogTitle)
+            setMessage(R.string.eventEditor_exitConfirmDialogMsg)
+            setPositiveButton(R.string.all_confirm) { _, _ ->
+                super.onBackPressed()
+            }
+            setNegativeButton(R.string.all_cancel) { _, _ ->
+
+            }
+            show()
         }
-        builder.setNegativeButton(R.string.all_cancel) { _, _ -> }
-        builder.show()
     }
 
     private fun setupMaterialTransition() {
