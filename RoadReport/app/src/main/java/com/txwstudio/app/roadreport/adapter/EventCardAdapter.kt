@@ -70,13 +70,12 @@ class EventCardAdapter(
                 // What user can to the card. Different onClick behavior for card.
                 // Situation 1: Signed in && posted by user, Edit or Delete.
                 // Situation 2: Signed in && NOT posted by user, Report.
+                val materialAlertDialogBuilder = MaterialAlertDialogBuilder(binding.root.context)
+                materialAlertDialogBuilder.setTitle(R.string.roadFrag_moreOnClick_title)
                 if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
                     // Situation 1, 0 for edit, 1 for delete.
-                    val materialAlertDialogBuilder =
-                        MaterialAlertDialogBuilder(binding.root.context)
                     materialAlertDialogBuilder.apply {
-                        setTitle("你想做什麼?")
-                        setMessage("選擇一個動作，或者點按對話框外當沒事。")
+                        setMessage(R.string.roadFrag_moreOnClick_messageSituation1)
                         setNeutralButton(R.string.roadFrag_moreOnClick_deleteEvent) { dialog, which ->
                             alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
                         }
@@ -91,13 +90,13 @@ class EventCardAdapter(
 
                 } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
                     // Situation 2
-                    val builder = AlertDialog.Builder(binding.root.context)
-                    builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
-                        when (which) {
-                            0 -> alertDialogActionReport()
+                    materialAlertDialogBuilder.apply {
+                        setMessage(R.string.roadFrag_moreOnClick_messageSituation2)
+                        setPositiveButton(R.string.roadFrag_moreOnClick_reportEvent) { dialog, which ->
+                            alertDialogActionReport()
                         }
-                    }.show()
-
+                        show()
+                    }
                 }
             }
 
