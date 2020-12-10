@@ -34,7 +34,8 @@ class RoadActivity : AppCompatActivity() {
         val viewPager: ViewPager2 = findViewById(R.id.viewPager_roadActivity)
 
         viewPager.adapter = SectionsPagerAdapter(this)
-        viewPager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 3
+
 
         // Open wanted default fragment by user.
         val default =
