@@ -35,7 +35,7 @@ class EventEditorFragment : Fragment() {
 
     companion object {
         fun newInstance() = EventEditorFragment()
-        private val UPLOAD_IMAGE_REQUEST_CODE = 1
+        private const val UPLOAD_IMAGE_REQUEST_CODE = 1
     }
 
     // Base ViewModel and DataBinding
