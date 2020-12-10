@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
@@ -71,17 +72,22 @@ class EventCardAdapter(
                 // Situation 2: Signed in && NOT posted by user, Report.
                 if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
                     // Situation 1, 0 for edit, 1 for delete.
-                    val builder = AlertDialog.Builder(binding.root.context)
-                    builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
-                        when (which) {
-                            0 -> {
-                                alertDialogActionEdit()
-                            }
-                            1 -> {
-                                alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
-                            }
+                    val materialAlertDialogBuilder =
+                        MaterialAlertDialogBuilder(binding.root.context)
+                    materialAlertDialogBuilder.apply {
+                        setTitle("你想做什麼?")
+                        setMessage("選擇一個動作，或者點按對話框外當沒事。")
+                        setNeutralButton(R.string.roadFrag_moreOnClick_deleteEvent) { dialog, which ->
+                            alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
                         }
-                    }.show()
+                        setNegativeButton(R.string.roadFrag_moreOnClick_doNothing) { dialog, which ->
+
+                        }
+                        setPositiveButton(R.string.roadFrag_moreOnClick_editEvent) { dialog, which ->
+                            alertDialogActionEdit()
+                        }
+                        show()
+                    }
 
                 } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
                     // Situation 2

@@ -56,6 +56,10 @@
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_noEventAtAll">風和日麗 : )</string>
+    <string name="roadFrag_moreOnClick_editEvent">編輯事件</string>
+    <string name="roadFrag_moreOnClick_deleteEvent">刪除</string>
+    <string name="roadFrag_moreOnClick_doNothing">什麼也不做</string>
+    <string name="roadFrag_moreOnClick_reportEvent">檢舉</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
     <string name="roadFrag_deleteSuccess">刪除成功</string>
     <string name="roadFrag_deleteFailed">刪除失敗</string>
