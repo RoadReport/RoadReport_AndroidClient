@@ -22,7 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/all_default_margin"
-        app:cardElevation="@dimen/materialCard_half">
+        android:background="?attr/colorSurface"
+        app:cardCornerRadius="@dimen/materialCardCornerRadius_4"
+        app:cardElevation="?attr/eventCardElevation">
 
         <RelativeLayout
             android:id="@+id/relaLayout_eventCard"
@@ -69,9 +71,9 @@
                 android:layout_marginEnd="@dimen/margin_half"
                 android:background="?android:selectableItemBackground"
                 android:contentDescription="More"
-                app:isGone="@{!eventCardViewModel.isUserSignedIn}"
                 android:padding="@dimen/margin_half"
-                android:src="@drawable/ic_more_horiz_black_24dp" />
+                android:src="@drawable/ic_more_horiz_black_24dp"
+                app:isGone="@{!eventCardViewModel.isUserSignedIn}" />
 
             <TextView
                 android:id="@+id/textView_eventCard_situation"
@@ -99,8 +101,8 @@
                 android:layout_marginTop="@dimen/margin_normal"
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:scaleType="fitCenter"
-                app:isGone="@{!eventCardViewModel.isImageSet}"
-                app:imageUrl="@{eventCardViewModel.imageUrl}" />
+                app:imageUrl="@{eventCardViewModel.imageUrl}"
+                app:isGone="@{!eventCardViewModel.isImageSet}" />
 
             <TextView
                 android:id="@+id/textView_eventCard_time"

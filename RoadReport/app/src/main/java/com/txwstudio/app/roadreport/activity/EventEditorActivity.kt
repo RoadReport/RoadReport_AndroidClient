@@ -4,8 +4,15 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.ContentFrameLayout
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.transition.platform.MaterialArcMotion
+import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.RoadCode
 import com.txwstudio.app.roadreport.StringCode
@@ -21,6 +28,8 @@ class EventEditorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
+        setupMaterialTransition()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_editor)
 
@@ -77,13 +86,43 @@ class EventEditorActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(getString(R.string.accidentEvent_exitConfirm))
-        builder.setPositiveButton(R.string.all_confirm) { _, _ ->
-            super.onBackPressed()
+        val materialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
+        materialAlertDialogBuilder.apply {
+            setTitle(R.string.eventEditor_exitConfirmDialogTitle)
+            setMessage(R.string.eventEditor_exitConfirmDialogMsg)
+            setPositiveButton(R.string.all_confirm) { _, _ ->
+                super.onBackPressed()
+            }
+            setNegativeButton(R.string.all_cancel) { _, _ ->
+
+            }
+            show()
         }
-        builder.setNegativeButton(R.string.all_cancel) { _, _ -> }
-        builder.show()
+    }
+
+    private fun setupMaterialTransition() {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // Set up shared element transition
+        findViewById<ContentFrameLayout>(android.R.id.content).transitionName =
+            "shared_element_end_root"
+        setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window.sharedElementEnterTransition = buildContainerTransform(true)
+        window.sharedElementReturnTransition = buildContainerTransform(false)
+    }
+
+    private fun buildContainerTransform(entering: Boolean): MaterialContainerTransform? {
+        val transform = MaterialContainerTransform()
+        transform.setAllContainerColors(
+            MaterialColors.getColor(findViewById(android.R.id.content), R.attr.colorSurface)
+        )
+        transform.addTarget(android.R.id.content)
+        transform.duration = 300L
+        transform.interpolator = FastOutSlowInInterpolator()
+        transform.pathMotion = MaterialArcMotion()
+        transform.fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
+        transform.isDrawDebugEnabled = false
+        return transform
     }
 
     private fun setupToolBar(isEditMode: Boolean) {

@@ -14,8 +14,6 @@ import com.txwstudio.app.roadreport.json.DynamicLiveCamSource
 
 class LiveCamViewModel(application: Application) : AndroidViewModel(application) {
 
-    var camName = MutableLiveData<String>()
-    var streamUrl = MutableLiveData<String>()
     var liveCamSourcesList = MutableLiveData<MutableList<DynamicLiveCamSource>>()
     var isRefreshing = MutableLiveData<Boolean>()
 

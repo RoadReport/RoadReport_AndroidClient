@@ -55,7 +55,7 @@ class LiveCamFragment : Fragment() {
         super.onPause()
     }
 
-    fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
+    private fun subscribeUI(adapter: LiveCamSelectCardAdapter) {
         liveCamViewModel.liveCamSourcesList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }

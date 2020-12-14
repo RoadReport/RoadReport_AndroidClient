@@ -16,15 +16,16 @@
     <string name="roadName_24">台 24</string>
     <string name="roadName_182">182 縣道</string>
     <string name="roadName_grandma">阿婆灣</string>
-
+    <string name="roadName_24_description">位於屏東霧台鄉</string>
+    <string name="roadName_182_description">位於台南高雄交界</string>
+    <string name="roadName_grandma_description">位於嘉義中埔鄉</string>
 
     <!-- Main Activity -->
     <string name="mainActivity_needUpdateMsg">為保證您的正常使用，請立即更新 APP。</string>
 
     <!-- Home Fragment -->
     <string name="mainFragment_title">全部道路</string>
-    <string name="roadName_24_description">位於霧台鄉</string>
-    <string name="roadName_182_description">位於台南高雄交界</string>
+
 
     <!-- Account Fragment -->
     <string name="accountFrag_title">帳號</string>
@@ -37,7 +38,9 @@
     <string name="settingsFrag_title">設定</string>
     <string name="settingsFrag_titleGeneral">一般</string>
     <string name="settingsFrag_titleTheme">主題</string>
-    <string name="settingsFrag_titleDialogTheme">選擇主題 (須重開 APP)</string>
+    <string name="settingsFrag_titleDialogTheme">選擇主題</string>
+    <string name="settingsFrag_titleDefaultFragmentInRoadActivity">預設頁面</string>
+    <string name="settingsFrag_titleDialogDefaultFragmentInRoadActivity">預設進入的頁面</string>
     <string name="settingsFrag_titleAbout">關於</string>
     <string name="settingsFrag_titleAds">廣告</string>
     <string name="settingsFrag_titleTermsOfService">服務條款</string>
@@ -48,10 +51,18 @@
     <string name="roadActivity_tab_accidentEvent">路況</string>
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>
+    <string name="roadActivity_tab_localStore">店家資訊</string>
 
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_noEventAtAll">風和日麗 : )</string>
+    <string name="roadFrag_moreOnClick_title">你想做什麼?</string>
+    <string name="roadFrag_moreOnClick_messageSituation1">選擇一個動作，或者當沒事</string>
+    <string name="roadFrag_moreOnClick_messageSituation2">檢舉功能尚未開發。</string>
+    <string name="roadFrag_moreOnClick_editEvent">編輯事件</string>
+    <string name="roadFrag_moreOnClick_deleteEvent">刪除</string>
+    <string name="roadFrag_moreOnClick_doNothing">什麼也不做</string>
+    <string name="roadFrag_moreOnClick_reportEvent">檢舉</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
     <string name="roadFrag_deleteSuccess">刪除成功</string>
     <string name="roadFrag_deleteFailed">刪除失敗</string>
@@ -65,16 +76,20 @@
     </string>
 
     <!-- Live Cam Fragment -->
-    <string name="liveCamFrag_title">即時影像</string>
     <string name="liveCamFrag_noCamSelectTitleHolder">請選擇攝影機</string>
     <string name="liveCamFrag_valueDescription">
         影像來源為公路總局及各地方政府提供，本頁擷取該道路可用之監視器畫面，這些攝影機不是我們架設的。\n\n畫面全黑：通常代表攝影機維修中。\n畫面卡住：因影像格式問題，30 秒即會卡住，選擇其他攝影機再回來即可解決。
     </string>
 
+    <!-- Local Store Fragment -->
+    <string name="localStoreFrag_placeHolder">開發中，以後這一頁會有當地店家資訊</string>
+
     <!-- Event Editor Fragment -->
     <string name="eventEditor_sendingData">請稍後&#8230;</string>
     <string name="eventEditor_eventAddUpdateFailure">好像出了點問題，請稍後再試</string>
     <string name="eventEditor_locationGeoPointSelected">座標點已選擇，按 X 可移除</string>
+    <string name="eventEditor_exitConfirmDialogTitle">確定離開此頁面?</string>
+    <string name="eventEditor_exitConfirmDialogMsg">您所輸入的資訊將「不會」被儲存</string>
 
     <!-- Maps Fragment-->
     <string name="mapsFrag_titleSelectLocation">選擇座標</string>
@@ -88,15 +103,6 @@
     <!-- Accident Event Activity Text -->
     <string name="accidentEvent_currentRoad">目前所在路段</string>
     <string name="accidentEvent_situationType">事件種類</string>
-    <array name="accidentEvent_situationTypeArray">
-        <item>請選擇事故種類</item>
-        <item>事故</item>
-        <item>注意</item>
-        <item>臨檢</item>
-        <item>測速</item>
-        <item>天氣</item>
-        <item>其他</item>
-    </array>
     <string name="accidentEvent_situationType_0">按我選擇種類</string>
     <string name="accidentEvent_situationType_1">事故</string>
     <string name="accidentEvent_situationType_2">注意</string>
@@ -104,7 +110,7 @@
     <string name="accidentEvent_situationType_4">測速</string>
     <string name="accidentEvent_situationType_5">天氣</string>
     <string name="accidentEvent_situationType_6">其他</string>
-    <string name="accidentEvent_location">地點 - 10 字內</string>
+    <string name="accidentEvent_location">地點</string>
     <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>
     <string name="accidentEvent_situationHint">簡短描述你眼前發生之狀況</string>
@@ -123,7 +129,6 @@
     <string name="accidentEvent_editFailed">更新失敗</string>
     <string name="accidentEvent_editConfirm">確認要更新事件?</string>
     <string name="accidentEvent_NoEntry">有欄位未填寫</string>
-    <string name="accidentEvent_exitConfirm">確定離開此頁面?</string>
     <string name="accidentEvent_dontDoubleClick">短時間內請勿重複點擊</string>
 
 

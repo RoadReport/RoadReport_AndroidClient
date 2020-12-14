@@ -22,52 +22,36 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/margin_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <WebView
+                    android:id="@+id/webView_LivaCamFrag"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <WebView
-                        android:id="@+id/webView_LivaCamFrag"
-                        android:layout_width="match_parent"
-                        android:layout_height="194dp" />
-
-                    <com.google.android.gms.ads.AdView
-                        android:id="@+id/adView_liveCamFrag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:adSize="BANNER"
-                        app:adUnitId="@string/LIVECAM_BANNER_ID" />
-                </LinearLayout>
+                    android:layout_height="288dp" />
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView_liveCamFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:adSize="BANNER"
+                app:adUnitId="@string/LIVECAM_BANNER_ID"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="8dp"
                 android:id="@+id/recyclerView_liveCamFrag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_normal"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
-
-<!--            <View-->
-<!--                android:id="@+id/divLive_liveCamFrag"-->
-<!--                style="@style/DivLine"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/recyclerView_liveCamFrag" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="@dimen/margin_normal"-->
-<!--                android:text="@string/liveCamFrag_valueDescription"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/divLive_liveCamFrag" />-->
+                app:layout_constraintTop_toBottomOf="@+id/adView_liveCamFrag" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -13,11 +13,6 @@ import com.txwstudio.app.roadreport.json.DynamicLiveCamSource
 class LiveCamSelectCardAdapter :
     ListAdapter<DynamicLiveCamSource, RecyclerView.ViewHolder>(LiveCamDiffCallback()) {
 
-    companion object {
-        var camName = MutableLiveData<String>()
-        var streamUrl = MutableLiveData<String>()
-    }
-
     var camNames = MutableLiveData<String>()
     var streamUrls = MutableLiveData<String>()
 

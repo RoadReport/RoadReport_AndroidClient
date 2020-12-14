@@ -6,5 +6,6 @@
     <attr name="divLineBackground" format="color"/>
     <attr name="tabLayoutBackground" format="color"/>
     <attr name="eventCardBackground" format="color"/>
+    <attr name="eventCardElevation" format="dimension"/>
     <attr name="editTextCardBackground" format="color"/>
 </resources>

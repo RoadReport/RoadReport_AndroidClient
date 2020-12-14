@@ -48,11 +48,18 @@ class SettingsFragment : PreferenceFragmentCompat(),
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key.equals("theme")) {
-            val stringWow = findPreference<ListPreference>("theme")?.value
-            val wow = context?.getSharedPreferences("main", MODE_PRIVATE)
-            wow?.edit()?.putString("theme", stringWow)?.apply()
-            requireActivity().recreate()
+        when (key) {
+            "theme" -> {
+                val stringWow = findPreference<ListPreference>("theme")?.value
+                val wow = context?.getSharedPreferences("main", MODE_PRIVATE)
+                wow?.edit()?.putString("theme", stringWow)?.apply()
+                requireActivity().recreate()
+            }
+            "defaultFragmentInRoadActivity" -> {
+                val stringWow = findPreference<ListPreference>("defaultFragmentInRoadActivity")?.value
+                val wow = context?.getSharedPreferences("main", MODE_PRIVATE)
+                wow?.edit()?.putString("defaultFragmentInRoadActivity", stringWow)?.apply()
+            }
         }
     }
 

@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/materialDarkBackground" />
+        android:drawable="@color/darkTheme_colorBackground" />
     <item
         android:width="128dp"
         android:height="128dp"

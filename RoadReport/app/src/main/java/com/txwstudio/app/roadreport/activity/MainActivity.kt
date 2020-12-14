@@ -67,11 +67,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navHostFrag =
+        val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFrag.navController
+        val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             supportActionBar?.title = navController.currentDestination?.label
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        bottomNavigationView.setupWithNavController(navController)
 
         AuthManager().isUserSignedIn()
         MobileAds.initialize(this)

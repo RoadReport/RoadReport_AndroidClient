@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.StringCode
 import com.txwstudio.app.roadreport.Util
@@ -69,29 +70,33 @@ class EventCardAdapter(
                 // What user can to the card. Different onClick behavior for card.
                 // Situation 1: Signed in && posted by user, Edit or Delete.
                 // Situation 2: Signed in && NOT posted by user, Report.
+                val materialAlertDialogBuilder = MaterialAlertDialogBuilder(binding.root.context)
+                materialAlertDialogBuilder.setTitle(R.string.roadFrag_moreOnClick_title)
                 if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] == currentUserUid) {
                     // Situation 1, 0 for edit, 1 for delete.
-                    val builder = AlertDialog.Builder(binding.root.context)
-                    builder.setItems(R.array.roadFrag_moreOnClick_situation2) { _, which ->
-                        when (which) {
-                            0 -> {
-                                alertDialogActionEdit()
-                            }
-                            1 -> {
-                                alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
-                            }
+                    materialAlertDialogBuilder.apply {
+                        setMessage(R.string.roadFrag_moreOnClick_messageSituation1)
+                        setNeutralButton(R.string.roadFrag_moreOnClick_deleteEvent) { dialog, which ->
+                            alertDialogActionDelete(snapshots.getSnapshot(adapterPosition).id)
                         }
-                    }.show()
+                        setNegativeButton(R.string.roadFrag_moreOnClick_doNothing) { dialog, which ->
+
+                        }
+                        setPositiveButton(R.string.roadFrag_moreOnClick_editEvent) { dialog, which ->
+                            alertDialogActionEdit()
+                        }
+                        show()
+                    }
 
                 } else if (isUserSignedIn && snapshots.getSnapshot(adapterPosition)["userUid"] != currentUserUid) {
                     // Situation 2
-                    val builder = AlertDialog.Builder(binding.root.context)
-                    builder.setItems(R.array.roadFrag_moreOnClick_situation3) { _, which ->
-                        when (which) {
-                            0 -> alertDialogActionReport()
+                    materialAlertDialogBuilder.apply {
+                        setMessage(R.string.roadFrag_moreOnClick_messageSituation2)
+                        setPositiveButton(R.string.roadFrag_moreOnClick_reportEvent) { dialog, which ->
+                            alertDialogActionReport()
                         }
-                    }.show()
-
+                        show()
+                    }
                 }
             }
 
@@ -117,7 +122,6 @@ class EventCardAdapter(
         }
 
         private fun alertDialogActionEdit() {
-            Util().snackBarShort(requireView, "在新視窗中開啟")
             val accidentModel = getItem(adapterPosition)
             val intent = Intent(requireView.context, EventEditorActivity::class.java)
             intent.putExtra(StringCode.EXTRA_NAME_EDIT_MODE, true)

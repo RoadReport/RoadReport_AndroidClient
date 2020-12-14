@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/road_activity_navigation"
+    app:startDestination="@id/navigation_roadEventFragment">
+
+    <fragment
+        android:id="@+id/navigation_roadEventFragment"
+        android:name="com.txwstudio.app.roadreport.ui.roadevent.RoadEventFragment"
+        android:label="@string/roadActivity_tab_accidentEvent"
+        tools:layout="@layout/fragment_road_event">
+        <action
+            android:id="@+id/action_roadEventFragment_to_imageViewerFragment"
+            app:destination="@id/navigation_imageViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_weatherFragment"
+        android:name="com.txwstudio.app.roadreport.ui.weather.WeatherFragment"
+        android:label="@string/roadActivity_tab_weather"
+        tools:layout="@layout/fragment_weather"/>
+    <fragment
+        android:id="@+id/navigation_liveCamFragment"
+        android:name="com.txwstudio.app.roadreport.ui.livecam.LiveCamFragment"
+        android:label="@string/roadActivity_tab_liveCam"
+        tools:layout="@layout/fragment_live_cam"/>
+    <fragment
+        android:id="@+id/navigation_localStoreFragment"
+        android:name="com.txwstudio.app.roadreport.ui.LocalStoreFragment"
+        android:label="@string/roadActivity_tab_localStore"
+        tools:layout="@layout/fragment_local_store" />
+    <fragment
+        android:id="@+id/navigation_imageViewerFragment"
+        android:name="com.txwstudio.app.roadreport.ui.imageviewer.ImageViewerFragment"
+        android:label="@string/title_activity_imageViewer"
+        tools:layout="@layout/fragment_image_viewer"/>
+</navigation>

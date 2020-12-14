@@ -10,41 +10,49 @@
             type="com.txwstudio.app.roadreport.ui.weather.WeatherViewModel" />
     </data>
 
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshView_weatherFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.weather.WeatherFragment">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_weatherFrag"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:padding="@dimen/margin_normal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:orientation="vertical">
 
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/adView_weatherFrag"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_normal"
-                ads:adSize="BANNER"
-                ads:adUnitId="@string/WEATHER_BANNER_ID" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_weatherFrag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:padding="@dimen/margin_normal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <View style="@style/DivLine" />
+                <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView_weatherFrag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/WEATHER_BANNER_ID" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_normal"
-                android:text="@string/weatherFrag_valueDescription" />
-        </LinearLayout>
+                <View
+                    style="@style/DivLine"
+                    android:layout_marginHorizontal="@dimen/margin_normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_normal"
+                    android:text="@string/weatherFrag_valueDescription" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

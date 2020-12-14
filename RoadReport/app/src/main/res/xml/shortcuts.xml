@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:shortcutDisabledMessage="@string/title_activity_eventEditor"
+        android:shortcutId="compose"
+        android:shortcutLongLabel="@string/title_activity_eventEditor"
+        android:shortcutShortLabel="@string/title_activity_eventEditor">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.txwstudio.app.roadreport.activity.EventEditorActivity"
+            android:targetPackage="com.txwstudio.app.roadreport" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>
