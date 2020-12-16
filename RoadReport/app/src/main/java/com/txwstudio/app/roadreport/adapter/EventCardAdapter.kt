@@ -135,13 +135,24 @@ class EventCardAdapter(
         }
 
         private fun alertDialogActionDelete(docId: String) {
-            FirestoreManager()
-                .deleteAccident(roadCode, docId) {
-                    Util().snackBarShort(
-                        requireView,
-                        if (it) "刪除成功" else "刪除失敗"
-                    )
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(binding.root.context)
+            materialAlertDialogBuilder.setTitle(R.string.roadFrag_moreOnClick_deleteEventConfirm)
+            materialAlertDialogBuilder.apply {
+                setNeutralButton(R.string.all_nope) { _, _ ->
+
                 }
+                setPositiveButton(R.string.all_confirm) { _, _ ->
+                    FirestoreManager()
+                        .deleteAccident(roadCode, docId) {
+                            Util().snackBarShort(
+                                requireView,
+                                if (it) "刪除成功" else "刪除失敗"
+                            )
+                        }
+                }
+                show()
+            }
+
         }
 
         private fun alertDialogActionReport() {

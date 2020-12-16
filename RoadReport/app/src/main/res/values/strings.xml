@@ -61,6 +61,7 @@
     <string name="roadFrag_moreOnClick_messageSituation2">檢舉功能尚未開發。</string>
     <string name="roadFrag_moreOnClick_editEvent">編輯事件</string>
     <string name="roadFrag_moreOnClick_deleteEvent">刪除</string>
+    <string name="roadFrag_moreOnClick_deleteEventConfirm">確認要刪除該事件?</string>
     <string name="roadFrag_moreOnClick_doNothing">什麼也不做</string>
     <string name="roadFrag_moreOnClick_reportEvent">檢舉</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
