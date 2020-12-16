@@ -18,7 +18,7 @@ object EventCardBindingAdapter {
     fun setEventCardBackground(view: RelativeLayout, situationType: Long) {
         val resId = when (situationType.toInt()) {
             1, 2 -> R.drawable.bg_accident_type_2
-            3, 4 -> R.drawable.bg_accident_type_1
+            3, 4, 7, 8 -> R.drawable.bg_accident_type_1
             5 -> R.drawable.bg_accident_type_4
             6 -> R.drawable.bg_accident_type_5
             else -> R.drawable.bg_accident_type_5
@@ -36,6 +36,8 @@ object EventCardBindingAdapter {
             4 -> R.string.accidentEvent_situationType_4
             5 -> R.string.accidentEvent_situationType_5
             6 -> R.string.accidentEvent_situationType_6
+            7 -> R.string.accidentEvent_situationType_7
+            8 -> R.string.accidentEvent_situationType_8
             else -> R.string.accidentEvent_situationType_6
         }
         view.text = view.context.getString(resId)

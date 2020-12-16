@@ -62,6 +62,7 @@ class Util {
     }
 
 
+    // TODO(Consider Refactor)
     fun getSituationTypeName(context: Context, situationType: Int): String {
         return when (situationType) {
             0 -> context.getString(R.string.accidentEvent_situationType_0)
@@ -71,7 +72,9 @@ class Util {
             4 -> context.getString(R.string.accidentEvent_situationType_4)
             5 -> context.getString(R.string.accidentEvent_situationType_5)
             6 -> context.getString(R.string.accidentEvent_situationType_6)
-            else -> "errNameUnknown"
+            7 -> context.getString(R.string.accidentEvent_situationType_7)
+            8 -> context.getString(R.string.accidentEvent_situationType_8)
+            else -> context.getString(R.string.accidentEvent_situationType_6)
         }
     }
 

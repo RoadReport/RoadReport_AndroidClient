@@ -40,5 +40,7 @@
         <item>測速</item>
         <item>天氣</item>
         <item>其他</item>
+        <item>坍方</item>
+        <item>落石</item>
     </array>
 </resources>
