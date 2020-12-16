@@ -142,7 +142,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/commonTextSize</item>
         <item name="android:gravity">start</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:paddingTop">16dp</item>
