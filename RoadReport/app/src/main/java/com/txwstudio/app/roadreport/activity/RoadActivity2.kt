@@ -19,7 +19,7 @@ class RoadActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
-//        setupMaterialTransition()
+        setupMaterialTransition()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road2)
