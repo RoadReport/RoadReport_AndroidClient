@@ -33,18 +33,9 @@ class RoadActivity2 : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            supportActionBar?.title = navController.currentDestination?.label
+//            supportActionBar?.title = navController.currentDestination?.label
         }
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_roadEventFragment,
-                R.id.navigation_weatherFragment,
-                R.id.navigation_liveCamFragment,
-                R.id.navigation_localStoreFragment
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
     }
 
