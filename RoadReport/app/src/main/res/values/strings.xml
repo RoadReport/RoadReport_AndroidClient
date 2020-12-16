@@ -55,7 +55,7 @@
 
     <!-- Road Event Fragment -->
     <string name="roadFrag_SignInFirst">請先登入</string>
-    <string name="roadFrag_noEventAtAll">風和日麗 : )</string>
+    <string name="roadFrag_noEventAtAll">風和日麗 :D</string>
     <string name="roadFrag_moreOnClick_title">你想做什麼?</string>
     <string name="roadFrag_moreOnClick_messageSituation1">選擇一個動作，或者當沒事</string>
     <string name="roadFrag_moreOnClick_messageSituation2">檢舉功能尚未開發。</string>
