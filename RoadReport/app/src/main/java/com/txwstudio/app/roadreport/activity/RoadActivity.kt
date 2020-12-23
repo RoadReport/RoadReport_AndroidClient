@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_road.*
 
 class RoadActivity : AppCompatActivity() {
 
-    lateinit var fabAdd: FloatingActionButton
+    lateinit var fabAdd: ExtendedFloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)

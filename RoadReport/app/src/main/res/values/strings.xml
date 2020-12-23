@@ -54,6 +54,7 @@
     <string name="roadActivity_tab_localStore">店家資訊</string>
 
     <!-- Road Event Fragment -->
+    <string name="roadFrag_fabText">新增事件</string>
     <string name="roadFrag_SignInFirst">請先登入</string>
     <string name="roadFrag_noEventAtAll">風和日麗 :D</string>
     <string name="roadFrag_moreOnClick_title">你想做什麼?</string>
