@@ -24,7 +24,12 @@
             android:id="@+id/tabLayout_roadActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="3dp"
+            app:tabInlineLabel="true"
+            app:tabMinWidth="75dp"
             app:tabMode="scrollable" />
 
         <View style="@style/DivLine" />
@@ -36,14 +41,15 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab_roadActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/margin_normal"
-        android:src="@drawable/ic_add_black_24dp"
+        android:text="@string/roadFrag_fabText"
         android:visibility="visible"
+        app:icon="@drawable/ic_add_black_24dp"
         app:tint="?attr/menuIconFillColor" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

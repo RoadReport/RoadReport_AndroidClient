@@ -54,13 +54,15 @@
     <string name="roadActivity_tab_localStore">店家資訊</string>
 
     <!-- Road Event Fragment -->
+    <string name="roadFrag_fabText">新增事件</string>
     <string name="roadFrag_SignInFirst">請先登入</string>
-    <string name="roadFrag_noEventAtAll">風和日麗 : )</string>
+    <string name="roadFrag_noEventAtAll">風和日麗 :D</string>
     <string name="roadFrag_moreOnClick_title">你想做什麼?</string>
     <string name="roadFrag_moreOnClick_messageSituation1">選擇一個動作，或者當沒事</string>
     <string name="roadFrag_moreOnClick_messageSituation2">檢舉功能尚未開發。</string>
     <string name="roadFrag_moreOnClick_editEvent">編輯事件</string>
     <string name="roadFrag_moreOnClick_deleteEvent">刪除</string>
+    <string name="roadFrag_moreOnClick_deleteEventConfirm">確認要刪除該事件?</string>
     <string name="roadFrag_moreOnClick_doNothing">什麼也不做</string>
     <string name="roadFrag_moreOnClick_reportEvent">檢舉</string>
     <string name="roadFrag_addAccidentEvent">新增事件</string>
@@ -110,6 +112,8 @@
     <string name="accidentEvent_situationType_4">測速</string>
     <string name="accidentEvent_situationType_5">天氣</string>
     <string name="accidentEvent_situationType_6">其他</string>
+    <string name="accidentEvent_situationType_7">坍方</string>
+    <string name="accidentEvent_situationType_8">落石</string>
     <string name="accidentEvent_location">地點</string>
     <string name="accidentEvent_locationHint">明顯地標或公里數</string>
     <string name="accidentEvent_situation">狀況</string>

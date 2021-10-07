@@ -1,5 +1,6 @@
 package com.txwstudio.app.roadreport.ui.livecam
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,8 @@ class LiveCamFragment : Fragment() {
         adapter = LiveCamSelectCardAdapter()
         binding.recyclerViewLiveCamFrag.adapter = adapter
         subscribeUI(adapter)
+
+        binding.webViewLivaCamFrag.setBackgroundColor(Color.BLACK)
 
         val adRequest = AdRequest.Builder().build()
         binding.adViewLiveCamFrag.loadAd(adRequest)

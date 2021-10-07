@@ -19,7 +19,7 @@ class RoadActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Util().setupTheme(this)
-//        setupMaterialTransition()
+        setupMaterialTransition()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_road2)
@@ -33,18 +33,9 @@ class RoadActivity2 : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            supportActionBar?.title = navController.currentDestination?.label
+//            supportActionBar?.title = navController.currentDestination?.label
         }
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_roadEventFragment,
-                R.id.navigation_weatherFragment,
-                R.id.navigation_liveCamFragment,
-                R.id.navigation_localStoreFragment
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
     }
 
@@ -68,7 +59,8 @@ class RoadActivity2 : AppCompatActivity() {
 
     private fun setupToolBar() {
         setSupportActionBar(toolbar_roadActivity2)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = RoadCode().getCurrRoadName(this)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+//        supportActionBar?.title = RoadCode().getCurrRoadName(this)
     }
 }
