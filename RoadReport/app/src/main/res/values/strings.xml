@@ -52,6 +52,7 @@
     <string name="roadActivity_tab_weather">天氣</string>
     <string name="roadActivity_tab_liveCam">即時影像</string>
     <string name="roadActivity_tab_localStore">店家資訊</string>
+    <string name="roadActivity_tab_account">帳號</string>
 
     <!-- Road Event Fragment -->
     <string name="roadFrag_fabText">新增事件</string>

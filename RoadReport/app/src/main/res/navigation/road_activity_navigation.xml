@@ -30,6 +30,11 @@
         android:label="@string/roadActivity_tab_localStore"
         tools:layout="@layout/fragment_local_store" />
     <fragment
+        android:id="@+id/navigation_accountFragment"
+        android:name="com.txwstudio.app.roadreport.ui.account.AccountFragment"
+        android:label="@string/roadActivity_tab_account"
+        tools:layout="@layout/fragment_account"/>
+    <fragment
         android:id="@+id/navigation_imageViewerFragment"
         android:name="com.txwstudio.app.roadreport.ui.imageviewer.ImageViewerFragment"
         android:label="@string/title_activity_imageViewer"
