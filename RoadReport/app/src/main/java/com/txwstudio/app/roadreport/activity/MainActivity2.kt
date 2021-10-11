@@ -19,7 +19,7 @@ class MainActivity2 : AppCompatActivity() {
         setupMaterialTransition()
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_Main_2)
+        setContentView(R.layout.activity_main_2)
         setupToolBar()
 
         val bottomNavigationView: BottomNavigationView =
