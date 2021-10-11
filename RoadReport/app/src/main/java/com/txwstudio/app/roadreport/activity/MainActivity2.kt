@@ -10,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.txwstudio.app.roadreport.R
 import com.txwstudio.app.roadreport.Util
-import kotlinx.android.synthetic.main.activity_road2.*
+import kotlinx.android.synthetic.main.activity_main_2.*
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -23,10 +23,10 @@ class MainActivity2 : AppCompatActivity() {
         setupToolBar()
 
         val bottomNavigationView: BottomNavigationView =
-            findViewById(R.id.bottomNavView_roadActivity2)
+            findViewById(R.id.bottomNavView_mainActivity2)
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainer_roadActivity2) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer_mainActivity2) as NavHostFragment
         val navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
@@ -55,7 +55,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun setupToolBar() {
-        setSupportActionBar(toolbar_roadActivity2)
+        setSupportActionBar(toolbar_mainActivity2)
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 //        supportActionBar?.title = RoadCode().getCurrRoadName(this)

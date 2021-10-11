@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_roadActivity2"
+        android:id="@+id/appbar_mainActivity2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorSurface"
@@ -16,7 +16,7 @@
         app:liftOnScroll="true">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_roadActivity2"
+            android:id="@+id/toolbar_mainActivity2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
                 android:padding="@dimen/margin_normal">
 
                 <TextView
-                    android:id="@+id/textView_roadActivity2_toolbarTitle"
+                    android:id="@+id/textView_mainActivity2_toolbarTitle"
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavView_roadActivity2"
+        android:id="@+id/bottomNavView_mainActivity2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -61,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/road_activity2_bottom_nav_menu" />
+        app:menu="@menu/main_activity2_bottom_nav_menu" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainer_roadActivity2"
+            android:id="@+id/fragmentContainer_mainActivity2"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
