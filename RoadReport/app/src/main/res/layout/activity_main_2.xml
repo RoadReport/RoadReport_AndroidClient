@@ -15,12 +15,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:liftOnScroll="true">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_mainActivity2"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="scroll|snap">
 
             <LinearLayout
@@ -30,23 +28,21 @@
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_normal">
+                android:padding="@dimen/margin_normal"
+                android:paddingStart="0dp">
 
                 <TextView
                     android:id="@+id/textView_mainActivity2_toolbarTitle"
                     style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="台 24" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingStart="@dimen/margin_half"
-                    android:src="@drawable/ic_baseline_arrow_drop_down_24" />
+                    android:text="台 24"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="@dimen/margin_half"
+                    android:includeFontPadding="false"/>
             </LinearLayout>
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
